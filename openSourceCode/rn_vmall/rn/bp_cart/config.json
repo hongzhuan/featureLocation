@@ -1,0 +1,23 @@
+[
+  {
+    "moduleName": "basic",
+    "moduleType": "basic",
+    "version": 11212300,
+    "time": "2025-2-20 16:34:57",
+    "status": 0
+  },
+  {
+    "moduleName": "component",
+    "moduleType": "component",
+    "version": 11212300,
+    "time": "2025-2-20 16:34:57",
+    "status": 0
+  },
+  {
+    "moduleName": "shoppingcart",
+    "moduleType": "business",
+    "version": 11212300,
+    "time": "2025-2-20 16:34:57",
+    "status": 0
+  }
+]

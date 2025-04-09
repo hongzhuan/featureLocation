@@ -1,0 +1,23 @@
+[
+  {
+    "moduleName": "basic",
+    "moduleType": "basic",
+    "version": 12502290,
+    "time": "2025-3-3 15:52:11",
+    "status": 0
+  },
+  {
+    "moduleName": "component",
+    "moduleType": "component",
+    "version": 12502290,
+    "time": "2025-3-3 15:52:11",
+    "status": 0
+  },
+  {
+    "moduleName": "productdetail",
+    "moduleType": "business",
+    "version": 12502290,
+    "time": "2025-3-3 15:52:11",
+    "status": 0
+  }
+]

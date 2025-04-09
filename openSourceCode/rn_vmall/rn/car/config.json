@@ -1,0 +1,23 @@
+[
+  {
+    "moduleName": "basic",
+    "moduleType": "basic",
+    "version": 11107300,
+    "time": "2023-6-9 1:2:27",
+    "status": 0
+  },
+  {
+    "moduleName": "component",
+    "moduleType": "component",
+    "version": 11107300,
+    "time": "2023-6-9 1:2:27",
+    "status": 0
+  },
+  {
+    "moduleName": "cardetail",
+    "moduleType": "business",
+    "version": 11107300,
+    "time": "2023-6-9 1:2:27",
+    "status": 0
+  }
+]

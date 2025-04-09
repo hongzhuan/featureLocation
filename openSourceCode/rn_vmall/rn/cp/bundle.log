@@ -1,0 +1,8 @@
+bundle_branch=Br_release_1.25.2.300
+bundle_version=1.25.2.301
+releaseVersion=1.25.2.301.20250224141747
+ENV_PIPELINE_STARTTIME=20250224141747
+env=sit
+PACKAGE_NUM=
+target=
+module_name=VMallRNCP

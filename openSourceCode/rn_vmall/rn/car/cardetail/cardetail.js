@@ -1,0 +1,30004 @@
+!(function(n){
+var e=(function(){
+// 函数
+function n(n: any, e: any): any {
+return n
+}
+// 函数
+function e(n: any): any {
+var e={
+
+}
+;
+return n.forEach((function(n,t){
+e[n]=!0
+}
+)),e
+}
+// 函数
+function t(n: any, t: any, a: any): any {
+if(n.formatValueCalls++,n.formatValueCalls>200)return"[TOO BIG formatValueCalls "+n.formatValueCalls+" exceeded limit of 200]";
+// 变量
+var f: any = r(n,t);
+if(f)return f;
+// 变量
+var c: any = Object.keys(t),s=e(c);
+if(d(t)&&(c.indexOf('message')>=0||c.indexOf('description')>=0))return o(t);
+if(0===c.length){
+if(v(t)){
+// 变量
+var g: any = t.name?': '+t.name:'';
+return n.stylize('[Function'+g+']','special')
+}
+if(p(t))return n.stylize(RegExp.prototype.toString.call(t),'regexp');
+if(y(t))return n.stylize(Date.prototype.toString.call(t),'date');
+if(d(t))return o(t)
+}
+var h,b,m='',j=!1,O=['{
+','
+}
+'];
+(h=t,Array.isArray(h)&&(j=!0,O=['[',']']),v(t))&&(m=' [Function'+(t.name?': '+t.name:'')+']');
+return p(t)&&(m=' '+RegExp.prototype.toString.call(t)),y(t)&&(m=' '+Date.prototype.toUTCString.call(t)),d(t)&&(m=' '+o(t)),0!==c.length||j&&0!=t.length?a<0?p(t)?n.stylize(RegExp.prototype.toString.call(t),'regexp'):n.stylize('[Object]','special'):(n.seen.push(t),b=j?i(n,t,a,s,c):c.map((function(e){
+return l(n,t,a,s,e,j)
+}
+)),n.seen.pop(),u(b,m,O)):O[0]+m+O[1]
+}
+// 函数
+function r(n: any, e: any): any {
+if(s(e))return n.stylize('undefined','undefined');
+if('string'==typeof e){
+// 变量
+var t: any = "'"+JSON.stringify(e).replace(/^"|"$/g,'').replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";
+return n.stylize(t,'string')
+}
+return c(e)?n.stylize(''+e,'number'):a(e)?n.stylize(''+e,'boolean'):f(e)?n.stylize('null','null'):void 0
+}
+// 函数
+function o(n: any): any {
+return'['+Error.prototype.toString.call(n)+']'
+}
+// 函数
+function i(n: any, e: any, t: any, r: any, o: any): any {
+for(var i=[],u=0,a=e.length;
+u<a;
+++u)b(e,String(u))?i.push(l(n,e,t,r,String(u),!0)):i.push('');
+return o.forEach((function(o){
+o.match(/^\d+$/)||i.push(l(n,e,t,r,o,!0))
+}
+)),i
+}
+// 函数
+function l(n: any, e: any, r: any, o: any, i: any, l: any): any {
+var u,a,c;
+if((c=Object.getOwnPropertyDescriptor(e,i)||{
+value:e[i]
+}
+).get?a=c.set?n.stylize('[Getter/Setter]','special'):n.stylize('[Getter]','special'):c.set&&(a=n.stylize('[Setter]','special')),b(o,i)||(u='['+i+']'),a||(n.seen.indexOf(c.value)<0?(a=f(r)?t(n,c.value,null):t(n,c.value,r-1)).indexOf('\n')>-1&&(a=l?a.split('\n').map((function(n){
+return'  '+n
+}
+)).join('\n').substr(2):'\n'+a.split('\n').map((function(n){
+return'   '+n
+}
+)).join('\n')):a=n.stylize('[Circular]','special')),s(u)){
+if(l&&i.match(/^\d+$/))return a;
+(u=JSON.stringify(''+i)).match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(u=u.substr(1,u.length-2),u=n.stylize(u,'name')):(u=u.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),u=n.stylize(u,'string'))
+}
+return u+': '+a
+}
+// 函数
+function u(n: any, e: any, t: any): any {
+return n.reduce((function(n,e){
+return e.indexOf('\n')>=0&&0,n+e.replace(/\u001b\[\d\d?m/g,'').length+1
+}
+),0)>60?t[0]+(''===e?'':e+'\n ')+' '+n.join(',\n  ')+' '+t[1]:t[0]+e+' '+n.join(', ')+' '+t[1]
+}
+// 函数
+function a(n: any): any {
+return'boolean'==typeof n
+}
+// 函数
+function f(n: any): any {
+return null===n
+}
+// 函数
+function c(n: any): any {
+return'number'==typeof n
+}
+// 函数
+function s(n: any): any {
+return void 0===n
+}
+// 函数
+function p(n: any): any {
+return g(n)&&'[object RegExp]'===h(n)
+}
+// 函数
+function g(n: any): any {
+return'object'==typeof n&&null!==n
+}
+// 函数
+function y(n: any): any {
+return g(n)&&'[object Date]'===h(n)
+}
+// 函数
+function d(n: any): any {
+return g(n)&&('[object Error]'===h(n)||n instanceof Error)
+}
+// 函数
+function v(n: any): any {
+return'function'==typeof n
+}
+// 函数
+function h(n: any): any {
+return Object.prototype.toString.call(n)
+}
+// 函数
+function b(n: any, e: any): any {
+return Object.prototype.hasOwnProperty.call(n,e)
+}
+return function(e,r){
+return t({
+seen:[],formatValueCalls:0,stylize:n
+}
+,e,r.depth)
+}
+
+}
+)(),t=0,r=1,o=2,i=3,l=[];
+l[t]='debug',l[r]='log',l[o]='warning',l[i]='error';
+// 函数
+function u(t: any): any {
+return function(){
+var r;
+r=1===arguments.length&&'string'==typeof arguments[0]?arguments[0]:Array.prototype.map.call(arguments,(function(n){
+return e(n,{
+depth:10
+}
+)
+}
+)).join(', ');
+// 变量
+var u: any = arguments[0],a=t;
+'string'==typeof u&&'Warning: '===u.slice(0,9)&&a>=i&&(a=o),n.__inspectorLog&&n.__inspectorLog(l[a],r,[].slice.call(arguments),1),f.length&&(r=c('',r)),n.nativeLoggingHook(r,a)
+}
+
+}
+// 函数
+function a(n: any, e: any): any {
+return Array.apply(null,Array(e)).map((function(){
+return n
+}
+))
+}
+// 变量
+var f: any = [];
+// 函数
+function c(n: any, e: any): any {
+return f.join('')+n+' '+(e||'')
+}
+if(n.nativeLoggingHook){
+n.console;
+n.console={
+error:u(i),info:u(r),log:u(r),warn:u(o),trace:u(t),debug:u(t),table:function(e){
+if(!Array.isArray(e)){
+// 变量
+var t: any = e;
+for(var o in e=[],t)if(t.hasOwnProperty(o)){
+// 变量
+var i: any = t[o];
+i["(index)"]=o,e.push(i)
+}
+
+}
+if(0!==e.length){
+// 变量
+var l: any = Object.keys(e[0]).sort(),u=[],f=[];
+l.forEach((function(n,t){
+f[t]=n.length;
+for(var r=0;
+r<e.length;
+r++){
+// 变量
+var o: any = (e[r][n]||'?').toString();
+u[r]=u[r]||[],u[r][t]=o,f[t]=Math.max(f[t],o.length)
+}
+
+}
+));
+for(var c=g(f.map((function(n){
+return a('-',n).join('')
+}
+)),'-'),s=[g(l),c],p=0;
+p<e.length;
+p++)s.push(g(u[p]));
+n.nativeLoggingHook('\n'+s.join('\n'),r)
+}
+else n.nativeLoggingHook('',r);
+// 函数
+function g(n: any, e: any): any {
+var t=n.map((function(n,e){
+return n+a(' ',f[e]-n.length).join('')
+}
+));
+return e=e||' ',t.join(e+'|'+e)
+}
+
+}
+,group:function(e){
+n.nativeLoggingHook(c("\u2510",e),r),f.push("\u2502")
+}
+,groupEnd:function(){
+f.pop(),n.nativeLoggingHook(c("\u2518"),r)
+}
+,groupCollapsed:function(e){
+n.nativeLoggingHook(c("\u2518",e),r),f.push("\u2502")
+}
+,assert:function(e,t){
+e||n.nativeLoggingHook('Assertion failed: '+t,i)
+}
+
+}
+,Object.defineProperty(console,'_isPolyfilled',{
+value:!0,enumerable:!1
+}
+)
+}
+else if(!n.console){
+var s=function(){
+
+}
+,p=n.print||s;
+n.console={
+debug:p,error:p,info:p,log:p,trace:p,warn:p,assert:function(n,e){
+n||p('Assertion failed: '+e)
+}
+,clear:s,dir:s,dirxml:s,group:s,groupCollapsed:s,groupEnd:s,profile:s,profileEnd:s,table:s
+}
+,Object.defineProperty(console,'_isPolyfilled',{
+value:!0,enumerable:!1
+}
+)
+}
+
+}
+)('undefined'!=typeof globalThis?globalThis:'undefined'!=typeof global?global:'undefined'!=typeof window?window:this);
+
+!(function(n){
+var r=0,t=function(n,r){
+throw n
+}
+,l={
+setGlobalHandler:function(n){
+t=n
+}
+,getGlobalHandler:function(){
+return t
+}
+,reportError:function(n){
+t&&t(n,!1)
+}
+,reportFatalError:function(n){
+t&&t(n,!0)
+}
+,applyWithGuard:function(n,t,u,e,a){
+try{
+return r++,n.apply(t,u)
+}
+catch(n){
+l.reportError(n)
+}
+finally{
+r--
+}
+return null
+}
+,applyWithGuardIfNeeded:function(n,r,t){
+return l.inGuard()?n.apply(r,t):(l.applyWithGuard(n,r,t),null)
+}
+,inGuard:function(){
+return!!r
+}
+,guard:function(n,r,t){
+var u;
+if('function'!=typeof n)return null;
+// 变量
+var e: any = null!=(u=null!=r?r:n.name)?u:'<generated guard>';
+return function(){
+for(var r=arguments.length,u=new Array(r),a=0;
+a<r;
+a++)u[a]=arguments[a];
+return l.applyWithGuard(n,null!=t?t:this,u,null,e)
+}
+
+}
+
+}
+;
+n.ErrorUtils=l
+}
+)('undefined'!=typeof globalThis?globalThis:'undefined'!=typeof global?global:'undefined'!=typeof window?window:this);
+
+'undefined'!=typeof globalThis?globalThis:'undefined'!=typeof global?global:'undefined'!=typeof window&&window,(function(){
+'use strict';
+// 变量
+var e: any = Object.prototype.hasOwnProperty;
+'function'!=typeof Object.entries&&(Object.entries=function(n){
+if(null==n)throw new TypeError('Object.entries called on non-object');
+// 变量
+var o: any = [];
+for(var t in n)e.call(n,t)&&o.push([t,n[t]]);
+return o
+}
+),'function'!=typeof Object.values&&(Object.values=function(n){
+if(null==n)throw new TypeError('Object.values called on non-object');
+// 变量
+var o: any = [];
+for(var t in n)e.call(n,t)&&o.push(n[t]);
+return o
+}
+)
+}
+)();
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]),n=r(d[1]),o=r(d[2]),s=t(r(d[3])),u=r(d[4]);
+(0,n.configure)({
+useProxies:'never'
+}
+),o.Text.defaultProps=Object.assign({
+
+}
+,o.Text.defaultProps,{
+allowFontScaling:!1
+}
+),o.TextInput.defaultProps=Object.assign({
+
+}
+,o.TextInput.defaultProps,{
+defaultProps:!1
+}
+),o.AppRegistry.registerComponent(u.CAR_DETAIL.name,(function(){
+return s.default
+}
+))
+}
+),"b455485425228b09c1a4d0d2f41ef27c005c9cbd3377af2717325ded81d0c9ba",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","e784766a1c658921813a033ec526e6cfaae3e9ef341f090266d1532b9bf4231a","96677aa35debfefd031d9d34d9c70369754ee3acb2d9a9d4090e98612efee6f5"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=function(){
+var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+;
+n.appIdStore.setIsPreload(e.isPreInstalledPackage);
+var r=(0,s.useInit)({
+props:Object.assign({
+targetPage:'cardetail',prdId:'',sbomCode:'',slectCode:'',channelId:n.Cookies.get('carChannelId'),saleId:n.Cookies.get('carSaleId'),carLeadsId:n.Cookies.get('carLeadsId'),showheader:n.Cookies.get('showheader')
+}
+,e),e2ePageType:'cardetail',catchBundle:'cardetail'
+}
+);
+(0,a.useEffect)((function(){
+return(0,c.initAppStoreLogin)(),h.default.initSelectedAttrList(),n.PlatformUtils.isWeb()&&n.ApmUtils.apmMonitorInitWithAllBdd(),c.clearDeDuplicateExec
+}
+),[]),(0,w.usePageStatus)((function(e){
+2===e&&j.DeviceEventEmitter.emit("onShow-"+r.urlParams.uniqueId)
+}
+),[r.urlParams.uniqueId]);
+// 变量
+var O: string = 'true'===String(e.preview),x=(0,f.useInitPreview)('carDetail',O),b=(0,t.default)(x,2),_=b[0],k=b[1];
+return r.initialized?(0,y.jsx)(r.Boundary,{
+children:(0,y.jsx)(v.VrnUIProvider,{
+config:I.default,colorModeManager:S(r.theme),isHarmony:'HarmonyOS'===(null==e?void 0:e.os),children:(0,y.jsx)(l.Provider,{
+store:n.AppStore,children:(0,y.jsx)(i.I18nextProvider,{
+i18n:r.i18next,children:(0,y.jsx)(u.PlatformProvider,{
+usePageState:(D=r,_?D.urlParams.prdId||D.urlParams.sbomCode?'LOADING':'NO_PRODUCT_DATA':'SUCCESS'),appProps:e,children:(0,y.jsx)(C.ModalProvider,{
+children:(0,y.jsx)(u.PlatformContext.Consumer,{
+children:function(e){
+var t;
+return(0,y.jsxs)(n.Provider,{
+theme:r.theme,width:e.width,children:[_&&!k&&(0,y.jsx)(o.default,Object.assign({
+
+}
+,r.urlParams,{
+channelId:null==(t=r.urlParams.channelId)?void 0:t.toString(),clearCache:'false'!==r.urlParams.clearCache,vrFrom:(r.urlParams.from||'').toLocaleLowerCase(),platform:e,isOldCarDetail:!0
+}
+)),!_&&(0,y.jsx)(P.default,{
+
+}
+),f.previewScene.isPreview&&_&&(0,y.jsx)(p.PreviewWatermarkView,{
+
+}
+)]
+}
+)
+}
+
+}
+)
+}
+)
+}
+)
+}
+)
+}
+)
+}
+)
+}
+):null;
+var D
+}
+;
+var r=e(_r(d[1])),t=e(_r(d[2])),a=(function(e,r){
+if(!r&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var t: any = O(r);
+if(t&&t.has(e))return t.get(e);
+var a={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var o: any = n?Object.getOwnPropertyDescriptor(e,i):null;
+o&&(o.get||o.set)?Object.defineProperty(a,i,o):a[i]=e[i]
+}
+return a.default=e,t&&t.set(e,a),a
+}
+)(_r(d[3])),n=_r(d[4]),i=_r(d[5]),o=e(_r(d[6])),l=_r(d[7]),u=_r(d[8]),s=_r(d[9]),c=_r(d[10]),f=_r(d[11]),p=_r(d[12]),P=e(_r(d[13])),h=e(_r(d[14])),v=_r(d[15]),I=e(_r(d[16])),j=_r(d[17]),w=_r(d[18]),C=_r(d[19]),y=_r(d[20]);
+// 函数
+function O(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var r: any = new WeakMap,t=new WeakMap;
+return(O=function(e){
+return e?t:r
+}
+)(e)
+}
+var S=function(e){
+return{
+get:(a=(0,r.default)((function*(){
+try{
+return'web'===j.Platform.OS||'default'===e?'light':'dark'
+}
+catch(e){
+return'light'
+}
+
+}
+)),function(){
+return a.apply(this,arguments)
+}
+),set:(t=(0,r.default)((function*(e){
+
+}
+)),function(e){
+return t.apply(this,arguments)
+}
+)
+}
+;
+var t,a
+}
+
+}
+),"e784766a1c658921813a033ec526e6cfaae3e9ef341f090266d1532b9bf4231a",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","98f25e0b50b1867c355670ddd3bc92dbd7bf6135f5ef4aa267fbac2495557d41","ccafb9016fed268271f309289e901aeeeb5f5f05a578c40ca2f642bf1923c08b","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","76731ac08b5aea9da584cd25fe11fda4997ae4f0f9cfd0be0e92f390b2dfe0e9","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","da28eb4b9fe618afbafba6291e7d4433ac0237bc78b497fe8e176d2b5c43e316","08ba8bce87d68d136fe21930902b1a87b751c794150ac56fc79c9100c33566dd","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","f1b970fe0695ad8c661cc4ef89b414467028759885433333c31361d0245c32e3","3d6acded4ce4c05d90fed8072f5684726c8f870f7afe8de0cc53249006bdac2d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","70aea36b65c665f442ff9ea5a10e0e918001801714ebf81aa8b1ceab71f6799a","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),o=t(r(d[3])),u=t(r(d[4])),l=t(r(d[5])),c=t(r(d[6])),f=t(r(d[7])),s=t(r(d[8])),p=r(d[9]),P=r(d[10]),C=r(d[11]),v=t(r(d[12])),y=r(d[13]),h=r(d[14]);
+// 函数
+function R(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(R=function(){
+return!!t
+}
+)()
+}
+var S=(function(t){
+// 函数
+function s(t: any): any {
+var u,f,v,h;
+return(0,o.default)(this,s),f=this,v=s,h=[t],v=(0,c.default)(v),(u=(0,l.default)(f,R()?Reflect.construct(v,h||[],(0,c.default)(f).constructor):v.apply(f,h))).resetPrdDetail=(0,n.default)((function*(){
+p.PlatformUtils.isWeb()?p.HttpService.getCsrftoken().then((function(){
+u.getProductContent()
+}
+)).catch((function(t){
+200===t.status&&u.getProductContent()
+}
+)):u.getProductContent()
+}
+)),u.getProductContent=(0,n.default)((function*(){
+var t=yield Promise.all([(0,y.queryRelationWithTargetPage)(u.props,u.props.platform.isPc,!0),!p.PlatformUtils.isApp()||['carselect','carpreview'].includes(u.props.targetPage)?(0,C.tryCatch)({
+
+}
+,(0,P.queryCarProductDisplayContentConfig)()):{
+
+}
+,C.ThemeInfo.init('carDetail','#000000E6')]),n=(0,e.default)(t,2),o=n[0],l=n[1];
+u.setState(Object.assign({
+loading:!1,contentConfig:l
+}
+,o),(function(){
+u.props.platform.setPageState('SUCCESS')
+}
+))
+}
+)),u.state={
+loading:!0,contentConfig:{
+
+}
+,relationRes:null,newProps:u.props
+}
+,u
+}
+return(0,f.default)(s,t),(0,u.default)(s,[{
+key:"componentDidMount",value:function(){
+this.resetPrdDetail()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this.state,e=t.contentConfig,n=t.loading,o=t.relationRes,u=t.newProps;
+return!n&&(0,h.jsx)(v.default,Object.assign({
+
+}
+,u,{
+relationRes:o,contentConfig:e
+}
+))
+}
+
+}
+])
+}
+)(s.default.Component);
+_e.default=S
+}
+),"ccafb9016fed268271f309289e901aeeeb5f5f05a578c40ca2f642bf1923c08b",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","bf7c2e5a0d8b1b212ca5fd082228c17c6e123f55b20c55d410dc7571614c3c7e","11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.wrapperMarginTop=_e.replaceCarProduct=_e.querySystemConfig=_e.querySkuDetailDispInfo=_e.queryReportCarOptional=_e.queryRNRedirectConfig=_e.queryProductRelation=_e.queryCarSbomInfoByCode=_e.queryCarProductDisplayContentConfig=_e.queryCarProductBySbomCode=_e.queryCarOptionalProductInfo=_e.queryCarDisplayProductInfo=_e.initRoutes=_e.getRenderWidth=_e.getPackageByCode=_e.getIntersection=_e.getCarPlaceHolderData=_e.getAttrDataBySbomCodeNew=_e.getAttrDataBySbomCode=_e.getAllPromotionItemInfo=void 0;
+var r=t(_r(d[1])),e=_r(d[2]),o=_r(d[3]),n=t(_r(d[4])),i=(function(t,r){
+if(!r&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var e: any = f(r);
+if(e&&e.has(t))return e.get(t);
+var o={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in t)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(t,i)){
+// 变量
+var a: any = n?Object.getOwnPropertyDescriptor(t,i):null;
+a&&(a.get||a.set)?Object.defineProperty(o,i,a):o[i]=t[i]
+}
+return o.default=t,e&&e.set(t,o),o
+}
+)(_r(d[5])),a=_r(d[6]),u=_r(d[7]),l=_r(d[8]),c=_r(d[9]),p=_r(d[10]);
+// 函数
+function f(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var r: any = new WeakMap,e=new WeakMap;
+return(f=function(t){
+return t?e:r
+}
+)(t)
+}
+_e.queryCarProductBySbomCode=function(t,r){
+// 变量
+var o: any = e.CommonUtils.getPortal();
+t=t||'',(r=r||'')&&(t='');
+// 变量
+var n: any = e.Service.openApiDomain+"carbff/product/queryDisplayProductByVersion?country="+e.MCP_COUNTRY.CN+"&lang="+e.MCP_LANG.CN+"&portal="+o+"&version=4&prdId="+t+"&sbomCode="+r;
+return e.Http.get(n)
+}
+,_e.querySkuDetailDispInfo=(function(){
+var t=(0,r.default)((function*(t){
+// 变量
+var r: any = e.CommonUtils.getPortal(),o="&version=4&lang="+e.MCP_LANG.CN+"&country="+e.MCP_COUNTRY.CN+"&groupFlag=true",n=l.previewScene.isPreview?'carbff/preview/product/querySkuDetailDispInfo':'carbff/querySkuDetailDispInfo',i=""+e.Service.openApiDomain+n+"?skuCodes="+t+"&portal="+r+o,a=yield e.Http.get(i);
+return l.previewScene.checkPermission(null==a?void 0:a.code),a
+}
+));
+return function(r){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getAttrDataBySbomCode=function(t,r){
+// 变量
+var o: any = r.attrViewList,n=[];
+return null==o||o.forEach((function(r){
+var o;
+null==r||null==(o=r.attrValueList)||o.forEach((function(o){
+var i;
+null==o||null==(i=o.sbomList)||i.forEach((function(i){
+if(i.sbomCode===t){
+// 变量
+var a: any = JSON.parse(JSON.stringify(o));
+a.attrName=r.attrName,a.attrPriceDesc=null!=i&&i.attrPriceDesc?null==i?void 0:i.attrPriceDesc:null==o?void 0:o.attrPriceDesc,a.imgUrl=e.CommonUtils.getCDNpath(1)+o.path+o.name,n.push(a)
+}
+
+}
+))
+}
+))
+}
+)),n
+}
+,_e.getAttrDataBySbomCodeNew=function(t){
+var r=(t||{
+
+}
+).sbomAttrList,o=[];
+return null==r||r.forEach((function(t){
+var r;
+null==t||null==(r=t.attrValueList)||r.forEach((function(r){
+// 变量
+var n: any = JSON.parse(JSON.stringify(r));
+n.attrName=t.attrName,n.attrPriceDesc=null==r?void 0:r.attrPriceDesc,n.imgUrl=""+e.CommonUtils.getCDNpath(1)+r.path+r.name,o.push(n)
+}
+))
+}
+)),o
+}
+,_e.getPackageByCode=function(t,r,e){
+var o,n=[],i=[];
+for(var a in r)Object.prototype.hasOwnProperty.call(r,a)&&r[a].sbomCode.toString()===t&&(i=r[a].diyPackageInfos?r[a].diyPackageInfos:[]);
+var u,l,c=[];
+i.length>0&&(c=null==(u=i[0])||null==(l=u.groupList)?void 0:l.filter((function(t){
+return'relatesbom'!==t.groupName
+}
+)));
+// 变量
+var p: any = e?e.split(','):[];
+return null==(o=c)||o.forEach((function(t){
+var r;
+(null==t?void 0:t.packagePrdList)&&(null==t||null==(r=t.packagePrdList)||r.forEach((function(r){
+r.sbomDIYPackageInfos.forEach((function(r){
+r.key=r.sbomCode+r.sbomAbbr,p.forEach((function(e){
+r.sbomCode===e&&(r.attrName=t.groupName,n.push(r))
+}
+))
+}
+))
+}
+)))
+}
+)),n
+}
+,_e.queryReportCarOptional=function(t){
+// 变量
+var r: any = e.Service.openApiDomain+"carbff/isrp/reportCarOptional";
+return e.Http.post(r,t)
+}
+,_e.replaceCarProduct=function(t){
+return(0,p.checkLoginWrap)((function(){
+// 变量
+var r: any = e.CommonUtils.getPortal();
+t.portal=r,t.lang=e.MCP_LANG.CN,t.country=e.MCP_COUNTRY.CN,t.version='1';
+// 变量
+var o: any = e.Service.openApiDomain+"carbff/order/replaceCarProduct";
+return e.Http.post(o,t)
+}
+))
+}
+,_e.getAllPromotionItemInfo=(function(){
+var t=(0,r.default)((function*(){
+var t,r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:'',e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'',o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:'',n={
+
+}
+;
+try{
+n=yield(0,u.queryCarProductPromotionInfo)(r,e,o)
+}
+catch(t){
+n={
+
+}
+
+}
+var l,c,p,f,s,C,v={
+
+}
+,y=0,P=0,h=[];
+String(n.code)===a.BFF_RESULT_CODE.success&&null!=(t=n.carSKUPromotionInfoList)&&t.length&&(y=null!=(p=null==(f=(v=null!=(l=null!=(c=i.default.find(n.carSKUPromotionInfoList,['sbomCode',e]))?c:n.carSKUPromotionInfoList[0])?l:{
+
+}
+).carEnjoyedPromotionDetailList)?void 0:f.reduce((function(t,r){
+return String(r.promotionType)===a.PROMOTION_TYPES.o2o&&(t+=r.promotionDiscount),t
+}
+),0))?p:0,h=(null!=(s=null==(C=v.carPrePromotionDetailList)||null==C.filter?void 0:C.filter((function(t){
+return P+=t.promotionDiscount,String(t.promotionType)===a.PROMOTION_TYPES.commercialDiscounts
+}
+)))?s:[]).slice(0,10));
+return{
+enjoyedPromotionPrice:y,prePromoComDiscountList:h,prePromotionPrice:P
+}
+
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getRenderWidth=function(t,r,e){
+return t?r?1903:360:e
+}
+,_e.queryProductRelation=function(t){
+var r={
+
+}
+,o=e.CommonUtils.getPortal();
+r.portal=o,r.lang=e.MCP_LANG.CN,r.country=e.MCP_COUNTRY.CN,r.version='1',r.disPrdId=null==t?void 0:t.toString();
+// 变量
+var n: any = e.Service.openApiDomain+"carbff/offlineshop/queryProductRelation";
+return e.Http.get(n,r)
+}
+,_e.getCarPlaceHolderData=function(t,r){
+var o={
+
+}
+,n=e.CommonUtils.getPortal();
+o.portal=n,o.lang=e.MCP_LANG.CN,o.country=e.MCP_COUNTRY.CN,o.version=t,o.placeholder=r;
+// 变量
+var i: any = e.Service.openApiDomain+"mcp/queryTemplate";
+return e.Http.get(i,o)
+}
+,_e.querySystemConfig=function(t,r){
+var o={
+
+}
+,n=e.CommonUtils.getPortal();
+o.portal=n,o.lang=e.MCP_LANG.CN,o.country=e.MCP_COUNTRY.CN,o.version=r,o.systemConfigKeys=JSON.stringify([t]);
+// 变量
+var i: any = e.Service.openApiDomain+"mcp/querySystemConfig";
+return e.Http.get(i,o)
+}
+,_e.queryCarProductDisplayContentConfig=function(){
+// 变量
+var t: any = (0,p.getCacheStorage)('contentConfigRes');
+if(t)return Promise.resolve(t);
+var r={
+portal:e.CommonUtils.getPortal(),lang:e.MCP_LANG.CN,country:e.MCP_COUNTRY.CN
+}
+,o=e.Service.openApiDomain+"carbff/queryCarProductDisplayContentConfig";
+return e.Http.post(o,r).then((function(t){
+var r;
+return null!=t&&null!=(r=t.carDispContentWhiteInfo)&&r.carProductDisplayContentWhiteInfoList&&(0,p.setCacheStorage)('contentConfigRes',t),t
+}
+))
+}
+,_e.initRoutes=function(t,r,e){
+for(var o,n,i,a,u,l=[],c=0,p=[],f={
+
+}
+,s=null!=(o=null==e||null==(n=e.carDispContentWhiteInfo)?void 0:n.carProductDisplayContentWhiteInfoList)?o:[],C=function(){
+var t,e,o,n=null==(t=r[v])?void 0:t.attrName,i=null==(e=s.find((function(t){
+var r;
+return null==(r=t.contentWhiteList)?void 0:r.includes(n)
+}
+)))?void 0:e.type;
+l.push({
+key:c++,title:n,type:'attr',scrollY:0,display:i,attrCode:null==(o=r[v])?void 0:o.attrCode
+}
+)
+}
+,v=0;
+v<(null==r?void 0:r.length);
+v++)C();
+for(var y in t){
+var P,h;
+if(Object.prototype.hasOwnProperty.call(t,y))p=t[y].diyPackageInfos?t[y].diyPackageInfos:[],f={
+brandName:null==(P=t[y])?void 0:P.brandName,currentSbomId:null==(h=t[y])?void 0:h.sbomCode
+}
+
+}
+var N,S,b=[];
+(null==(i=p)?void 0:i.length)>0&&(b=null==(N=p[0])||null==(S=N.groupList)?void 0:S.filter((function(t){
+return'relatesbom'!==t.groupName
+}
+)));
+return(null==(a=p)?void 0:a.length)>0&&(null==(u=b)?void 0:u.length)>0&&l.push({
+key:l.length,title:p[0].name,type:'package',scrollY:0
+}
+),{
+routes:l,diyPackageInfos:p,targetSbomData:f
+}
+
+}
+,_e.getIntersection=function t(r,e,a,u){
+var l,c=(0,o.toJS)(n.default.defaultSbomCode),p=[],f=0,s=[];
+return c.map((function(t,e){
+e!==r&&e<=u&&(s[f++]=t.sbomCode)
+}
+)),p=s.length<=1?s[0]:i.intersection.apply(void 0,s),l=(0,i.intersection)(p,a),s.length<=1?0===l.length?[e]:l:0===u?[e]:l.length>0?l:t(r,e,a,u-1)
+}
+,_e.queryRNRedirectConfig=function(){
+var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:2,r={
+portal:e.CommonUtils.getPortal(),lang:e.MCP_LANG.CN,country:e.MCP_COUNTRY.CN,pageFuctionType:t
+}
+,o=e.Service.openApiDomain+"carbff/config/queryRNRedirectConfig";
+return e.Http.post(o,r)
+}
+,_e.queryCarDisplayProductInfo=(function(){
+var t=(0,r.default)((function*(t){
+var r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'',o={
+portal:e.CommonUtils.getPortal(),lang:e.MCP_LANG.CN,country:e.MCP_COUNTRY.CN,sbomCode:String(r),prdId:String(t)
+}
+,n=l.previewScene.isPreview?'carbff/preview/product/queryCarDisplayProductInfo':'carbff/product/queryCarDisplayProductInfo',i=""+e.Service.openApiDomain+n,a=yield e.Http.post(i,o);
+return l.previewScene.checkPermission(null==a?void 0:a.code),a
+}
+));
+return function(r){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.queryCarOptionalProductInfo=(function(){
+var t=(0,r.default)((function*(t){
+var r=Object.assign({
+portal:e.CommonUtils.getPortal(),lang:e.MCP_LANG.CN,country:e.MCP_COUNTRY.CN
+}
+,t);
+t.prdId&&(r.prdId=String(t.prdId)),t.sbomCode&&(r.sbomCode=String(t.sbomCode));
+// 变量
+var o: any = l.previewScene.isPreview?'carbff/preview/product/queryCarOptionalProductInfo':'carbff/product/queryCarOptionalProductInfo',n=""+e.Service.openApiDomain+o,i=yield e.Http.post(n,r);
+return l.previewScene.checkPermission(null==i?void 0:i.code),i
+}
+));
+return function(r){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.queryCarSbomInfoByCode=(function(){
+var t=(0,r.default)((function*(){
+var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:'',r={
+portal:e.CommonUtils.getPortal(),lang:e.MCP_LANG.CN,country:e.MCP_COUNTRY.CN,sbomCode:String(t)
+}
+,o=l.previewScene.isPreview?'carbff/preview/product/queryCarSbomInfoByCode':'carbff/product/queryCarSbomInfoByCode',n=""+e.Service.openApiDomain+o,i=yield e.Http.post(n,r);
+return l.previewScene.checkPermission(null==i?void 0:i.code),i
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.wrapperMarginTop=function(t,r){
+// 变量
+var e: any = arguments.length>2&&void 0!==arguments[2]&&arguments[2];
+if(!t.isPc&&e)return t.isPhone?80:32;
+if(t.isPhone)return c.TAB_HEIGHT;
+if(t.isFixScreen||t.isPadV){
+// 变量
+var o: any = Math.floor((Math.floor(.75*t.height)-r)/2)-t.statusBarHeight-c.TAB_HEIGHT-c.TITLE_HEIGHT;
+return t.isFixScreen&&t.width>=t.height?o+c.FIXH_MARGIN_TOP:o
+}
+return t.isPadH?116-c.TAB_HEIGHT-c.TITLE_HEIGHT-t.statusBarHeight:0
+}
+
+}
+),"93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","446eaf5bb2c03d6eb142dc6f16a47f619cea70b718994df4eed23ab288234e88","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e"]);
+
+__d((function(g,r,_i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var i,o,l,u,n,s,c,f,b,h,p,v,y,P=t(r(d[1])),k=t(r(d[2])),C=t(r(d[3])),L=t(r(d[4])),S=(t(r(d[5])),r(d[6])),A=(i=(function(){
+return(0,C.default)((function t(){
+(0,k.default)(this,t),(0,P.default)(this,"defaultSbomCode",o,this),(0,P.default)(this,"route",l,this),(0,P.default)(this,"index",u,this),(0,P.default)(this,"chooseAttr",n,this),(0,P.default)(this,"packageMap",s,this),(0,P.default)(this,"buttomBtnFlag",c,this),(0,P.default)(this,"totalPrice",f,this),(0,P.default)(this,"originalPrice",b,this),(0,P.default)(this,"detailList",h,this),(0,P.default)(this,"imageSourceList",p,this),(0,P.default)(this,"bottomPriceFlag",v,this),(0,P.default)(this,"selectedAttrList",y,this),(0,S.makeObservable)(this)
+}
+),[{
+key:"setSbomCode",value:function(t){
+// 变量
+var i: any = (0,S.toJS)(this.defaultSbomCode),o=!0;
+for(var l in i)Object.prototype.hasOwnProperty.call(i,l)&&i[l].attr===t.attr&&(i[l].sbomCode=t.sbomCode,o=!1);
+Array.isArray(i)&&o&&i.push(t),this.defaultSbomCode=i
+}
+
+}
+,{
+key:"setDisPrdRes",value:function(t){
+this.disPrdRes=t
+}
+
+}
+,{
+key:"checkDisPrdRes",value:function(t){
+var i,o;
+null!=(i=this.disPrdRes)&&null!=(o=i.disPrdList)&&o.some((function(i){
+return i.disPrdId===Number(t)
+}
+))||(this.disPrdRes=void 0)
+}
+
+}
+,{
+key:"setRoute",value:function(t){
+this.route=t
+}
+
+}
+,{
+key:"setIndex",value:function(t){
+this.index=t,this.bottomPriceFlag=t
+}
+
+}
+,{
+key:"setInItSbomCode",value:function(){
+this.defaultSbomCode=[]
+}
+
+}
+,{
+key:"setChooseAttr",value:function(t){
+// 变量
+var i: any = (0,S.toJS)(this.chooseAttr),o=!0;
+if(!t)return!1;
+for(var l in i)Object.prototype.hasOwnProperty.call(i,l)&&i[l].attrName===t.attrName&&(i[l]=t,o=!1);
+o&&i.push(t),this.chooseAttr=i
+}
+
+}
+,{
+key:"clearAttr",value:function(){
+this.chooseAttr=[]
+}
+
+}
+,{
+key:"setPackageMap",value:function(t){
+this.packageMap=t
+}
+
+}
+,{
+key:"clearPackageMap",value:function(){
+this.packageMap=[]
+}
+
+}
+,{
+key:"setTotalPrice",value:function(t){
+this.totalPrice=t
+}
+
+}
+,{
+key:"setOriginalPrice",value:function(t){
+this.originalPrice=t
+}
+
+}
+,{
+key:"setDetailList",value:function(t){
+this.detailList=t
+}
+
+}
+,{
+key:"getImageSourceList",value:function(t){
+this.imageSourceList=t
+}
+
+}
+,{
+key:"setPriceShowFlag",value:function(t){
+this.bottomPriceFlag=t
+}
+
+}
+,{
+key:"setButtomBtnFlag",value:function(t){
+this.buttomBtnFlag=t
+}
+
+}
+,{
+key:"setSelectedAttrList",value:function(t,i){
+var o,l,u;
+if(t){
+// 变量
+var n: any = (0,S.toJS)(this.selectedAttrList);
+if(Array.isArray(t))return n=t,void(this.selectedAttrList=n);
+var s=n.findIndex((function(i){
+return i.attrCode===t.attrCode
+}
+));
+-1!==s&&n.splice(s,1);
+var c={
+attrCode:t.attrCode,attrValueList:[{
+attrValueCode:null!=(o=null==(l=t.attrValueList)||null==(u=l[0])?void 0:u.attrValueCode)?o:t.attrValueCode
+}
+]
+}
+;
+n.push(c),(null==i?void 0:i.length)>0&&(n=n.filter((function(t){
+return i.some((function(i){
+return i.attrCode===t.attrCode&&i.attrValueList.length>0
+}
+))
+}
+))),this.selectedAttrList=n
+}
+
+}
+
+}
+,{
+key:"init",value:function(){
+this.defaultSbomCode=[],this.route=[],this.index=0,this.chooseAttr=[],this.packageMap=[],this.buttomBtnFlag=!0,this.totalPrice=0,this.originalPrice=0,this.detailList=[],this.imageSourceList=[],this.bottomPriceFlag='-1'
+}
+
+}
+,{
+key:"initSelectedAttrList",value:function(){
+this.selectedAttrList=[]
+}
+
+}
+])
+}
+)(),o=(0,L.default)(i.prototype,"defaultSbomCode",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),l=(0,L.default)(i.prototype,"route",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),u=(0,L.default)(i.prototype,"index",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),n=(0,L.default)(i.prototype,"chooseAttr",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),s=(0,L.default)(i.prototype,"packageMap",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),c=(0,L.default)(i.prototype,"buttomBtnFlag",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!0
+}
+
+}
+),(0,L.default)(i.prototype,"setSbomCode",[S.action],Object.getOwnPropertyDescriptor(i.prototype,"setSbomCode"),i.prototype),f=(0,L.default)(i.prototype,"totalPrice",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),b=(0,L.default)(i.prototype,"originalPrice",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),h=(0,L.default)(i.prototype,"detailList",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),p=(0,L.default)(i.prototype,"imageSourceList",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),v=(0,L.default)(i.prototype,"bottomPriceFlag",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return'-1'
+}
+
+}
+),y=(0,L.default)(i.prototype,"selectedAttrList",[S.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),i);
+e.default=new A
+}
+),"29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","0513c9aec1df8b193fb6e7118d38330920d6f86b6f168b15f210858e15b09551","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","238db300b8230394a7d5170f0b40f8df9292454df0796f0bcc766fd45e231b9f","e8b933b691eb434ae798f2ebfc685acb60972917ddcf03d73f892839d981c1a5","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14"]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports=function(l,n,t,b){
+t&&Object.defineProperty(l,n,{
+enumerable:t.enumerable,configurable:t.configurable,writable:t.writable,value:t.initializer?t.initializer.call(b):void 0
+}
+)
+}
+
+}
+),"0513c9aec1df8b193fb6e7118d38330920d6f86b6f168b15f210858e15b09551",[]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports=function(n,l,t,u,o){
+var c={
+
+}
+;
+return Object.keys(u).forEach((function(n){
+c[n]=u[n]
+}
+)),c.enumerable=!!c.enumerable,c.configurable=!!c.configurable,('value'in c||c.initializer)&&(c.writable=!0),c=t.slice().reverse().reduce((function(t,u){
+return u(n,l,t)||t
+}
+),c),o&&void 0!==c.initializer&&(c.value=c.initializer?c.initializer.call(o):void 0,c.initializer=void 0),void 0===c.initializer&&(Object.defineProperty(n,l,c),c=null),c
+}
+
+}
+),"238db300b8230394a7d5170f0b40f8df9292454df0796f0bcc766fd45e231b9f",[]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports=function(o,s){
+throw new Error("Decorating class property failed. Please ensure that proposal-class-properties is enabled and runs after the decorators transform.")
+}
+
+}
+),"e8b933b691eb434ae798f2ebfc685acb60972917ddcf03d73f892839d981c1a5",[]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.queryCarProductPromotionInfo=e.checkCarSbomlist=void 0;
+// 变量
+var o: any = r(d[0]);
+e.queryCarProductPromotionInfo=function(){
+var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:'',n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'',C=arguments.length>2&&void 0!==arguments[2]?arguments[2]:'',c=arguments.length>3&&void 0!==arguments[3]?arguments[3]:2,f={
+
+}
+,l='carbff/promotionInfo/queryCarProductPromotionInfoBySbomCode',u=o.CommonUtils.getPortal();
+return f.portal=u,f.lang=o.MCP_LANG.CN,f.country=o.MCP_COUNTRY.CN,n?f.sbomCodeList=[n]:f.prdId=t,C&&(f.orderCode=C,f.type=c||2,l='carbff/promotionInfo/queryCarProductPromotionInfoByOrderCode'),l=""+o.Service.openApiDomain+l,o.Http.post(l,f)
+}
+,e.checkCarSbomlist=function(t){
+// 变量
+var n: any = o.CommonUtils.getPortal();
+t.portal=n,t.lang=o.MCP_LANG.CN,t.country=o.MCP_COUNTRY.CN,t.version='1';
+// 变量
+var C: any = o.Service.openApiDomain+"carbff/offlineshop/checkCarSbomList";
+return o.Http.post(C,t)
+}
+
+}
+),"446eaf5bb2c03d6eb142dc6f16a47f619cea70b718994df4eed23ab288234e88",["11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.WHEEL_POS=e.TITLE_HEIGHT=e.TAB_TYPE=e.TAB_HEIGHT=e.SWIPE_TOP_GAP=e.SLIDE_DURATION=e.ROUTER_ARRAY=e.REAL_TITLE_HEIGHT=e.PC_RIGHT_WIDTH=e.MOVE_TIME=e.LOAD_TIME=e.LAZY_LOAD_STEP=e.FIXH_MARGIN_TOP=e.DYNAMIC_BLUR=e.DISPLAY_TYPE=e.CAR_THEME_COLOR=e.BOTTOM_HEIGHT=e.ANIM_LAYBACK=e.ANIM_FRAME=e.ANIM_DISPLAY_TYPE=void 0;
+var E=r(d[0]).PlatformUtils.isMp(),T=(e.CAR_THEME_COLOR='#000000E6',e.ROUTER_ARRAY=['CarDetail','CarSelect','CarPreview','CarRelation','CarRights'],e.TITLE_HEIGHT=56),_=(e.REAL_TITLE_HEIGHT=E?0:T,e.BOTTOM_HEIGHT=64,e.PC_RIGHT_WIDTH=416,e.TAB_HEIGHT=56,e.SLIDE_DURATION=500,e.ANIM_LAYBACK=E?50:0,e.ANIM_FRAME=Math.ceil(16.666666666666668),e.DYNAMIC_BLUR=[[.5,1],[.5,0]],e.MOVE_TIME=500,e.LOAD_TIME=2e3,e.WHEEL_POS={
+DEFAULT:{
+x:0,y:0,scale:1
+}
+,PHONE:{
+x:140,y:0,scale:1.8
+}
+,FIX:{
+x:220,y:0,scale:1.8
+}
+,PADV:{
+x:220,y:-32,scale:1.8
+}
+,PADH:{
+x:160,y:-8,scale:1.8
+}
+
+}
+,e.FIXH_MARGIN_TOP=20,e.SWIPE_TOP_GAP=8,e.TAB_TYPE=(function(E){
+return E[E.ATTR=1]="ATTR",E[E.PACK=2]="PACK",E[E.SERIES=3]="SERIES",E
+}
+)({
+
+}
+),e.DISPLAY_TYPE=(function(E){
+return E[E.VERSION=1]="VERSION",E[E.APPEAR=2]="APPEAR",E[E.WHEEL=3]="WHEEL",E[E.INTER=4]="INTER",E
+}
+)({
+
+}
+));
+e.ANIM_DISPLAY_TYPE=[_.APPEAR,_.WHEEL,_.INTER],e.LAZY_LOAD_STEP=2
+}
+),"63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b",["11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),o=t(r(d[3])),u=t(r(d[4])),c=t(r(d[5])),l=(t(r(d[6])),r(d[7])),f=r(d[8]),s=r(d[9]),v=t(r(d[10])),h=r(d[11]);
+// 函数
+function p(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(p=function(){
+return!!t
+}
+)()
+}
+var j=(0,l.createStackNavigator)(),y=Object.assign({
+
+}
+,f.DefaultTheme,{
+colors:Object.assign({
+
+}
+,f.DefaultTheme.colors,{
+background:'transparent'
+}
+)
+}
+),b={
+headerShown:!1,title:''
+}
+;
+_e.default=(function(t){
+// 函数
+function l(): any {
+return(0,e.default)(this,l),t=this,n=l,c=arguments,n=(0,u.default)(n),(0,o.default)(t,p()?Reflect.construct(n,c||[],(0,u.default)(t).constructor):n.apply(t,c));
+var t,n,c
+}
+return(0,c.default)(l,t),(0,n.default)(l,[{
+key:"render",value:function(){
+// 变量
+var t: any = this;
+return(0,h.jsx)(f.NavigationContainer,{
+theme:y,children:(0,h.jsx)(j.Navigator,{
+initialRouteName:this.defaultRoute,detachInactiveScreens:!s.PlatformUtils.isApp(),children:this.routerArr.map((function(e,n){
+return(0,h.jsx)(j.Screen,{
+name:e,options:b,children:function(n){
+// 变量
+var o: any = n.navigation;
+return t.renderComponent(e,o)
+}
+
+}
+,n)
+}
+))
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(v.default)
+}
+),"bf7c2e5a0d8b1b212ca5fd082228c17c6e123f55b20c55d410dc7571614c3c7e",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","b59f5741143d747a6b7458314d550fc2033674c2475d4bcae93d5c5db8ca365c","58acbb2a11d12e39fd248a1b96db102c400867b55536474cd5eb8b47fc1caf0e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","f1fa88e5e37e991d36b56767671f23b22690da7395a3c2fc39d1aefaa1718a35","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),n=e(_r(d[3])),a=e(_r(d[4])),o=e(_r(d[5])),u=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = y(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var u: any = a?Object.getOwnPropertyDescriptor(e,o):null;
+u&&(u.get||u.set)?Object.defineProperty(n,o,u):n[o]=e[o]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[6])),i=e(_r(d[7])),l=e(_r(d[8])),c=e(_r(d[9])),f=e(_r(d[10])),s=_r(d[11]),p=e(_r(d[12])),v=_r(d[13]),C=_r(d[14]),j=_r(d[15]),O=_r(d[16]),h=_r(d[17]);
+// 函数
+function y(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(y=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function b(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(b=function(){
+return!!e
+}
+)()
+}
+_e.default=(function(e){
+// 函数
+function u(e: any): any {
+var r,o,y,R;
+(0,t.default)(this,u),o=this,y=u,R=[e],y=(0,a.default)(y),(r=(0,n.default)(o,b()?Reflect.construct(y,R||[],(0,a.default)(o).constructor):y.apply(o,R))).routerArr=v.ROUTER_ARRAY,r.defaultRoute='CarDetail',r.renderComponent=function(e,t){
+var n=Object.assign({
+
+}
+,r.props,r.prdInfoCache,{
+prdInfoCache:r.prdInfoCache,navigation:t
+}
+);
+switch(e){
+case'CarDetail':default:return(0,h.jsx)(i.default,Object.assign({
+
+}
+,n));
+case'CarSelect':return(0,h.jsx)(l.default,Object.assign({
+
+}
+,n));
+case'CarPreview':return(0,h.jsx)(c.default,Object.assign({
+
+}
+,n));
+case'CarRelation':return(0,h.jsx)(f.default,Object.assign({
+
+}
+,n));
+case'CarRights':return(0,h.jsx)(s.CarIndexWrapper,{
+urlParams:Object.assign({
+uniqueId:C.CommonUtils.randomString()
+}
+,n),children:(0,h.jsx)(O.ModalController,{
+children:(0,h.jsx)(p.default,{
+
+}
+)
+}
+),handleCarStore:function(e){
+e.navigation={
+navigate:C.RouterUtils.gotoPage,replace:function(e){
+C.PlatformUtils.isHarmony()?C.RnBridge.invokeVmallNative('router','navigation',{
+url:e,navType:'replace'
+}
+):C.RouterUtils.gotoPage(e)
+}
+,goBack:j.goBack,origin:t
+}
+
+}
+
+}
+)
+}
+
+}
+;
+// 变量
+var P: any = r.props.targetPage;
+return r.defaultRoute=r.routerArr.find((function(e){
+return e.toLowerCase()===P
+}
+))||'CarDetail',r.prdInfoCache={
+prdId:r.props.prdId,sbomCode:r.props.sbomCode
+}
+,r
+}
+return(0,o.default)(u,e),(0,r.default)(u,[{
+key:"shouldComponentUpdate",value:function(){
+return!1
+}
+
+}
+])
+}
+)(u.Component)
+}
+),"f1fa88e5e37e991d36b56767671f23b22690da7395a3c2fc39d1aefaa1718a35",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","0f3d99fe89c96967a43c9286d75b37faf4da4098d026b8add43781b9f94f9eda","847af1df3f37f23ef40b9ae14701fa439f1a1a0f2fcdda4ee449f3562b755688","5e9c62ab1d9150a44e29f84b46ce0e067e113dbccf677baaf381cfd0807d6647","b04f80488033ad88f2af4cbc1388553476fc8aaf7272809f483c9e1d6d37cb48","65590640eb9a02c286a7c5155d84cff36785aa18510953de5660e04049a8b663","75ccffbabd9340a413b78bf13512a08db1589dffa7d7bf9502f0baf95eb78def","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),o=e(r(d[2])),n=e(r(d[3])),l=e(r(d[4])),u=e(r(d[5])),s=r(d[6]),c=r(d[7]),f=e(r(d[8])),p=r(d[9]),v=r(d[10]),R=e(r(d[11])),h=r(d[12]),C=e(r(d[13])),y=r(d[14]),P=r(d[15]);
+// 函数
+function I(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(I=function(){
+return!!e
+}
+)()
+}
+var _=(0,C.default)(s.DarkStore.theme),E=(function(e){
+// 函数
+function f(e: any): any {
+var o,u,c,C;
+return(0,t.default)(this,f),u=this,c=f,C=[e],c=(0,l.default)(c),(o=(0,n.default)(u,I()?Reflect.construct(c,C||[],(0,l.default)(u).constructor):c.apply(u,C))).getCurSbomInfo=function(e){
+(0,h.queryCarSbomInfoByCode)(e).then((function(e){
+if(null!=e&&e.success){
+var t=e.sbomInfo,n=void 0===t?{
+
+}
+:t;
+o.setState({
+sbomList:[n]
+}
+)
+}
+
+}
+))
+}
+,o.initData=function(){
+// 变量
+var e: any = o.props,t=e.prdId,n=e.sbomCode,l=void 0===n?'':n;
+if(t||l){
+var u={
+
+}
+;
+(0,h.queryCarDisplayProductInfo)(t,t?'':l).then((function(e){
+if((null==e?void 0:e.code)!==y.CODE.BFF_SUCCESS)return Promise.reject(e);
+var n,s,c,f=null!=(s=u=null!=(n=e.displayPrdInfo)?n:{
+
+}
+)?s:{
+
+}
+,p=f.defaultSbomCode,R=f.disPrdId;
+o.defaultSbomCode=l||p,(0,v.setCacheStorage)("displayPrdInfo-"+(t||R),null!=(c=u)?c:{
+
+}
+),o.getCurSbomInfo(o.defaultSbomCode)
+}
+)).catch((function(e){
+var t,n=s.ERROR_TYPE.OTHER_ERROR;
+null!=e&&null!=(t=e.message)&&t.includes('Network Error')?n=s.ERROR_TYPE.NETWORK_ERROR:(null==e?void 0:e.code)===y.CODE.NO_PRODUCT&&(n=s.ERROR_TYPE.NO_PRODUCT_DATA),o.setState({
+loadState:2,error:!0,errorType:n
+}
+)
+}
+)).finally((function(){
+o.setState({
+loading:!1,displayPrdInfo:u
+}
+)
+}
+))
+}
+
+}
+,o.eventTracingReportByLoad=function(e){
+var t,n,l;
+s.Report.eventTracingReport({
+actionCode:'900027300',actionName:(0,s.t)('car_detail_loading'),eventType:'1',content:{
+load:'1',productId:null==e?void 0:e.toString(),channelId:(null==(t=o.props)?void 0:t.channelId)||'0',saleId:(null==(n=o.props)?void 0:n.saleId)||''
+}
+,pageCatCode:'p_carContent',pageCatName:(0,s.t)('contentPageCat'),resSiteCode:'',resSiteName:'',pageId:'p_carContent_'+(null==(l=o.props)?void 0:l.disPrdId)
+}
+)
+}
+,o.handleApkBack=function(){
+return s.RnBridge.invokeVmallNative('page','finished'),!0
+}
+,o._loadPage=function(){
+// 变量
+var e: any = o.props,t=e.prdId,n=e.showheader,l=e.navigation,u=o.state,s=u.displayPrdInfo,c=u.sbomList,f='false'!==n;
+return(0,P.jsx)(p.View,{
+style:[_.apkBox,_.grayBg],children:(0,P.jsx)(R.default,Object.assign({
+
+}
+,o.props,s,{
+showheader:f,prdId:t,defaultSkuCode:o.defaultSbomCode,navigation:l,sbomList:c
+}
+))
+}
+)
+}
+,o.state={
+errorType:s.ERROR_TYPE.OTHER_ERROR,loadState:1,loading:!0,error:!1,displayPrdInfo:{
+
+}
+,sbomList:[]
+}
+,o
+}
+return(0,u.default)(f,e),(0,o.default)(f,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this.props.prdId;
+this.initData(),this.eventTracingReportByLoad(e),p.BackHandler.addEventListener('hardwareBackPress',this.handleApkBack)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+p.BackHandler.removeEventListener('hardwareBackPress',this.handleApkBack)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.state,t=e.loading,o=e.errorType,n=e.error;
+return t?(0,P.jsx)(c.PlaceHolder,{
+
+}
+):!n&&this._loadPage()||(0,P.jsx)(c.CommonErrorPage,{
+errorType:o
+}
+)
+}
+
+}
+])
+}
+)(f.default.Component);
+_e.default=E
+}
+),"0f3d99fe89c96967a43c9286d75b37faf4da4098d026b8add43781b9f94f9eda",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","2a63539a2c2779107d4854f0bd9288c25f5666808328815cd3969904520ab3c2","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","46c910c2bb1897d81e33435b0e4da7eadabca8da9f7fc966d4306c0e1db4aa3a","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o,a=e(_r(d[1])),i=e(_r(d[2])),n=e(_r(d[3])),r=e(_r(d[4])),s=e(_r(d[5])),l=e(_r(d[6])),c=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = O(t);
+if(o&&o.has(e))return o.get(e);
+var a={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var r: any = i?Object.getOwnPropertyDescriptor(e,n):null;
+r&&(r.get||r.set)?Object.defineProperty(a,n,r):a[n]=e[n]
+}
+return a.default=e,o&&o.set(e,a),a
+}
+)(_r(d[7])),p=_r(d[8]),u=_r(d[9]),h=e(_r(d[10])),f=_r(d[11]),v=_r(d[12]),S=e(_r(d[13])),C=e(_r(d[14])),y=e(_r(d[15])),P=e(_r(d[16])),w=e(_r(d[17])),b=e(_r(d[18])),I=e(_r(d[19])),_=_r(d[20]),x=_r(d[21]),T=e(_r(d[22])),j=e(_r(d[23])),B=_r(d[24]),k=_r(d[25]),D=_r(d[26]),R=_r(d[27]),V=_r(d[28]),A=e(_r(d[29])),E=e(_r(d[30])),L=_r(d[31]),N=_r(d[32]),H=_r(d[33]);
+// 函数
+function O(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(O=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function U(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(U=function(){
+return!!e
+}
+)()
+}
+var W=f.DarkStore.theme,F=(0,y.default)(W),M=(0,c.memo)((function(e){
+return(0,H.jsx)(v.TitleBar,Object.assign({
+
+}
+,e))
+}
+)),z=(0,u.observer)((o=(function(e){
+// 函数
+function t(e: any): any {
+var o,n,l,c;
+(0,i.default)(this,t),n=this,l=t,c=[e],l=(0,s.default)(l),(o=(0,r.default)(n,U()?Reflect.construct(l,c||[],(0,s.default)(n).constructor):l.apply(n,c))).scrollWebHeight=0,o.windowScrollHeight=0,o.priceInfo='',o.strategyTimer=0,o.strategyListener=null,o.openStrategyPopup=(function(){
+var e=(0,a.default)((function*(e,t,a){
+if(e===x.POP_TEMPLATE.car){
+// 变量
+var i: any = yield o.commonJs.getAdvancedFeature();
+'0'!==String(i)&&o.setState({
+strategyActivityCode:t
+}
+)
+}
+[x.POP_TEMPLATE.coupon,x.POP_TEMPLATE.message,x.POP_TEMPLATE.media,x.POP_TEMPLATE.media3d,x.POP_TEMPLATE.point,x.POP_TEMPLATE.hoverImage,x.POP_TEMPLATE.hoverNPS].includes(e)&&f.RnBridge.invokeVmallNative('common','popStrategyDialog',{
+popParams:{
+activityCode:t,pageId:a,from:'productCar'
+}
+
+}
+)
+}
+));
+return function(t,o,a){
+return e.apply(this,arguments)
+}
+
+}
+)(),o.updateStateStep=function(){
+// 变量
+var e: any = o.props.platform;
+o.hasSetStateStep=o.hasSetStateStep+1,(e.isWeb||o.hasSetStateStep>=3)&&o.setState(o.updateStateData)
+}
+,o.handleData=(0,a.default)((function*(){
+// 变量
+var e: any = o.props.prdId;
+o.updateStateData.storageData=yield(0,B.getStorage)("sbom_"+e+"_"+o.getLocCode()),o.updateStateData.hasSelectedInfo=o.updateStateData.storageData&&!D.previewScene.isPreview,o.updateStateData.lazyLoading=!0,o.updateStateStep(),o.handleStrategy()
+}
+)),o.getLocCode=function(){
+// 变量
+var e: any = o.props,t=e.defaultSkuCode,a=e.initSkuCode,i=t;
+return e.servicesRender&&a&&(i=a),i
+}
+,o.report=T.default.debounce((function(e){
+var t,a,i,n,r,s;
+f.Report.eventTracingReportRightNow({
+actionCode:'900027310',actionName:(0,f.t)('slide_prd_details'),eventType:e,content:{
+comId:'carContent_detail',productId:null==(t=o.props)||null==(a=t.disPrdId)?void 0:a.toString(),SKUCode:null==(i=o.props)?void 0:i.sbomCode,channelId:(null==(n=o.props)?void 0:n.channelId)||'0',saleId:(null==(r=o.props)?void 0:r.saleId)||''
+}
+,pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_detail',resSiteName:(0,f.t)('contentResSite'),pageId:'p_carContent_'+(null==(s=o.props)?void 0:s.disPrdId)
+}
+)
+}
+),200),o.bindScrollEvent=function(e){
+var t,a=null!=(t=null==e?void 0:e.scrollTop)?t:document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+o.scrollDirection(a)
+}
+,o.onScrollEndDrag=function(e){
+// 变量
+var t: any = e.nativeEvent.contentOffset.y;
+o.scrollDirection(t)
+}
+,o.scrollDirection=function(e){
+if(e>o.windowScrollHeight&&o.report('8'),e<o.windowScrollHeight&&o.report('9'),o.windowScrollHeight=e,o.state.scrollY.setValue(e),o.state.selectedInfoHeight){
+// 变量
+var t: any = o.props.showheader?o.state.selectedInfoHeight-56:o.state.selectedInfoHeight;
+f.PlatformUtils.isApp()&&(t-=o.context.statusBarHeight),e>t?o.isShowBtn(!0):o.isShowBtn(!1)
+}
+else o.state.isShowBtn||o.isShowBtn(!0)
+}
+,o.isShowBtn=function(e){
+o.updateStateData.isShowBtn=e,o.updateStateStep()
+}
+,o._selectedOnLayout=function(e){
+o.setState({
+selectedInfoHeight:e.nativeEvent.layout.height
+}
+)
+}
+,o.setTopValue=function(){
+// 变量
+var e: any = o.state.hasSelectedInfo?358:218,t=(0,k.getInnerWidth)()*e/1903;
+o.setState({
+topValue:t
+}
+)
+}
+,o.handleWebScroll=function(){
+// 变量
+var e: any = o.state.hasSelectedInfo;
+o.scrollWebHeight=document.documentElement.scrollTop||document.body.scrollTop;
+// 变量
+var t: any = e?188:288;
+o.scrollWebHeight>=t?o.setState({
+isWebBtnFixed:!0
+}
+):o.setState({
+isWebBtnFixed:!1
+}
+)
+}
+,o._back=(0,B.clickDebunce)((function(){
+var e,t,a,i=o.state.sbomCode,n=o.props.prdId;
+f.Report.eventTracingReport({
+actionCode:'900027301',actionName:(0,f.t)('car_content_index'),eventType:'2',content:{
+comId:'carContent_top',productId:null==n?void 0:n.toString(),SKUCode:i,channelId:(null==(e=o.props)?void 0:e.channelId)||'0',saleId:(null==(t=o.props)?void 0:t.saleId)||''
+}
+,pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_top',resSiteName:(0,f.t)('top_nav'),pageId:'p_carContent_'+(null==(a=o.props)?void 0:a.disPrdId)
+}
+),f.Report.execReportData('',!0),'web'===p.Platform.OS?window.history.go(-1):f.RnBridge.invokeVmallNative('page','finished')
+}
+)),o.gotoService=function(){
+var e,t=o.props,a=t.prdId,i=t.channelId,n=t.saleId,r=t.shopInfo,s=t.brandCode,l=o.state.sbomCode;
+f.Report.eventTracingReport({
+actionCode:'900027302',actionName:(0,f.t)('car_content_service'),eventType:'2',content:{
+comId:'carContent_top',productId:null==a?void 0:a.toString(),SKUCode:l,channelId:i||'0',saleId:n||''
+}
+,pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_top',resSiteName:(0,f.t)('top_nav'),pageId:'p_carContent_'+(null==(e=o.props)?void 0:e.disPrdId)
+}
+),f.Report.execReportData('',!0);
+var c=Object.assign({
+currentSbomCode:l
+}
+,o.targetSbomData,{
+brandCode:s,wapHost:f.Service.wapDomain,webHost:f.Service.webDomain,shopType:null==r?void 0:r.shopType,shopCode:null==r?void 0:r.shopCode,prdId:a,shopName:null==r?void 0:r.shopName
+}
+);
+o.goServiceRobotTime&&clearTimeout(o.goServiceRobotTime),o.goServiceRobotTime=setTimeout((function(){
+f.CommonUtils.goServiceRobot(o.isLogin,r.serviceProvider,r.serviceUrl,c)
+}
+),500)
+}
+,o._onlayout=function(e){
+// 变量
+var t: any = (0,L.parseNum)(e.nativeEvent.layout.height);
+t===o.state.screenHeight||o.commonJs.isWeb()||o.setState({
+screenHeight:t
+}
+)
+}
+,o.orderCall=(0,B.clickDebunce)((function(){
+var e;
+if(B.DefaultPlatform.isStoreApp)V.Modal.show('BoxTip',{
+boxTipText:(0,f.t)('storeAppNotSupportOrder')
+}
+);
+else{
+o.props.clickItem({
+actionCode:'900027311',actionName:(0,f.t)('click_book_btn'),eventType:'2',comId:'carContent_bottom',pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_bottom',resSiteName:(0,f.t)('bottom_nav'),pageId:'p_carContent_'+(null==(e=o.props)?void 0:e.disPrdId)
+}
+),f.EventTracking.execReportData('',!0);
+var t,a=o.props,i=a.huaweiAppUrl,n=a.huaweiPcUrl,r=a.huaweiWapUrl,s=a.huaweiWechatUrl,l=a.platform,c=void 0===l?{
+
+}
+:l;
+f.PlatformUtils.isApp()&&i?t=i:f.PlatformUtils.isPc(c.width)&&n?t=n:f.PlatformUtils.isWeb()&&r?t=r:f.PlatformUtils.isMp()&&(t=s),(t=D.previewScene.replaceCarBookLink(t))&&f.RouterUtils.gotoPage(t)
+}
+
+}
+)),o.gotoWebPage=function(e){
+// 变量
+var t: any = o.props,a=t.navigation;
+t.servicesRender?window.location.href=o.commonJs.getJumpUrl(o,e.toLocaleLowerCase()):a.replace(e)
+}
+,o.buyCall=(0,B.clickDebunce)((function(){
+var e;
+if(B.DefaultPlatform.isStoreApp)V.Modal.show('BoxTip',{
+boxTipText:(0,f.t)('storeAppNotSupportOrder')
+}
+);
+else{
+o.props.clickItem({
+actionCode:'900027312',actionName:(0,f.t)('click_buy_now'),eventType:'2',comId:'carContent_bottom',pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_bottom',resSiteName:(0,f.t)('bottom_nav'),pageId:'p_carContent_'+(null==(e=o.props)?void 0:e.disPrdId)
+}
+),f.EventTracking.execReportData('',!0);
+// 变量
+var t: any = o.state,a=t.selectedInfoHeight,i=t.hasSelectedInfo,n=o.props,r=n.prdId,s=n.choiceSbomCode,l=n.defaultSkuCode,c=n.saleId,p=n.channelId,u=n.platform;
+if((void 0===u?{
+
+}
+:u).isLarge){
+var h=i?'CarPreview':'CarSelect';
+o.gotoWebPage(h)
+}
+else if(o.commonJs.isWeb()){
+var v=0===a?'CarSelect':'CarPreview';
+o.gotoWebPage(v)
+}
+else{
+// 变量
+var S: Function = [];
+S.push("prdId="+r),S.push("sbomCode="+l),s&&S.push("choiceSbomCode="+s),p&&S.push("channelId="+p),c&&S.push("saleId="+c),S.push("targetPage=carselect");
+var C,y=o.commonJs.apkLink()+"?"+S.join('&');
+if(0===a)f.RouterUtils.gotoPage(y);
+else null==(C=o.selectedInfoRef)||C.goToOtherPage()
+}
+
+}
+
+}
+)),o.openVideo=function(){
+var e;
+o.playReport(),null==(e=o.carPlayerObj)||e.showVideo(!0)
+}
+,o.showPCVideo=function(){
+o.playReport(),o.setState({
+isVideoShow:!0
+}
+),window.document.getElementsByTagName('body')[0].style.overflow='hidden'
+}
+,o.closePCVideo=function(){
+var e;
+o.props.clickItem({
+actionCode:'900027307',actionName:(0,f.t)('click_play_btn'),eventType:'2',comId:'carContent_detail',resSiteCode:'r_carContent_detail',resSiteName:(0,f.t)('contentResSite'),pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),pageId:"p_carContent_"+(null==(e=o.props)?void 0:e.disPrdId),playButton:(0,f.t)('logout')
+}
+),f.EventTracking.execReportData('',!0),o.setState({
+isVideoShow:!1
+}
+),window.document.getElementsByTagName('body')[0].style.overflow=''
+}
+,o.setBtnShow=function(e){
+o.state.showDefaultImg&&(o.updateStateData.isShowAllBtn=e,o.updateStateData.showDefaultImg=!1,o.updateStateStep())
+}
+,o.setPriceInfo=function(e){
+o.priceInfo=e
+}
+,o.openShareDialog=(0,a.default)((function*(){
+var e,t,a,i=null==(e=o.props)?void 0:e.sbomList[0];
+if(''!==o.priceInfo){
+var n;
+i=null==(n=a=o.priceInfo)?void 0:n.sbomList[0]
+}
+else{
+// 变量
+var r: any = yield o.commonJs.getGroupFlag(o);
+a={
+totalPrice:r.totalPrice,originalPrice:r.originalPrice
+}
+
+}
+var s=o.props.prdId,l=o.commonJs.getSharePriceInfo(a,i),c=Object.assign({
+prdId:s,sbomCode:i.sbomCode,comId:'carContent_top',buttonId:null==(t=i)?void 0:t.buttonMode,shareProfitDesc:(0,f.t)('vehicle_purchase_business'),mainPicture:f.CommonUtils.getCDNpath()+i.photoPath+'800_800_'+i.photoName,prdName:i.name,microPromWord:i.microPromWord,sbomPromWord:i.sbomPromWord,clickReportKey:x.PAGE_TYPE.car+x.CAR_TYPE.content+x.DATA_TYPE[14],pageType:'cardetail'
+}
+,l);
+o.commonJs.openShareModal(c),o.commonJs.clickShareReport({
+actionCode:x.PAGE_TYPE.car+x.CAR_TYPE.content+x.DATA_TYPE[13],actionName:(0,f.t)('car_prd_share'),comId:'carContent_top',pageCatCode:'p_carContent',pageCatName:(0,f.t)('optional_for_vehicle_purchase'),resSiteCode:'r_carContent_top',resSiteName:(0,f.t)('top_nav'),pageId:'p_carContent_'+s,prdId:s,sbomCode:i.sbomCode
+}
+)
+}
+)),o.renderMain=function(){
+var e=o.state,t=e.screenHeight,a=e.selectedInfoHeight,i=e.lazyLoading,n=e.showDefaultImg,r=o.props,s=r.wapSalePoint,l=void 0===s?'':s,c=r.pullUpApp,u=r.platform,h=void 0===u?{
+
+}
+:u,S={
+display:n||!l?'flex':'none'
+}
+;
+return f.PlatformUtils.isApp()?(0,H.jsx)(p.View,{
+style:{
+flex:1
+}
+,onLayout:o._onlayout,children:(0,H.jsx)(A.default,{
+content:i?l:'',onInited:function(){
+return o.setBtnShow(!0)
+}
+,onScroll:o.onScrollEndDrag,prefix:(0,H.jsx)(p.View,{
+onLayout:o._selectedOnLayout,children:(0,H.jsx)(I.default,Object.assign({
+
+}
+,o.props,{
+onRef:function(e){
+return o.selectedInfoRef=e
+}
+,isShow:o.isShowBtn,diyPackageInfos:o.diyPackageInfos,windowScrollHeight:o.windowScrollHeight,selectedInfoHeight:a,setPriceInfo:o.setPriceInfo,pullUpApp:c,useStateSbomData:!0,statusBarHeight:o.context.statusBarHeight
+}
+))
+}
+),suffix:(0,H.jsxs)(H.Fragment,{
+children:[(0,H.jsx)(p.View,{
+style:F.mainMarginBottom
+}
+),o.renderPlayBtn()]
+}
+)
+}
+)
+}
+):(0,H.jsx)(p.ScrollView,{
+style:F.scrollWarp,onLayout:o._onlayout,onScroll:o.onScrollEndDrag,removeClippedSubviews:'ios'!==p.Platform.OS,contentContainerStyle:f.PlatformUtils.isWeb()?{
+flex:1
+}
+:{
+
+}
+,children:(0,H.jsxs)(p.View,{
+style:[F.widthPct,f.PlatformUtils.isWeb()?{
+flex:1
+}
+:{
+minHeight:t
+}
+],children:[(0,H.jsx)(p.View,{
+style:F.zIndex1,onLayout:o._selectedOnLayout,children:(0,H.jsx)(I.default,Object.assign({
+
+}
+,o.props,{
+onRef:function(e){
+return o.selectedInfoRef=e
+}
+,isShow:o.isShowBtn,diyPackageInfos:o.diyPackageInfos,windowScrollHeight:o.windowScrollHeight,selectedInfoHeight:a,setPriceInfo:o.setPriceInfo,pullUpApp:c,useStateSbomData:!0,statusBarHeight:o.context.statusBarHeight
+}
+))
+}
+),(0,H.jsxs)(p.View,{
+style:F.flex1,children:[(0,H.jsx)(p.View,{
+style:[F.logoPos,S,{
+width:h.width,height:h.width,marginTop:-h.width/2
+}
+],children:(0,H.jsx)(v.SvgIcon,{
+normalCol:W.C39.color,viewBox:'100 -1000 3000 3000',opacity:W.C39.opacity,iconName:"VMALLLOGO",width:'100%',height:'100%'
+}
+)
+}
+),i?(0,H.jsx)(w.default,{
+content:l,setBtnShow:o.setBtnShow
+}
+):(0,H.jsx)(H.Fragment,{
+
+}
+),(0,H.jsx)(p.View,{
+style:{
+width:'100%',height:f.PlatformUtils.isIOS()?80:56
+}
+
+}
+)]
+}
+),o.renderPlayBtn()]
+}
+)
+}
+)
+}
+,o.commonJs=S.default.call(o);
+// 变量
+var u: any = o.props.sbomList,h=(0,_.initRoutes)(u).diyPackageInfos;
+return o.diyPackageInfos=h,o.state={
+hasSelectedInfo:!1,sbomCode:o.props.defaultSkuCode,screenHeight:e.platform.height,isWebBtnFixed:!1,isVideoShow:!1,storageData:null,isShowBtn:!1,selectedInfoHeight:0,isShowAllBtn:!1,scrollY:new p.Animated.Value(0),lazyLoading:!1,showDefaultImg:!0,topValue:0,strategyActivityCode:'',sbomList:u
+}
+,o.updateStateData={
+isShowAllBtn:!1,showDefaultImg:!0,storageData:null,hasSelectedInfo:!1,lazyLoading:!1,isShowBtn:!1
+}
+,o.hasSetStateStep=0,o
+}
+return(0,l.default)(t,e),(0,n.default)(t,[{
+key:"handleStrategy",value:function(){
+var e,t,o=this;
+if((f.PlatformUtils.isAndroid()||f.PlatformUtils.isHarmony())&&this.props.prdId){
+// 变量
+var a: any = null==(e=this.props.prdId)?void 0:e.toString();
+f.RnBridge.invokeVmallNative('common','setCurrentPrdId',{
+prdId:a,from:'productCar'
+}
+),null==(t=this.strategyListener)||t.remove(),this.strategyListener=p.DeviceEventEmitter.addListener('NativeCallAction',(function(e){
+var t,i,n;
+if(null==e||null==(t=e.param)||!t.pageId||e.param.pageId.includes(a)){
+// 变量
+var r: any = (null==e||null==(i=e.param)?void 0:i.popStrategies)&&JSON.parse(e.param.popStrategies),s=null==r?void 0:r.activityCode,l=null==r?void 0:r.template,c=null==r?void 0:r.strategyContent;
+if('popStrategies'===(null==e?void 0:e.action)&&'RnProductDetail'===(null==e?void 0:e.service)&&s)if(T.default.isEmpty(c))o.openStrategyPopup(l,s,a);
+else(null==c?void 0:c.strategies).forEach((function(e){
+'event_rule'===e.type&&(o.timer=setTimeout((function(){
+o.openStrategyPopup(l,s,a)
+}
+),1e3*e.timeSeconds))
+}
+));
+null==(n=o.strategyListener)||n.remove()
+}
+
+}
+))
+}
+
+}
+
+}
+,{
+key:"componentDidMount",value:(c=(0,a.default)((function*(){
+var e=this.props.platform,t=void 0===e?{
+
+}
+:e;
+this.getGroupFlag(),t.isLarge&&'object'==typeof window&&(this.handleWebScroll(),window.addEventListener('scroll',this.handleWebScroll),window.addEventListener('resize',this.setTopValue,!1)),f.PlatformUtils.isWap(t.width)&&window.addEventListener('scroll',this.bindScrollEvent),f.PlatformUtils.isMp()&&p.DeviceEventEmitter.addListener('onPageScroll',this.bindScrollEvent),this.handleData()
+}
+)),function(){
+return c.apply(this,arguments)
+}
+)
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e,t;
+this.timer&&clearTimeout(this.timer),this.strategyTimer&&clearTimeout(this.strategyTimer),null==(e=this.strategyListener)||e.remove(),this.goServiceRobotTime&&clearTimeout(this.goServiceRobotTime),null!=(t=this.props.plarform)&&t.isLarge&&window&&window.removeEventListener('resize',this.setTopValue)
+}
+
+}
+,{
+key:"getGroupFlag",value:(o=(0,a.default)((function*(){
+this.isLogin=yield(0,B.getAppStoreLoginStatus)()
+}
+)),function(){
+return o.apply(this,arguments)
+}
+)
+}
+,{
+key:"renderApkBtns",value:function(){
+var e,t=this.props,o=t.linkName,a=void 0===o?(0,f.t)('bookCar'):o,i=t.platform,n=void 0===i?{
+
+}
+:i,r={
+marginRight:n.isPadH?12:8
+}
+;
+return a.length>8&&(e=13),(0,H.jsxs)(p.View,{
+style:[F.btnsWrap,n.isMedium&&F.ph24,f.PlatformUtils.isIOS()&&F.iosBottomBtn,f.PlatformUtils.isHarmony()&&{
+height:58+this.context.safeAreaBottomHeight,paddingTop:16,paddingBottom:16+this.context.safeAreaBottomHeight
+}
+],children:[(0,H.jsx)(P.default,{
+btnStyle:r,btnTxt:a,type:'order',fontSize:e,clickCall:this.orderCall
+}
+),(0,H.jsx)(P.default,{
+btnTxt:(0,f.t)('buy_now_button'),type:'buy',fontSize:e,clickCall:this.buyCall
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"renderPCBtns",value:function(){
+// 变量
+var e: any = this.props,t=e.linkName,o=void 0===t?(0,f.t)('bookCar'):t,a=e.isSSR,i=e.isPC,n=e.webVideoPath,r=e.webSalePoint,s=this.state,l=s.isWebBtnFixed,c=s.hasSelectedInfo,u=s.topValue,v=c?358:218,S=u;
+a||0!==u||(S=(0,k.getInnerWidth)()*v/1903);
+// 变量
+var C: any = (0,k.getInnerWidth)()/k.BASE_SCALE_WIDTH;
+c&&C>1&&(S-=100*(C-1));
+return n&&!r&&(S=218),S>0?(0,H.jsxs)(p.View,{
+style:[F.PCBtnContainer,{
+top:S
+}
+],children:[(0,H.jsxs)(p.View,{
+style:[F.PCFirstBtnRow,l&&!(0,k.isScale)()?F.hidden:F.show],children:[(0,H.jsx)(P.default,{
+btnTxt:o,type:'PCOrder',btnStyle:{
+backgroundColor:'rgba(0,0,0,0.10)',borderRadius:20,color:'#FFF',marginRight:24
+}
+,clickCall:this.orderCall,isSSR:a,isPC:i
+}
+),(0,H.jsx)(P.default,{
+btnTxt:(0,f.t)('buy_now_button'),type:'buy',btnStyle:{
+backgroundColor:'#CF0A2C',borderRadius:20,color:'#FFF'
+}
+,clickCall:this.buyCall,isSSR:a,isPC:i
+}
+)]
+}
+),n?(0,H.jsx)(p.View,{
+style:F.PCSecBtnRow,children:(0,H.jsx)(p.View,{
+style:[F.btnWrap],children:(0,H.jsx)(p.TouchableOpacity,{
+activeOpacity:.3,onPress:this.showPCVideo,children:(0,H.jsxs)(p.View,{
+style:F.PCVideoBtn,children:[(0,H.jsx)(p.Image,{
+style:F.carPlayVideo,source:h.default.carPlayVideo
+}
+),(0,H.jsx)(p.Text,{
+style:[F.btnTxt,F.PCVideoText],children:(0,f.t)('watch_video')
+}
+)]
+}
+)
+}
+)
+}
+)
+}
+):(0,H.jsx)(H.Fragment,{
+
+}
+)]
+}
+):null
+}
+
+}
+,{
+key:"renderPCTopBar",value:function(){
+var e,t=this.state,o=t.isWebBtnFixed,a=t.hasSelectedInfo,i=t.storageData,n=this.props,r=n.briefName,s=n.linkName,l=void 0===s?(0,f.t)('bookCar'):s;
+l.length>8&&(e=16);
+var c=(0,H.jsxs)(p.View,{
+style:F.PCTopBarBtnGroup,children:[(0,H.jsx)(P.default,{
+btnStyle:{
+marginRight:20,width:186,height:52
+}
+,btnTxt:l,type:'PCTopOrder',fontSize:e,clickCall:this.orderCall
+}
+),(0,H.jsx)(P.default,{
+btnStyle:{
+width:186,height:52
+}
+,btnTxt:(0,f.t)('buy_now_button'),type:'PCTopBuy',fontSize:e,clickCall:this.buyCall
+}
+)]
+}
+);
+return(0,H.jsx)(p.View,{
+style:[o&&!(0,k.isScale)()&&F.PCFixBar],children:(0,H.jsxs)(p.View,{
+style:[a&&F.PCTopBarContainerWithSelected,o&&!a&&!(0,k.isScale)()&&F.PCTopBarContainer],children:[a&&(0,H.jsx)(b.default,Object.assign({
+
+}
+,this.props,{
+isWebBtnFixed:o,buttonComp:c,useStateSbomData:!0,storageData:i,diyPackageInfos:this.diyPackageInfos
+}
+)),o&&!(0,k.isScale)()&&!a&&(0,H.jsxs)(H.Fragment,{
+children:[(0,H.jsx)(p.Text,{
+style:F.PCTopBarCarName,children:r
+}
+),c]
+}
+)]
+}
+)
+}
+)
+}
+
+}
+,{
+key:"renderPCVideo",value:function(){
+if(this.state.isVideoShow){
+// 变量
+var e: any = this.props.webVideoPath,t=(0,k.getInnerWidth)(),o=(0,k.getInnerHeight)(),a=t,i=760*a/1600;
+return(0,H.jsxs)(H.Fragment,{
+children:[(0,H.jsx)("div",{
+id:"dialogMask",style:{
+position:'fixed',top:0,left:0,width:t,height:o,backgroundColor:'rgba(0,0,0,0.90)',overflow:'hidden',zIndex:999,display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center'
+}
+,children:(0,H.jsx)("video",{
+width:a,height:i,controls:!0,autoPlay:!0,style:{
+objectFit:'contain',backgroundColor:'#000'
+}
+,children:(0,H.jsx)("source",{
+src:e,type:"video/mp4"
+}
+)
+}
+)
+}
+),(0,H.jsx)(p.TouchableOpacity,{
+style:F.carCloseVideoWrapper,activeOpacity:1,onPress:this.closePCVideo,children:(0,H.jsx)(p.Image,{
+style:F.carCloseVideo,source:h.default.carCloseVideo
+}
+)
+}
+)]
+}
+)
+}
+return null
+}
+
+}
+,{
+key:"renderPlayIcon",value:function(){
+return f.PlatformUtils.isMp()?(0,H.jsx)(p.Image,{
+source:{
+uri:h.default.playVideo
+}
+,style:{
+width:18,height:18
+}
+
+}
+):(0,H.jsx)(v.SvgIcon,{
+iconName:"pause-product",width:"18",height:"18",normalCol:'#fff'
+}
+)
+}
+
+}
+,{
+key:"renderPlayBtn",value:function(){
+// 变量
+var e: any = this.props.mobileVideoPath,t=this.state,o=t.screenHeight,a=t.isShowAllBtn,i=t.selectedInfoHeight,n=o;
+f.PlatformUtils.isApp()||(n=p.Dimensions.get('window').height),f.PlatformUtils.isMp()&&(n-=102);
+// 变量
+var r: any = n/4,s=(n-r)/2+i;
+return n>0&&e&&a?(0,H.jsx)(p.TouchableOpacity,{
+style:[F.hotArea,{
+top:s,height:r
+}
+],activeOpacity:1,onPress:this.openVideo,children:(0,H.jsx)(p.View,{
+style:F.videoPlay,children:this.renderPlayIcon()
+}
+)
+}
+):null
+}
+
+}
+,{
+key:"playReport",value:function(){
+var e;
+this.props.clickItem({
+actionCode:'900027307',actionName:(0,f.t)('click_play_btn'),eventType:'2',pageCatCode:'p_carContent',comId:'carContent_detail',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_detail',resSiteName:(0,f.t)('contentResSite'),pageId:'p_carContent_'+(null==(e=this.props)?void 0:e.disPrdId),playButton:(0,f.t)('common_play')
+}
+),f.EventTracking.execReportData('',!0)
+}
+
+}
+,{
+key:"render",value:function(){
+var e=this,t=this.state,o=t.screenHeight,a=t.isShowBtn,i=t.selectedInfoHeight,n=t.isShowAllBtn,r=t.scrollY,s=t.strategyActivityCode,l=this.props,c=l.briefName,u=l.shopInfo,h=l.webSalePoint,S=void 0===h?'':h,C=l.mobileVideoPath,y=l.showheader,P=l.pullUpApp,b=l.platform,I=void 0===b?{
+
+}
+:b,_=l.clickItem,x=l.disPrdId,T=this.context.statusBarHeight,B=T+56,k=r.interpolate({
+inputRange:[0,B],outputRange:[0,1]
+}
+),V=I.height-522;
+return(0,H.jsxs)(H.Fragment,{
+children:[I.isLarge?(0,H.jsxs)(H.Fragment,{
+children:[this.renderPCVideo(),(0,H.jsxs)(p.View,{
+style:[F.contentArea,{
+minHeight:V
+}
+],children:[this.renderPCTopBar(),this.renderPCBtns(),(!n||!S)&&(0,H.jsx)(p.View,{
+style:[F.logoPos,F.logoPosPc],children:(0,H.jsx)(v.SvgIcon,{
+normalCol:W.C39.color,viewBox:'100 -1000 3000 3000',opacity:W.C39.opacity,iconName:"VMALLLOGO",width:'100%',height:'100%'
+}
+)
+}
+),(0,H.jsx)(w.default,{
+content:S
+}
+)]
+}
+)]
+}
+):(0,H.jsxs)(H.Fragment,{
+children:[y&&(0,H.jsxs)(p.View,{
+style:[F.titleWrap,{
+paddingTop:T
+}
+,!f.PlatformUtils.isApp()&&F.contentTitle,f.PlatformUtils.isMp()&&{
+top:-1
+}
+,0===i?F.titleBgTrs:F.titleBg,P&&F.titleSticky],children:[0===i&&(0,H.jsx)(p.Animated.View,{
+style:{
+position:'absolute',top:0,left:0,bottom:0,zIndex:-1,width:'100%',backgroundColor:'#F1F3F5',opacity:k
+}
+
+}
+),(0,H.jsx)(M,{
+disabledMarginTop:!0,titleName:c,onPress:this._back,titleBarStyle:F.titleBar,isService:!D.previewScene.isPreview&&Boolean(null==u?void 0:u.serviceUrl),onPressService:this.gotoService,isShare:f.PlatformUtils.isApp()&&!D.previewScene.isPreview,onPressShare:this.openShareDialog
+}
+)]
+}
+),this.renderMain(),a&&n?this.renderApkBtns():null,(0,H.jsx)(E.default,{
+clickItem:_,ref:function(t){
+return e.carPlayerObj=t
+}
+,url:C,screenHeight:o,isPadHorizontal:I.isPadH,statusBarHeight:T,disPrdId:x
+}
+),(f.PlatformUtils.isAndroid()||f.PlatformUtils.isHarmony())&&s?(0,H.jsx)(j.default,{
+pageId:x,activityCode:s,pageType:f.PAGE_TYPE.cardetail,pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_detail',resSiteName:(0,f.t)('contentResSite'),pageIdReport:"p_carContent_"+x
+}
+):null,(0,H.jsx)(R.BoxTip,{
+
+}
+)]
+}
+),(0,H.jsx)(v.Toast,{
+pageType:'cardetail',randomId:f.CommonUtils.randomString()
+}
+)]
+}
+)
+}
+
+}
+]);
+var o,c
+}
+)(c.PureComponent),o.contextType=N.PlatformContext,t=o))||t;
+_e.default=(0,f.monitor)(C.default)((0,f.itemExposeHoc)(z))
+}
+),"2a63539a2c2779107d4854f0bd9288c25f5666808328815cd3969904520ab3c2",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","f91f1a8b9f8152ab92dc99133bfc01a0b4ba9e5dcc252bbafacb41825b6fb070","72b5c0d6d1f443db5fa2378f3fed2cf923f409dc517d87a92fc19d152888d3e2","c240db46d7e823c73802d0be5230c848603ad6c4870d32866a57ee80092f6ac9","e31278cbd654f5b8687795da32c457a4ccf3078cde907de53c38800a685f83ad","f94af9650f47e9743147d57dd1fe8b03408bd2f621fa73923ebee61f49c55f20","91650ec175a6fd07132af8047ce85701dac8d40d6e429a027f945c7750de4444","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","8bdaa3337852ee6c5d8e0a9b7a6bd0152b3ef782321e3332d6c9f3a3ef4b94f0","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","d8cc0ad120d6721e27499f006a886f75435f78b9380e24198288d380e1f27388","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","ed6d8b3a5d1589dac3d19ae9d1ed0d1c5c059aa99ca997a15e0bd63430588881","17a3923ce9d1cf79cad93fae0629a82f735c280c7039a5ad8a6cb136bdea7cc7","0399c78f722300c3277071ad655f16ba758ed7b8f155f226ea6741df29a969ff","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,_i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.translateDescHtml=_e.showValetBtn=_e.priceSwitch=_e.plus=_e.openShareModal=_e.minus=_e.isPriceNotConsistent=_e.intersection=_e.goVRPage=_e.getSharePriceInfo=_e.getContentCardPrice=_e.getAttrContentBoxWidth=_e.getAdvancedFeature=_e.formatPrice=_e.default=_e.arrayHasItem=void 0,_e.updateAttrSbom=function(e){
+return Ae.apply(this,arguments)
+}
+;
+var t=e(r(d[1])),i=e(r(d[2])),n=e(r(d[3])),o=r(d[4]),l=r(d[5]),u=r(d[6]),c=r(d[7]),s=e(r(d[8])),p=r(d[9]),f=e(r(d[10])),v=r(d[11]),h=r(d[12]),P=e(r(d[13])),C=r(d[14]),y=r(d[15]),b=_e.priceSwitch=function(e){
+// 变量
+var t: any = Number(e),i='';
+if(!isNaN(t)){
+// 变量
+var n: any = t.toString(),o=n.split('.'),l='',u=n.split('.')[0];
+o.length>1&&(l='.'+n.split('.')[1]);
+// 变量
+var c: any = [];
+if(i=n,u.length>3){
+for(;
+c.push(u.slice(-3)),!((u=u.slice(0,u.length-3)).length<4);
+);
+for(var s=[],p=c.length-1;
+p>=0;
+p--)s.push(c[p]);
+i=u+','+s.join(',')+l
+}
+
+}
+return i
+}
+,S=function(){
+return o.StatusBar.currentHeight
+}
+,I=_e.arrayHasItem=function(e,t){
+// 变量
+var i: any = !1;
+return e.map((function(e){
+t.includes(e)&&(i=!0)
+}
+)),i
+}
+,w=function(e){
+// 变量
+var t: any = arguments.length>1&&void 0!==arguments[1]?arguments[1]:15;
+return+parseFloat(Number(e).toPrecision(t))
+}
+,T=function(){
+return l.PlatformUtils.isMp()?'/packageRnCarDetail/index':'vmall://com.vmall.client/product/cardetail'
+}
+,D=function(e){
+if(!e||0===Number(e))return null;
+// 变量
+var t: any = e.toString().split(/[eE]/),i=(t[0].split('.')[1]||'').length-Number(t[1]||0);
+return i>0?i:0
+}
+,U=function(e){
+if(!e||0===Number(e))return null;
+if(-1===e.toString().indexOf('e'))return Number(e.toString().replace('.',''));
+// 变量
+var t: any = D(e);
+return t>0?w(Number(e)*Math.pow(10,t)):Number(e)
+}
+,A=function(){
+for(var e=arguments.length,t=new Array(e),i=0;
+i<e;
+i++)t[i]=arguments[i];
+// 变量
+var n: any = t[0],o=t[1],l=U(n),u=U(o),c=D(n)+D(o);
+return l*u/Math.pow(10,c)
+}
+,L=_e.plus=function(){
+for(var e=arguments.length,t=new Array(e),i=0;
+i<e;
+i++)t[i]=arguments[i];
+// 变量
+var n: any = t[0],o=t[1],l=Math.pow(10,Math.max(D(n),D(o)));
+return(A(n,l)+A(o,l))/l
+}
+,k=_e.minus=function(){
+for(var e=arguments.length,t=new Array(e),i=0;
+i<e;
+i++)t[i]=arguments[i];
+// 变量
+var n: any = t[0],o=t[1],l=Math.pow(10,Math.max(D(n),D(o)));
+return(A(n,l)-A(o,l))/l
+}
+,R=_e.intersection=function(){
+for(var e=arguments.length,t=new Array(e),i=0;
+i<e;
+i++)t[i]=arguments[i];
+return s.default.intersection.apply(s.default,(0,n.default)(t.filter(Boolean)))
+}
+,N=function(e){
+// 变量
+var t: any = null==e?void 0:e.trim(),i=null==t?void 0:t.toString();
+return 0===(null==i?void 0:i.length)?'0':null==i?void 0:i.replace(/,/g,'')
+}
+,M=function(e,t){
+// 变量
+var i: any = [];
+for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n))for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&t[o].attr&&t[o].attr===e[n]&&i.push(t[o]);
+return i
+}
+,_=(function(){
+var e=(0,i.default)((function*(){
+return new Promise((function(e){
+l.RnBridge.invokeVmallNative('common','getSpValueAll',{
+key:'groupflag',valueType:'String'
+}
+).then((function(t){
+e(null==t?void 0:t.value)
+}
+))
+}
+))
+}
+));
+return function(){
+return e.apply(this,arguments)
+}
+
+}
+)(),V=_e.getAdvancedFeature=(function(){
+var e=(0,i.default)((function*(){
+return new Promise((function(e){
+l.RnBridge.invokeVmallNative('common','getSpValueAll',{
+key:'ENABLE_ADVANCED_FEATURE',valueType:'String'
+}
+).then((function(t){
+var i;
+e(null!=(i=null==t?void 0:t.value)?i:'1')
+}
+))
+}
+))
+}
+));
+return function(){
+return e.apply(this,arguments)
+}
+
+}
+)(),E=(function(){
+var e=(0,i.default)((function*(){
+return new Promise((function(e){
+l.RnBridge.invokeVmallNative('common','getSpValueAll',{
+key:'user_group_id',valueType:'String'
+}
+).then((function(t){
+e(null==t?void 0:t.value)
+}
+))
+}
+))
+}
+));
+return function(){
+return e.apply(this,arguments)
+}
+
+}
+)(),H=(function(){
+var e=(0,i.default)((function*(){
+return new Promise((function(e){
+l.RnBridge.invokeVmallNative('common','getIsLogin',{
+
+}
+).then((function(t){
+e(!!t&&t.isLogin)
+}
+),(function(){
+e(!1)
+}
+)).catch((function(){
+e(!1)
+}
+))
+}
+))
+}
+));
+return function(){
+return e.apply(this,arguments)
+}
+
+}
+)(),O=function(e){
+var t=e.props||{
+
+}
+,i=t.sbomList,n=void 0===i?[]:i,o=t.useStateSbomData,l=void 0!==o&&o,u=(e.state||{
+
+}
+).sbomList;
+return l?void 0===u?[]:u:n
+}
+,x=function(e){
+for(var t=[],i=0;
+i<e.length;
+i++)t[i]=new Image,t[i].src=e[i].uri
+}
+,B=function(e){
+// 变量
+var t: any = e.sbomCode,i=e.channelId,n=e.prdId,o=e.activityCode;
+return new Promise((function(e){
+'5'===String(i)?(0,c.checkCarSbomlist)({
+activityCode:o,sbomCode:t,disPrdId:null==n?void 0:n.toString()
+}
+).then((function(t){
+var i;
+null!=t&&t.success&&(null==t||null==(i=t.sbomCodeList)?void 0:i.length)>0?e(null==t?void 0:t.sbomCodeList):e([])
+}
+)).catch((function(){
+e([])
+}
+)):e([])
+}
+))
+}
+,W=function(e,t){
+return(e.defaultSbomCode||e.state.benefitSbomCode)===(null==t?void 0:t.toString())
+}
+,F=(function(){
+var e=(0,i.default)((function*(e,t){
+var i;
+try{
+// 变量
+var n: any = yield l.HttpService.getServerTime();
+i=n.success?1e3*n.serverTime:(new Date).getTime()
+}
+catch(e){
+i=(new Date).getTime()
+}
+return ne(e,i,t)
+}
+));
+return function(t,i){
+return e.apply(this,arguments)
+}
+
+}
+)(),j=function(e){
+var t,i=null==(t=e.skuPriceInfo)?void 0:t.find((function(t){
+return e.defaultSbomCode===t.sbomCode
+}
+));
+return F(e,null==i?void 0:i.groupPrice)
+}
+,G=function(e){
+return new Promise((function(){
+var t=(0,i.default)((function*(t,i){
+// 变量
+var n: any = O(e),o=(null==n?void 0:n.length)>0&&s.default.map(n,'sbomCode').length>0;
+try{
+var l,c,p={
+detailDispInfos:[]
+}
+;
+if(o){
+// 变量
+var f: any = JSON.stringify(s.default.map(n,'sbomCode'));
+p=yield(0,u.querySkuDetailDispInfo)(f)
+}
+e.skuPriceInfo=s.default.map(null==(l=p)?void 0:l.detailDispInfos,'skuPriceInfo'),(null==(c=e.skuPriceInfo)?void 0:c.length)>0?t(j(e)):t(F(e))
+}
+catch(t){
+i(F(e))
+}
+
+}
+));
+return function(e,i){
+return t.apply(this,arguments)
+}
+
+}
+)())
+}
+,z=(function(){
+var e=(0,i.default)((function*(e){
+// 变量
+var t: any = yield(0,h.getAppStoreLoginStatus)();
+if(e.isLogin=t,l.PlatformUtils.isApp()){
+// 变量
+var i: any = yield _(),n=yield E(),o=!(!t||!n||'true'!==i);
+e.isGetGroupFlag=o
+}
+else{
+// 变量
+var u: any = !(!t||!l.Cookies.get('groupflag'));
+e.isGetGroupFlag=u
+}
+return e.isGetGroupFlag?G(e):F(e)
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),q=function(e){
+return new Date(null==e?void 0:e.replace(/-/g,'/')).getTime()
+}
+,J=function(e,t,i){
+var n,o,l,u,c=i<=q(null==e||null==(n=e.timingRushBuyRule)?void 0:n.endTime),s=i>=q(null==e||null==(o=e.timingRushBuyRule)?void 0:o.startTime);
+c&&s&&(l=null==e||null==(u=e.timingRushBuyRule)?void 0:u.promoPrice);
+return l
+}
+,Y=function(e){
+// 变量
+var t: any = s.default.get(e.diyPackageInfos,'[0].groupList')||[];
+return{
+packageCode:s.default.get(e.diyPackageInfos,'[0].packageCode')||'',targetItem:s.default.find(t,(function(e){
+return'relatesbom'===(null==e?void 0:e.groupName)
+}
+))
+}
+
+}
+,K=function(e,t,i,n,o,l){
+var u,c=Y(e),s=c.packageCode,p=c.targetItem;
+return(null==t?void 0:t.relateSbom)&&(null==p||null==(u=p.packagePrdList)||u.map((function(u){
+var c;
+null==u||null==(c=u.sbomDIYPackageInfos)||c.map((function(u){
+u&&u.sbomCode===t.relateSbom&&(i.push({
+sbomCode:u.sbomCode,sbomName:u.sbomName,unitPrice:u.unitPrice,originalPrice:u.originalPrice,priceMode:u.priceMode,productType:'main',isRelateProduct:!0,groupId:p.groupId,packageCode:s
+}
+),'hasPrice'===n&&(o=e.commonJs.plus(o,u.unitPrice),l=e.commonJs.plus(l,u.originalPrice)))
+}
+))
+}
+))),{
+totalPrice:o,flag:n,originalPrice:l,detailList:i
+}
+
+}
+,Q=function(e,t,i,n,o){
+var l,u=(e.props||{
+
+}
+).attrViewList;
+return null==u||u.map((function(u){
+var c;
+null==u||null==(c=u.attrValueList)||c.map((function(u){
+var c;
+null==u||null==(c=u.sbomList)||c.map((function(u){
+(null==u?void 0:u.sbomCode)===(null==e?void 0:e.defaultSbomCode)&&(l=K(e,u,o,t,i,n))
+}
+))
+}
+))
+}
+)),l
+}
+,Z=function(e,t,i,n,o){
+// 变量
+var l: any = O(e);
+return K(e,l[0],o,t,i,n)
+}
+,X=function(e,t,i){
+var n=(e.props||{
+
+}
+).attrViewList;
+return null==n||n.map((function(n){
+var o;
+null==n||null==(o=n.attrValueList)||o.map((function(o){
+var l;
+null==o||null==(l=o.sbomList)||l.map((function(l){
+l&&l.sbomCode===(null==e?void 0:e.defaultSbomCode)&&(l.attrPriceDesc||o.attrPriceDesc)&&(null==t||t.push({
+attrPriceDesc:l.attrPriceDesc||o.attrPriceDesc,sbomName:o.attrValue,attrName:n.attrName,qizhong:i++,productType:'attr'
+}
+))
+}
+))
+}
+))
+}
+)),t
+}
+,$=function(e,t,i){
+var n=(O(e)[0]||{
+
+}
+).sbomAttrList,o=void 0===n?[]:n;
+return null==o||o.map((function(e){
+var n;
+null==e||null==(n=e.attrValueList)||n.map((function(n){
+n.attrPriceDesc&&(null==t||t.push({
+attrPriceDesc:n.attrPriceDesc,sbomName:n.attrValue,attrName:e.attrName,qizhong:i++,productType:'attr'
+}
+))
+}
+))
+}
+)),t
+}
+,ee=function(e,t,i,n){
+var o,u,c,s=J(e,0,i),p=null==e?void 0:e.price,f=l.PlatformUtils.isHarmony()?null!=(o=null!=(u=t.carPromotionInfo)?u:t.props.carPromotionInfo)?o:{
+
+}
+:null!=(c=null==e?void 0:e.carPromotionInfo)?c:{
+
+}
+,v=f.enjoyedPromotionPrice,h=void 0===v?0:v,P=f.prePromotionPrice,C=void 0===P?0:P,y=null==e?void 0:e.price;
+if(n){
+var b=n,S=Math.min(n,s),I=Math.min(n,y),w=Math.min(s,y,n);
+p=s?S:b,p=y?I:b,p=s&&y?w:p
+}
+else if(s){
+var T=s,D=Math.min(s,y);
+p=y?D:T
+}
+return p=k(p,h),{
+price:p=k(p,C),itemPrice:y
+}
+
+}
+,te=function(e,t,i,n,o,l,u){
+var c=e||{
+
+}
+,s=c.priceMode,p=c.carSurePriceFlag,f=c.priceConsistent,v=void 0!==p&&1!==p;
+return void 0===e.price||null===e.price||'2'===s||v?(t='noPrice',i.push({
+sbomCode:e.sbomCode,sbomName:e.name,withoutPrice:!0,priceMode:s,productType:'main',priceConsistent:f
+}
+)):(n=l,o=u,i.push({
+sbomCode:e.sbomCode,sbomName:e.name,unitPrice:l,originalPrice:o,priceMode:s,productType:'main',priceConsistent:f
+}
+)),{
+flag:t,detailList:i,totalPrice:n,originalPrice:o
+}
+
+}
+,re=function(e,t){
+// 变量
+var i: any = O(e);
+return Array.isArray(i)&&(null==i||i.map((function(i){
+var n,o,u,c=l.PlatformUtils.isHarmony()?null!=(n=null!=(o=e.carPromotionInfo)?o:e.props.carPromotionInfo)?n:{
+
+}
+:null!=(u=null==i?void 0:i.carPromotionInfo)?u:{
+
+}
+,s=c.enjoyedPromotionPrice,p=void 0===s?0:s,f=c.prePromoComDiscountList,h=void 0===f?[]:f;
+p>0&&t.push({
+sbomCode:i.sbomCode,sbomName:i.name,enjoyedPromotionPrice:p,productType:v.DETAIL_PRODUCT_TYPES.mainEnjoyedPromo
+}
+),h.length>0&&t.push({
+sbomCode:i.sbomCode,sbomName:i.name,prePromoComDiscountList:h,productType:v.DETAIL_PRODUCT_TYPES.mainPrePromo
+}
+)
+}
+))),t
+}
+,ie=function(e,t,i){
+var n,o=O(e),l=[];
+return Array.isArray(o)&&(null==o||o.map((function(o){
+// 变量
+var u: any = ee(o,e,t,i),c=u.price,s=u.itemPrice;
+n=te(o,"hasPrice",l,0,0,c,s)
+}
+))),n
+}
+,ne=function(e,t,i){
+// 变量
+var n: any = ie(e,t,i),o=$(e,null==n?void 0:n.detailList,0),l=re(e,o);
+return Z(e,null==n?void 0:n.flag,null==n?void 0:n.totalPrice,null==n?void 0:n.originalPrice,l)
+}
+,oe=function(e){
+var t,i=O(e);
+return null==i||null==(t=i[0])?void 0:t.sbomPromWord
+}
+,ae=function(e,t){
+// 变量
+var i: any = window.location.origin+window.location.pathname,n=[],o=[],u=(0,p.toJS)(f.default.packageMap),c=e.props,s=c.isPC,v=c.prdId,P=c.defaultSkuCode,C=c.saleId,y=c.channelId,b=c.showheader,S=c.orderCode,I=c.isHisData,w=c.sbomCode,T=c.cid,D=c.wi,U=c.relationSbomCode,A=c.isSources,L=c.activityCode,k=P||w;
+for(var R in u)Object.prototype.hasOwnProperty.call(u,R)&&o.push(u[R].sbomCode);
+v&&n.push('prdId='+v);
+var N=b||(0,h.getQueryStr)('showheader')||l.Cookies.get('showheader');
+return!N&&void 0!==N&&n.push("showheader="+N),n.push('sbomCode='+k),o.length>0&&n.push('choiceSbomCode='+o.join(',')),s&&n.push('isPC=true'),n.push('targetPage='+t),y&&n.push("channelId="+y),T&&n.push("cid="+T),D&&n.push("wi="+D),C&&n.push("saleId="+C),'5'===y&&(U&&n.push("relationSbomCode="+U),A&&n.push("isSources="+A),n.push("orderCode="+S),n.push("isHisData="+I),L&&n.push("activityCode="+L)),'carrelation'===t&&n.push("isReloadConfig=true"),i=i+'?'+n.join('&')
+}
+,le=function(e){
+return{
+top:e
+}
+
+}
+,ue=function(e){
+// 变量
+var t: any = e.actionCode,i=e.actionName,n=e.comId,o=e.pageCatCode,u=e.pageCatName,c=e.resSiteCode,s=e.resSiteName,p=e.pageId,f=e.prdId,v=e.sbomCode;
+l.EventTracking.eventTracingReport({
+actionCode:t,actionName:i,eventType:'2',content:{
+comId:n,productId:null==f?void 0:f.toString(),SKUCode:v
+}
+,pageCatCode:o,pageCatName:u,resSiteCode:c,resSiteName:s,pageId:p
+}
+),l.EventTracking.execReportData('',!0)
+}
+,ce=(function(){
+var e=(0,i.default)((function*(){
+return new Promise((function(e){
+(0,u.querySystemConfig)('prdDetail_shareLinkToMp_buttonList',1).then((function(t){
+if(t&&null!=t&&t.systemConfigInfos){
+// 变量
+var i: any = t.systemConfigInfos.prdDetail_shareLinkToMp_buttonList;
+e(null==i?void 0:i.systemConfigValue)
+}
+
+}
+)).catch((function(){
+e('')
+}
+))
+}
+))
+}
+));
+return function(){
+return e.apply(this,arguments)
+}
+
+}
+)(),se=_e.getContentCardPrice=function(e,t,i,n){
+var o={
+priceText:t?"\xa5"+b(t):(0,l.t)('without_price'),originalPriceText:i&&t>0?"\xa5"+b(n):''
+}
+;
+return 0===(null==e?void 0:e.priceConsistent)&&(o.priceText='\uffe5----',o.originalPriceText='\uffe5----'),o
+}
+,de=_e.getSharePriceInfo=function(e,t){
+var i={
+price:'',promoPrice:''
+}
+;
+return 0===(null==t?void 0:t.priceConsistent)||(null!=e&&e.originalPrice&&(i.price=e.originalPrice),null!=e&&e.totalPrice&&(i.promoPrice=e.totalPrice)),i
+}
+,pe=_e.openShareModal=(function(){
+var e=(0,i.default)((function*(e){
+var t=yield ce(),i=e.prdId,n=e.sbomCode,o=e.comId,u=e.buttonId,c=e.mainPicture,s=e.price,p=e.promoPrice,f=e.prdName,v=e.microPromWord,h=e.sbomPromWord,P=e.clickReportKey,C=e.pageType,y=e.chosePackageCode,b=JSON.stringify({
+comId:o,productId:null==i?void 0:i.toString(),SKUCode:n,buttonId:u||'35',name:(0,l.t)('vehicle_purchase_business')
+}
+),S=l.Service.wapDomain+"product/cardetail/index.html?prdId="+i+"&sbomCode="+n+"&targetPage="+C;
+'carpreview'===C&&y&&(S=S+'&choiceSbomCode='+y);
+var I="packageCarProduct/pages/"+{
+cardetail:'carProductContent',carselect:'carProductDetail',carpreview:'carProductPreview'
+}
+[""+C]+"?prdId="+i+"&sbomCode="+n,w={
+shareType:'1',sharePosition:'RnCarDetailActivity',clientPosterMethodType:'2',clientPosterParam:{
+activityPicUrl:'',scanCodeType:'1',wapUrl:S,prdPicUrl:c,originalPrice:s,unitPrice:s===p?'':p,prdName:f,iconText:'',promWords:v
+}
+,linkShareTo:(null==t?void 0:t.split(',')).includes(String(u))?'101,102,103,104,105,106,107,108':'101,102,103,104,105,106,108',posterShareTo:'14'===u||'32'===u?'000':'201,202,204,206,207',otherShareTo:'',shortTitle:f,shortContent:h,longContent:h,picUrl:c,wechatMpPicUrl:'',wechatMpPicData:{
+picUrl:c,originalPrice:s,unitPrice:s===p?'':p,buttonText:(0,l.t)('common_buy')
+}
+,shareWapUrl:S,shareMpUrl:I,clickReportKey:P,clickReportData:b,callbackFunction:'myCallBackFunction',clickCallbackFunction:'myClickCallbackFunction'
+}
+;
+l.RnBridge.invokeVmallNative('common','commonShareMethod',{
+shareData:l.PlatformUtils.isHarmony()?w:JSON.stringify(w)
+}
+).then()
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),me=function(e,t,i){
+// 变量
+var n: any = l.ScreenUtils.isPadHorizontal(t,i);
+return l.PlatformUtils.isApp()&&e?n?104:96:40
+}
+,fe=function(e){
+return!e.attrPriceDesc&&![v.DETAIL_PRODUCT_TYPES.mainEnjoyedPromo,v.DETAIL_PRODUCT_TYPES.mainPrePromo].includes(e.productType)
+}
+,ge=function(e){
+return e.some((function(e){
+return!v.NOT_PACKAGE_PRODUCT_TYPES.includes(null==e?void 0:e.productType)
+}
+))
+}
+,ve=function(e){
+return e.includes(v.NEW_VR_DOMAIN)
+}
+,he=function(e,t,i,n){
+// 变量
+var o: any = "vmall://com.vmall.client/product/vr?prdId="+t+"&skuCode="+i;
+if(ve(e)){
+// 变量
+var l: any = P.default.encode(e);
+return o+"&vrUrl="+encodeURIComponent(n+"&is3DCarViewing=1&isHiddenLayout=true&iframeStr="+l)+"&vrType=2"
+}
+return o+"&vrUrl="+encodeURIComponent(e)+"&huaweiAppUrl="+encodeURIComponent(n)
+}
+,Pe=function(e){
+// 变量
+var t: any = e.iframeUrl,i=e.hwUrl,n=e.prdId,o=e.sbomCode,l=e.baseIframeUrl,u=e.domain;
+return ve(t)?i+"&is3DCarViewing=1&isHiddenLayout=true&iframeStr="+l:u+"product/vrsharing?prdId="+n+"&sbomCode="+o+"&iframeUrl="+l+"&huaweiAppUrl="+encodeURIComponent(i)
+}
+,Ce=_e.goVRPage=(function(){
+var e=(0,i.default)((function*(e,t){
+// 变量
+var i: any = e.prdId,n=e.sbomCode,o=e.vrAppUrlRoam,c=e.huaweiAppUrl,s=e.vrWapUrlRoam,p=e.vrWebUrlRoam,f=e.huaweiWapUrl,v=e.huaweiPcUrl;
+if(t.isAndroid||t.isHarmony){
+if(yield l.LoginUtils.getLoginStatus(t.width)){
+var h=he(o,i,n,c);
+l.RouterUtils.gotoPage(h)
+}
+else{
+l.RouterUtils.gotoPage('vmall://com.vmall.client/home/login')
+}
+
+}
+else{
+// 变量
+var C: any = l.Service.smartHomeServiceUrl;
+if(t.isIOS){
+var y,b,S,I,w,T,D,U='app.apk.domain.list';
+try{
+D=yield(0,u.querySystemConfig)(U,1)
+}
+catch(e){
+D={
+
+}
+
+}
+C=null!=(w=null==(T=(null!=(y=null==(b=D)||null==(S=b.systemConfigInfos)||null==(I=S[U])?void 0:I.systemConfigValue)?y:'').split('|').find((function(e){
+return e.includes('CC_DOMAIN')
+}
+)))?void 0:T.replace('CC_DOMAIN=',''))?w:l.Service.smartHomeServiceUrl
+}
+var A=t.isPc?p:s,L=t.isPc?v:f,k=P.default.encode(A),R=t.isPc&&ve(A),N=R?A:Pe({
+iframeUrl:A,hwUrl:L,prdId:i,sbomCode:n,baseIframeUrl:k,domain:C
+}
+);
+l.RouterUtils.gotoPage(N,R)
+}
+
+}
+));
+return function(t,i){
+return e.apply(this,arguments)
+}
+
+}
+)(),ye=_e.showValetBtn=function(e,t){
+// 变量
+var i: any = e.vrAppUrlRoam,n=void 0===i?'':i,o=e.vrFrom,l=void 0===o?'':o,u=e.vrWapUrlRoam,c=void 0===u?'':u,s=e.vrWebUrlRoam,p=void 0===s?'':s,f=e.routerType,v=e.huaweiAppUrl,h=e.huaweiWapUrl,P=e.huaweiPcUrl,C=!1,y='',b='';
+return t.isAndroid||t.isHarmony?(C='vrguide'!==l&&n&&'CarDetail'===f,y=n,b=v):t.isSmall||t.isMedium?(C=''!==c,y=c,b=h):t.isPc&&(C=''!==p,y=p,b=P),Boolean(C)&&'CarDetail'===f&&(!(ve(y)&&!t.isPc)||Boolean(b))
+}
+,be=(_e.translateDescHtml=function(e){
+e=(e=(e=(e=e.replace(/<style(([\s\S])*?)<\/style>/gi,'')).replace(/<br>/gi,'<p>')).replace('\x3c!-- VmallSourceCodeMode --\x3e','')).replace(/\n/gi,'');
+// 变量
+var t: any = new RegExp('<p[^>]*>(.*?)</p>','gi');
+return(e.match(t)||[]).map((function(e){
+return e=(e=(e=(e=e.replace(/(<\/?p.*?>)/gi,'')).replace(/(<\/?span.*?>)/gi,'')).replace(/(<\/?a.*?>)/gi,'')).trim()
+}
+)).filter(Boolean)
+}
+,(function(){
+var e=(0,i.default)((function*(e,t,i){
+// 变量
+var n: any = i.choiceSbomCode,o=t.sbomCode,l=t.disPrdId,u=e;
+n&&(0,h.setStorage)('chosePackageCode_'+l+'_'+u,n,7),(0,h.setStorage)('sbom_'+l+'_'+e,o,7)
+}
+));
+return function(t,i,n){
+return e.apply(this,arguments)
+}
+
+}
+)()),Se=function(e,t){
+// 变量
+var i: any = t.props,n=i.prdId,o=i.sbomCode;
+return n||e||(void 0===o?'':o)
+}
+,Ie=function(e,t){
+// 变量
+var i: any = arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=t.props,o=n.sbomCode,l=void 0===o?'':o,u=n.slectCode,c=n.channelId,s=e||l;
+return'5'!==String(c)||i||(s=u||l),s
+}
+,we=function(e,t,i,n){
+// 变量
+var o: any = e.attrViewList,u=void 0===o?[]:o,c=e.sbomInfo,s=c.sbomAttrList,p=void 0===s?[]:s,f=c.sbomCode,v=e.sbomInfo;
+(0,C.filterSelectedAttrList)(u,p),l.PlatformUtils.isHarmony()&&(t.carPromotionInfo=i),t.setState({
+sbomList:[Object.assign({
+
+}
+,v,l.PlatformUtils.isHarmony()?{
+
+}
+:{
+carPromotionInfo:i
+}
+)],attrViewList:u,sbomCode:f,rightsActivityList:n,loadingRights:!1
+}
+),be(t.defaultSbomCode,v,t.props)
+}
+,Te=function(e){
+// 变量
+var t: any = (0,C.filterAttrCode)(e);
+return f.default.setSelectedAttrList(e),t
+}
+,De=function(e,i,n,o){
+// 变量
+var l: any = n.props,c=l.prdId,s=l.sbomCode,p=void 0===s?'':s,f=l.orderCode,v=l.relationSbomCode;
+if(Se(e,n)){
+var h=Ie(e,n,o),P=[],b=(0,C.getOptionalReqParams)({
+prdId:c,attrList:P,sbomCode:h
+}
+,n.props,!0);
+Promise.all([(0,u.getAllPromotionItemInfo)(c,h,f),(0,u.queryCarOptionalProductInfo)(b),(0,y.getRightsActivityLate)(h,f).catch((function(){
+return null
+}
+))]).then((function(e){
+// 变量
+var o: any = (0,t.default)(e,3),l=o[0],u=o[1],c=o[2];
+if(!(0,C.handleExceptionCode)(u,n))if(null!=u&&u.success){
+// 变量
+var s: Function = u.sbomInfo,f=s.sbomAttrList,h=void 0===f?[]:f,y=s.sbomCode;
+P=Te(h),n.defaultSbomCode=v||p||i||y,we(u,n,l,c)
+}
+else n.setState({
+error:!0,loadState:2,loading:!1
+}
+)
+}
+)).catch((function(e){
+return(0,C.errorHandle)(e,n.setState.bind(n))
+}
+)).finally((function(){
+n.setState({
+loading:!1
+}
+)
+}
+))
+}
+
+}
+,Ue=(_e.default=function(){
+// 变量
+var e: any = this;
+return{
+getQueryStr:h.getQueryStr,apkLink:T,getSize:function(){
+return(0,l.screenSize)(e.originWidth)
+}
+,isLarge:function(){
+return'large'===(0,l.screenSize)(e.originWidth)
+}
+,isMedium:function(){
+return'medium'===(0,l.screenSize)(e.originWidth)
+}
+,isSmall:function(){
+return'small'===(0,l.screenSize)(e.originWidth)
+}
+,isWeb:l.PlatformUtils.isWeb,priceSwitch:b,getStatusBarHeight:S,arrayHasItem:I,strip:w,float2Fixed:U,times:A,digitLength:D,plus:L,minus:k,intersection:R,moneyToNumValue:N,storeOrder:M,checkGroupFlagApkGroupFlag:_,checkGroupFlagApkGroupId:E,getApkLogin:H,handleData:ne,preload:x,saveCheckCarSbomlist:B,getBenefitsText:oe,getGroupFlag:z,handleGroupPrice:j,handleTime:F,getSkuDetailDispInfo:G,handleTargetTime:q,getTargetDiySbom:K,getExtraDiyData:Q,getQiZhongData:X,getTruePrice:ee,getMainSbomData:te,getTargetSbomPrice:ie,isMatchSbom:W,getJumpUrl:ae,clickShareReport:ue,openShareModal:pe,getShareStyle:le,getMarginRight:me,getAdvancedFeature:V,diaplyRemainDetailItem:fe,hasPackagePrds:ge,goVRPage:Ce,showValetBtn:ye,initPreviewStoreData:be,initData:De,getSharePriceInfo:de,getContentCardPrice:se
+}
+
+}
+,_e.formatPrice=function(e){
+return Ue(arguments.length>1&&void 0!==arguments[1]?arguments[1]:[])?'\uffe5----':e?(e<0?'- ':'')+"\xa5 "+b(Math.abs(e)):(0,l.t)('without_price')
+}
+,_e.isPriceNotConsistent=function(){
+var e,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[];
+return(null==i?void 0:i.length)>0?0===i[0].priceConsistent:(null==t?void 0:t.length)>0&&0===(null==(e=t.find((function(e){
+return'main'===e.productType
+}
+)))?void 0:e.priceConsistent)
+}
+);
+_e.getAttrContentBoxWidth=function(e,t){
+// 变量
+var i: any = (null==t?void 0:t.isPadV)||e.isPadV,n=(null==t?void 0:t.customWidth)||e.width,o=n-32;
+if(e.isPadH)o=480===n?448:8*((n-240)/12+16)-16;
+else if(i){
+if(480===n)o=448;
+else o=6*((n-132)/8+12)-12
+}
+else e.isPc&&(o='calc(100% - 32px)');
+return o
+}
+;
+// 函数
+function Ae(): any {
+return Ae=(0,i.default)((function*(e){
+// 变量
+var t: any = this,i=arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=arguments.length>2?arguments[2]:void 0,o=e.sbomList,u=e.attrViewList,c=e.sbomCode,s=e.carPromotionInfo;
+i?this.setState({
+rightsActivityList:null,loadingRights:!0
+}
+):(l.PlatformUtils.isHarmony()&&(this.carPromotionInfo=s),this.setState({
+sbomList:o,attrViewList:u,sbomCode:c,rightsActivityList:null,loadingRights:!0
+}
+)),(0,y.getRightsActivityLate)(c,this.props.orderCode).then((function(e){
+t.setState({
+rightsActivityList:e,loadingRights:!1
+}
+),null==n||n(e)
+}
+)).catch((function(e){
+'late'!==e&&(t.setState({
+rightsActivityList:null,loadingRights:!1
+}
+),i&&(0,h.showErrorToast)('carpreview',e,(0,l.t)('common_load_error')))
+}
+))
+}
+)),Ae.apply(this,arguments)
+}
+
+}
+),"7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","446eaf5bb2c03d6eb142dc6f16a47f619cea70b718994df4eed23ab288234e88","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","58d5ac67361884b206dec84795722ce850fc439001a2b5db030b85b64f9d9ec9","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var r={
+_keyStr:'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',encode:function(t){
+var e,o,a,n,h,i,c,f='',C=0;
+for(t=r.utf8Encode(t);
+C<t.length;
+)n=(o=t.charCodeAt(C++))>>2,c=(15&(e=t.charCodeAt(C++)))<<2|(a=t.charCodeAt(C++))>>6,h=(3&o)<<4|e>>4,i=63&a,isNaN(e)?(c=64,i=64):isNaN(a)&&(i=64),f+=this._keyStr.charAt(n)+this._keyStr.charAt(h)+this._keyStr.charAt(c)+this._keyStr.charAt(i);
+return f
+}
+,utf8Encode:function(r){
+r=r.replace(/rn/g,'n');
+for(var t='',e=0;
+e<r.length;
+e++){
+// 变量
+var o: any = r.charCodeAt(e);
+o<128?t+=String.fromCharCode(o):o>127&&o<2048?(t+=String.fromCharCode(o>>6|192),t+=String.fromCharCode(63&o|128)):(t+=String.fromCharCode(o>>12|224),t+=String.fromCharCode(o>>6&63|128),t+=String.fromCharCode(63&o|128))
+}
+return t
+}
+
+}
+;
+_e.default=r
+}
+),"58d5ac67361884b206dec84795722ce850fc439001a2b5db030b85b64f9d9ec9",[]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.errorHandle=_e.deepCloneArr=_e.checkComponentUpdate=_e.ALL_CHANNELID=void 0,_e.filterAttrCode=V,_e.scrollControl=_e.isCarReconfig=_e.initFirstAttr=_e.handleReq2CommonLogic=_e.handleHarmonyReq2CommonLogic=_e.handleExceptionCode=_e.getValidPrdId=_e.getPagePrdStatus=_e.getOptionalReqParams=_e.getFakeAttrListReq=_e.getDisplayPrdInfo=_e.findSbomSubAttr=_e.findSbomRelateInfo=_e.filterSelectedAttrList=void 0;
+var e=r(d[1]),n=r(d[2]),o=t(r(d[3])),l=r(d[4]),u=t(r(d[5])),s=r(d[6]),c=r(d[7]),f=_e.ALL_CHANNELID={
+reconfig:'5'
+}
+,C=_e.filterSelectedAttrList=function(t,e){
+t.forEach((function(t){
+var n=e.find((function(e){
+return t.attrCode===e.attrCode
+}
+));
+n&&t.attrValueList.forEach((function(t){
+var e=n.attrValueList.find((function(e){
+return e.attrValueCode===t.attrValueCode
+}
+));
+t.isActive=!!e
+}
+))
+}
+))
+}
+,v=(_e.handleReq2CommonLogic=function(t,e){
+// 变量
+var n: any = t.attrViewList,o=void 0===n?[]:n,l=t.sbomInfo,u=l.sbomAttrList,s=void 0===u?[]:u,c=l.sbomCode,f=t.sbomInfo;
+return C(o,s),{
+sbomList:[Object.assign({
+
+}
+,f,{
+carPromotionInfo:e
+}
+)],attrViewList:o,sbomCode:c
+}
+
+}
+,_e.handleHarmonyReq2CommonLogic=function(t){
+// 变量
+var e: any = t.attrViewList,n=void 0===e?[]:e,o=t.sbomInfo,l=o.sbomAttrList,u=void 0===l?[]:l,s=o.sbomCode,c=t.sbomInfo;
+return C(n,u),{
+sbomList:[c],attrViewList:n,sbomCode:s
+}
+
+}
+,_e.findSbomRelateInfo=function(t,e){
+var n,o=v(t,e);
+return null!=(n=null==o?void 0:o.relateInfo)?n:[]
+}
+,_e.findSbomSubAttr=function(t,e){
+var n,o=e.find((function(e){
+return e.attrCode===t.attrCode
+}
+));
+return null==o||null==(n=o.attrValueList)||null==n.find?void 0:n.find((function(e){
+return e.attrValueCode===t.attrValueCode
+}
+))
+}
+),b=function(t,e){
+var n,o=null!=(n=null==e?void 0:e.tabIndex)?n:0,l=Math.max(Number(o),0),u=t.slice(0,Number(l));
+return u.push(e),V(u)
+}
+,p=(_e.getFakeAttrListReq=function(t,n,l){
+// 变量
+var u: any = (0,e.toJS)(o.default.selectedAttrList);
+if(n)return b((null==l?void 0:l.sbomAttrList)||u,t);
+var s=u.findIndex((function(e){
+return e.attrCode===t.attrCode
+}
+));
+if(-1!==s&&u.splice(s,1),t.attrCode){
+var c,f,C,v={
+attrCode:t.attrCode,attrValueList:[{
+attrValueCode:null!=(c=null==(f=t.attrValueList)||null==(C=f[0])?void 0:C.attrValueCode)?c:t.attrValueCode
+}
+]
+}
+;
+u.push(v)
+}
+return u
+}
+,function(t){
+// 变量
+var e: any = t.isReloadConfig,n=t.targetPage,o=t.isSources;
+return(!l.PlatformUtils.isWeb()||(-1===window.location.hash.toLowerCase().indexOf('carpreview')||'carpreview'===n))&&('carRelation'===o&&'carselect'===n||'true'===e)
+}
+),P=2,L=1,h=3,S=(_e.getOptionalReqParams=function(t,e){
+var n,o=arguments.length>2&&void 0!==arguments[2]&&arguments[2],l=arguments.length>3&&void 0!==arguments[3]&&arguments[3],u=e||{
+
+}
+,s=u.sbomCode,c=u.defaultSkuCode,f=u.channelId,C=u.prdId,v=u.relationSbomCode,b=u.isSources,S=u.activityCode,R=Object.assign({
+
+}
+,t);
+return o&&(R=Object.assign({
+
+}
+,R,{
+optionalType:P
+}
+,l&&{
+attrList:[]
+}
+)),E(f)&&(n={
+activityCode:S,sbomCode:String('carRelation'===b?v:c||s),disPrdId:null==C?void 0:C.toString()
+}
+,R=Object.assign({
+
+}
+,R,{
+checkCarSbomListReq:n,optionalType:p(e)?h:L
+}
+)),R
+}
+,_e.errorHandle=function(t,e){
+var n;
+e&&e({
+error:!0,loadState:2,errorType:null!=t&&null!=(n=t.message)&&n.includes('Network Error')?l.ERROR_TYPE.NETWORK_ERROR:l.ERROR_TYPE.OTHER_ERROR
+}
+)
+}
+,function(t){
+if(l.PlatformUtils.isWeb()){
+var e=null!=t?t:{
+
+}
+,o=e.name,u=e.disPrdId;
+if((0,n.setCacheStorage)("displayPrdInfo-"+u,null!=t?t:{
+
+}
+),o){
+var s=[{
+seoTitle:o,seoKeyword:"\u3010"+o+"\u3011,\u3010 "+o+"\u3011\u4ef7\u683c,\u3010"+o+"\u3011\u53c2\u6570,\u3010"+o+"\u3011\u600e\u4e48\u6837,\u534e\u4e3a\u5546\u57ce,VMALL",seoDescription:"\u3010"+o+"\u3011\u5b98\u65b9\u6e20\u9053\u552e\u5356\uff01\u534e\u4e3a\u5546\u57ce\u63d0\u4f9b\u6700\u65b0\u6b3e\u7684\u3010"+o+"\u3011\u7684\u4ef7\u683c\u3001\u53c2\u6570\u3001\u56fe\u7247\u7b49\u4fe1\u606f\u3002\u5b98\u65b9\u54c1\u8d28\u4fdd\u8bc1\uff0c\u6b22\u8fce\u9009\u8d2d\uff01"
+}
+];
+l.DataHandleUtils.updateSEOContent(s)
+}
+
+}
+
+}
+),R=function(t,e,n,o,l){
+S(t),o&&e(t.defaultSbomCode),l&&e(null==t?void 0:t.disPrdId),n({
+displayPrdInfo:t
+}
+)
+}
+,I=_e.getPagePrdStatus=function(t,e){
+// 变量
+var n: any = 'carSelect'===e;
+return{
+carSelectHasPrdId:n&&t,carSelectNoPrdId:n&&!t,isCarPreviewPage:'carPreview'===e
+}
+
+}
+,y=(_e.getDisplayPrdInfo=function(t,e,o,l){
+// 变量
+var c: any = t.prdId,f=t.sbomCode;
+if(c||f){
+// 变量
+var C: any = !1,v=I(c,l),b=v.carSelectHasPrdId,p=v.carSelectNoPrdId,P=v.isCarPreviewPage;
+f&&P&&(C=!0,o(f));
+var L=P&&!C;
+b&&o();
+var h=(0,n.getCacheStorage)("displayPrdInfo-"+c);
+c&&!u.default.isEmpty(h)?(R(null!=h?h:{
+
+}
+,o,e,L),L=!1):(0,s.queryCarDisplayProductInfo)(c,c?'':f).then((function(t){
+if(null!=t&&t.success){
+var l,u=null!=(l=t.displayPrdInfo)?l:{
+
+}
+;
+(0,n.setCacheStorage)("displayPrdInfo-"+w(c,u),null!=u?u:{
+
+}
+),R(u,o,e,L,p)
+}
+
+}
+)).finally((function(){
+L=!1
+}
+))
+}
+
+}
+,function(t){
+return{
+attrCode:t.attrCode,attrValueList:null!=t&&null!=(e=t.attrValueList)&&e.length?t.attrValueList.map((function(t){
+return{
+attrValueCode:t.attrValueCode
+}
+
+}
+)):t.attrValueCode?[{
+attrValueCode:t.attrValueCode
+}
+]:[]
+}
+;
+var e
+}
+);
+// 函数
+function V(t: any): any {
+return Array.isArray(t)?t.map((function(t){
+return y(t)
+}
+)):y(t)
+}
+var A=function(t){
+var e,n,o,l;
+return null!=(e=null==t||null==(n=t.carDispContentWhiteInfo)||null==(o=n.carProductDisplayContentWhiteInfoList)||null==o.find||null==(l=o.find((function(t){
+return 1===t.type
+}
+)))?void 0:l.contentWhiteList)?e:[]
+}
+,E=(_e.initFirstAttr=function(t,e){
+var n=[],l=A(e),u=V(t.find((function(t){
+return l.includes(t.attrName)||0===Number(t.orderNum)
+}
+)));
+return n.push(u),o.default.setSelectedAttrList(u),n
+}
+,_e.isCarReconfig=function(t){
+return String(t)===f.reconfig
+}
+),O={
+isDisable:!1,executeLimit:10,executeCount:0,disPatchResizeEvent:function(){
+O.executeCount<O.executeLimit&&(O.executeCount++,window.dispatchEvent(new Event('resize')),setTimeout((function(){
+return O.executeCount--
+}
+),100))
+}
+,handleControl:function(t){
+// 变量
+var e: any = !(arguments.length>1&&void 0!==arguments[1])||arguments[1],n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0,o=arguments.length>3&&void 0!==arguments[3]?arguments[3]:0;
+l.PlatformUtils.isWeb()&&('disable'===t&&O.isDisable||'allow'===t&&!O.isDisable||('disable'===t?(document.documentElement.style.overflowY='hidden',e&&window.scrollTo(n,o),O.isDisable=!0):'allow'===t&&(document.documentElement.style.overflowY='',O.isDisable=!1),O.disPatchResizeEvent()))
+}
+
+}
+,w=(_e.scrollControl=O.handleControl,_e.deepCloneArr=function(t){
+// 变量
+var e: any = [];
+try{
+e=JSON.parse(JSON.stringify(t))
+}
+catch(t){
+e=[]
+}
+return e
+}
+,_e.handleExceptionCode=function(t,e){
+// 变量
+var n: any = !1;
+return String(null==t?void 0:t.code)===c.CODE.NO_PRODUCT&&(n=!0,e.setState({
+error:!0,loadState:2,errorType:l.ERROR_TYPE.NO_PRODUCT_DATA
+}
+)),n
+}
+,_e.getValidPrdId=function(t,e){
+return t||(null==e?void 0:e.disPrdId)
+}
+);
+_e.checkComponentUpdate=function(t,e){
+var n={
+current:!1
+}
+,o=function(t,e,o){
+for(var l of o)if(null!==t[l]&&'object'==typeof t[l]){
+if(JSON.stringify(t[l])!==JSON.stringify(e[l])){
+n.current=!0;
+break
+}
+
+}
+else if(t[l]!==e[l]){
+n.current=!0;
+break
+}
+
+}
+;
+return{
+checkProp:function(e,l){
+!n.current&&o(e,t,l)
+}
+,checkState:function(t,l){
+!n.current&&o(t,e,l)
+}
+,updateFlag:n
+}
+
+}
+
+}
+),"786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5"]);
+
+__d((function(g,r,i,_a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.queryRelationWithTargetPage=_e.queryCarOptionalLate=_e.queryCarDisplayProductInfoLate=_e.getSkuPromoInfo=_e.getSeriesCombDisPrd=_e.getRightsActivityLate=_e.getPcNavData=_e.getOldAgreementList=_e.getDisplayProductInfo=_e.getDisplayData=_e.getCarSbomInfoByCode=_e.getCarProductDisplayContentConfig=_e.getCarModifiyNotes=void 0;
+var e=t(r(d[1])),n=r(d[2]),a=r(d[3]),o=r(d[4]),u=r(d[5]),l=r(d[6]),c=r(d[7]),s=(_e.queryCarOptionalLate=(0,o.lateRequest)(a.queryCarOptionalProductInfo),_e.queryCarDisplayProductInfoLate=(0,o.lateRequest)(a.queryCarDisplayProductInfo,(function(t){
+t.then((function(t){
+null!=t&&t.displayPrdInfo&&(0,u.setCacheStorage)("displayPrdInfo-"+t.displayPrdInfo.disPrdId,t.displayPrdInfo)
+}
+))
+}
+))),f=(_e.getDisplayProductInfo=(function(){
+var t=(0,e.default)((function*(t,e){
+try{
+// 变量
+var n: any = (0,u.getCacheStorage)("displayPrdInfo-"+t);
+if(!n){
+var a=yield s(t?{
+prdId:t
+}
+:{
+sbomCode:e
+}
+);
+if(null==a||!a.displayPrdInfo)throw a;
+n=a.displayPrdInfo,(0,u.setCacheStorage)("displayPrdInfo-"+n.disPrdId,n)
+}
+return Promise.resolve(n)
+}
+catch(t){
+return Promise.resolve({
+e:t
+}
+)
+}
+
+}
+));
+return function(e,n){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getCarSbomInfoByCode=(function(){
+var t=(0,e.default)((function*(t){
+try{
+// 变量
+var e: any = yield(0,a.queryCarSbomInfoByCode)(t);
+if(!e.sbomInfo)throw 0;
+return e.sbomInfo
+}
+catch(t){
+return null
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getSeriesCombDisPrd=(function(){
+var t=(0,e.default)((function*(t){
+try{
+// 变量
+var e: any = "seriesRes-"+t,n=(0,u.getCacheStorage)(e);
+if(!n){
+// 变量
+var o: any = yield(0,a.querySeriesCombDisPrd)(t);
+if(null==o||!o.disPrdList)throw o;
+n=o,(0,u.setCacheStorage)(e,n)
+}
+return n
+}
+catch(t){
+return null
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getCarProductDisplayContentConfig=(function(){
+var t=(0,e.default)((function*(){
+try{
+// 变量
+var t: any = (0,u.getCacheStorage)('displayWhiteList');
+if(!t){
+var e,n=yield(0,a.queryCarProductDisplayContentConfig)();
+if(null==n||null==(e=n.carDispContentWhiteInfo)||!e.carProductDisplayContentWhiteInfoList)throw n;
+t=n.carDispContentWhiteInfo.carProductDisplayContentWhiteInfoList,(0,u.setCacheStorage)('displayWhiteList',t)
+}
+return t
+}
+catch(t){
+return[]
+}
+
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getPcNavData=(function(){
+var t=(0,e.default)((function*(){
+// 变量
+var t: any = (0,u.getCacheStorage)('carNavData');
+if(t)return t;
+t=[];
+try{
+var e=yield n.HttpService.getGlobalDataSource({
+subType:'commonNavigation',portal:'1'
+}
+);
+for(var a in e.dataSource){
+var o,l;
+if(Object.prototype.hasOwnProperty.call(e.dataSource,a)&&(null==(o=e.dataSource[a])||null==(l=o.dataInfos)?void 0:l.length)>0){
+t=e.dataSource[a].dataInfos,(0,u.setCacheStorage)('carNavData',t);
+break
+}
+
+}
+
+}
+catch(t){
+
+}
+return t
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)(),(function(){
+var t=(0,e.default)((function*(){
+if(!n.AppStore.isLogin)return!1;
+// 变量
+var t: any = (0,u.getCacheStorage)('groupFlag',!1);
+return null===t&&(t=yield(0,u.getGroupFlag)(),(0,u.setCacheStorage)('groupFlag',t,!1)),t
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)()),y=(function(){
+var t=(0,e.default)((function*(t){
+try{
+var e;
+return(null==(e=(yield(0,a.querySkuDetailDispInfo)([t])).detailDispInfos)?void 0:e.find((function(e){
+var n;
+return t&&(null==e||null==(n=e.skuPriceInfo)?void 0:n.sbomCode)===t
+}
+)))||null
+}
+catch(t){
+return null
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),p=(function(){
+var t=(0,e.default)((function*(){
+if(!n.AppStore.isLogin)return null;
+var t;
+try{
+// 变量
+var e: any = (new Date).getTime(),a=yield n.HttpService.getServerTime(),o=(new Date).getTime();
+t=a.success?1e3*a.serverTime+(o-e):(new Date).getTime()
+}
+catch(e){
+t=(new Date).getTime()
+}
+return t
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)(),P=(_e.getDisplayData=function(t){
+return f().then((function(e){
+return!!(0,l.getDisplayPrice)(t)&&e&&t?Promise.all([y(t.sbomCode),p()]):Promise.resolve([null,null])
+}
+))
+}
+,_e.getCarModifiyNotes=(function(){
+var t=(0,e.default)((function*(){
+try{
+// 变量
+var t: any = 'car_modification_notes',e=(0,u.getCacheStorage)('car_modification_notes');
+if(!e){
+var a,o,l,c=yield n.HttpService.getTemplate(t);
+e=null==c||null==(a=c.templateMapping)||null==(o=a.car_modification_notes)||null==(l=o.content)?void 0:l.replace(/<.*?>/gi,''),(0,u.setCacheStorage)(t,e)
+}
+return e
+}
+catch(t){
+return null
+}
+
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)(),_e.getSkuPromoInfo=(function(){
+var t=(0,e.default)((function*(t,e,n){
+try{
+var o,u=yield n?(0,a.queryCarProductPromotionInfoByOrderCode)({
+type:2,orderCode:n,sbomCodeList:[t]
+}
+):(0,a.queryCarProductPromotionInfoBySbomCode)({
+prdId:e,sbomCodeList:[t]
+}
+);
+return(null==u||null==(o=u.carSKUPromotionInfoList)?void 0:o.find((function(e){
+return e.sbomCode===t
+}
+)))||null
+}
+catch(t){
+return null
+}
+
+}
+));
+return function(e,n,a){
+return t.apply(this,arguments)
+}
+
+}
+)(),(function(){
+var t=(0,e.default)((function*(t,e,n){
+try{
+var o=yield e?(0,u.checkLoginWrap)((function(){
+return(0,a.queryRightsActivityByOrderSbomCode)(t,e,n?1:0)
+}
+)):(0,a.queryRightsActivityBySbomCode)(t);
+if((null==o?void 0:o.code)!==c.CODE.BFF_SUCCESS)throw o;
+return o.skuRelCarRightsActivityList||[]
+}
+catch(t){
+return Promise.reject(t)
+}
+
+}
+));
+return function(e,n,a){
+return t.apply(this,arguments)
+}
+
+}
+)()),v=(_e.getRightsActivityLate=(0,o.lateRequest)(P),_e.getOldAgreementList=(function(){
+var t=(0,e.default)((function*(t){
+try{
+var e,n=yield(0,a.queryDisplayProductByVersion)(t);
+return(null==n||null==(e=n.displayPrdVo)?void 0:e.agreementList)||[]
+}
+catch(t){
+return[]
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),{
+displayProudct:[],realProduct:1
+}
+);
+_e.queryRelationWithTargetPage=(function(){
+var t=(0,e.default)((function*(t,e,o){
+if('5'!==String(t.channelId))return{
+newProps:t,relationRes:Object.assign({
+
+}
+,v)
+}
+;
+var u=Object.assign({
+
+}
+,t),c=n.PlatformUtils.isWeb()?location.hash:'';
+c&&(u.targetPage=(null==c?void 0:c.slice(2).toLowerCase())||u.targetPage);
+var s=yield(0,a.queryProductRelation)(u.prdId).catch((function(){
+return{
+
+}
+
+}
+)),f=Object.assign({
+
+}
+,v,s),y=u.targetPage,p=2===f.realProduct,P=f.displayProudct.length;
+if(p&&P>0&&('carselect'===u.targetPage||'carpreview'===u.targetPage)&&(u.targetPage='carrelation'),'carrelation'===u.targetPage&&1===P){
+var h=f.displayProudct[0].disPrdId;
+if(o&&(u.isSources='carRelation',u.relationSbomCode=u.relationSbomCode||u.sbomCode,u.sbomCode=''),u=(0,l.createNewPrdUrlParams)(u,h),o&&n.PlatformUtils.isWeb()){
+var C=yield(0,a.queryProductRelation)(u.prdId).catch((function(){
+return{
+
+}
+
+}
+));
+f=Object.assign({
+
+}
+,v,C)
+}
+
+}
+else e&&'carrelation'===u.targetPage&&(u.targetPage='carpreview');
+return n.PlatformUtils.isWeb()&&y!==u.targetPage&&''!==c&&'#/'!==c&&setTimeout((function(){
+location.replace(location.href.replace(c,'#/'))
+}
+)),{
+newProps:u,relationRes:f
+}
+
+}
+));
+return function(e,n,a){
+return t.apply(this,arguments)
+}
+
+}
+)()
+}
+),"11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","4d5c25d100750b2796817febeb2b3a5bcac48590c98814a15296066221f852c0","76731ac08b5aea9da584cd25fe11fda4997ae4f0f9cfd0be0e92f390b2dfe0e9","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var o: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.saveIsrpQuotation=e.saveCart=e.replaceCarProduct=e.querySkuDetailDispInfo=e.querySeriesCombDisPrd=e.queryRightsActivityBySbomCode=e.queryRightsActivityByOrderSbomCode=e.queryProductRelation=e.queryDisplayProductByVersion=e.queryCarSbomInfoByCode=e.queryCarProductPromotionInfoBySbomCode=e.queryCarProductPromotionInfoByOrderCode=e.queryCarProductDisplayContentConfig=e.queryCarOptionalProductInfo=e.queryCarDisplayProductInfo=void 0;
+var n=o(r(d[1])),t=r(d[2]),u=r(d[3]),c=r(d[4]),s=function(o,n){
+return c.previewScene.isPreview?o.replace('carbff',n||'carbff/preview'):o
+}
+;
+// 函数
+function f(o: any): any {
+return p.apply(this,arguments)
+}
+// 函数
+function p(): any {
+return(p=(0,n.default)((function*(o){
+// 变量
+var n: any = yield o;
+return c.previewScene.checkPermission(null==n?void 0:n.code),n
+}
+))).apply(this,arguments)
+}
+e.querySeriesCombDisPrd=function(o){
+return f(u.commonRequest.post(""+t.Service.openApiDomain+s('carbff/product/querySeriesCombDisPrd'),{
+disPrdId:String(o)
+}
+))
+}
+,e.queryCarDisplayProductInfo=function(o){
+return f(u.commonRequest.post(""+t.Service.openApiDomain+s('carbff/product/queryCarDisplayProductInfo'),o))
+}
+,e.queryCarSbomInfoByCode=function(o){
+return f(u.commonRequest.post(""+t.Service.openApiDomain+s('carbff/product/queryCarSbomInfoByCode'),{
+sbomCode:o
+}
+))
+}
+,e.querySkuDetailDispInfo=function(o){
+return f(u.commonRequest.get(""+t.Service.openApiDomain+s('carbff/querySkuDetailDispInfo','carbff/preview/product'),{
+skuCodes:o,version:4,groupFlag:!0
+}
+))
+}
+,e.queryCarOptionalProductInfo=function(o){
+return f(u.commonRequest.post(""+t.Service.openApiDomain+s('carbff/product/queryCarOptionalProductInfo'),o))
+}
+,e.queryCarProductPromotionInfoBySbomCode=function(o){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/promotionInfo/queryCarProductPromotionInfoBySbomCode",o)
+}
+,e.queryCarProductPromotionInfoByOrderCode=function(o){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/promotionInfo/queryCarProductPromotionInfoByOrderCode",o)
+}
+,e.queryCarProductDisplayContentConfig=function(){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/queryCarProductDisplayContentConfig")
+}
+,e.queryProductRelation=function(o){
+return u.commonRequest.get(t.Service.openApiDomain+"carbff/offlineshop/queryProductRelation",{
+version:'1',disPrdId:o
+}
+)
+}
+,e.replaceCarProduct=function(o){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/order/replaceCarProduct",Object.assign({
+version:1
+}
+,o))
+}
+,e.queryRightsActivityBySbomCode=function(o){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/rights/queryRightsActivityBySbomCode",{
+sbomCode:o,version:4
+}
+)
+}
+,e.queryRightsActivityByOrderSbomCode=function(o,n,c){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/rights/queryRightsActivityByOrderSbomCode",{
+sbomCode:o,orderCode:n,modifyFlag:c,version:4
+}
+)
+}
+,e.saveCart=function(o){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/cart/saveCart",o)
+}
+,e.queryDisplayProductByVersion=function(o){
+// 变量
+var n: any = arguments.length>1&&void 0!==arguments[1]?arguments[1]:'';
+return u.commonRequest.get(t.Service.openApiDomain+"carbff/product/queryDisplayProductByVersion",{
+prdId:o,sbomCode:n,version:4
+}
+)
+}
+,e.saveIsrpQuotation=function(o){
+return u.commonRequest.post(t.Service.openApiDomain+"carbff/quotation/saveIsrpQuotation",o)
+}
+
+}
+),"4d5c25d100750b2796817febeb2b3a5bcac48590c98814a15296066221f852c0",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.lateRequest=p,_e.lockRequest=v,_e.useAliveRef=function(){
+// 变量
+var e: any = (0,o.useRef)(!0);
+return(0,o.useEffect)((function(){
+return e.current=!0,function(){
+e.current=!1
+}
+
+}
+),[]),e
+}
+,_e.useE2e=I,_e.useInit=function(){
+var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+;
+e.e2ePageType&&I(e.e2ePageType,Object.assign({
+
+}
+,e.props,e));
+// 变量
+var n: any = (0,l.usePageInit)(e),t=(0,f.useI18next)(e.props);
+return(0,o.useMemo)((function(){
+return Object.assign({
+
+}
+,n,{
+i18next:t,initialized:Boolean(t&&!n.isUnload)
+}
+)
+}
+),[n,t])
+}
+,_e.useRequestLate=function(e,n){
+// 变量
+var t: any = (0,o.useRef)(0);
+return p(e,n,t)
+}
+,_e.useRequestLock=function(e,n){
+// 变量
+var t: any = arguments.length>2&&void 0!==arguments[2]?arguments[2]:1e4,u=(0,o.useRef)(!1);
+return v(e,n,t,u)
+}
+,_e.useRerenderByResize=void 0;
+// 变量
+var n: any = e(r(d[1])),t=e(r(d[2])),u=r(d[3]),o=r(d[4]),s=r(d[5]),c=r(d[6]),l=r(d[7]),f=r(d[8]);
+// 函数
+function v(e: any, n: any): any {
+var u=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1e4,o=arguments.length>3?arguments[3]:void 0,s=null!=o?o:{
+current:!1
+}
+;
+return(0,t.default)((function*(){
+if(!1!==s.current)return null==n||n(),Promise.reject('lock');
+// 变量
+var t: any = 0;
+try{
+s.current=!0;
+var o=yield Promise.race([e.apply(void 0,arguments),new Promise((function(e,n){
+u&&(t=setTimeout((function(){
+return n('lock timeout')
+}
+),u))
+}
+))]);
+return Promise.resolve(o)
+}
+catch(e){
+return Promise.reject(e)
+}
+finally{
+s.current=!1,clearTimeout(t)
+}
+
+}
+))
+}
+// 函数
+function p(e: any, n: any, u: any): any {
+var o=null!=u?u:{
+current:0
+}
+;
+return(0,t.default)((function*(){
+var t,u=Date.now();
+o.current=u;
+try{
+// 变量
+var s: Function = yield e.apply(void 0,arguments);
+t=Promise.resolve(s)
+}
+catch(e){
+t=Promise.reject(e)
+}
+finally{
+return o.current===u?t:(null==n||n(t),Promise.reject('late'))
+}
+
+}
+))
+}
+// 函数
+function I(e: any): any {
+var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{
+
+}
+,s=t.uniqueId,f=t.pageName,v=t.pageId,p=(0,o.useMemo)((function(){
+// 变量
+var n: any = u.PAGE_TYPE_E2EID[e],t=v,o=f;
+if(u.PlatformUtils.isMp()&&!v&&!f){
+// 变量
+var s: Function = (0,c.getQueryStrAll)();
+t=s.pageId||s.pageid,o=s.pn
+}
+return u.CommonUtils.storeE2eId(n,!0,{
+pageId:t,pageName:o
+}
+),[n,u.E2EIdStore.pageTypeE2EIdSpanId[u.E2EIdStore.curPageType].e2eId,u.E2EIdStore.pageTypeE2EIdSpanId[u.E2EIdStore.curPageType].parentSpanId]
+}
+),[e,v,f]),I=(0,n.default)(p,3),E=I[0],y=I[1],P=I[2];
+return(0,l.usePageStatus)((function(e){
+2===e?u.CommonUtils.storeE2eId(E,!1,{
+e2eId:y
+}
+):e<=0&&u.CommonUtils.storeE2eId(E,!1)
+}
+),[s,E,y]),{
+e2ePageType:E,e2eId:y,spanId:P
+}
+
+}
+_e.useRerenderByResize=function(e){
+var t=(0,o.useState)({
+
+}
+),u=(0,n.default)(t,2)[1];
+(0,o.useEffect)((function(){
+if(!e)return function(){
+
+}
+;
+var n=s.Dimensions.addEventListener('change',(function(){
+u({
+
+}
+)
+}
+));
+return function(){
+n&&n.remove()
+}
+
+}
+),[e])
+}
+
+}
+),"76731ac08b5aea9da584cd25fe11fda4997ae4f0f9cfd0be0e92f390b2dfe0e9",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","70aea36b65c665f442ff9ea5a10e0e918001801714ebf81aa8b1ceab71f6799a","bb16bf2e4a3383c96b69077535dc96abdd0a92662cb2545d5c24a875a69b4a96"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var n: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.usePageInit=function(){
+var n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+,t=n.props,u=void 0===t?{
+
+}
+:t,l=n.catchName,f=void 0===l?'':l,k=n.useNativeBack,S=void 0!==k&&k;
+return(0,s.useEffect)((function(){
+if(!S)return function(){
+
+}
+;
+var n=c.BackHandler.addEventListener('hardwareBackPress',(function(){
+return o.RnBridge.invokeVmallNative('page','finished'),!0
+}
+));
+return function(){
+n.remove()
+}
+
+}
+),[S]),(0,s.useMemo)((function(){
+return f&&(0,o.captureException)(f),(0,o.setCustomText)(),o.DeviceUtils.deviceStore(u),v(u),p(u),P(u),h(u),{
+urlParams:Object.freeze(u),theme:o.DarkStore.darkBool?'huawei_dark':'default',Boundary:s.Fragment,isUnload:!1
+}
+
+}
+),[])
+}
+,e.usePageStatus=function(n){
+var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[],u=(0,s.useRef)(1),l=(0,s.useState)({
+
+}
+),f=(0,t.default)(l,1)[0];
+return(0,s.useEffect)((function(){
+return null==n||n(1,f),function(){
+u.current=0
+}
+
+}
+),[]),(0,s.useEffect)((function(){
+var t=function(){
+(null==u||!u.current)&&(null==n||n(0,f))
+}
+;
+if(!o[0]||'string'!=typeof o[0])return t;
+var s=c.DeviceEventEmitter.addListener('NativeCallAction',(function(t){
+'page'===(null==t?void 0:t.service)&&'pageLeave'===t.action&&''!==String(t.param.isLeave)&&t.param.isLeave&&(t.param.uniqueId===o[0]?(u.current=2,setTimeout((function(){
+null==n||n(2,f)
+}
+),0)):u.current>0&&(u.current=-1,null==n||n(-1,f)))
+}
+));
+return function(){
+s.remove(),t()
+}
+
+}
+),o),u
+}
+,e.useShare=void 0;
+// 变量
+var t: any = n(r(d[1])),o=r(d[2]),u=r(d[3]),s=r(d[4]),c=r(d[5]),l=r(d[6]),f=r(d[7]);
+var v=function(n){
+o.PlatformUtils.isAndroid()&&n.fontSize&&o.fontStore.setFontMutiple(n.fontSize)
+}
+,p=function(n){
+var t,u=null==(t=(0,l.jsonParseCatch)(n.networkFields))?void 0:t.version;
+u&&o.fontStore.setVersion(u)
+}
+,P=function(n){
+var t,s=(0,l.jsonParseCatch)(n.apiEnv,(0,u.cloneDeep)(o.env));
+s.strategies=(0,l.jsonParseCatch)(n.userAbTest,[]).map((function(n){
+return n.strategyId||''
+}
+)).join(','),s.pageId=(null==(t=n.pageId)?void 0:t.toString())||'',o.PlatformUtils.isHarmony()&&(s.platform='harmony'),(0,o.envService)(s),o.appIdStore.setIsPreload(n.isPreInstalledPackage),(0,f.ImgArrayUpdata)(null==n?void 0:n.isPreInstalledPackage,s.cmsCdnPath)
+}
+,h=function(n){
+// 变量
+var t: any = !1,u=o.PlatformUtils.isAndroid()?(0,l.jsonParseCatch)((0,l.jsonParseCatch)(n.darkConfigInfo)):(0,l.jsonParseCatch)(n.darkConfigInfo);
+t=Boolean((0,l.jsonParseCatch)(n.darkMode)&&'Y'===(null==u?void 0:u.darkMode)),t=o.PlatformUtils.isIOS()?!o.DarkStore.QMbool&&t:t,o.DarkStore.setDarkBool(t)
+}
+;
+e.useShare=function(n){
+
+}
+
+}
+),"70aea36b65c665f442ff9ea5a10e0e918001801714ebf81aa8b1ceab71f6799a",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var n: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.useI18next=e.handleI18nextNative=e.handleI18next=e.getResourcesAndLang=void 0;
+var t=n(r(d[1])),u=n(r(d[2])),s=r(d[3]),l=n(r(d[4])),o=r(d[5]),f=e.getResourcesAndLang=function(n){
+var t,u={
+
+}
+;
+if(t=s.PlatformUtils.isApp()?(0,s.getLanguage)(n):s.env.defaultLang){
+// 变量
+var o: any = l.default.getModule();
+u[t]={
+translation:o.default
+}
+
+}
+return{
+lang:t,resources:u
+}
+
+}
+;
+e.handleI18nextNative=function(n,t){
+if(t){
+var u=l.default.getModule(),o={
+
+}
+;
+return o[t]={
+translation:u.default
+}
+,s.i18n.init(o,t,s.BussinessDomain.MS,n)
+}
+return null
+}
+,e.handleI18next=function(){
+// 变量
+var n: any = s.env.defaultLang;
+if(n){
+var t=l.default.getModule(),u={
+
+}
+;
+return u[n]={
+translation:t.default
+}
+,s.i18n.init(u,n,s.BussinessDomain.MS)
+}
+return null
+}
+,e.useI18next=function(n){
+// 变量
+var l: any = (0,o.useState)(),v=(0,u.default)(l,2),c=v[0],M=v[1],p=null==n?void 0:n.RnPromptMsg,x=f(n),I=x.lang,S=x.resources;
+return(0,o.useEffect)((function(){
+// 变量
+var n: any = s.i18n.init.apply(s.i18n,(0,t.default)(s.PlatformUtils.isMp()?[S,I,void 0,s.BussinessDomain.MS]:p?[S,I,s.BussinessDomain.MS,p]:[S,I,s.BussinessDomain.MS]));
+M(n)
+}
+),[p,I]),c
+}
+
+}
+),"bb16bf2e4a3383c96b69077535dc96abdd0a92662cb2545d5c24a875a69b4a96",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","3ca3dc182bd16698a12893e76de976edefdbadf2cb574648bc28fbfc2e603bf8","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d"]);
+
+__d((function(g,r,_i,_a,_m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.usePageJudge=_e.translateDescHtml=_e.setSelectStorage=_e.setPageError=_e.priceSwitch=_e.prefetchImage=_e.layback=_e.handleRightsActivityList=_e.getTargetPage=_e.getSelectStorage=_e.getSbomImageList=_e.getRelateImageList=_e.getPromoPrice=_e.getMFromNText=_e.getIconImage=_e.getDisplayPrice=_e.getCheckedNum=_e.getCardWidth=_e.getAttrImageList=_e.getAnimTextHeight=_e.getAnimCircleBottom=_e.formatPrice=_e.filterUrlParams=_e.defaultPageJudge=_e.cutString=_e.createNewPrdUrlParams=_e.compareValueCode=_e.PageJudgeContext=void 0;
+var t=e(r(d[1])),a=r(d[2]),i=r(d[3]),n=r(d[4]),o=r(d[5]),c=r(d[6]),u=r(d[7]),l=e(r(d[8])),s=_e.defaultPageJudge={
+isCarRights:!0
+}
+,f=_e.PageJudgeContext=(0,u.createContext)(s),h=(_e.usePageJudge=function(){
+return(0,u.useContext)(f)
+}
+,_e.filterUrlParams=function(e){
+var a=['targetPage','prdId','sbomCode','choiceSbomCode','showheader','orderCode','channelId','isHisData','activityCode','relationSbomCode','saleId','cid','wi','from','clearCache','callapp','carLeadsId'],i={
+
+}
+;
+return Object.entries(e).forEach((function(e){
+// 变量
+var n: any = (0,t.default)(e,2),o=n[0],c=n[1];
+a.includes(o)&&c&&(i[o]=c)
+}
+)),i
+}
+,_e.getTargetPage=function(e){
+return e&&n.ROUTER_ARRAY.includes(e)?e.toLowerCase():'cardetail'
+}
+,_e.getIconImage=function(e){
+var t,i=null==(t=e.attrValueList)?void 0:t[0];
+return i.path?{
+uri:a.CommonUtils.getCDNpath(1)+i.path+i.name
+}
+:void 0
+}
+,_e.getRelateImageList=function(e){
+var t,i,n,o=[];
+return null==(t=e.attrValueList)||null==(i=t[0])||null==(n=i.relateInfo)||n.forEach((function(e){
+if(e.path&&e.name){
+// 变量
+var t: any = a.CommonUtils.getCDNpath(1)+e.path+e.name;
+o.push({
+uri:t,imgUri:t
+}
+)
+}
+
+}
+)),o
+}
+),m=_e.getSbomImageList=function(e){
+var t,i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'',n=[],o=function(e){
+if(e.photoPath&&e.photoName){
+// 变量
+var t: any = a.CommonUtils.getCDNpath(1)+e.photoPath+(i||'')+e.photoName;
+n.push({
+uri:t,imgUri:t
+}
+)
+}
+
+}
+;
+(o(e),'groupPhotoList'in e)&&(null==(t=e.groupPhotoList)||t.forEach(o));
+return n
+}
+,p=(_e.getAttrImageList=function(e,t){
+// 变量
+var a: any = h(e);
+return 0===a.length&&(a=m(t)),a
+}
+,_e.layback=function(){
+var e=[],t=function t(){
+// 变量
+var a: any = e.shift(),i=a[1];
+setTimeout((function(){
+a[0](),e.length>0&&t()
+}
+),i)
+}
+;
+return setTimeout((function(){
+t()
+}
+),0),{
+after:function t(a){
+// 变量
+var i: any = arguments.length>1&&void 0!==arguments[1]?arguments[1]:n.ANIM_LAYBACK;
+return e.push([a,i]),{
+after:t
+}
+
+}
+
+}
+
+}
+,_e.getCardWidth=function(e){
+// 变量
+var t: any = arguments.length>2&&void 0!==arguments[2]&&arguments[2];
+return arguments.length>1&&void 0!==arguments[1]&&arguments[1]?e.isPc?442:e.isPhone?e.width-32:448:e.isPc?n.PC_RIGHT_WIDTH-96:e.isFixScreen||e.isPadV?e.getGridsWidth(6):e.isPadH?e.getGridsWidth(t?4:8):e.width-32
+}
+,_e.prefetchImage=function(e){
+return a.PlatformUtils.isMp()?(0,i.toPromise)(o.uni.preloadAssets,{
+data:[{
+type:'image',src:e
+}
+]
+}
+):c.Image.prefetch(e)
+}
+,_e.compareValueCode=function(e,t){
+var a,i;
+return(null==(a=e.attrValueList[0])?void 0:a.attrValueCode)===(null==(i=t.attrValueList[0])?void 0:i.attrValueCode)
+}
+,_e.cutString=function(e,t){
+for(var a=0,i='',n=/[^\x00-\xff]/g,o='',c=e.replace(n,'**').length,u=0;
+u<c&&(null!=(o=e.charAt(u).toString()).match(n)?a+=2:a++,!(a>t));
+u++)i+=o;
+return i
+}
+,_e.getDisplayPrice=function(e,t,a){
+var i,n=null!=(i=null==e?void 0:e.price)?i:0,o=null!=e?e:{
+
+}
+,c=o.priceMode,u=o.carSurePriceFlag;
+if(0===n||void 0!==u&&1!==u||'2'===c)return 0;
+if(!t)return n;
+var l=t.skuPriceInfo,s=void 0===l?{
+
+}
+:l,f=s.timingRushBuyRule,h=s.groupPrice;
+if(n=Math.min(n,null!=h?h:1/0),f&&a){
+var m,p,C,P=new Date(null==(m=f.startTime)?void 0:m.replace(/-/g,'/')).getTime(),v=new Date(null==(p=f.endTime)?void 0:p.replace(/-/g,'/')).getTime();
+if(a>=P&&a<=v)n=Math.min(n,null!=(C=f.promoPrice)?C:1/0)
+}
+return n
+}
+,_e.getPromoPrice=function(e,t){
+var a,n;
+return t?(null==(a=t.carEnjoyedPromotionDetailList)||a.forEach((function(t){
+e=(0,i.minus)(e,t.promotionDiscount||0)
+}
+)),null==(n=t.carPrePromotionDetailList)||n.forEach((function(t){
+e=(0,i.minus)(e,t.promotionDiscount||0)
+}
+)),e):e
+}
+,_e.priceSwitch=function(e){
+// 变量
+var t: any = Number(e),a='';
+if(!isNaN(t)){
+// 变量
+var i: any = t.toString(),n=i.split('.'),o='',c=i.split('.')[0];
+n.length>1&&(o='.'+i.split('.')[1]);
+// 变量
+var u: any = [];
+if(a=i,c.length>3){
+for(;
+u.push(c.slice(-3)),!((c=c.slice(0,c.length-3)).length<4);
+);
+for(var l=[],s=u.length-1;
+s>=0;
+s--)l.push(u[s]);
+a=c+','+l.join(',')+o
+}
+
+}
+return a
+}
+),C=(_e.formatPrice=function(e,t){
+return t&&0===t.priceConsistent?'\uffe5----':e?(e<0?'- ':'')+"\xa5 "+p(Math.abs(e)):(0,a.t)('without_price')
+}
+,function(e,t,a){
+// 变量
+var i: any = a||e+"-"+t;
+return["selectedSbomInfo-"+i,"selectedPackCodes-"+i]
+}
+),P=(_e.getSelectStorage=function(e,t,a){
+// 变量
+var n: any = C(e,t,a),o=(0,i.getCacheStorage)(n[0],!1),c=(0,i.getCacheStorage)(n[1],!1);
+return o?{
+sbomInfo:o,packCodes:c
+}
+:null
+}
+,_e.setSelectStorage=function(e,t,a,n,o){
+// 变量
+var c: any = C(e,t,a);
+n&&(0,i.setCacheStorage)(c[0],n,!1),o&&(0,i.setCacheStorage)(c[1],o,!1),n||o||((0,i.setCacheStorage)(c[0]),(0,i.setCacheStorage)(c[1]))
+}
+),v=(_e.getMFromNText=function(e,t){
+return(0,a.t)('get_m_from_n').replace('%m',String(t)).replace('%n',String(e))
+}
+,_e.getCheckedNum=function(e){
+return e.reduce((function(e,t){
+return t.checked&&++e,e
+}
+),0)
+}
+,_e.setPageError=function(e,t){
+var a,i;
+i=t?'string'==typeof t||t.tips?t:null!=(a=t.message)&&a.includes('Network Error')?'NETWORK_ERROR':'OTHER_ERROR':'OTHER_ERROR',e.setPageState(i)
+}
+,_e.createNewPrdUrlParams=function(e,t){
+// 变量
+var a: any = !(arguments.length>2&&void 0!==arguments[2])||arguments[2],n=e.prdId,o=e.sbomCode,c=e.defaultSkuCode,u=e.isOldCarDetail,s=e.orderCode,f=e.relationSbomCode;
+if(P(n,u?'':o,s),u){
+var h=f||c||o;
+l.default.setDetailList([]),l.default.clearPackageMap(),l.default.setIndex(0),l.default.setInItSbomCode(),l.default.clearAttr(),(0,i.setStorage)("package_"+n+"_"+h,[],7),(0,i.setStorage)("chosePackageCode_"+n+"_"+h,'',7),(0,i.setStorage)("carDetailPkg_"+n+"_"+h,'',7),(0,i.setStorage)("sbom_"+n+"_"+h,'',7)
+}
+return Object.assign({
+
+}
+,a?e:{
+
+}
+,{
+prdId:t,targetPage:'carselect',sbomCode:'',choiceSbomCode:'',relationSbomCode:e.relationSbomCode||e.sbomCode
+}
+)
+}
+,_e.handleRightsActivityList=function(e,t){
+e.forEach((function(e){
+var a=new Set,i=t.filter((function(t){
+return t.activityCode===e.activityCode&&(a.add(t.rightsPackageCode),!0)
+}
+));
+Array.from(a).some((function(t){
+return-1===e.rightsPackageList.findIndex((function(e){
+return e.rightsPackageCode===t
+}
+))
+}
+))&&(i=[]),e.rightsPackageList.forEach((function(e){
+var t=new Set,a=i.filter((function(a){
+return a.rightsPackageCode===e.rightsPackageCode&&(t.add(a.rightsCode),!0)
+}
+)),n=Array.from(t).some((function(t){
+return-1===e.carRightsList.findIndex((function(e){
+return e.rightsCode===t
+}
+))
+}
+));
+n&&(a=[]),e.checked=1===e.selectedFlag||a.length>0||n,e.carRightsList.forEach((function(t){
+t.checked=1===t.selectedFlag||e.checked&&a.some((function(e){
+return e.rightsCode===t.rightsCode
+}
+))
+}
+))
+}
+))
+}
+))
+}
+,_e.translateDescHtml=function(e){
+e=(e=(e=(e=e.replace(/<style(([\s\S])*?)<\/style>/gi,'')).replace(/<br>/gi,'<p>')).replace('\x3c!-- VmallSourceCodeMode --\x3e','')).replace(/\n/gi,'');
+// 变量
+var t: any = new RegExp('<p[^>]*>(.*?)</p>','gi');
+return(e.match(t)||[]).map((function(e){
+return e=(e=(e=(e=e.replace(/(<\/?p.*?>)/gi,'')).replace(/(<\/?span.*?>)/gi,'')).replace(/(<\/?a.*?>)/gi,'')).trim()
+}
+)).filter(Boolean)
+}
+,_e.getAnimCircleBottom=function(e,t){
+if(e.isCarPreview)return 33;
+if(t.isPhone)return 41;
+if(t.isPadH||t.isFixScreen||t.isPadV&&!t.isPadVertical)return 21;
+// 变量
+var a: any = .25*t.height-41-42-40-n.BOTTOM_HEIGHT-t.safeAreaBottomHeight;
+return Math.max(a,0)
+}
+);
+_e.getAnimTextHeight=function(e,t){
+return 163+v(e,t)
+}
+
+}
+),"4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","0ea8031004a7001e8b293f69ced6ccd729ba63db477638949eb2145c200d1114","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+e.default={
+exposeItem:function(){
+
+}
+,clickItem:function(o){
+// 变量
+var n: any = this.props,t=n.prdId,l=n.sbomCode,u=n.channelId,v=n.saleId;
+return{
+data:{
+actionCode:null==o?void 0:o.actionCode,actionName:null==o?void 0:o.actionName,eventType:null==o?void 0:o.eventType,content:{
+comId:null==o?void 0:o.comId,productId:null==t?void 0:t.toString(),SKUCode:l,channelId:u||'0',saleId:v||'',playButton:null==o?void 0:o.playButton,soundButton:null==o?void 0:o.soundButton
+}
+,pageCatCode:null==o?void 0:o.pageCatCode,pageCatName:null==o?void 0:o.pageCatName,resSiteCode:null==o?void 0:o.resSiteCode,resSiteName:null==o?void 0:o.resSiteName,pageId:null==o?void 0:o.pageId
+}
+
+}
+
+}
+
+}
+
+}
+),"f91f1a8b9f8152ab92dc99133bfc01a0b4ba9e5dcc252bbafacb41825b6fb070",[]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var o=t(r(d[1])),n=r(d[2]),l=r(d[3]),s={
+
+}
+;
+l.PlatformUtils.isApp()||(s=(0,o.default)({
+
+}
+,'position'.split('-').join(''),'fixed'));
+var h=56;
+l.PlatformUtils.isIOS()?h=80:l.PlatformUtils.isHarmony()&&(h=84);
+e.default=function(t){
+return n.StyleSheet.create({
+PCVideoCoverLayer:{
+width:1920,height:1080,top:0,overflow:'hidden',position:'absolute',backgroundColor:'rgba(0,0,0,0.90)',zIndex:5
+}
+,PCFixBar:{
+position:'fixed',backgroundColor:'#fff',top:0,zIndex:3,width:'100%',height:'auto'
+}
+,hidden:{
+opacity:0,height:0,width:0
+}
+,show:{
+opacity:1
+}
+,PCTopBarContainer:{
+height:80,width:1200,maxWidth:1200,margin:'auto',display:'flex',flexDirection:'row'
+}
+,PCTopBarContainerWithSelected:{
+height:100,width:1200,maxWidth:1200,margin:'auto'
+}
+,PCTopBarCarName:{
+fontFamily:'HarmonyHeiTi-Medium',fontSize:t.T13.fontSize,color:'#000',textAlign:'center',fontWeight:'500',marginRight:'auto',marginTop:24,marginBottom:24
+}
+,PCTopBarBtnGroup:{
+marginLeft:'auto',display:'flex',flexDirection:'row',marginTop:14,marginBottom:14
+}
+,PCBtnContainer:{
+position:'absolute',width:'100%'
+}
+,PCFirstBtnRow:{
+display:'flex',flexDirection:'row',justifyContent:'center'
+}
+,PCSecBtnRow:{
+display:'flex',flexDirection:'row',justifyContent:'center',marginTop:24
+}
+,PCVideoBtn:{
+backgroundColor:'rgba(0,0,0,0.10)',borderRadius:24,color:'#FFFFFF',marginRight:24,width:136,height:40,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'row'
+}
+,carPlayVideo:{
+width:22,height:22,marginRight:9
+}
+,carCloseVideoWrapper:{
+position:'fixed',right:24,top:24,zIndex:999
+}
+,carCloseVideo:{
+width:32,height:32
+}
+,PCVideoText:Object.assign({
+
+}
+,t.T10,{
+color:t.C17.color,lineHeight:20
+}
+),contentArea:{
+position:'relative',backgroundColor:'#fff'
+}
+,scrollWarp:{
+flex:1
+}
+,titleBar:{
+backgroundColor:'transparent'
+}
+,titleWrap:{
+position:l.PlatformUtils.isApp()?'absolute':'fixed',top:0,left:0,zIndex:2,width:'100%',flexDirection:'row'
+}
+,isTop:Object.assign({
+
+}
+,s,{
+top:0,backgroundColor:t.C32.color,zIndex:10,width:'100%'
+}
+),onlineServiceWrapper:{
+position:'absolute',top:0,marginTop:'auto',marginBottom:'auto',bottom:0,right:16
+}
+,btnsWrap:{
+paddingHorizontal:16,position:l.PlatformUtils.isApp()?'absolute':'fixed',left:0,bottom:0,zIndex:1,display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',width:'100%',height:56,backgroundColor:t.C32.color
+}
+,ph24:{
+paddingHorizontal:24
+}
+,contentTitle:Object.assign({
+
+}
+,s,{
+top:0,zIndex:10,width:'100%'
+}
+),titleBgTrs:{
+backgroundColor:'transparent'
+}
+,titleBg:{
+backgroundColor:t.C32.color
+}
+,videoPlay:{
+backgroundColor:'rgba(0, 0, 0, 0.4)',borderColor:'#FFFFFF1A',borderWidth:.92,width:56,height:56,borderRadius:28,justifyContent:'center',alignItems:'center'
+}
+,hotArea:{
+position:'absolute',top:0,left:0,zIndex:1,width:'100%',justifyContent:'center',alignItems:'center'
+}
+,iosBottomBtn:{
+paddingBottom:24,height:80
+}
+,flex1:{
+flex:1
+}
+,logoPos:{
+position:'absolute',top:'50%',left:0,zIndex:-1
+}
+,logoPosPc:{
+left:'50%',width:1200,height:1e3,marginTop:-500,marginLeft:-600
+}
+,widthPct:{
+width:'100%'
+}
+,zIndex1:{
+zIndex:1
+}
+,titleSticky:{
+position:'sticky'
+}
+,mainMarginBottom:{
+width:'100%',height:h
+}
+
+}
+)
+}
+
+}
+),"72b5c0d6d1f443db5fa2378f3fed2cf923f409dc517d87a92fc19d152888d3e2",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","598dd5411f5356eab137e972eb6cee59f0eaeb909657cad20b7b3811ffae9612","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = l(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var u in e)if("default"!==u&&{
+
+}
+.hasOwnProperty.call(e,u)){
+// 变量
+var a: any = i?Object.getOwnPropertyDescriptor(e,u):null;
+a&&(a.get||a.set)?Object.defineProperty(n,u,a):n[u]=e[u]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[1])),r=_r(d[2]),n=e(_r(d[3])),i=_r(d[4]),u=_r(d[5]),a=_r(d[6]),o=_r(d[7]);
+// 函数
+function l(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(l=function(e){
+return e?r:t
+}
+)(e)
+}
+var f=(0,t.memo)((function(e){
+var l=e.isSSR,f=e.isPC,c=e.btnStyle,s=void 0===c?{
+
+}
+:c,p=e.type,y=e.btnTxt,h=e.btnHeight,v=void 0===h?40:h,b=e.fontSize,O=e.clickCall,_=(0,i.useLayout)(n.default),j=_.platform,w=_.themeStyles,P=(0,t.useMemo)((function(){
+if('large'!==(0,u.ScreenSize)((0,a.getRenderWidth)(l,f,j.width))){
+// 变量
+var e: any = j.isMedium?4:2;
+return e*j.gridWidth+(e-1)*j.gridGap
+}
+return 200
+}
+),[j]);
+return(0,o.jsx)(r.View,{
+style:[w.btnWrap,w['btn'+p],{
+width:P
+}
+,s],children:(0,o.jsx)(r.TouchableOpacity,{
+activeOpacity:.3,onPress:O,children:(0,o.jsx)(r.Text,{
+style:[w[p],w.btnTxt,v&&{
+height:v,lineHeight:v
+}
+,b&&{
+fontSize:b
+}
+],numberOfLines:1,children:y
+}
+)
+}
+)
+}
+)
+}
+));
+_e.default=f
+}
+),"c240db46d7e823c73802d0be5230c848603ad6c4870d32866a57ee80092f6ac9",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","ad5a6aa4d5624b16ac8e6e87c68ac589ba1cadaadd91bc88b9949292bd7c4f38","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var o: any = r(d[0]);
+e.default=function(t){
+return o.StyleSheet.create({
+btnWrap:{
+height:40,backgroundColor:t.C38.color+t.opacityMap[t.C38.opacity],borderRadius:20
+}
+,btnbuy:{
+backgroundColor:t.C35.color+t.opacityMap[t.C35.opacity]
+}
+,btnTxt:{
+height:40,lineHeight:40,textAlign:'center'
+}
+,btnPCTopOrder:{
+background:t.C39.color+t.opacityMap[t.C39.opacity],borderRadius:26,justifyContent:'center'
+}
+,btnPCTopBuy:{
+width:186,height:52,borderRadius:26,backgroundColor:t.C35.color+t.opacityMap[t.C35.opacity],justifyContent:'center'
+}
+,order:Object.assign({
+
+}
+,t.T10,{
+color:t.C11.color
+}
+),PCOrder:Object.assign({
+
+}
+,t.T10,{
+color:t.C17.color
+}
+),PCTopOrder:Object.assign({
+
+}
+,t.T11,{
+color:t.C11.color
+}
+),PCTopBuy:Object.assign({
+
+}
+,t.T11,{
+color:t.C17.color
+}
+),buy:Object.assign({
+
+}
+,t.T10,{
+color:t.C17.color
+}
+)
+}
+)
+}
+
+}
+),"ad5a6aa4d5624b16ac8e6e87c68ac589ba1cadaadd91bc88b9949292bd7c4f38",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.PlatformProvider=_e.PlatformContext=void 0,_e.injectLayout=function(e){
+return function(r){
+return(0,o.forwardRef)((function(n,o){
+// 变量
+var a: any = n.themeProps,i=(0,t.default)(n,p),u=w(e,a);
+return(0,v.jsx)(r,Object.assign({
+
+}
+,i,u,{
+ref:o
+}
+))
+}
+))
+}
+
+}
+,_e.useLayout=w,_e.usePlatform=void 0,_e.usePlatformResize=function(e,t){
+(0,o.useEffect)((function(){
+// 变量
+var t: any = f.DeviceEventEmitter.addListener('platform-resize',e);
+return e(),function(){
+t.remove()
+}
+
+}
+),t)
+}
+,_e.useTheme=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),n=e(_r(d[3])),o=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = P(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var i: any = o?Object.getOwnPropertyDescriptor(e,a):null;
+i&&(i.get||i.set)?Object.defineProperty(n,a,i):n[a]=e[a]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[4])),a=_r(d[5]),i=_r(d[6]),u=_r(d[7]),f=_r(d[8]),s=_r(d[9]),l=e(_r(d[10])),c=_r(d[11]),h=e(_r(d[12])),v=_r(d[13]),p=["themeProps"];
+// 函数
+function P(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(P=function(e){
+return e?r:t
+}
+)(e)
+}
+var C=(0,c.getInitValue)(),y=_e.PlatformContext=(0,o.createContext)(C),O=f.StyleSheet.create({
+cover:Object.assign({
+
+}
+,f.StyleSheet.absoluteFillObject,{
+width:'100%',height:'100%'
+}
+)
+}
+),S=(_e.PlatformProvider=function(e){
+var t=e.children,r=e.usePageState,i=e.watchHeight,p=void 0===i?!s.DefaultPlatform.isMp:i,P=e.appProps,S=void 0===P?{
+
+}
+:P,j=(0,o.useState)(!0===r?'LOADING':r||'SUCCESS'),R=(0,n.default)(j,2),w=R[0],b=R[1],x=(0,o.useState)((function(){
+return Object.assign({
+initialized:!1
+}
+,C,{
+setPageState:b
+}
+)
+}
+)),E=(0,n.default)(x,2),_=E[0],D=E[1],H=(0,o.useRef)({
+isPc:void 0,width:0,height:0,watchHeight:p,appProps:S,setValue:D,setPageState:r?b:function(){
+
+}
+,refreshValue:c.refreshValue
+}
+).current;
+H.watchHeight=p,H.appProps=S;
+var L=(0,o.useCallback)((function(e){
+(0,c.refreshValue)(H,e.nativeEvent.layout)
+}
+),[]);
+h.default.useResize(H);
+var M=(function(){
+if('object'==typeof w)return{
+showChildren:!0,pageStateCover:(0,v.jsx)(l.default,Object.assign({
+
+}
+,w,{
+statusBarHeight:_.statusBarHeight
+}
+))
+}
+;
+if('LOADING'===w)return{
+showChildren:!0,pageStateCover:(0,v.jsx)(u.PlaceHolder,{
+
+}
+)
+}
+;
+if('SUCCESS'!==w){
+var t=function(){
+!1!==(null==e.onRefresh?void 0:e.onRefresh())&&b('LOADING')
+}
+;
+return{
+showChildren:!1,pageStateCover:(0,v.jsx)(u.CommonErrorPage,{
+errorType:a.ERROR_TYPE[w],errorRefresh:'NETWORK_ERROR'===w||'OTHER_ERROR'===w?t:void 0,onRefresh:t
+}
+)
+}
+
+}
+return{
+showChildren:!0,pageStateCover:null
+}
+
+}
+)(),T=M.pageStateCover,V=M.showChildren;
+return(0,v.jsx)(y.Provider,{
+value:_,children:(0,v.jsxs)(f.View,{
+id:"platform-container",nativeID:"platform-container",style:h.default.getContainerStyle(),onLayout:L,children:[_.initialized&&V&&t,null!==T&&(0,v.jsx)(f.View,{
+style:O.cover,children:T
+}
+)]
+}
+)
+}
+)
+}
+,_e.useTheme=function(){
+return(0,o.useContext)(i.ThemeContext).theme
+}
+),j=_e.usePlatform=function(){
+return(0,o.useContext)(y)
+}
+;
+// 函数
+function R(e: any, t: any, r: any, n: any): any {
+return'function'==typeof n?n(t,e,r):n
+}
+// 函数
+function w(e: any): any {
+var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{
+
+}
+,n=j(),a=S();
+return(0,o.useMemo)((function(){
+return{
+platform:n,theme:a,themeProps:t,themeStyles:R(n,a,t,e)
+}
+
+}
+),[a,n,e].concat((0,r.default)(Object.values(t))))
+}
+
+}
+),"05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","03db68b7a2b8b1a7d24df74d5727253cf119598df8b4b68a457a7f4cbc787e1b","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","2b6abbe4c981d96bf92b6d3112d0e84f5676819fa9113a53a3ebf81182dd0023","0399c78f722300c3277071ad655f16ba758ed7b8f155f226ea6741df29a969ff","5c6c1a3901cbcedc634e3331c98da8a2fd3b5baf76d653ba88d87b7d7ce39126","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),i=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var i: any = p(t);
+if(i&&i.has(e))return i.get(e);
+var r={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var s: Function = n?Object.getOwnPropertyDescriptor(e,o):null;
+s&&(s.get||s.set)?Object.defineProperty(r,o,s):r[o]=e[o]
+}
+return r.default=e,i&&i.set(e,r),r
+}
+)(_r(d[2])),r=_r(d[3]),n=e(_r(d[4])),o=e(_r(d[5])),s=_r(d[6]),a=_r(d[7]),l=_r(d[8]),c=_r(d[9]),u=_r(d[10]),f=_r(d[11]),x=_r(d[12]),h=_r(d[13]);
+// 函数
+function p(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,i=new WeakMap;
+return(p=function(e){
+return e?i:t
+}
+)(e)
+}
+var y={
+showSearch:'true',searchHotListShow:'true',searchResultPageProdShow:'true',searchResultPageContentShow:'true',searchResultPageActivityShow:'true',showCategory:'true'
+}
+,j=s.PlatformUtils.isMp(),T=function(){
+j?f.uni.reLaunch({
+url:'/pages/index/index'
+}
+):s.RouterUtils.gotoPage('/')
+}
+,v=[{
+text:'\u5546\u57ce\u9996\u9875',action:T
+}
+,{
+text:'\u4e2a\u4eba\u4e2d\u5fc3',action:function(){
+s.CookieUtils.getValueFromCookie('rnpersonalurlweb')?location.href=s.CookieUtils.getValueFromCookie('rnpersonalurlweb'):location.href="/member?t="+(new Date).getTime()
+}
+
+}
+,{
+text:'\u6211\u7684\u8ba2\u5355',action:function(){
+location.href="/member/order?t="+(new Date).getTime()+"timestamp"
+}
+
+}
+],w=function(e){
+// 变量
+var a: any = e.tips,u=void 0===a?'':a,f=e.btnText,x=void 0===f?(0,s.t)('goToIndex'):f,p=e.onBtnPress,j=void 0===p?T:p,w=(0,i.useState)([]),b=(0,t.default)(w,2),P=b[0],O=b[1];
+(0,i.useEffect)((function(){
+s.HttpService.getGlobalDataSource({
+subType:'commonNavigation',portal:'1'
+}
+).then((function(e){
+var t;
+for(var i in e.dataSource)Object.prototype.hasOwnProperty.call(e.dataSource,i)&&e.dataSource[i].dataInfos&&(t=e.dataSource[i].dataInfos);
+O(t)
+}
+))
+}
+),[]);
+var B=x===(0,s.t)('goToIndex');
+return(0,h.jsx)(s.WithTheme,{
+themeStyles:n.default,children:function(e){
+return(0,h.jsxs)(r.View,{
+style:e.pcBg,children:[(0,h.jsx)(l.ToolBar,{
+
+}
+),(0,h.jsx)(r.View,{
+style:e.navigation,children:(0,h.jsx)(c.Navigation,{
+categoryList:P,configInfo:y
+}
+)
+}
+),(0,h.jsxs)(r.View,{
+style:e.errorContainer,children:[(0,h.jsxs)(r.View,{
+style:e.errorContent,children:[(0,h.jsx)(r.Image,{
+source:o.default.pcErrorImg,style:e.pcErrorImage
+}
+),(0,h.jsxs)(r.View,{
+style:e.rightContent,children:[(0,h.jsx)(r.Text,{
+style:e.errorTip,children:u
+}
+),(0,h.jsxs)(r.View,{
+style:e.rightRow2,children:[(0,h.jsxs)(r.View,{
+children:[(0,h.jsx)(r.Text,{
+style:[e.fixedTips,e.fixedTipsRow1],children:"\u60a8\u53ef\u4ee5\uff1a"
+}
+),(0,h.jsx)(r.Text,{
+style:e.fixedTips,children:"1.\u68c0\u67e5\u521a\u624d\u7684\u8f93\u5165"
+}
+),(0,h.jsxs)(r.View,{
+style:e.fixedTipsFinalRow,children:[(0,h.jsx)(r.Text,{
+style:e.fixedTips,children:"2.\u53bb\u5176\u5b83\u5730\u65b9\u901b\u901b\uff1a"
+}
+),v.map((function(t,i){
+return(0,h.jsxs)(r.TouchableOpacity,{
+activeOpacity:1,onPress:t.action,style:e.textBtn,children:[(0,h.jsx)(r.Text,{
+style:e.btnText,children:t.text
+}
+),2!==i&&(0,h.jsx)(r.Text,{
+style:[e.btnText,e.verticalLine],children:"|"
+}
+)]
+}
+)
+}
+))]
+}
+)]
+}
+),(0,h.jsx)(r.TouchableOpacity,{
+activeOpacity:1,onPress:j,style:e.redBackHomeBtn,children:B?(0,h.jsx)(r.Image,{
+source:o.default.btnsImg,style:e.btnsImg,nativeID:'backVmallHomeImg'
+}
+):(0,h.jsx)(r.View,{
+style:e.pcBtnWrap,children:(0,h.jsx)(r.Text,{
+style:e.pcBtnText,children:x
+}
+)
+}
+)
+}
+)]
+}
+)]
+}
+)]
+}
+),(0,h.jsx)(l.Footer,{
+
+}
+)]
+}
+)]
+}
+)
+}
+
+}
+)
+}
+;
+_e.default=function(e){
+// 变量
+var t: any = (0,r.useWindowDimensions)(),c=t.width,p=t.height,y=e.tips,v=void 0===y?'':y,b=e.resultCode,P=void 0===b?'':b,O=e.btnText,B=void 0===O?(0,s.t)('goToIndex'):O,S=e.onBtnPress,I=void 0===S?T:S,R=e.onBackPress,_=void 0===R?u.goBack:R,V=e.statusBarHeight,k=void 0===V?0:V,C=s.PlatformUtils.isPc(c),M=s.ScreenUtils.isPadHorizontal(c,p)||C;
+(0,i.useEffect)((function(){
+var e;
+j&&(null==(e=f.uni.setNavigationBarTitle||f.uni.setNavigationBar)||e({
+title:'\u53cb\u60c5\u63d0\u793a'
+}
+))
+}
+),[v]);
+var U=P===x.CAR_ORDER_ERR.NOT_SUPPORT_PREINSTALL_SKU;
+return v?(0,h.jsx)(h.Fragment,{
+children:C?(0,h.jsx)(w,Object.assign({
+
+}
+,e)):(0,h.jsx)(s.WithTheme,{
+themeStyles:n.default,children:function(e){
+return(0,h.jsxs)(r.View,{
+style:[e.bg,{
+paddingTop:k
+}
+],children:[(0,a.isApp)()||j?null:(0,h.jsx)(l.TitleBar,{
+disabledMarginTop:!0,titleName:'\u53cb\u60c5\u63d0\u793a',onPress:_,customMarginLeft:16,titleBarStyle:e.titleBar,customMarginRight:40
+}
+),(0,h.jsxs)(r.View,{
+style:[e.content,M&&e.contentPcPadH,j&&e.contentMp],children:[(0,h.jsx)(r.Image,{
+source:j?{
+uri:o.default.friendlyBg
+}
+:U?o.default.appUpdate:o.default.friendlyBg,style:[e.image,U&&e.updateImg]
+}
+),(0,h.jsx)(r.Text,{
+style:e.tipText,numberOfLines:2,ellipsizeMode:'tail',children:v
+}
+),U?null:(0,h.jsx)(r.TouchableOpacity,{
+onPress:I,style:e.btn,children:(0,h.jsx)(r.Text,{
+style:e.tipText,children:B
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+
+}
+)
+}
+):null
+}
+
+}
+),"2b6abbe4c981d96bf92b6d3112d0e84f5676819fa9113a53a3ebf81182dd0023",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","76181c828e031c1c452cf299507271da5ea95a8b8a56fec2294e4ef5a02cdf6f","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ab23114a7e6aeb0a6dae348f42d0b4af61825b66f6fc027c0cee095e824480bb","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","02c1bd74ad4e38dda094210258630f8d04cef09c7acddec50808ea35dfff6ed8","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","0ea8031004a7001e8b293f69ced6ccd729ba63db477638949eb2145c200d1114","9500b24c16bfc1f7487a92364c936822f13e89774fe7c30dcb1642f52c515069","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]);
+e.default=function(n){
+return t.StyleSheet.create({
+bg:{
+backgroundColor:o.CommonUtils.colorRgba(n.C32.color,n.C32.opacity),flex:1
+}
+,pcBg:{
+backgroundColor:n.fillBase
+}
+,content:{
+paddingHorizontal:16,paddingVertical:'35%',alignItems:'center'
+}
+,contentMp:{
+height:'100vh'
+}
+,image:{
+width:104,height:104,marginBottom:16
+}
+,updateImg:{
+width:120,height:120,marginBottom:8
+}
+,btn:{
+marginVertical:24,marginHorizontal:16,paddingHorizontal:20,height:30,borderColor:o.CommonUtils.colorRgba(n.C22.color,n.C22.opacity),borderWidth:1,borderRadius:20,justifyContent:'center'
+}
+,contentPcPadH:{
+flex:1,paddingVertical:0,justifyContent:'center'
+}
+,errorContainer:{
+width:1200,marginTop:55,marginBottom:75,alignItems:'center',alignSelf:'center',borderWidth:0,borderStyle:'none'
+}
+,errorContent:{
+width:954,borderBottomColor:'#ccc',borderBottomWidth:1,borderBottomStyle:'dashed',paddingBottom:60,paddingLeft:161,flexDirection:'row'
+}
+,pcErrorImage:{
+width:138,height:158,marginRight:20
+}
+,errorTip:Object.assign({
+paddingTop:21
+}
+,n.T10,{
+fontWeight:'bold'
+}
+),fixedTips:Object.assign({
+
+}
+,n.T3,{
+color:'#3a3a3a'
+}
+),fixedTipsRow1:{
+paddingTop:22,paddingBottom:9
+}
+,btnText:Object.assign({
+
+}
+,n.T3,{
+color:'#12569c'
+}
+),verticalLine:{
+paddingHorizontal:7
+}
+,fixedTipsFinalRow:{
+flexDirection:'row',alignItems:'center',marginTop:10
+}
+,textBtn:{
+flexDirection:'row',alignItems:'center'
+}
+,rightRow2:{
+flexDirection:'row',justifyContent:'space-between'
+}
+,btnsImg:{
+width:129,height:36
+}
+,pcBtnWrap:{
+backgroundColor:'rgb(165,7,7)',borderRadius:4,paddingHorizontal:20,paddingVertical:12
+}
+,pcBtnText:{
+fontSize:16,color:'white'
+}
+,rightContent:{
+flex:1
+}
+,redBackHomeBtn:{
+paddingTop:55,paddingRight:136
+}
+,navigation:{
+zIndex:5
+}
+,tipText:Object.assign({
+
+}
+,n.C22,n.T7,{
+textAlign:'center'
+}
+)
+}
+)
+}
+
+}
+),"76181c828e031c1c452cf299507271da5ea95a8b8a56fec2294e4ef5a02cdf6f",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),Object.defineProperty(e,"Navigation",{
+enumerable:!0,get:function(){
+return u.default
+}
+
+}
+),Object.defineProperty(e,"ToolBar",{
+enumerable:!0,get:function(){
+return n.default
+}
+
+}
+);
+var n=t(r(d[1])),u=t(r(d[2]))
+}
+),"02c1bd74ad4e38dda094210258630f8d04cef09c7acddec50808ea35dfff6ed8",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","9f5056f5030f65ab27d92a72f9e624bf00049853047f72ec698c6182469e863b","748ee3dbfb8dabd363dd63534db13ee5b3cb7af2eaea71d47772728adfe5e139"]);
+
+__d((function(g,_r,_i,_a,m,_e,_d){
+// 变量
+var t: any = _r(_d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e,i=t(_r(_d[1])),n=t(_r(_d[2])),a=t(_r(_d[3])),o=t(_r(_d[4])),r=t(_r(_d[5])),l=t(_r(_d[6])),s=t(_r(_d[7])),c=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var i: any = T(e);
+if(i&&i.has(t))return i.get(t);
+var n={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in t)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(t,o)){
+// 变量
+var r: any = a?Object.getOwnPropertyDescriptor(t,o):null;
+r&&(r.get||r.set)?Object.defineProperty(n,o,r):n[o]=t[o]
+}
+return n.default=t,i&&i.set(t,n),n
+}
+)(_r(_d[8])),u=_r(_d[9]),h=_r(_d[10]),f=t(_r(_d[11])),d=t(_r(_d[12])),p=_r(_d[13]),v=t(_r(_d[14])),y=_r(_d[15]),L=_r(_d[16]),S=_r(_d[17]),w=_r(_d[18]),b=_r(_d[19]),C=_r(_d[20]),_=_r(_d[21]),D=t(_r(_d[22])),O=_r(_d[23]);
+// 函数
+function T(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,i=new WeakMap;
+return(T=function(t){
+return t?i:e
+}
+)(t)
+}
+// 函数
+function x(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(x=function(){
+return!!t
+}
+)()
+}
+var N=(0,D.default)({
+cacheLife:36e5
+}
+),j='TopTemplate',R=h.Service.openApiDomain,k=(h.Service.webDomain,!1),M=(0,w.inject)('store')(e=(0,w.observer)(e=(function(t){
+// 函数
+function e(t: any): any {
+var i,n,o,s;
+return(0,a.default)(this,e),n=this,o=e,s=[t],o=(0,l.default)(o),(i=(0,r.default)(n,x()?Reflect.construct(o,s||[],(0,l.default)(n).constructor):o.apply(n,s))).itemlist=[],i.listener=null,i.listener2=null,i.listener3=null,i.onClose=function(){
+i.setState({
+showLoginWindow:!1
+}
+)
+}
+,i.toolRef=function(t){
+t&&i.itemlist.push(t)
+}
+,i.isLogin=function(){
+// 变量
+var t: any = R+"mcp/user/queryUserLoginStatus";
+return h.Http.get((0,C.formatUrl)(t,!0,{
+portal:'1',country:'CN',lang:'zh_CN'
+}
+)).then((function(t){
+// 变量
+var e: any = t.login;
+return i.setState({
+isLogin:e
+}
+),e
+}
+),(function(){
+return i.setState({
+isLogin:!1
+}
+),!1
+}
+)).catch((function(){
+return i.setState({
+isLogin:!1
+}
+),!1
+}
+))
+}
+,i.handleTemplateData=function(t,e){
+var n,a,o,r,l,s,c,h;
+e||'0'!==t.code||N.set(j,t),i.setState({
+leftTemplate:(null==(n=t.templateMapping)||null==(a=n.web_top_shortcut)?void 0:a.content)||'',regionTemplate:(null==(o=t.templateMapping)||null==(r=o.region_select)?void 0:r.content)||'',templateRightMap:{
+webNav:(null==(l=t.templateMapping)||null==(s=l.index_shortcut_web_nav)?void 0:s.content)||'',mobDownload:(null==(c=t.templateMapping)||null==(h=c.index_shortcut_mob_download)?void 0:h.content)||''
+}
+
+}
+,(function(){
+if('web'===u.Platform.OS){
+// 变量
+var t: any = (document.getElementsByClassName('js-select-region')||[])[0];
+t&&t.addEventListener('click',(function(){
+i.showOrHideSelect(!0)
+}
+))
+}
+
+}
+))
+}
+,i.state={
+rightList:y.rightList,cartItem:y.cartItem,leftTemplate:'',regionTemplate:'',templateRightMap:{
+
+}
+,showSelectRegion:!1,initFlag:!1,showLoginWindow:!1,isLogin:!1
+}
+,i.fetchData=i.fetchData.bind(i),i.setCartData=i.setCartData.bind(i),i.setCartDataAsync=i.setCartDataAsync.bind(i),i
+}
+return(0,s.default)(e,t),(0,o.default)(e,[{
+key:"render",value:function(){
+// 变量
+var t: any = this,e=this.props.width;
+return('large'===(0,h.ScreenSize)(e)||null)&&(0,O.jsx)(h.WithTheme,{
+themeStyles:v.default,children:function(e,i){
+return(0,O.jsxs)(u.View,{
+style:e.bgbox,ref:t.toolRef,children:[(0,O.jsx)(h.Layout,{
+children:(0,O.jsxs)(u.View,{
+style:e.container,children:[(0,O.jsx)(u.View,{
+style:e.leftbox,children:(0,S.showhtml)(t.state.leftTemplate)
+}
+),(0,O.jsx)(u.View,{
+style:e.rightbox,children:t.state.rightList.map((function(e,i){
+return(0,O.jsx)(d.default,{
+templateMap:t.state.templateRightMap,item:e,index:i
+}
+,i)
+}
+))
+}
+),(0,O.jsx)(u.View,{
+style:e.cartbox,children:(0,O.jsx)(d.default,{
+item:t.state.cartItem,index:0,refreshData:function(){
+return t.setCartDataAsync()
+}
+
+}
+)
+}
+)]
+}
+)
+}
+),t.state.showSelectRegion&&(0,O.jsx)(u.TouchableOpacity,{
+style:e.selectregion,activeOpacity:1,onPress:function(){
+return t.showOrHideSelect(!1)
+}
+,children:(0,O.jsxs)(u.TouchableOpacity,{
+style:e.selectregioncon,activeOpacity:1,children:[(0,O.jsx)(u.View,{
+style:{
+position:'absolute',top:10,right:10
+}
+,children:(0,O.jsx)(h.Hoverable,{
+children:function(e){
+return(0,O.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onFocus:function(){
+return t.showOrHideSelect(!1)
+}
+,children:(0,O.jsx)(f.default,{
+iconName:"cancel-",width:20,height:20,isActive:e,normalCol:i.C24.color,opacity:e?i.C24.opacity:i.C23.opacity
+}
+)
+}
+)
+}
+
+}
+)
+}
+),(0,O.jsx)(u.Text,{
+style:e.selectregiontitle,children:"- Please select your country or region -"
+}
+),(0,O.jsx)(u.ScrollView,{
+style:{
+paddingHorizontal:30
+}
+,children:(0,S.showhtml)(t.state.regionTemplate,'toolbar_select_region')
+}
+)]
+}
+)
+}
+)]
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(t){
+t.actionUrl&&(0,p.gotoPage)(t.actionUrl,!0)
+}
+
+}
+,{
+key:"showOrHideSelect",value:function(){
+// 变量
+var t: any = !(arguments.length>0&&void 0!==arguments[0])||arguments[0];
+if(this.setState({
+showSelectRegion:t
+}
+),'web'===u.Platform.OS){
+var e,i=(null==(e=document)?void 0:e.body)||null,n=window.innerWidth-document.documentElement.offsetWidth||0;
+i&&(t?(i.style.overflow='hidden',i.style.paddingRight=n+"px"):(i.style.overflow='visible',i.style.paddingRight='0'))
+}
+
+}
+
+}
+,{
+key:"componentDidMount",value:(c=(0,n.default)((function*(){
+// 变量
+var t: any = this,e=yield(0,_.getAppStoreLoginStatus)();
+this.setState({
+isLogin:e
+}
+,(function(){
+t.fetchData()
+}
+)),this.listener=u.DeviceEventEmitter.addListener('popupLoginSuccess',this.fetchData),this.listener2=u.DeviceEventEmitter.addListener('refreshToolBar',this.fetchData),this.listener3=u.DeviceEventEmitter.addListener('refreshCartNum',this.setCartData)
+}
+)),function(){
+return c.apply(this,arguments)
+}
+)
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.listener&&this.listener.remove(),this.listener2&&this.listener.remove(),this.listener3&&this.listener.remove()
+}
+
+}
+,{
+key:"setCartData",value:function(){
+var t=this.props.store,e=Object.assign({
+
+}
+,y.cartItem);
+e._value=(null==t?void 0:t.cartNum)>99?'99+':(null==t?void 0:t.cartNum)||0,this.setState({
+cartItem:e
+}
+)
+}
+
+}
+,{
+key:"setCartDataAsync",value:function(){
+var t=this,e=this.props.store,i=Object.assign({
+
+}
+,y.cartItem);
+if(null!=e&&e.getCartNum)null==e||e.getCartNum().finally((function(){
+i._value=(null==e?void 0:e.cartNum)>99?'99+':(null==e?void 0:e.cartNum)||0,t.setState({
+cartItem:i
+}
+)
+}
+));
+else{
+// 变量
+var n: any = null;
+(0,L.getTotalNum)().then((function(t){
+n=(t.data&&t.data>99?'99+':t.data)||0
+}
+)).finally((function(){
+i._value=n||0,t.setState({
+cartItem:i
+}
+)
+}
+))
+}
+
+}
+
+}
+,{
+key:"fetchData",value:function(){
+// 变量
+var t: any = this,e=this.state.isLogin,n=h.Cookies.get('uid'),a=this.props.store;
+!this.state.initFlag&&(null!=a&&a.cartNum||0===(null==a?void 0:a.cartNum))?this.setCartData():this.setCartDataAsync(),this.setState({
+initFlag:!0
+}
+);
+// 变量
+var o: any = this.props.templateContent;
+if(o?this.handleTemplateData(o,!0):N.get(j).then((function(e){
+e?t.handleTemplateData(e,!0):(0,L.getTopTemplate)().then((function(e){
+t.handleTemplateData(e,!1)
+}
+))
+}
+)),n||e){
+// 变量
+var r: any = h.Cookies.get('displayName')||h.Cookies.get('name')||h.Cookies.get('user')||'\u60a8\u597d!',l=!1;
+y.rightMemberList[0].text=unescape(r),(0,S.toGetMemberInfo)().then((function(){
+l=!0
+}
+)).catch((function(e){
+var i;
+'login'===(null==e||null==(i=e.data)?void 0:i.code)&&(0,L.toLogout)().finally((function(){
+t.setState({
+isLogin:!1
+}
+),h.Cookies.get('uid')||window.location.reload()
+}
+))
+}
+)).finally((function(){
+if(l){
+// 变量
+var e: any = h.Cookies.get('TID')||(0,p.randomTid)();
+if(h.Cookies.get('callAB')||k){
+// 变量
+var n: any = h.Service.webDomain+b.URL_CONSTANTS.PERSONAL_URL_WEB;
+n=h.Cookies.get('rnpersonalurlweb')?h.Cookies.get('rnpersonalurlweb')||'':h.Service.webDomain+b.URL_CONSTANTS.PERSONAL_URL_WEB,y.rightMemberList[0].url=n,t.setState({
+rightList:[].concat((0,i.default)(y.rightMemberList),(0,i.default)(y.rightList))
+}
+)
+}
+else k=!0,(0,L.getStrategyForWebWap)(e,'1').finally((function(e){
+// 变量
+var n: any = h.Service.webDomain+b.URL_CONSTANTS.PERSONAL_URL_WEB;
+n=h.Cookies.get('rnpersonalurlweb')?h.Cookies.get('rnpersonalurlweb'):h.Service.webDomain+b.URL_CONSTANTS.PERSONAL_URL_WEB,y.rightMemberList[0].url=n,t.setState({
+rightList:[].concat((0,i.default)(y.rightMemberList),(0,i.default)(y.rightList))
+}
+)
+}
+))
+}
+else t.setState({
+rightList:[].concat((0,i.default)(y.rightLoginList),(0,i.default)(y.rightList))
+}
+)
+}
+))
+}
+else this.setState({
+rightList:[].concat((0,i.default)(y.rightLoginList),(0,i.default)(y.rightList))
+}
+)
+}
+
+}
+]);
+var c
+}
+)(c.Component))||e)||e;
+_e.default=(0,h.Componentautoscaling)(M)
+}
+),"9f5056f5030f65ab27d92a72f9e624bf00049853047f72ec698c6182469e863b",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","0468fe4fc85fd65506933c8bf50254979b83979adb18616af6ba39f2e3cf5ea8","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","1ad0c00cb70c1f17c4c7711b05279cbf9c43e4b409563064e073dc1ac817350f","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","82719f5b4b8336f9f3ab5d3847de10f3550ff4b54a9ed40a3afb100b3185e77f","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","9399da1f65868800d1a41457d1d37cf46ef9ec4a4b363a5dae4e8e973bb03d8f","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","a5beefda71d9d7735ee9cb109de7386848bf3a8fb0b1b92b22bb62b702bceb75","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(_r(d[1])),n=t(_r(d[2])),l=t(_r(d[3])),r=t(_r(d[4])),a=t(_r(d[5])),u=s(_r(d[6])),o=s(_r(d[7])),i=t(_r(d[8])),f=t(_r(d[9])),c=_r(d[10]);
+// 函数
+function p(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,n=new WeakMap;
+return(p=function(t){
+return t?n:e
+}
+)(t)
+}
+// 函数
+function s(t: any, e: any): any {
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var n: any = p(e);
+if(n&&n.has(t))return n.get(t);
+var l={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in t)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(t,a)){
+// 变量
+var u: any = r?Object.getOwnPropertyDescriptor(t,a):null;
+u&&(u.get||u.set)?Object.defineProperty(l,a,u):l[a]=t[a]
+}
+return l.default=t,n&&n.set(t,l),l
+}
+// 函数
+function v(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(v=function(){
+return!!t
+}
+)()
+}
+var h=(function(t){
+// 函数
+function u(): any {
+return(0,e.default)(this,u),t=this,n=u,a=arguments,n=(0,r.default)(n),(0,l.default)(t,v()?Reflect.construct(n,a||[],(0,r.default)(t).constructor):n.apply(t,a));
+var t,n,a
+}
+return(0,a.default)(u,t),(0,n.default)(u,[{
+key:"render",value:function(){
+var t,e,n=this,l=this.props,r=l.iconName,a=l.width,u=l.height,p=l.isActive,s=l.normalCol,v=l.activeCol,h=l.opacity,y=l.isDefault,O=l.backCol,w=l.backOpacity,_=l.order,j=f.default.filter(null==(t=f.default.head(i.default))?void 0:t.icons,(function(t){
+if(t.properties.name===r)return t
+}
+)),b=f.default.get(f.default.head(j),'icon.paths[0]'),P=f.default.get(f.default.head(j),'icon.paths'),k=f.default.get(f.default.head(j),'icon');
+return(0,c.jsx)(o.default,{
+width:a,height:u,viewBox:null!=(e=n.props)&&e.viewBox?n.props.viewBox:'logo'===r?'0 360 1024 300':'0 0 1024 1024',children:y?null==P?void 0:P.map((function(t,e){
+var n,l,r,a,u=null!=(n=null==k||null==(l=k.attrs[e])?void 0:l.fill)?n:'',i=null!=(r=null==k||null==(a=k.attrs[e])?void 0:a.opacity)?r:1;
+return e===_&&(u=O,i=w),(0,c.jsx)(o.Path,{
+d:t,fill:u,fillOpacity:i
+}
+,e)
+}
+)):(0,c.jsx)(o.Path,{
+d:b,fill:p||'true'===p?v:s,fillOpacity:h
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(u.Component);
+_e.default=h
+}
+),"5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","74d4d29847482b9bba398d2e3ed596b0032ff6de272950d27b8703f14074a943","5ac4aadb03a85237dc9c82c0c4266f7ce48664d1d7e449f682513ca96bebdc74","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+e.default=[{
+IcoMoonType:'selection',icons:[{
+icon:{
+paths:['M502.154 182.857c130.231 0 238.614 94.364 262.378 219.194 61.243 8.74 108.119 63.727 108.119 129.787 0 67.19-48.494 122.925-111.323 130.161l-7.264 12.975c-31.501 53.541-70.371 85.745-116.482 94.951-8.67 30.972-37.12 53.709-70.88 53.709-40.637 0-73.581-32.943-73.581-73.581s32.943-73.581 73.581-73.581c31.879 0 59.023 20.273 69.242 48.63 32.357-9.101 60.972-36.035 85.929-82.371l3.58-7.033 0.038-182.065c0-121.691-94.263-220.899-212.521-226.629l-10.815-0.261c-119.648 0-217.43 95.629-223.078 215.892l-0.258 10.999v209.161l-8.263-0.28c-2.301-0.156-4.585-0.378-6.85-0.662-2.131 0.729-4.435 1.112-6.829 1.112-5.826 0-11.122-2.271-15.051-5.976-51.229-16.518-88.224-66.464-88.224-125.151 0-57.514 35.532-106.634 85.172-124.128 21.503-127.621 131.187-224.854 263.383-224.854zM566.701 720.359c-16.4 0-29.695 13.295-29.695 29.695s13.295 29.695 29.695 29.695c16.4 0 29.695-13.295 29.695-29.695s-13.295-29.695-29.695-29.695zM769.267 447.952l0.109 5.682-0.004 162.060c34.12-10.23 59.393-43.729 59.393-83.855 0-40.167-25.325-73.694-59.499-83.887zM234.897 458.562c-22.446 15.446-37.411 42.399-37.411 73.276 0 30.881 14.969 57.836 37.419 73.282l-0.007-146.558z'],attrs:[{
+fill:'rgb(255, 255, 255)'
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['ic_customer service']
+}
+,attrs:[{
+fill:'rgb(255, 255, 255)'
+}
+],properties:{
+order:16,id:0,name:'ic_customer-service',prevSize:32,code:59648
+}
+,setIdx:0,setId:3,iconIdx:0
+}
+,{
+icon:{
+paths:['M512 42.667c259.206 0 469.333 210.128 469.333 469.333s-210.128 469.333-469.333 469.333c-259.206 0-469.333-210.128-469.333-469.333s210.128-469.333 469.333-469.333zM376.235 330.981c-12.497-12.497-32.758-12.497-45.255 0s-12.497 32.758 0 45.255v0l135.795 135.734-135.795 135.795c-12.497 12.497-12.497 32.758 0 45.255s32.758 12.497 45.255 0v0l316.784-316.784c12.497-12.497 12.497-32.758 0-45.255s-32.758-12.497-45.255 0v0l-135.734 135.734zM587.425 542.17l-45.255 45.255 105.595 105.595c12.497 12.497 32.758 12.497 45.255 0s12.497-32.758 0-45.255v0l-105.595-105.595z','M376.235 693.019c-12.497 12.497-32.758 12.497-45.255 0s-12.497-32.758 0-45.255l135.795-135.795-135.795-135.734c-12.497-12.497-12.497-32.758 0-45.255s32.758-12.497 45.255 0l135.795 135.734 135.734-135.734c12.497-12.497 32.758-12.497 45.255 0s12.497 32.758 0 45.255l-316.784 316.784zM587.425 542.17l105.595 105.595c12.497 12.497 12.497 32.758 0 45.255s-32.758 12.497-45.255 0l-105.595-105.595 45.255-45.255z'],attrs:[{
+fill:'rgb(0, 0, 0)'
+}
+,{
+fill:'rgb(255, 255, 255)'
+}
+],isMulticolor:!0,isMulticolor2:!1,grid:0,tags:['cancel-\u5706\u5f62'],colorPermutations:{
+12552552551:[{
+f:0
+}
+,{
+f:1
+}
+]
+}
+
+}
+,attrs:[{
+fill:'rgb(0, 0, 0)'
+}
+,{
+fill:'rgb(255, 255, 255)'
+}
+],properties:{
+order:4,id:0,name:'cancel-',prevSize:32,code:59648,codes:[59648,59649]
+}
+,setIdx:0,setId:2,iconIdx:1
+}
+,{
+icon:{
+paths:['M768 128c70.692 0 128 57.308 128 128v0 512c0 70.692-57.308 128-128 128v0h-512c-70.692 0-128-57.308-128-128v0-512c0-70.692 57.308-128 128-128v0h512zM702.72 340.053l-276.053 276.053-105.387-105.387c-5.699-5.321-13.376-8.588-21.815-8.588-17.673 0-32 14.327-32 32 0 8.44 3.267 16.116 8.606 21.834l-0.017-0.019 128 128c5.789 5.782 13.784 9.359 22.613 9.359s16.824-3.576 22.614-9.359l-0 0 298.667-298.667c5.321-5.699 8.588-13.376 8.588-21.815 0-17.673-14.327-32-32-32-8.44 0-16.116 3.267-21.834 8.606l0.019-0.017z'],attrs:[{
+fill:'rgb(207, 10, 44)'
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['Checkbox Checked-1']
+}
+,attrs:[{
+fill:'rgb(207, 10, 44)'
+}
+],properties:{
+order:9,id:1,name:'Checkbox-Checked-1',prevSize:32,code:59648
+}
+,setIdx:0,setId:3,iconIdx:0
+}
+,{
+icon:{
+paths:['M245.333 128h533.333c64.801 0 117.333 52.532 117.333 117.333v0 533.333c0 64.801-52.532 117.333-117.333 117.333v0h-533.333c-64.801 0-117.333-52.532-117.333-117.333v0-533.333c0-64.801 52.532-117.333 117.333-117.333v0zM245.333 192c-29.44 0-53.333 23.893-53.333 53.333v533.333c0 29.44 23.893 53.333 53.333 53.333h533.333c29.44 0 53.333-23.893 53.333-53.333v-533.333c0-29.44-23.893-53.333-53.333-53.333h-533.333z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['Checkbox Unchecked']
+}
+,attrs:[{
+
+}
+],properties:{
+order:8,id:0,name:'Checkbox-Unchecked',prevSize:32,code:59650
+}
+,setIdx:0,setId:3,iconIdx:1
+}
+,{
+icon:{
+paths:['M864 64c53.018 0 96 42.982 96 96v704c0 53.018-42.982 96-96 96h-704c-53.018 0-96-42.982-96-96v-704c0-53.018 42.982-96 96-96h704zM364.608 550.79l-9.376 0.397c-55.59 4.749-99.232 51.379-99.232 108.205v44.608l0.429 7.462c3.699 31.834 30.752 56.538 63.571 56.538h384l7.462-0.429c31.834-3.699 56.538-30.752 56.538-63.571v-44.608l-0.397-9.37c-4.755-55.597-51.386-99.232-108.211-99.232h-294.784zM511.238 256c-66.112 0-119.712 53.837-119.712 120.243s53.6 120.243 119.712 120.243c66.112 0 119.712-53.837 119.712-120.243s-53.6-120.243-119.712-120.243z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['web real name'],colorPermutations:{
+'161167179120420420412552552551':[{
+
+}
+]
+}
+
+}
+,attrs:[{
+
+}
+],properties:{
+order:6,id:1,name:'web-real-name',prevSize:32,code:59661
+}
+,setIdx:0,setId:2,iconIdx:4
+}
+,{
+icon:{
+paths:['M640 85.333c176.73 0 320 143.27 320 320 0 176.734-143.27 320-320 320h-43.008l-183.078 177.899c-30.391 29.53-78.972 1.536-71.885-37.581l1.071-4.561 0.606-1.95c12.361-37.077 21.922-68.501 28.681-94.17l2.402-9.353 1.707-7.036c1.57-6.583 3.759-15.932 5.376-23.27l-19.204 0.021c-176.73 0-320-143.266-320-320 0-176.73 143.27-320 320-320h277.333zM288 469.333c29.457 0 53.333-23.876 53.333-53.333 0-29.453-23.876-53.333-53.333-53.333s-53.333 23.881-53.333 53.333c0 29.457 23.876 53.333 53.333 53.333zM501.333 469.333c29.457 0 53.333-23.876 53.333-53.333 0-29.453-23.876-53.333-53.333-53.333s-53.333 23.881-53.333 53.333c0 29.457 23.876 53.333 53.333 53.333zM714.667 469.333c29.457 0 53.333-23.876 53.333-53.333 0-29.453-23.876-53.333-53.333-53.333s-53.333 23.881-53.333 53.333c0 29.457 23.876 53.333 53.333 53.333z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['web nav message'],colorPermutations:{
+'161167179120420420412552552551':[{
+
+}
+]
+}
+
+}
+,attrs:[{
+
+}
+],properties:{
+order:4,id:3,name:'web-nav-message',prevSize:32,code:59659
+}
+,setIdx:0,setId:2,iconIdx:2
+}
+,{
+icon:{
+paths:['M221.521 627.374l1.31-1.42 214.27-219.25c28.968-29.641 75.56-30.259 105.262-1.853l1.873 1.853 214.27 219.25c5.579 5.708 8.703 12.977 9.372 20.434l0.122 2.037v2.040c-0.243 8.159-3.408 16.244-9.494 22.471-12.226 12.51-31.778 12.957-44.527 1.34l-1.388-1.34-198.965-203.589c-12.226-12.51-31.778-12.957-44.527-1.34l-1.388 1.34-198.965 203.589c-12.679 12.974-33.236 12.974-45.915 0-6.113-6.255-9.279-14.384-9.497-22.58l0.007-2.049c0.25-7.512 2.977-14.953 8.18-20.932z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['web put away'],colorPermutations:{
+'161167179120420420412552552551':[{
+
+}
+]
+}
+
+}
+,attrs:[{
+
+}
+],properties:{
+order:5,id:2,name:'web-put-away',prevSize:32,code:59660
+}
+,setIdx:0,setId:2,iconIdx:3
+}
+,{
+icon:{
+paths:['M221.521 439.292l1.31 1.42 214.27 219.25c28.968 29.641 75.56 30.259 105.262 1.853l1.873-1.853 214.27-219.25c5.579-5.708 8.703-12.977 9.372-20.434l0.122-2.037v-2.040c-0.243-8.159-3.408-16.244-9.494-22.471-12.226-12.51-31.778-12.957-44.527-1.34l-1.388 1.34-198.965 203.589c-12.226 12.51-31.778 12.957-44.527 1.34l-1.388-1.34-198.965-203.589c-12.679-12.974-33.236-12.974-45.915 0-6.113 6.255-9.279 14.384-9.497 22.58l0.007 2.049c0.25 7.512 2.977 14.953 8.18 20.932z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['web drop-down'],colorPermutations:{
+'161167179120420420412552552551':[{
+
+}
+]
+}
+
+}
+,attrs:[{
+
+}
+],properties:{
+order:3,id:4,name:'web-drop-down',prevSize:32,code:59658
+}
+,setIdx:0,setId:2,iconIdx:1
+}
+,{
+icon:{
+paths:['M756.035 627.46c0 27.561 21.881 50.627 48.649 50.627 27.163 0 48.649-23.066 48.649-50.627 0 0 0-195.14 0-195.14 0-27.967-21.486-50.185-48.649-50.185-26.768 0-48.649 22.219-48.649 50.185 0 0 0 195.14 0 195.14s0 0 0 0zM582.135 266.878c0-13.191 10.923-23.877 23.893-23.877 13.402 0 24.324 10.686 24.324 23.877 0 13.56-10.923 24.282-24.324 24.282-12.971 0-23.893-10.722-23.893-24.282 0 0 0 0 0 0zM397.276 266.878c0-13.191 10.527-23.877 23.498-23.877 13.402 0 23.929 10.686 23.929 23.877 0 13.56-10.527 24.282-23.929 24.282-12.971 0-23.498-10.722-23.498-24.282 0 0 0 0 0 0zM297.14 741.058c0 21.408 16.636 38.689 38.122 38.689 0 0 42.972 0 42.972 0s0 108.698 0 108.698c0 27.156 21.055 50.222 48.649 50.222 26.337 0 48.613-23.066 48.613-50.222 0 0 0-108.698 0-108.698s75.417 0 75.417 0c0 0 0 108.698 0 108.698 0 27.156 20.66 50.222 48.254 50.222 27.163 0 48.649-23.066 48.649-50.222 0 0 0-108.698 0-108.698s42.972 0 42.972 0c21.45 0 38.086-17.281 38.086-38.689 0 0 0-357.708 0-357.708s-431.733 0-431.733 0c0 0 0 357.708 0 357.708s0 0 0 0zM728.082 352.067c-6.503-67.503-50.302-123.915-113.538-153.54 0 0 39.738-58.844 39.738-58.844 2.623-3.869 2.048-8.659-1.222-10.317-3.234-2.027-6.863-0.811-9.737 2.469 0 0-41.75 60.944-41.75 60.944-27.953-10.28-57.56-16.876-89.573-16.876s-62.446 6.596-90.004 16.876c0 0-40.924-60.944-40.924-60.944-2.838-3.279-6.503-5.343-9.737-2.469-3.234 2.063-4.24 6.448-1.617 10.317 0 0 40.134 58.844 40.134 58.844-63.236 30.472-107.825 85.632-113.502 153.54 0 0 431.733 0 431.733 0s0 0 0 0zM170.667 627.46c0 27.561 21.091 50.627 48.649 50.627 26.337 0 48.649-23.066 48.649-50.627 0 0 0-195.14 0-195.14 0-27.967-22.312-50.185-48.649-50.185-27.558 0-48.649 22.219-48.649 50.185 0 0 0 195.14 0 195.14s0 0 0 0z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['android icon'],colorPermutations:{
+11191191191:[{
+
+}
+]
+}
+
+}
+,attrs:[{
+
+}
+],properties:{
+order:16,id:5,name:'android-icon',prevSize:32,code:59648
+}
+,setIdx:1,setId:4,iconIdx:3
+}
+,{
+icon:{
+paths:['M712.208 513.427c1.017 109.7 97.322 146.184 98.459 146.7-0.877 2.519-15.436 52.032-50.835 103.196-30.573 44.186-62.242 88.144-112.24 89.053-49.16 0.908-64.895-28.783-121.094-28.783-56.14 0-73.729 27.874-120.197 29.691-48.182 1.817-84.957-47.696-115.769-91.737-63.040-90.064-111.183-254.501-46.487-365.481 32.088-55.17 89.484-90.044 151.747-90.973 47.385-0.826 92.137 31.591 121.034 31.591 29.017 0 83.322-38.982 140.479-33.263 23.872 0.97 91.040 9.498 134.137 71.833-3.43 2.209-80.151 46.292-79.214 138.173h-0.020zM511.042 295.183c-5.544-41.708 15.217-85.068 38.929-112.281 26.484-30.662 71.157-53.456 108.071-54.902 4.727 42.472-12.624 85.109-38.171 115.832-25.647 30.6-67.647 54.509-108.829 51.33v0.021z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['iphone icon'],colorPermutations:{
+11191191191:[{
+
+}
+]
+}
+
+}
+,attrs:[{
+
+}
+],properties:{
+order:15,id:3,name:'iphone-icon',prevSize:32,code:59650
+}
+,setIdx:1,setId:4,iconIdx:4
+}
+,{
+icon:{
+paths:['M295.531 380.923c-23.297 0-46.828-15.629-46.828-38.984 0-23.414 23.531-38.865 46.828-38.865 23.355 0 38.865 15.451 38.865 38.865 0 23.355-15.451 38.984-38.865 38.984v0zM513.454 303.075c23.477 0 38.987 15.451 38.987 38.865 0 23.355-15.511 38.984-38.987 38.984-23.297 0-46.768-15.629-46.768-38.984 0-23.414 23.472-38.865 46.768-38.865v0zM700.596 404.218c139.892 0 264.455 101.446 264.455 225.948 0 70.247-46.532 132.35-109.052 179.294v0l23.414 77.795-85.398-46.772c-31.14 7.842-62.457 15.628-93.419 15.628-148.154 0-264.815-101.264-264.815-225.945 0-124.502 116.661-225.948 264.815-225.948zM396.68 170.667c153.087 0 287.217 93.242 314.136 218.694-9.866-1.128-19.85-1.899-29.952-1.899v0c-147.919 0.058-264.692 110.417-264.692 246.451 0.078 22.117 3.32 44.112 9.626 65.307-9.626 0.717-19.314 1.193-29.118 1.193-38.806 0-70.069-7.908-109.052-15.634v0l-108.812 54.558 31.14-93.659c-77.972-54.495-124.622-124.681-124.622-210.198 0-148.159 140.192-264.815 311.347-264.815zM785.935 528.96c-15.453 0-30.904 15.692-30.904 31.138 0 15.751 15.451 31.203 30.904 31.203 23.355 0 38.924-15.453 38.924-31.203 0-15.505-15.57-31.138-38.924-31.138zM614.662 528.96c-15.511 0-31.14 15.692-31.14 31.138 0 15.751 15.688 31.203 31.14 31.203 23.532 0 38.984-15.453 38.984-31.203 0-15.505-15.451-31.138-38.984-31.138z','M295.531 380.923c-23.297 0-46.828-15.629-46.828-38.984 0-23.414 23.531-38.865 46.828-38.865 23.355 0 38.865 15.451 38.865 38.865 0 23.355-15.451 38.984-38.865 38.984v0zM513.454 303.075c23.477 0 38.987 15.451 38.987 38.865 0 23.355-15.511 38.984-38.987 38.984-23.297 0-46.768-15.629-46.768-38.984 0-23.414 23.472-38.865 46.768-38.865v0zM700.596 404.218c139.892 0 264.455 101.446 264.455 225.948 0 70.247-46.532 132.35-109.052 179.294v0l23.414 77.795-85.398-46.772c-31.14 7.842-62.457 15.628-93.419 15.628-148.154 0-264.815-101.264-264.815-225.945 0-124.502 116.661-225.948 264.815-225.948zM396.68 170.667c153.087 0 287.217 93.242 314.136 218.694-9.866-1.128-19.85-1.899-29.952-1.899v0c-147.919 0.058-264.692 110.417-264.692 246.451 0.078 22.117 3.32 44.112 9.626 65.307-9.626 0.717-19.314 1.193-29.118 1.193-38.806 0-70.069-7.908-109.052-15.634v0l-108.812 54.558 31.14-93.659c-77.972-54.495-124.622-124.681-124.622-210.198 0-148.159 140.192-264.815 311.347-264.815zM785.935 528.96c-15.453 0-30.904 15.692-30.904 31.138 0 15.751 15.451 31.203 30.904 31.203 23.355 0 38.924-15.453 38.924-31.203 0-15.505-15.57-31.138-38.924-31.138zM614.662 528.96c-15.511 0-31.14 15.692-31.14 31.138 0 15.751 15.688 31.203 31.14 31.203 23.532 0 38.984-15.453 38.984-31.203 0-15.505-15.451-31.138-38.984-31.138z'],attrs:[{
+fill:'rgb(119, 119, 119)'
+}
+,{
+fill:'rgb(0, 0, 0)'
+}
+],isMulticolor:!0,isMulticolor2:!1,grid:0,tags:['wechat icon'],colorPermutations:{
+11191191191:[{
+f:1
+}
+,{
+f:0
+}
+]
+}
+
+}
+,attrs:[{
+fill:'rgb(119, 119, 119)'
+}
+,{
+fill:'rgb(0, 0, 0)'
+}
+],properties:{
+order:14,id:1,name:'wechat-icon',prevSize:32,code:59652,codes:[59652,59653]
+}
+,setIdx:1,setId:4,iconIdx:5
+}
+,{
+icon:{
+paths:['M853.333 836.267c28.277 0 51.2 22.923 51.2 51.2s-22.923 51.2-51.2 51.2c-28.277 0-51.2-22.923-51.2-51.2s22.923-51.2 51.2-51.2zM320 836.267c28.277 0 51.2 22.923 51.2 51.2s-22.923 51.2-51.2 51.2c-28.277 0-51.2-22.923-51.2-51.2s22.923-51.2 51.2-51.2zM116.373 138.667c57.119 0 106.998 37.731 122.943 91.941l1.962 7.492 97.583 424.197c6.256 27.193 29.265 46.991 56.612 49.51l5.922 0.272h386.611c26.072 0 48.788-17.113 56.262-41.644l1.364-5.366 61.687-300.889c0.435-2.122 0.654-4.283 0.654-6.449 0-16.257-12.080-29.692-27.754-31.818l-4.357-0.293h-534.492c-17.673 0-32-14.327-32-32 0-16.2 12.039-29.589 27.658-31.708l4.342-0.292h534.492c53.081 0 96.111 43.030 96.111 96.111 0 4.323-0.292 8.638-0.872 12.916l-1.086 6.387-61.687 300.889c-11.205 54.653-57.697 94.559-112.762 97.926l-7.56 0.231h-386.611c-57.119 0-106.998-37.731-122.943-91.941l-1.962-7.492-97.583-424.197c-6.256-27.193-29.265-46.991-56.612-49.51l-5.922-0.272h-31.040c-17.673 0-32-14.327-32-32 0-16.2 12.039-29.589 27.658-31.708l4.342-0.292h31.040z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['cart']
+}
+,attrs:[{
+
+}
+],properties:{
+order:26,id:16,name:'cart',prevSize:32,code:59648
+}
+,setIdx:0,setId:0,iconIdx:0
+}
+,{
+icon:{
+paths:['M853.333 725.333v42.667h-554.667v-42.667h554.667zM213.333 725.333v42.667h-42.667v-42.667h42.667zM853.333 469.333v42.667h-554.667v-42.667h554.667zM213.333 469.333v42.667h-42.667v-42.667h42.667zM853.333 213.333v42.667h-554.667v-42.667h554.667zM213.333 213.333v42.667h-42.667v-42.667h42.667z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['allCategory']
+}
+,attrs:[{
+
+}
+],properties:{
+order:19,id:5,name:'allCategory',prevSize:32,code:59648
+}
+,setIdx:0,setId:2,iconIdx:0
+}
+,{
+icon:{
+paths:['M202.667 167.034c10.306 0 18.904 7.31 20.898 17.028l0.436 4.298v163.641c-0.009 10.306-7.318 18.905-17.036 20.905l-4.298 0.439-71.685 0.017c-15.936 43.809-24.315 90.574-24.315 138.639 0 223.859 181.474 405.333 405.333 405.333 29.418 0 58.409-3.129 86.642-9.274 17.269-3.759 34.315 7.193 38.074 24.462s-7.193 34.315-24.462 38.074c-32.698 7.117-66.253 10.738-100.254 10.738-259.206 0-469.333-210.128-469.333-469.333 0-47.693 7.142-94.316 20.818-138.632l7.458-22.183 3.808-10.076 5.306-12.99 8.893-19.598 9.18-18.041c6.62-12.347 13.807-24.416 21.543-36.167l14.454-20.726 8.099-10.654c6.803-8.69 13.905-17.133 21.291-25.315l15.011-15.808 9.736-9.177c3.932-3.601 9.071-5.599 14.403-5.599zM512 42.667c259.206 0 469.333 210.128 469.333 469.333 0 39.729-4.956 78.716-14.516 116.244l-7.188 25.249-6.501 19.129-7.555 19.388-4.305 10.028-5.812 12.599-6.044 12.157-7.137 13.31-8.592 14.778-11.681 18.305-12.516 17.752-7.397 9.728c-10.294 13.179-21.276 25.793-32.893 37.79l-8.206 8.036c-1.623 1.53-3.373 3.154-5.251 4.874-3.932 3.601-9.071 5.599-14.403 5.599-10.306 0-18.904-7.31-20.897-17.028l-0.436-4.298v-163.641c0.009-10.306 7.318-18.905 17.036-20.905l4.298-0.439 71.708-0.080c15.921-43.79 24.292-90.534 24.292-138.576 0-223.859-181.474-405.333-405.333-405.333-29.418 0-58.409 3.129-86.642 9.274-17.269 3.759-34.315-7.193-38.074-24.462s7.193-34.315 24.462-38.074c32.698-7.117 66.253-10.738 100.254-10.738z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['rotate']
+}
+,attrs:[{
+
+}
+],properties:{
+order:14,id:0,name:'rotate',prevSize:32,code:59648
+}
+,setIdx:1,setId:2,iconIdx:0
+}
+,{
+icon:{
+paths:['M625 42.667c41.237 0 74.667 33.429 74.667 74.667v53.333h249.667c17.673 0 32 14.327 32 32s-14.327 32-32 32h-45.355l-55.272 629.857c-5.801 66.101-61.154 116.81-127.51 116.81h-418.393c-66.356 0-121.709-50.709-127.51-116.81l-55.315-629.857h-45.312c-17.673 0-32-14.327-32-32s14.327-32 32-32h259.421v-53.333c0-41.237 33.429-74.667 74.667-74.667h216.245zM625 106.667h-216.245c-5.891 0-10.667 4.776-10.667 10.667v85.333c0 17.673-14.327 32-32 32h-181.853l54.814 624.262c2.9 33.051 30.577 58.405 63.755 58.405h418.393c33.178 0 60.854-25.354 63.755-58.405l54.707-624.262h-171.992c-17.673 0-32-14.327-32-32v-85.333c0-5.891-4.776-10.667-10.667-10.667zM608 320c17.673 0 32 14.327 32 32v416c0 17.673-14.327 32-32 32s-32-14.327-32-32v-416c0-17.673 14.327-32 32-32zM416 320c17.673 0 32 14.327 32 32v416c0 17.673-14.327 32-32 32s-32-14.327-32-32v-416c0-17.673 14.327-32 32-32z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['delete']
+}
+,attrs:[{
+
+}
+],properties:{
+order:9,id:6,name:'delete',prevSize:32,code:59652
+}
+,setIdx:0,setId:3,iconIdx:0
+}
+,{
+icon:{
+paths:['M843.869 180.131c12.497 12.497 12.497 32.758 0 45.255l-618.483 618.483c-12.497 12.497-32.758 12.497-45.255 0s-12.497-32.758 0-45.255l286.621-286.637-286.621-286.591c-12.497-12.497-12.497-32.758 0-45.255s32.758-12.497 45.255 0l286.614 286.599 286.614-286.599c12.497-12.497 32.758-12.497 45.255 0zM843.869 798.614c12.497 12.497 12.497 32.758 0 45.255s-32.758 12.497-45.255 0l-256.437-256.452 45.247-45.247 256.444 256.444z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['cancel']
+}
+,attrs:[{
+
+}
+],properties:{
+order:16,id:18,name:'cancel1',prevSize:32,code:59649
+}
+,setIdx:0,setId:2,iconIdx:1
+}
+,{
+icon:{
+paths:['M744.758 704.861l143.275 143.25c12.497 12.497 12.497 32.758 0 45.255s-32.758 12.497-45.255 0l-143.686-143.691c16.388-13.702 31.662-28.692 45.666-44.814zM442.667 85.333c197.35 0 357.333 159.984 357.333 357.333 0 88.502-32.174 169.489-85.464 231.903v0l-0.944 1.101c-2.851 3.312-5.762 6.571-8.731 9.776l9.674-10.877c-3.963 4.641-8.042 9.179-12.233 13.61-2.5 2.643-5.032 5.239-7.602 7.796-0.895 0.89-1.782 1.764-2.674 2.633-2.996 2.92-6.063 5.806-9.18 8.637-1.208 1.097-2.431 2.193-3.663 3.282-2.857 2.525-5.744 4.995-8.67 7.419-0.589 0.488-1.169 0.965-1.75 1.441-61.596 50.386-140.317 80.613-226.098 80.613-197.35 0-357.333-159.984-357.333-357.333s159.984-357.333 357.333-357.333zM442.667 149.333c-162.004 0-293.333 131.33-293.333 293.333s131.33 293.333 293.333 293.333c162.004 0 293.333-131.33 293.333-293.333s-131.33-293.333-293.333-293.333z'],attrs:[{
+
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['search']
+}
+,attrs:[{
+
+}
+],properties:{
+order:3,id:1,name:'search',prevSize:32,code:59649
+}
+,setIdx:0,setId:2,iconIdx:1
+}
+,{
+icon:{
+paths:['M98.325 14.898l2.525 2.384 389.888 389.888c52.711 52.711 53.809 137.49 3.294 191.536l-3.294 3.407-389.888 389.888c-10.151 10.151-23.078 15.836-36.337 17.054l-3.623 0.221h-3.628c-14.509-0.443-28.886-6.201-39.96-17.276-22.247-22.247-23.042-57.823-2.384-81.022l2.384-2.525 362.039-362.039c22.247-22.247 23.042-57.823 2.384-81.022l-2.384-2.525-362.039-362.039c-23.071-23.071-23.071-60.476 0-83.547 11.124-11.124 25.579-16.884 40.154-17.281l3.644 0.012c13.358 0.455 26.591 5.417 37.224 14.885z'],attrs:[{
+fill:'rgb(211, 211, 211)'
+}
+],width:551,isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['ic24-more']
+}
+,attrs:[{
+fill:'rgb(211, 211, 211)'
+}
+],properties:{
+order:26,id:0,name:'ic24-more',prevSize:32,code:59648
+}
+,setIdx:0,setId:2,iconIdx:0
+}
+,{
+icon:{
+paths:['M557.123 133.721l1.061 2.041 91.040 184.594c7.263 14.786 21.027 25.116 37.036 28.21l2.302 0.393 203.822 29.69c42.089 6.080 59.346 57.094 30.452 87.54l-1.509 1.53-147.227 143.898c-11.776 11.453-17.452 27.712-15.442 43.849l0.359 2.419 34.786 203.006c7.087 41.989-36.097 74.175-73.992 55.953l-1.829-0.921-134.372-70.64c17.93-15.176 36.493-33.765 55.689-55.766 30.602-35.072 71.897-89.227 123.874-162.54 2.645-5.659 6.319-10.878 10.928-15.36-91.424 78.663-195.836 152.741-313.235 222.235l0.854-0.53-156.884 82.465c-37.71 19.791-81.737-11.347-76.132-53.008l0.31-2.024 34.786-203.006c2.653-16.241-2.212-32.605-13.363-44.515l-1.72-1.752-147.567-143.762c-30.465-29.663-14.417-81.071 26.824-88.655l2.119-0.348 203.822-29.554c16.176-2.394 30.319-12.245 38.261-26.441l1.144-2.162 91.176-184.798c18.817-38.101 72.565-38.782 92.629-2.041z'],attrs:[{
+opacity:.010000000000000002
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:['ic_star']
+}
+,attrs:[{
+opacity:.010000000000000002
+}
+],properties:{
+order:10,id:2,name:'ic_star',prevSize:32,code:59648
+}
+,setIdx:0,setId:4,iconIdx:0
+}
+,{
+icon:{
+paths:['M758.656 655.466l0.359 2.419 34.786 203.006c7.087 41.989-36.097 74.175-73.992 55.953l-1.829-0.921-134.333-70.673c17.918-15.17 36.468-33.748 55.65-55.732 30.59-35.059 71.866-89.186 123.813-162.409 0.898-1.935 1.916-3.818 3.050-5.639-6.27 10.053-8.99 22.059-7.503 33.997zM512.018 106.671c17.739 0.225 35.379 9.241 45.105 27.050l1.061 2.041 91.040 184.594c7.263 14.786 21.027 25.116 37.036 28.21l2.302 0.393 203.822 29.69c42.089 6.080 59.346 57.094 30.452 87.54l-1.509 1.53-147.227 143.898c-77.901 67.028-165.232 130.726-261.992 191.096l-0.089-696.043z','M512.018 106.671l0.078 696.050c-16.789 10.475-33.862 20.849-51.219 31.124l0.264-0.18-156.308 82.124c-37.71 19.791-81.737-11.347-76.132-53.008l0.31-2.024 34.786-203.006c2.653-16.241-2.212-32.605-13.363-44.515l-1.72-1.752-147.567-143.762c-30.465-29.663-14.417-81.071 26.824-88.655l2.119-0.348 203.822-29.554c16.176-2.394 30.319-12.245 38.261-26.441l1.144-2.162 91.176-184.798c9.696-19.633 28.667-29.33 47.525-29.091z'],attrs:[{
+fill:'rgb(0, 0, 0)',opacity:.1
+}
+,{
+fill:'rgb(207, 10, 44)'
+}
+],isMulticolor:!0,isMulticolor2:!0,grid:0,tags:['star_half'],colorPermutations:{
+120710441:[{
+f:0
+}
+,{
+f:1
+}
+]
+}
+
+}
+,properties:{
+order:2,id:0,name:'star_half',prevSize:32
+}
+,setIdx:0,setId:2,iconIdx:0
+}
+,{
+icon:{
+paths:['M329.354 820.029c-6.006 6.002-9.38 14.144-9.38 22.635s3.374 16.633 9.38 22.635c12.508 12.483 32.761 12.483 45.269 0l341.333-340.821c6.003-5.994 9.376-14.13 9.376-22.613s-3.373-16.619-9.376-22.613l-341.333-341.888c-12.508-12.483-32.761-12.483-45.269 0-6.006 6.002-9.38 14.144-9.38 22.635s3.374 16.633 9.38 22.635l318.72 319.232-318.72 318.165z'],attrs:[{
+opacity:.5
+}
+],isMulticolor:!1,isMulticolor2:!1,grid:0,tags:[['Webarrow']]
+}
+,attrs:[{
+opacity:.5
+}
+],properties:{
+order:2,id:0,name:'Webarrow',prevSize:32,code:59648
+}
+,setIdx:0,setId:4,iconIdx:0
+}
+]
+}
+]
+}
+),"5ac4aadb03a85237dc9c82c0c4266f7ce48664d1d7e449f682513ca96bebdc74",[]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),n=e(r(d[2])),o=e(r(d[3])),c=e(r(d[4])),l=e(r(d[5])),s=e(r(d[6])),u=r(d[7]),f=r(d[8]),v=e(r(d[9])),h=e(r(d[10])),p=r(d[11]),y=r(d[12]),w=r(d[13]);
+// 函数
+function b(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(b=function(){
+return!!e
+}
+)()
+}
+var x=(function(e){
+// 函数
+function s(e: any): any {
+var n,l,u,f;
+return(0,t.default)(this,s),l=this,u=s,f=[e],u=(0,c.default)(u),(n=(0,o.default)(l,b()?Reflect.construct(u,f||[],(0,c.default)(l).constructor):u.apply(l,f))).account={
+
+}
+,n.listener=null,n.state={
+showLoginWindow:!1
+}
+,n.onClose=n.onClose.bind(n),n
+}
+return(0,l.default)(s,e),(0,n.default)(s,[{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,n=t.item,o=t.index,c=t.children,l=t.templateMap;
+return(0,w.jsx)(f.WithTheme,{
+themeStyles:h.default,children:function(t){
+return(0,w.jsxs)(w.Fragment,{
+children:[0===o||n.isRegister?null:(0,w.jsx)(u.View,{
+style:t.line
+}
+),(0,w.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return e.onPress(n)
+}
+,children:(0,w.jsx)(f.Hoverable,{
+onHoverIn:function(){
+return e.onHoverIn(n)
+}
+,children:function(e){
+switch(n.type){
+case'select':case'image':return(0,w.jsx)(u.View,{
+style:t.itemcontainer,children:(0,w.jsx)(v.default,Object.assign({
+
+}
+,n,{
+title:n.code&&(0,f.t)(n.code)||n.text,active:e,type:n.type
+}
+))
+}
+);
+case'navigation':case'member':case'buyCart':case'qrcode':return(0,w.jsx)(u.View,{
+style:t.itemcontainer,children:(0,w.jsx)(v.default,Object.assign({
+
+}
+,n,{
+templateMap:l,custom:!0,title:n.code&&(0,f.t)(n.code)||n.text,active:e,type:n.type
+}
+))
+}
+);
+default:return(0,w.jsxs)(u.View,{
+style:t.itemcontainer,children:[c,(0,w.jsx)(u.Text,{
+style:[t.textnormal,t.paddinghorizontal,0===o&&t.textfirst,e&&t.textactive],children:n.code&&(0,f.t)(n.code)||n.text
+}
+)]
+}
+)
+}
+
+}
+
+}
+)
+}
+)]
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+this.listener=u.DeviceEventEmitter.addListener('popupLoginSuccess',this.onClose)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.listener&&this.listener.remove()
+}
+
+}
+,{
+key:"onHoverIn",value:function(e){
+if('member'===e.type)(0,y.verifyLogin)().then((function(e){
+'clear'!==e&&'null'!==e||u.DeviceEventEmitter.emit('refreshToolBar')
+}
+));
+else if('buyCart'===e.type){
+// 变量
+var t: any = this.props.refreshData;
+t&&t()
+}
+
+}
+
+}
+,{
+key:"onClose",value:function(){
+this.setState({
+showLoginWindow:!1
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(e){
+// 变量
+var t: any = e.url;
+if(t){
+// 变量
+var n: any = t.includes('?')?'&':'?';
+t+=e.timeStamp&&n+"t="+(new Date).getTime()||''
+}
+e.isLogin&&'web'===u.Platform.OS?(t=f.Service.webDomain+"account/login?url="+encodeURIComponent((0,y.getPureUrl)(window.location.href))+"&_t="+(new Date).getTime(),(0,p.gotoPage)(t,!!e.newTab)):e.isRegister?(t=f.Service.webDomain+"user/register?url="+encodeURIComponent(window.location.href),(0,p.gotoPage)(t,!!e.newTab)):e.mustLogin?(f.Cookies.get('uid')||(t=f.Service.webDomain+"account/login?url="+encodeURIComponent(e.targetUrl&&f.Service.webDomain+e.targetUrl||(0,y.getPureUrl)(window.location.href))+"&_t="+(new Date).getTime()),(0,p.gotoPage)(t,!!e.newTab)):t&&(0,p.gotoPage)(t,!!e.newTab)
+}
+
+}
+])
+}
+)(s.default.Component);
+_e.default=x
+}
+),"0468fe4fc85fd65506933c8bf50254979b83979adb18616af6ba39f2e3cf5ea8",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","00e85bd97cf213947cbd49b1f15d8039ce93c2ce9686aee44cdac16a20331a14","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","82719f5b4b8336f9f3ab5d3847de10f3550ff4b54a9ed40a3afb100b3185e77f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,_i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),o=t(r(d[3])),i=t(r(d[4])),l=t(r(d[5])),u=t(r(d[6])),s=t(r(d[7])),c=r(d[8]),f=r(d[9]),h=t(r(d[10])),p=t(r(d[11])),v=t(r(d[12])),y=t(r(d[13])),w=t(r(d[14])),x=t(r(d[15])),b=t(r(d[16])),S=t(r(d[17])),C=r(d[18]),j=r(d[19]),I=r(d[20]),k=r(d[21]);
+// 函数
+function D(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(D=function(){
+return!!t
+}
+)()
+}
+var F={
+navigation:v.default,member:y.default,buyCart:w.default,qrcode:x.default
+}
+,N=f.Service.openApiDomain,T=(f.Service.webDomain,f.Service.customerServiceUrl),U=(function(t){
+// 函数
+function s(t: any): any {
+var e,o,u,c;
+return(0,n.default)(this,s),o=this,u=s,c=[t],u=(0,l.default)(u),(e=(0,i.default)(o,D()?Reflect.construct(u,c||[],(0,l.default)(o).constructor):u.apply(o,c))).cartNumTimer=null,e.state={
+cartInfo:{
+
+}
+,cartScrollY:0,hasDataStatus:!0,showLoginWindow:!1
+}
+,e.onClose=e.onClose.bind(e),e
+}
+return(0,u.default)(s,t),(0,o.default)(s,[{
+key:"componentDidMount",value:function(){
+'buyCart'===this.props.type&&this._getCartNum()
+}
+
+}
+,{
+key:"onClose",value:function(){
+this.setState({
+showLoginWindow:!1
+}
+)
+}
+
+}
+,{
+key:"shouldComponentUpdate",value:function(t){
+return t.active&&t.active!==this.props.active&&this._getCartNum(),!0
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+clearTimeout(this.cartNumTimer)
+}
+
+}
+,{
+key:"_getCartNum",value:function(){
+// 变量
+var t: any = this;
+clearTimeout(this.cartNumTimer),this.cartNumTimer=setTimeout((function(){
+(0,j.getCartNum)('1').then((function(e){
+var n=e&&b.default.get(e.cartInfo,'itemInfos')||{
+
+}
+;
+b.default.size(n)>0?t.setState({
+cartInfo:e.cartInfo
+}
+,(function(){
+var e=b.default.get(t.state.cartInfo,'itemInfos')||{
+
+}
+,n=b.default.map(e,(function(t){
+var e=(t||{
+
+}
+).subItems;
+return 27*b.default.size(e)+111
+}
+));
+t.setState({
+cartScrollY:b.default.sum(n),hasDataStatus:!0
+}
+)
+}
+)):t.setState({
+hasDataStatus:!1
+}
+)
+}
+),(function(){
+t.setState({
+hasDataStatus:!1
+}
+)
+}
+))
+}
+),1e3)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this,e=this.props,n=e.type,o=e.icon,i=e.title,l=e.list,u=e.active,s=e.custom,v=e.style,y=e.iconStyle,w=e._value,x=e.templateMap,b=this.state,C=b.cartInfo,j=b.cartScrollY,I=b.hasDataStatus,D=s&&F[n]||c.View,N=window.location.href;
+encodeURIComponent(T+"#/?businessUUID=902d812b8bdb44e089e34544fb5d77e2&enterurl="+N+"&k=1&from=06&remark=");
+return(0,k.jsx)(f.WithTheme,{
+themeStyles:S.default,children:function(e,b){
+return(0,k.jsx)(c.View,{
+children:(0,k.jsxs)(c.View,{
+style:[e.flexBox,u&&e.selectcontainer,v],children:[o&&(0,k.jsx)(c.View,{
+style:y,children:(0,k.jsx)(h.default,{
+normalCol:u?b.C75.color:'#FFFFFF',opacity:u?1:.6,iconName:o,width:16,height:16
+}
+)
+}
+),(0,k.jsx)(c.Text,{
+style:[e.textnormal,u&&e.selecttextactive,e.paddinghorizontal],children:i+(void 0!==w?"("+w+")":'')
+}
+),'buyCart'===n?null:(0,k.jsx)(c.View,{
+style:e.selectarrow,children:(0,k.jsx)(h.default,{
+normalCol:u?b.C75.color:'#FFFFFF',iconName:u?'web-put-away':'web-drop-down',opacity:u?1:.6,width:16,height:16
+}
+)
+}
+),(0,k.jsx)(c.View,{
+style:[e.selectbox,!u&&{
+display:'none'
+}
+,'select'===n&&{
+paddingHorizontal:18,paddingVertical:12
+}
+],children:s?(0,k.jsx)(D,{
+list:l,templateMap:x,cartInfoData:C,scrollY:j,hasDataStatus:I
+}
+):l&&l.map((function(o,i){
+return(0,k.jsx)(c.TouchableOpacity,{
+activeOpacity:1,style:e.aligncenter,onPress:function(){
+return t.onPress(o)
+}
+,children:(0,k.jsx)(f.Hoverable,{
+children:function(t){
+return'image'===n?(0,k.jsxs)(c.View,{
+style:{
+width:o.imgwidth
+}
+,children:[0===i?null:(0,k.jsx)(c.View,{
+style:e.imgline
+}
+),(0,k.jsx)(p.default,{
+style:{
+padding:4
+}
+,imgUri:o.imgUrl,imgProportion:o.imgProportion
+}
+)]
+}
+):(0,k.jsx)(c.Text,{
+numberOfLines:1,style:[e.textnormal,e.selecttextnormal,t&&e.selecttextactive],children:o.code&&(0,f.t)(o.code)||o.text
+}
+)
+}
+
+}
+)
+}
+)
+}
+))
+}
+)]
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"isLogin",value:function(){
+// 变量
+var t: any = N+"mcp/user/queryUserLoginStatus";
+return f.Http.get((0,I.formatUrl)(t,!0,{
+portal:'1',country:'CN',lang:'zh_CN'
+}
+)).then((function(t){
+return t.login
+}
+))
+}
+
+}
+,{
+key:"onPress",value:(v=(0,e.default)((function*(t){
+// 变量
+var e: any = t.url;
+if(t.isCustomer){
+// 变量
+var n: any = yield this.isLogin(),o=window.location.href,i=T+"#/?businessUUID=902d812b8bdb44e089e34544fb5d77e2&enterurl="+o+"&k=1&from=06&remark=";
+n?(0,C.gotoPage)(i):'web'===c.Platform.OS&&(0,C.gotoPage)(e)
+}
+e&&(0,C.gotoPage)(e,!!t.newTab)
+}
+)),function(t){
+return v.apply(this,arguments)
+}
+)
+}
+]);
+var v
+}
+)(s.default.Component);
+_e.default=U
+}
+),"00e85bd97cf213947cbd49b1f15d8039ce93c2ce9686aee44cdac16a20331a14",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","8052f046fc780ff8c4d732e08c85465d11307371085ee6babe8c74f3abeb91f6","11b83fdf52a1b7342c020a5de4116bce9f6c91eabed047ffc17be408970869df","bb37e491950faa8288ed95c631d9dd43593511e32587218dab4598b750653071","45346afc32addb2c05d47d0d982bf262291f7d41b486ae5d1aa94b3b25752eed","07904ae337b5d10546980ebd022652429854b8dff147fe9c70f910e54edd12a8","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","9399da1f65868800d1a41457d1d37cf46ef9ec4a4b363a5dae4e8e973bb03d8f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o,n=e(r(d[1])),l=e(r(d[2])),c=e(r(d[3])),u=e(r(d[4])),s=e(r(d[5])),h=e(r(d[6])),p=r(d[7]),f=e(r(d[8])),y=r(d[9]),v=r(d[10]),b=r(d[11]),w=e(r(d[12])),x=r(d[13]),j=e(r(d[14])),C=e(r(d[15])),T=r(d[16]);
+// 函数
+function O(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(O=function(){
+return!!e
+}
+)()
+}
+var R=(0,x.observer)((o=(function(e){
+// 函数
+function t(e: any): any {
+var o,l,s,h;
+return(0,n.default)(this,t),l=this,s=t,h=[e],s=(0,u.default)(s),(o=(0,c.default)(l,O()?Reflect.construct(s,h||[],(0,u.default)(l).constructor):s.apply(l,h))).imageTimer=null,o.refItem=function(e){
+o.item=e,'function'==typeof o.props.receiveRef&&o.props.receiveRef(e),'function'==typeof o.props.newReceiveRef&&o.props.newReceiveRef(e)
+}
+,o.imgDomRef=function(e,t,n,l,c,u,s,h,f){
+'function'==typeof o.props.receiveRef&&o.props.receiveRef(e),'web'===p.Platform.OS&&(o.imgRef=C.default.findDOMNode(e)||null,o.imgRef&&(o.imgRef.onclick=function(){
+o.onImageClick(t,n,l,c,u,s,h,f,o.props.layoutType,o.props.cardType,o.props.labelFlag)
+}
+))
+}
+,o.initWidth=function(e){
+o.state.iWidth!==e&&o.setState({
+iWidth:e
+}
+)
+}
+,o.state={
+imgWidth:0,loading:!0,stateError:!1,iWidth:o.props.width,iHeight:o.props.height
+}
+,o.onLayout=o.onLayout.bind(o),o
+}
+return(0,s.default)(t,e),(0,l.default)(t,[{
+key:"onLayout",value:function(e){
+this.setState({
+imgWidth:e.nativeEvent.layout.width
+}
+)
+}
+
+}
+,{
+key:"onImageClick",value:function(e,t,o,n,l,c,u,s,h,p,f){
+var y=this.props.onClick;
+y&&y(),this.click(e,t,o,n)
+}
+
+}
+,{
+key:"click",value:function(e,t,o,n){
+var l;
+null==(l=this.imgRef)||l.blur(),'web'===p.Platform.OS||(0,b.isMp)()?'large'===n&&t?this.imageTimer=setTimeout((function(){
+(0,v.gotoPage)(t)
+}
+),150):o&&(this.imageTimer=setTimeout((function(){
+(0,v.gotoPage)(o)
+}
+),150)):this.imageTimer=setTimeout((function(){
+(0,v.gotoPage)(e)
+}
+),150)
+}
+
+}
+,{
+key:"close",value:function(e,t){
+(e=e||window.event).cancelBubble=!0,this.props.callBackClose(t)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.imageTimer&&clearTimeout(this.imageTimer)
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,o=t.imgUri,n=t.imgProportion,l=t.width,c=t.isRadius,u=t.style,s=t.actionUrl,h=t.actionUrlWeb,v=t.actionUrlWap,b=t.comId,x=t.gotoPageId,C=t.dataCode,O=t.index,R=t.columnNumber,W=t.isClosed,k=t.scene,P=t.boxWidth,S=t.imgWidth,M=t.showCategory,I=t.layoutType,L=t.cardType,V=t.labelFlag,H=t.isHighQuality;
+l=P||l,'StaggeredLayout'===I&&(l=P);
+var U,N=(0,y.ScreenSize)(this.state.iWidth),_='small'===N?{
+position:'absolute',top:8,right:8
+}
+:{
+position:'absolute',top:12,right:12
+}
+;
+U=S||this.state.imgWidth;
+var B='topMenu'===k?{
+width:l,height:90
+}
+:{
+width:U,height:M?550:U/n
+}
+,D=function(t){
+return(0,T.jsx)(p.View,{
+style:{
+width:1200,height:90,position:'absolute',top:0,left:0,right:0,bottom:0,margin:'auto'
+}
+,children:(0,T.jsx)(p.View,{
+style:_,children:(0,T.jsx)(y.Hoverable,{
+children:function(o){
+return(0,T.jsx)(p.TouchableOpacity,{
+activeOpacity:1,onFocus:function(t){
+return e.close(t,O)
+}
+,children:(0,T.jsx)(j.default,{
+iconName:"cancel-",width:"24",height:"24",isActive:o,normalCol:t.C24.color,opacity:o?t.C23.opacity:t.C24.opacity
+}
+)
+}
+)
+}
+
+}
+,'1')
+}
+)
+}
+)
+}
+;
+c=void 0===c?'large'!==N:c;
+var F='topMenu'===k?{
+width:'100%'
+}
+:{
+
+}
+,A=function(t,l){
+return 0===U?null:(0,T.jsxs)(p.View,{
+style:[{
+display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'#fff'
+}
+,t,u,F],collapsable:!1,children:[(0,T.jsx)(w.default,{
+imgUri:o,imgStyleWidth:B.width,imgStyleHeight:B.height,imgWidth:U,imgProportion:n,isHighQuality:H
+}
+),1===R&&'1'===W&&'topMenu'!==k?(0,T.jsx)(p.View,{
+style:_,children:'web'===p.Platform.OS?(0,T.jsx)(y.Hoverable,{
+children:function(t){
+return(0,T.jsx)(p.TouchableOpacity,{
+activeOpacity:1,onFocus:function(t){
+return e.close(t,O)
+}
+,children:(0,T.jsx)(j.default,{
+iconName:"cancel-",width:'small'===N?'16':'24',height:'small'===N?'16':'24',isActive:t,normalCol:'#000000',opacity:t?l.C23.opacity:l.C24.opacity
+}
+)
+}
+)
+}
+
+}
+,O):(0,T.jsx)(p.TouchableOpacity,{
+activeOpacity:1,onPress:function(t){
+return e.close(t,O)
+}
+,children:(0,T.jsx)(j.default,{
+iconName:"cancel-",width:'small'===N?'16':'24',height:'small'===N?'16':'24',normalCol:'#000000',opacity:l.C24.opacity
+}
+)
+}
+)
+}
+):null,1===R&&'1'===W&&'topMenu'===k?D(l):null]
+}
+)
+}
+;
+return(0,T.jsx)(y.WithTheme,{
+themeStyles:f.default,children:function(t,o){
+e.initWidth(e.props.width||0);
+// 变量
+var n: any = [t.container],l=[t[c?'img':'img_pc']];
+return(0,T.jsx)(p.View,{
+ref:e.refItem,collapsable:!1,children:'web'===p.Platform.OS?(0,T.jsx)(p.View,{
+style:{
+position:'relative',overflow:'hidden'
+}
+,children:(0,T.jsx)(p.TouchableOpacity,{
+style:n,ref:function(t){
+e.imgDomRef(t,s,h,v,N,b,x,C,O)
+}
+,activeOpacity:1,onLayout:e.onLayout,children:A(l,o)
+}
+)
+}
+):(0,T.jsx)(p.View,{
+style:{
+position:'relative',overflow:'hidden'
+}
+,children:(0,T.jsx)(p.TouchableOpacity,{
+style:n,onPress:e.onImageClick.bind(e,s,h,v,N,b,x,C,O,I,L,V),activeOpacity:1,onLayout:e.onLayout,children:A(l,o)
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+])
+}
+)(h.default.PureComponent),o.defaultProps={
+hasMargin:!0
+}
+,t=o))||t;
+_e.default=(0,y.Componentautoscaling)(R)
+}
+),"8052f046fc780ff8c4d732e08c85465d11307371085ee6babe8c74f3abeb91f6",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","f9b9051dc0d11bb2b01257d52d64d52810c876d2ae39cb9241b84e82b239420f","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","3434a395e47d744a91c4da1ace8bf4a820afa13ad7844ab6508ada9b60529b80","591f0777947abe38671013c1ca479cb4f31fc16b30b93eb8ed2bdbf414a05009","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","3333e4da975158a578269d7b903373061c90b2d73f044c48dc110568d51aa71f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var o: any = r(d[0]);
+e.default=function(t){
+return o.StyleSheet.create({
+container:{
+width:'100%',justifyContent:'center',alignItems:'center'
+}
+,img:{
+borderRadius:t.radiusimage,overflow:'hidden',backgroundColor:'transparent'
+}
+,img_pc:{
+borderRadius:t.radiusimage_PC,overflow:'hidden',backgroundColor:'transparent'
+}
+,smallStyle:{
+width:16,height:16
+}
+,otherSmallStyle:{
+width:24,height:24
+}
+,closeIconNormalColor:{
+color:t.C24.color
+}
+,closeIconActiveColor:{
+color:t.C23.color
+}
+
+}
+)
+}
+
+}
+),"f9b9051dc0d11bb2b01257d52d64d52810c876d2ae39cb9241b84e82b239420f",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),l=t(r(d[3])),o=t(r(d[4])),c=t(r(d[5])),u=t(r(d[6])),s=r(d[7]),f=r(d[8]),x=t(r(d[9])),v=r(d[10]),h=r(d[11]),p=r(d[12]),y=r(d[13]);
+// 函数
+function w(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(w=function(){
+return!!t
+}
+)()
+}
+var b=(function(t){
+// 函数
+function u(t: any): any {
+var n,c,s,f;
+return(0,e.default)(this,u),c=this,s=u,f=[t],s=(0,o.default)(s),(n=(0,l.default)(c,w()?Reflect.construct(s,f||[],(0,o.default)(c).constructor):s.apply(c,f))).state={
+list:h.navigationList
+}
+,n
+}
+return(0,c.default)(u,t),(0,n.default)(u,[{
+key:"render",value:function(){
+// 变量
+var t: any = this,e=this.props.templateMap;
+return e&&e.webNav&&(0,p.showhtml)(e.webNav,'dropdown-navs')||(0,y.jsx)(f.WithTheme,{
+themeStyles:x.default,children:function(e){
+return(0,y.jsx)(s.View,{
+style:e.navigationbox,children:t.state.list.map((function(n){
+return(0,y.jsxs)(s.View,{
+style:[e.navtextbox,n.flex&&{
+flex:n.flex
+}
+],children:[(0,y.jsx)(s.Text,{
+style:[e.navigationtitle],children:n.code&&(0,f.t)(n.code)||n.text
+}
+),(0,y.jsx)(s.View,{
+style:e.navtitlebox,children:n.list&&n.list.map((function(l){
+return(0,y.jsx)(s.TouchableOpacity,{
+activeOpacity:1,style:[e.navtextwidth,n.flex&&{
+width:100/n.flex+"%"
+}
+],onPress:function(){
+return t.onPress(l.url,!!l.newTab)
+}
+,children:(0,y.jsx)(f.Hoverable,{
+children:function(t){
+return(0,y.jsx)(s.Text,{
+style:[e.textnormal,e.navtextnormal,t&&e.selecttextactive],children:l.code&&(0,f.t)(l.code)||l.text
+}
+)
+}
+
+}
+)
+}
+)
+}
+))
+}
+)]
+}
+)
+}
+))
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(t,e){
+t&&(0,v.gotoPage)(t,e)
+}
+
+}
+])
+}
+)(u.default.Component);
+_e.default=b
+}
+),"11b83fdf52a1b7342c020a5de4116bce9f6c91eabed047ffc17be408970869df",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","1ad0c00cb70c1f17c4c7711b05279cbf9c43e4b409563064e073dc1ac817350f","82719f5b4b8336f9f3ab5d3847de10f3550ff4b54a9ed40a3afb100b3185e77f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var t=r(d[0]),o=r(d[1]),n={
+display:'flex',flexDirection:'row',alignItems:'center'
+}
+,l=12;
+e.default=function(s){
+return t.StyleSheet.create({
+flexBox:n,bgbox:{
+display:'flex',backgroundColor:'#000',zIndex:10,lineHeight:36,minHeight:36,minWidth:o.variables.safety_area
+}
+,container:Object.assign({
+
+}
+,n,{
+alignItems:'flex-start'
+}
+),leftbox:Object.assign({
+
+}
+,n,{
+width:'50%'
+}
+),rightbox:Object.assign({
+
+}
+,n,{
+justifyContent:'flex-end',flexGrow:1,height:36
+}
+),textnormal:{
+fontSize:l,color:'#FFFFFF99',lineHeight:36
+}
+,textactive:{
+color:'#FFFFFF'
+}
+,paddinghorizontal:{
+paddingHorizontal:8
+}
+,textfirst:{
+paddingLeft:0
+}
+,line:{
+height:12,borderRightWidth:1,borderColor:'#414141'
+}
+,cartbox:Object.assign({
+
+}
+,n,{
+justifyContent:'center',backgroundColor:'#424242'
+}
+),itemcontainer:Object.assign({
+
+}
+,n),cartimg:{
+marginHorizontal:5,width:16
+}
+,selectcontainer:{
+position:'relative',backgroundColor:'#FFF'
+}
+,selectbox:{
+position:'absolute',top:36,right:0,backgroundColor:'#FDFDFD'
+}
+,selecttext:{
+lineHeight:32
+}
+,selecttextnormal:{
+color:'#777777',lineHeight:32
+}
+,selecttextactive:{
+color:s.primaryColor
+}
+,imgline:{
+width:'100%',marginVertical:20,borderBottomWidth:1,borderBottomColor:'#DDDDDD'
+}
+,selectarrow:{
+position:'relative',left:-2,width:12,marginRight:8
+}
+,navigationbox:Object.assign({
+
+}
+,n,{
+width:770,height:236,paddingTop:28,paddingLeft:68,paddingBottom:18,paddingRight:18
+}
+),navhomebox:{
+width:50,height:'100%',marginHorizontal:30
+}
+,navtextbox:{
+flex:1,height:'100%'
+}
+,navigationtitle:{
+fontSize:16,color:'#333',fontWeight:'600',textAlign:'left',lineHeight:20,marginBottom:8
+}
+,navimgbox:{
+padding:10,borderRadius:'50%',backgroundColor:'#eee'
+}
+,navtitlebox:{
+flexGrow:1,flexDirection:'row',flexWrap:'wrap',alignContent:'flex-start',marginRight:10
+}
+,navtextnormal:{
+color:'#777',lineHeight:32
+}
+,navtextwidth:{
+width:'100%',textAlign:'left'
+}
+,aligncenter:{
+textAlign:'center'
+}
+,memberavatar:{
+height:74,width:74,backgroundColor:'#ddd',borderRadius:'50%',marginRight:15,overflow:'hidden'
+}
+,membermsgbox:{
+width:200
+}
+,membermsgimg:{
+width:16,marginRight:5
+}
+,memberprogress:{
+height:20,marginBottom:10
+}
+,membermsg:Object.assign({
+
+}
+,n,{
+justifyContent:'center',width:90,height:30,marginRight:10,backgroundColor:'#F5F5F5'
+}
+),membertitle:Object.assign({
+
+}
+,n,{
+height:32,width:300,marginTop:32,borderBottomWidth:1
+}
+),membertitlemore:{
+textAlign:'right',fontSize:l,color:'#717171'
+}
+,membertitleleft:{
+flexGrow:1,textAlign:'left'
+}
+,membergoods:{
+flexGrow:1,height:32
+}
+,membergoodstext:{
+fontSize:l,color:'#3A3A3A'
+}
+,greyborder:{
+borderColor:'#EEEEEE'
+}
+,memberparam:Object.assign({
+
+}
+,n,{
+paddingVertical:16
+}
+),memberparamvalue:{
+fontSize:16,color:'#000000'
+}
+,memberparamtext:{
+fontSize:l,color:'#717171'
+}
+,memberlogoutbox:{
+borderTopWidth:1
+}
+,memberlogout:{
+lineHeight:12,paddingTop:16
+}
+,noProductWrapper:{
+display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',paddingTop:50,paddingBottom:50
+}
+,buycartbox:{
+display:'flex',flexDirection:'column',width:460,height:'auto',maxHeight:519,shadowColor:'rgba(0, 0, 0, 0.1)',shadowOffset:{
+width:0,height:5
+}
+,shadowOpacity:1,shadowRadius:10
+}
+,primaryCls:{
+maxHeight:434,overflowX:'hidden',overflow:'auto',width:460,top:0,position:'relative'
+}
+,productWrapper:{
+width:460,top:0,maxHeight:434,overflow:'auto',position:'relative',paddingRight:20,paddingLeft:20
+}
+,productPaddingRightCls:{
+width:460,top:0,maxHeight:434,overflow:'auto',position:'relative',paddingLeft:20,paddingRight:36
+}
+,primaryMaskCls:{
+width:55,top:0,left:0,position:'absolute',zIndex:10,height:'100%'
+}
+,subItemText:{
+marginLeft:8
+}
+,invalidClickCls:{
+color:'#a4a4a4'
+}
+,settlementOpacityCls:{
+opacity:.4
+}
+,settlementCls:{
+backgroundColor:'#f1f3f5',width:460,height:85,paddingTop:10,paddingLeft:20,paddingRight:20,paddingBottom:16,flexDirection:'column'
+}
+,settlementTitleCls:{
+height:16,lineHeight:16,fontSize:12,color:'#000000',opacity:.9
+}
+,settlementPriceCls:{
+display:'flex',flexDirection:'row',justifyContent:'space-between'
+}
+,settlementSalePriceCls:{
+fontSize:24,color:'#CF0A2C'
+}
+,salePricecls:{
+width:72,marginLeft:8,textDecorationLine:'line-through',color:' #000000',opacity:.6
+}
+,settlementCountPriceCls:{
+paddingLeft:10,alignSelf:'flex-start',flex:2,textDecorationLine:'line-through',fontSize:l,color:' #000000',opacity:.6
+}
+,settlementCountCls:{
+width:150,height:40,backgroundColor:'#CF0A2C',color:'#ffffff',display:'flex',alignItems:'center',justifyContent:'center',borderRadius:4
+}
+,bottomColorLine:{
+borderWidth:1,borderTopColor:'#fff',borderRightColor:'#fff',borderLeftColor:'#fff',borderBottomColor:'rgba(0,0,0,0.05)',marginTop:20
+}
+,primaryProductCls:{
+display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:64,marginBottom:5,marginTop:20
+}
+,invalidCauseReasonTitle:{
+fontSize:12,color:'#CF0A2C',marginTop:4
+}
+,primaryProductIcon:{
+height:20,width:20
+}
+,primaryProductContainer:{
+height:64,flex:1,display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingLeft:16
+}
+,subItemWrapperCls:{
+width:'100%',display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingLeft:18,flexWrap:'wrap'
+}
+,commonTypeCls:{
+width:'100%',display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'flex-start',paddingLeft:13,flexWrap:'wrap',marginTop:11
+}
+,subQtyCls:{
+width:40,textAlign:'right'
+}
+,itemNameDescriptionCls:{
+color:'rgba(0, 0, 0, 0.9)',fontSize:12,lineHeight:16,flex:1,flexWrap:'wrap'
+}
+,itemTypeTitle:{
+width:80,opacity:.9,fontSize:12,color:' #000000',fontWeight:400
+}
+,primaryImg:{
+height:64,width:64
+}
+,textContainerCls:{
+display:'flex',flex:1,alignItems:'flex-start',borderWidth:2,borderColor:'red'
+}
+,primaryTitle:{
+flex:1,paddingLeft:12,paddingRight:13,fontSize:l,color:'#000000',fontWeight:400,display:'flex',flexDirection:'column'
+}
+,prdItemText:{
+display:'flex',maxHeight:38,lineHeight:19,overflow:'hidden'
+}
+,normalPrice:{
+flexWrap:'wrap',opacity:.9
+}
+,primaryPrice:{
+display:'flex',flexDirection:'row',justifyContent:'flex-end',width:120
+}
+,priceTotal:{
+display:'flex',flexDirection:'column',alignItems:'flex-end',width:72,textAlign:'right'
+}
+,underlinedPrice:{
+flexWrap:'wrap'
+}
+,originalPrice:{
+width:72,marginLeft:8,opacity:.9
+}
+,primaryQty:{
+width:50,marginLeft:8,opacity:.9,alignSelf:'flex-start'
+}
+,prdItemHover:{
+color:'#CA151D'
+}
+,settlementHoverCls:{
+opacity:.8
+}
+,buycartnull:Object.assign({
+
+}
+,n,{
+justifyContent:'center',marginHorizontal:'auto',width:100,height:100
+}
+),buycartmsgnull:{
+fontSize:14,color:'#A4A4A4',lineHeight:32
+}
+,progressbox:{
+position:'relative',width:'100%',borderRadius:4,backgroundColor:'#EAEAEA'
+}
+,progressitem:{
+height:8,borderRadius:4
+}
+,progresschild:Object.assign({
+position:'absolute'
+}
+,n,{
+left:0,top:-5,height:20,width:20
+}
+),qrcodetitle:{
+fontSize:14,fontWeight:700
+}
+,qrcodemsg:{
+fontSize:12,lineHeight:16
+}
+,selectregion:Object.assign({
+position:'web'===t.Platform.OS?'fixed':'absolute'
+}
+,n,{
+justifyContent:'center',top:0,left:0,height:'100vh',width:'100vw',backgroundColor:'#00000058'
+}
+),selectregioncon:{
+backgroundColor:'#FFFFFF',width:720,maxHeight:'80%'
+}
+,selectregiontitle:{
+fontSize:24,textAlign:'center',paddingTop:30
+}
+
+}
+)
+}
+
+}
+),"572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.rightMemberList=e.rightLoginList=e.rightList=e.navigationList=e.memberList=e.memberLeftList=e.leftList=e.cartItem=void 0;
+var o=t(r(d[1])),l=r(d[2]),c=r(d[3]),s=e.leftList=[{
+text:'\u9996\u9875',url:'/'
+}
+,{
+text:'\u534e\u4e3a\u5b98\u7f51',url:'https://consumer.huawei.com/cn/',newTab:!0
+}
+,{
+text:'\u82b1\u7c89\u4ff1\u4e50\u90e8',url:'https://club.huawei.com/',newTab:!0
+}
+,{
+text:'V\u7801(\u4f18\u8d2d\u7801)',url:'/priority'
+}
+,{
+text:'\u4f01\u4e1a\u8d2d',url:'https://company.vmall.com/',newTab:!0
+}
+,{
+text:'Select Region',url:''
+}
+,{
+text:'\u66f4\u591a\u7cbe\u5f69',url:'',type:'select',list:[{
+text:'EMUI',url:'https://emui.huawei.com/',newTab:!0
+}
+,{
+text:'\u5e94\u7528\u5e02\u573a',url:'https://appgallery.huawei.com/',newTab:!0
+}
+,{
+text:'\u534e\u4e3a\u7ec8\u7aef\u4e91\u7a7a\u95f4',url:'https://cloud.huawei.com/',newTab:!0
+}
+,{
+text:'\u5f00\u53d1\u8005\u8054\u76df',url:'https://developer.huawei.com/',newTab:!0
+}
+]
+}
+],n=e.memberLeftList=JSON.parse(JSON.stringify(s));
+n.splice.apply(n,[5,0].concat([{
+text:'\u4f18\u60e0\u5185\u8d2d',url:'/member/enterprise',timeStamp:1
+}
+,{
+text:'\u5185\u90e8\u8981\u8d27',url:'/member/assets',timeStamp:1
+}
+]));
+e.rightList=[{
+text:'\u6211\u7684\u8ba2\u5355',url:'/member/order',timeStamp:1,mustLogin:!0,code:'my_order',targetUrl:'member/order'
+}
+,{
+text:'\u5ba2\u6237\u670d\u52a1',url:'',type:'select',code:'customer_service',list:[{
+text:'\u670d\u52a1\u4e2d\u5fc3',url:'/help/index.html',newTab:!0,code:'service_center'
+}
+,{
+text:'\u8054\u7cfb\u5ba2\u670d',mustLogin:!0,isCustomer:!0,url:'',code:'call_us'
+}
+]
+}
+,{
+text:'\u7f51\u7ad9\u5bfc\u822a',url:'',type:'navigation',code:'navigation'
+}
+,{
+text:'\u624b\u673a\u7248',url:'',type:'qrcode',code:'mobile_version',list:[{
+imgUrl:o.default.tool_app,imgwidth:90,imgProportion:1,url:'https://www.vmall.com/appdownload',text:'\u534e\u4e3a\u5546\u57ceAPP',msgList:[{
+text:'\u65b0\u4eba\u4e13\u4eab\u597d\u793c',color:'C18'
+}
+,{
+text:'\u6700\u9ad85000\u79ef\u5206',color:'C18'
+}
+],iconList:[{
+icon:'android-icon',textIcon:'android'
+}
+,{
+icon:'iphone-icon',textIcon:'iphone'
+}
+,{
+icon:'wechat-icon',textIcon:'wechat'
+}
+]
+}
+,{
+imgUrl:o.default.tool_public,imgwidth:90,imgProportion:1,url:'',text:'\u534e\u4e3a\u5546\u57ce\u516c\u4f17\u53f7',msgList:[{
+text:'\u5fae\u4fe1\u626b\u4e00\u626b',color:''
+}
+],iconList:[{
+icon:'wechat-icon',textIcon:'wechat'
+}
+]
+}
+,{
+imgUrl:o.default.tool_mp,imgwidth:90,imgProportion:1,url:'',text:'\u5fae\u4fe1\u5c0f\u7a0b\u5e8f',iconList:[{
+icon:'wechat-icon',textIcon:'wechat'
+}
+]
+}
+]
+}
+],e.rightLoginList=[{
+text:'\u8bf7\u767b\u5f55',isLogin:!0,code:'to_login'
+}
+,{
+text:'\u6ce8\u518c',isRegister:!0,code:'register'
+}
+];
+// 变量
+var u: any = c.Service.webDomain+l.URL_CONSTANTS.PERSONAL_URL_WEB;
+u=c.Cookies.get('rnpersonalurlweb')?c.Cookies.get('rnpersonalurlweb'):c.Service.webDomain+l.URL_CONSTANTS.PERSONAL_URL_WEB;
+e.rightMemberList=[{
+text:'\u60a8\u597d!',url:u,timeStamp:1,type:'member'
+}
+],e.cartItem={
+text:'\u8d2d\u7269\u8f66',code:'shortcut_cart',style:{
+paddingHorizontal:2
+}
+,url:'/cart2',type:'buyCart',icon:'cart',iconStyle:{
+marginLeft:6,marginBottom:3
+}
+,iconSize:16,_value:0
+}
+,e.navigationList=[{
+text:'\u9891\u9053',code:'channel',list:[{
+text:'\u534e\u4e3a\u4e13\u533a',url:'/huawei',code:'for_huawei'
+}
+,{
+text:'\u4f01\u4e1a\u8d2d',url:'https://company.vmall.com/client',code:'group_purchase'
+}
+]
+}
+,{
+text:'\u4ea7\u54c1',code:'product',flex:2,list:[{
+text:'\u624b\u673a',code:'phone',url:'https://www.vmall.com/list-36'
+}
+,{
+text:'\u7b14\u8bb0\u672c',code:'MateBook',url:'https://www.vmall.com/list-676'
+}
+,{
+text:'\u5e73\u677f',code:'MatePad',url:'https://www.vmall.com/list-678'
+}
+,{
+text:'\u667a\u80fd\u7a7f\u6234',code:'smart_wear',url:'https://www.vmall.com/list-59'
+}
+,{
+text:'\u667a\u80fd\u5bb6\u5c45',code:'smart_home',url:'https://www.vmall.com/list-714'
+}
+,{
+text:'\u667a\u6167\u5c4f',code:'TV',url:'https://www.vmall.com/list-646'
+}
+,{
+text:'\u8033\u673a\u97f3\u7bb1',code:'speakers',url:'https://www.vmall.com/list-652'
+}
+,{
+text:'\u70ed\u9500\u914d\u4ef6',code:'accessories',url:'https://www.vmall.com/list-54'
+}
+,{
+text:'\u751f\u6001\u4ea7\u54c1',code:'ecological',url:'https://www.vmall.com/list-43'
+}
+,{
+text:'\u589e\u503c\u670d\u52a1',code:'appreciation',url:'https://www.vmall.com/list-34'
+}
+]
+}
+,{
+text:'\u589e\u503c\u670d\u52a1',code:'appreciation',list:[{
+text:'\u4ee5\u65e7\u6362\u65b0',code:'old_for_new_service',url:'https://vmall.aihuishou.com/'
+}
+,{
+text:'\u8865\u8d2d\u4fdd\u969c',code:'security',url:'https://www.vmall.com/order/tcsProductIndex'
+}
+,{
+text:'\u4e00\u53e3\u4ef7\u6362\u7535\u6c60',code:'battery_change',url:'/order/batteryRenew'
+}
+]
+}
+,{
+text:'\u4f1a\u5458',code:'members',list:[{
+text:'\u4f1a\u5458\u9891\u9053',code:'members_zone',url:'https://www.vmall.com/privilege'
+}
+]
+}
+],e.memberList=[{
+text:'\u5f85\u4ed8\u6b3e',url:'/member/order?tab=unpaid',timeStamp:1,code:'not_paying'
+}
+,{
+text:'\u5f85\u6536\u8d27',url:'/member/order?tab=send',timeStamp:1,code:'not_receiving'
+}
+,{
+text:'\u5f85\u8bc4\u4ef7',url:'/member/order?tab=nocomment',timeStamp:1,code:'not_evaluation'
+}
+,{
+text:'\u9000\u6362\u8d27',url:'/member/exchange',timeStamp:1,code:'exchange'
+}
+,{
+text:'\u65e7\u673a\u56de\u6536',url:'/member/recycle/index',timeStamp:1,code:'recycle'
+}
+]
+}
+),"1ad0c00cb70c1f17c4c7711b05279cbf9c43e4b409563064e073dc1ac817350f",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","aebe44e2905aa94571dfb51409bd26ee6d7374e8fd7c51f5f6baac049a32f68b","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var l=r(d[0]),t={
+
+}
+,s={
+
+}
+,o={
+footer_custome_service:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/custome-service.png',footer_left:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/link-left.png',footer_left_disabled:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/link-left-disabled.png',footer_right:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/link-right.png',footer_right_disabled:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/link-right-disabled.png',footer_app:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/icon-app.png',footer_wap:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/icon-wap.png',footer_pc:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/icon-pc.png',tool_public:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/public-qrcode.png',tool_mp:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/mp-qrcode.jpg',tool_app:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/app-qrcode.png',tool_medal0:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/medal-0.png',tool_medal1:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/medal-1.png',tool_medal2:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/medal-2.png',tool_medal3:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/medal-3.png',tool_medal4:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/medal-4.png',tool_medal5:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/medal-5.png',tool_cartbig:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/cart-big.svg',tool_avatar:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/avatar.svg',empty_user:'https://res.vmallres.com/portal/1.10.9.305SP01/h5/images/Empty_user.png'
+}
+;
+Object.keys(t).forEach((function(l){
+var s;
+o[l]=(null==(s=t[l])?void 0:s.default)||null
+}
+));
+e.default='web'!==l.Platform.OS?Object.assign({
+
+}
+,t,s):Object.assign({
+
+}
+,o,s)
+}
+),"aebe44e2905aa94571dfb51409bd26ee6d7374e8fd7c51f5f6baac049a32f68b",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,r,i,_a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.verifyLogin=e.toGetMemberInfo=e.showhtml=e.getPureUrl=e.decodeAttr=void 0;
+var n=t(r(d[1])),o=(t(r(d[2])),r(d[3])),a=r(d[4]),u=t(r(d[5])),l=r(d[6]),c=r(d[7]),s=e.decodeAttr=function(t){
+// 变量
+var n: any = 'web'===o.Platform.OS&&document.createElement('textarea');
+return n?(n.innerHTML=t,n.value):t
+}
+,f=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:1,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'zh_CN',o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:'CN',a="lang="+n+"&country="+o+"&portal="+t,u=l.Service.webDomain+"member/accountInfo.json",c=l.Service.openApiDomain+"mcp/message/unreadMsgNum?"+a,s=l.Service.openApiDomain+"mcp/queryUserPointBalanceDetail?"+a,f=l.Service.openApiDomain+"mcp/pay/queryBalanceAmount?"+a;
+return Promise.all([l.Http.get(u),l.Http.get(c),l.Http.post(s,{
+portal:t,lang:n,country:o
+}
+),l.Http.post(f,{
+portal:t,lang:n,country:o
+}
+)])
+}
+;
+e.toGetMemberInfo=function(){
+return f().then((function(t){
+var a,l,c,f,v,p,h,I=(0,n.default)(t,4),N=I[0],M=I[1],b=I[2],y=I[3],A=((null==(a=N.customerInfo)?void 0:a.totalPoint)||0)-((null==(l=N.gradeConfig)?void 0:l.minScores)||0),P=((null==(c=N.gradeConfig)?void 0:c.maxScores)||0)-((null==(f=N.gradeConfig)?void 0:f.minScores)||0),S={
+headPictureURL:s((null==N||null==(v=N.customerInfo)?void 0:v.headPictureURL)||'')||u.default.tool_avatar,level:(null==(p=N.gradeConfig)?void 0:p.name)||'V0',progressValue:A<0?0:A,progressTotal:P<0?0:P,unread:M.activityMsgNum+M.interactMsgnum+M.logisticsMsgNum+M.ntfMsgNum,pointBlance:b.pointBlance||0,couponCount:N.couponCount||0,balanceAmount:(y.balanceAmount||0).toFixed(2),isAuthentication:'1'===(null==(h=N.customerInfo)?void 0:h.isAuthentication)||!1
+}
+;
+return'web'===o.Platform.OS&&window.sessionStorage.setItem('memberInfo',JSON.stringify(S)),Promise.resolve(S)
+}
+)).catch((function(t){
+return Promise.reject(t)
+}
+))
+}
+,e.showhtml=function(t){
+var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'',o={
+__html:t
+}
+;
+return(0,c.jsx)("div",{
+className:"toolbar_shortcut "+n,dangerouslySetInnerHTML:o
+}
+)
+}
+,e.verifyLogin=function(){
+return new Promise((function(t,n){
+var o;
+(o=l.Service.webDomain+"member/accountInfo.json",l.Http.get(o)).then((function(n){
+t(n)
+}
+)).catch((function(o){
+o.data&&!o.data.success&&'login'===o.data.code?l.Cookies.get('uid')?(0,a.toLogout)().finally((function(){
+t('clear')
+}
+)):t('null'):n('err')
+}
+))
+}
+))
+}
+,e.getPureUrl=function(t){
+// 变量
+var n: any = arguments.length>1&&void 0!==arguments[1]?arguments[1]:['ANONYMITY_LOGIN_NAME','ANONYMITY_LOGIN_MOBILE'];
+if(t.includes('?')){
+// 变量
+var o: any = t.split('?')[0];
+return t.split('?')[1].split('&').forEach((function(t){
+// 变量
+var a: any = t.split('=')[0];
+if(!n.includes(a)){
+// 变量
+var u: any = t.split('=')[1]||'';
+u&&(o.includes('?')?o+='&':o+='?',o+=a+"="+u)
+}
+
+}
+)),o
+}
+return t
+}
+
+}
+),"82719f5b4b8336f9f3ab5d3847de10f3550ff4b54a9ed40a3afb100b3185e77f",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","aebe44e2905aa94571dfb51409bd26ee6d7374e8fd7c51f5f6baac049a32f68b","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,_i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.toLogout=e.selectCartItem=e.getTotalNum=e.getTopTemplate=e.getStrategyForWebWap=e.getProdInfoListWithPage=e.getHotWordForApk=e.getCartNum=e.disselectCartItem=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]),n=r(d[2]),i=r(d[3]),l=r(d[4]);
+e.getTotalNum=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:1001,o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:1,i=n.Service.openApiDomain+"cart/v1/getTotalNum.json?saleChannel="+t+"&salePortal="+o;
+return n.Http.get(i)
+}
+,e.toLogout=function(){
+// 变量
+var t: any = n.Service.webDomain+"customer/logout.json";
+return n.LoginUtils.clearCookie(),n.Http.post(t,{
+url:n.Service.webDomain+"index_new.html"
+}
+).then((function(t){
+return Promise.resolve(t)
+}
+)).catch((function(t){
+return Promise.reject(t)
+}
+))
+}
+,e.getTopTemplate=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:1,l=arguments.length>1&&void 0!==arguments[1]?arguments[1]:o.MCP_LANG.CN,p=arguments.length>2&&void 0!==arguments[2]?arguments[2]:o.MCP_COUNTRY.CN,s=n.Service.openApiDomain+"mcp/queryTemplate";
+return n.Http.get((0,i.formatUrl)(s,!0,{
+portal:t,country:p,lang:l,placeholder:"[\n      \"web_top_shortcut\",\"region_select\",\"index_shortcut_mob_download\",\"index_shortcut_web_nav\"\n    ]"
+}
+))
+}
+,e.getStrategyForWebWap=function(i,p){
+// 变量
+var s: Function = ""+n.Service.openApiDomain+o.URL_CONSTANTS.GET_STRATEGY+"?tid="+i+"&lang="+o.MCP_LANG.CN+"&portal="+p+"&country="+o.MCP_COUNTRY.CN;
+if(!(0,l.isMp)())return n.Http.get(s).then((function(i){
+if(i.tabInfos){
+// 变量
+var l: any = '2',p=n.Service.wapDomain,s=!1;
+'large'===(0,n.screenSize)(t.Dimensions.get('window').width)?l='1':(l='2',p=n.Service.wapDomain);
+for(var u=0;
+u<i.tabInfos.length;
+u++){
+var c;
+if('personal_center'===(null==(c=i.tabInfos[u])?void 0:c.tabType)){
+var v;
+if('1'===(null==(v=i.tabInfos[u])?void 0:v.relatedPageType))if('1'===l){
+var C,N=p+o.URL_CONSTANTS.PERSONAL_URL_WEB_NEW+(null==(C=i.tabInfos[u])?void 0:C.relatedPage);
+n.Cookies.set('rnpersonalurlweb',N,{
+path:'/',domain:'.vmall.com'
+}
+)
+}
+else{
+var _,T=p+o.URL_CONSTANTS.PERSONAL_URL_WAP_NEW+(null==(_=i.tabInfos[u])?void 0:_.relatedPage);
+n.Cookies.set('rnpersonalurlwap',T,{
+path:'/',domain:'.vmall.com'
+}
+)
+}
+else'1'===l?n.Cookies.set('rnpersonalurlweb',null,{
+path:'/',domain:'.vmall.com'
+}
+):n.Cookies.set('rnpersonalurlwap',null,{
+path:'/',domain:'.vmall.com'
+}
+);
+s=!0
+}
+
+}
+return s||('1'===l?n.Cookies.set('rnpersonalurlweb',null,{
+path:'/',domain:'.vmall.com'
+}
+):n.Cookies.set('rnpersonalurlwap',null,{
+path:'/',domain:'.vmall.com'
+}
+)),Promise.resolve(i)
+}
+return Promise.resolve(i)
+}
+)).finally((function(){
+return n.Cookies.set('callAB',1,{
+path:'/',domain:'.vmall.com'
+}
+),Promise.resolve(!0)
+}
+))
+}
+,e.selectCartItem=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:'1',i=arguments.length>1?arguments[1]:void 0,l=""+n.Service.openApiDomain+o.URL_CONSTANTS.SELECT_CART_ITEM;
+return n.Http.post(l,{
+portal:t,mainItemIds:i,country:'CN',lang:'zh-CN'
+}
+)
+}
+,e.disselectCartItem=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:'1',i=arguments.length>1?arguments[1]:void 0,l=""+n.Service.openApiDomain+o.URL_CONSTANTS.DISSELECT_CART_ITEM;
+return n.Http.post(l,{
+portal:t,mainItemIds:i,country:'CN',lang:'zh-CN'
+}
+)
+}
+,e.getCartNum=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:'2',i=""+n.Service.openApiDomain+o.URL_CONSTANTS.GET_CART_LIST+"?&lang="+o.MCP_LANG.CN+"&country="+o.MCP_COUNTRY.CN+"&portal="+t;
+return n.Http.get(i)
+}
+,e.getProdInfoListWithPage=function(t){
+// 变量
+var i: any = arguments.length>1&&void 0!==arguments[1]?arguments[1]:'1',l=""+n.Service.openApiDomain+o.URL_CONSTANTS.GET_PRODINFOLIST_WITHPAGE+"?dataSourceList="+t+"&lang="+o.MCP_LANG.CN+"&country="+o.MCP_COUNTRY.CN+"&portal="+i;
+return n.Http.get(l)
+}
+,e.getHotWordForApk=function(i){
+// 变量
+var l: any = n.Service.openApiDomain+"mcp/recommend/queryHotWord",p=1;
+p='android'===t.Platform.OS||'ios'===t.Platform.OS?3:'large'===(0,n.screenSize)(t.Dimensions.get('window').width)?1:2;
+var s={
+lang:o.MCP_LANG.CN,country:o.MCP_COUNTRY.CN,portal:p,tid:i,platformType:'1',isSearch:'ok'
+}
+;
+return n.Http.post(l,s)
+}
+
+}
+),"cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","9399da1f65868800d1a41457d1d37cf46ef9ec4a4b363a5dae4e8e973bb03d8f","3434a395e47d744a91c4da1ace8bf4a820afa13ad7844ab6508ada9b60529b80"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),o=e(r(d[2])),l=e(r(d[3])),n=e(r(d[4])),s=e(r(d[5])),u=e(r(d[6])),c=r(d[7]),f=e(r(d[8])),x=r(d[9]),b=e(r(d[10])),y=e(r(d[11])),h=r(d[12]),p=e(r(d[13])),w=r(d[14]),j=e(r(d[15])),v=r(d[16]),S=e(r(d[17])),V=r(d[18]),_=r(d[19]),C=r(d[20]);
+// 函数
+function T(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(T=function(){
+return!!e
+}
+)()
+}
+var I,L,O=!1,D='{
+
+}
+';
+'web'===c.Platform.OS&&'undefined'!=typeof window&&(D=(null==(I=window.sessionStorage)?void 0:I.getItem('memberInfo'))&&(null==(L=window.sessionStorage)?void 0:L.getItem('memberInfo')));
+var P=D&&JSON.parse(D)||{
+headPictureURL:p.default.tool_avatar,level:'V0',unread:0,pointBlance:0,couponCount:0,balanceAmount:'0.00',progressTotal:100,progressValue:0,isAuthentication:!1
+}
+,k=16,A=(function(e){
+// 函数
+function u(e: any): any {
+var o,s,c,f;
+return(0,t.default)(this,u),s=this,c=u,f=[e],c=(0,n.default)(c),(o=(0,l.default)(s,T()?Reflect.construct(c,f||[],(0,n.default)(s).constructor):c.apply(s,f))).state={
+list:w.memberList,memberInfo:P,msgNum:0,medalList:{
+V0:{
+img:p.default.tool_medal0,color:'#D4D4D4'
+}
+,V1:{
+img:p.default.tool_medal1,color:'#D4D4D4'
+}
+,V2:{
+img:p.default.tool_medal2,color:'#D4D4D4'
+}
+,V3:{
+img:p.default.tool_medal3,color:'#FF989C'
+}
+,V4:{
+img:p.default.tool_medal4,color:'#FF989C'
+}
+,V5:{
+img:p.default.tool_medal5,color:'#EAEAEA'
+}
+
+}
+,paramList:[{
+text:'\u79ef\u5206',code:'bonus_points',key:'pointBlance',url:'/member/newpoint'
+}
+,{
+text:'\u4f18\u60e0\u5238',code:'coupons',key:'couponCount',url:'/member/coupon'
+}
+,{
+text:'\u4ee3\u91d1\u5238',code:'vouchers',key:'balanceAmount',url:'/member/balance'
+}
+]
+}
+,o
+}
+return(0,s.default)(u,e),(0,o.default)(u,[{
+key:"render",value:function(){
+// 变量
+var e: any = this;
+return(0,C.jsx)(x.WithTheme,{
+themeStyles:y.default,children:function(t,o){
+return(0,C.jsxs)(c.TouchableOpacity,{
+activeOpacity:1,style:[t.aligncenter,{
+padding:18
+}
+],children:[(0,C.jsxs)(c.View,{
+style:t.flexBox,children:[(0,C.jsx)(c.View,{
+style:t.memberavatar,children:(0,C.jsx)(c.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+// 变量
+var e: any = x.Service.webDomain+_.URL_CONSTANTS.PERSONAL_URL_WEB;
+x.Cookies.get('rnpersonalurlweb')?(e=x.Cookies.get('rnpersonalurlweb'),(0,h.gotoPage)(e+'&t='+(new Date).getTime(),!1)):(e=x.Service.webDomain+_.URL_CONSTANTS.PERSONAL_URL_WEB,(0,h.gotoPage)(e+'?t='+(new Date).getTime(),!1))
+}
+,children:(0,C.jsx)(S.default,{
+imgUri:e.state.memberInfo.headPictureURL,imgStyle:t.memberavatar
+}
+)
+}
+)
+}
+),(0,C.jsxs)(c.View,{
+style:t.membermsgbox,children:[(0,C.jsx)(c.View,{
+style:t.memberprogress,children:(0,C.jsx)(b.default,{
+value:e.state.memberInfo.progressValue,total:e.state.memberInfo.progressTotal,color:e.state.medalList[e.state.memberInfo.level].color,children:(0,C.jsx)(S.default,{
+imgUri:e.state.medalList[e.state.memberInfo.level].img,imgStyle:{
+width:20,height:20
+}
+
+}
+)
+}
+)
+}
+),(0,C.jsxs)(c.View,{
+style:t.flexBox,children:[(0,C.jsx)(c.View,{
+style:t.membermsg,children:e.state.memberInfo.isAuthentication?(0,C.jsxs)(C.Fragment,{
+children:[(0,C.jsx)(c.View,{
+style:t.membermsgimg,children:(0,C.jsx)(f.default,{
+normalCol:o.C41.color,opacity:o.C41.opacity,iconName:"web-real-name",width:k,height:k
+}
+)
+}
+),(0,C.jsx)(c.Text,{
+style:t.membergoodstext,children:""+((0,x.t)('autonym')||'\u5df2\u5b9e\u540d')
+}
+)]
+}
+):(0,C.jsxs)(C.Fragment,{
+children:[(0,C.jsx)(c.View,{
+style:t.membermsgimg,children:(0,C.jsx)(f.default,{
+normalCol:o.C15.color,opacity:o.C15.opacity,iconName:"web-real-name",width:k,height:k
+}
+)
+}
+),(0,C.jsx)(j.default,{
+text:""+((0,x.t)('no_autonym')||'\u672a\u5b9e\u540d'),url:'/authmember/accesstoken',timeStamp:1,textStyle:t.membergoodstext
+}
+)]
+}
+)
+}
+),(0,C.jsxs)(c.View,{
+style:t.membermsg,children:[(0,C.jsx)(c.View,{
+style:t.membermsgimg,children:(0,C.jsx)(f.default,{
+normalCol:o.C41.color,opacity:o.C41.opacity,iconName:"web-nav-message",width:k,height:k
+}
+)
+}
+),(0,C.jsx)(j.default,{
+text:((0,x.t)('message')||'\u6d88\u606f')+"("+(e.state.memberInfo.unread||0)+")",timeStamp:1,url:'/member/msg',textStyle:t.membergoodstext
+}
+)]
+}
+)]
+}
+)]
+}
+)]
+}
+),(0,C.jsxs)(c.View,{
+style:[t.membertitle,t.greyborder],children:[(0,C.jsx)(c.Text,{
+style:t.membertitleleft,children:(0,x.t)('my_order')
+}
+),(0,C.jsx)(j.default,{
+newTab:!0,text:(0,x.t)('common_more'),url:'/member/order',timeStamp:1,textStyle:t.membertitlemore
+}
+)]
+}
+),(0,C.jsx)(c.View,{
+style:[t.flexBox,{
+flexWrap:'wrap'
+}
+],children:e.state.list.map((function(e,o){
+return(0,C.jsxs)(C.Fragment,{
+children:[0===o?null:(0,C.jsx)(c.View,{
+style:[t.line,t.greyborder]
+}
+),(0,C.jsx)(j.default,{
+text:e.code&&(0,x.t)(e.code)||e.text,url:e.url,boxStyle:t.membergoods,textStyle:t.membergoodstext,ellipsizeMode:"tail",timeStamp:1,numberOfLines:3
+}
+)]
+}
+)
+}
+))
+}
+),(0,C.jsx)(c.View,{
+style:t.memberparam,children:e.state.paramList.map((function(o){
+return(0,C.jsxs)(c.View,{
+style:{
+flex:1
+}
+,children:[(0,C.jsx)(j.default,{
+newTab:!0,text:e.state.memberInfo[o.key],url:o.url,timeStamp:1,textStyle:t.memberparamvalue
+}
+),(0,C.jsx)(c.Text,{
+style:t.memberparamtext,children:o.code&&(0,x.t)(o.code)||o.text
+}
+)]
+}
+)
+}
+))
+}
+),(0,C.jsx)(c.View,{
+style:[t.memberlogoutbox,t.greyborder],children:(0,C.jsx)(j.default,{
+text:(0,x.t)('logout_full'),newTab:!0,onPress:function(){
+return e.logout()
+}
+,textStyle:[t.memberlogout,t.membergoodstext]
+}
+)
+}
+)]
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(e){
+e&&(0,h.gotoPage)(e,!0)
+}
+
+}
+,{
+key:"decode",value:function(e){
+if('web'===c.Platform.OS){
+if('string'==typeof e&&e.indexOf('&')>-1){
+// 变量
+var t: any = document.createElement('textarea');
+t.innerHTML=e,e=t.value
+}
+return e
+}
+
+}
+
+}
+,{
+key:"logout",value:function(){
+// 变量
+var e: any = this;
+'web'===c.Platform.OS&&(window.sessionStorage.setItem('memberInfo',''),(0,v.toLogout)().then((function(t){
+t&&t.redirectUrl&&(window.location.href=(0,V.getPureUrl)(e.decode(t.redirectUrl)))
+}
+)))
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this,t=x.Cookies.get('TID')||(0,h.randomTid)();
+x.Cookies.get('callAB')||O||(O=!0,(0,v.getStrategyForWebWap)(t,'1')),(0,V.toGetMemberInfo)().then((function(t){
+e.setState({
+memberInfo:t
+}
+)
+}
+)).catch((function(e){
+
+}
+)).finally((function(){
+
+}
+))
+}
+
+}
+])
+}
+)(u.default.Component);
+_e.default=A
+}
+),"bb37e491950faa8288ed95c631d9dd43593511e32587218dab4598b750653071",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","8cc77830fc101cf1bdd5b1c7954ea62e159283e11c5c4865ed306fa41681dbdd","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","aebe44e2905aa94571dfb51409bd26ee6d7374e8fd7c51f5f6baac049a32f68b","1ad0c00cb70c1f17c4c7711b05279cbf9c43e4b409563064e073dc1ac817350f","513e7136b37f99b155af355907b9c4bf04e5c36b6392c138531f2849f5e64611","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","591f0777947abe38671013c1ca479cb4f31fc16b30b93eb8ed2bdbf414a05009","82719f5b4b8336f9f3ab5d3847de10f3550ff4b54a9ed40a3afb100b3185e77f","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),n=e(r(d[2])),o=e(r(d[3])),u=e(r(d[4])),l=e(r(d[5])),c=e(r(d[6])),s=r(d[7]),f=r(d[8]),v=e(r(d[9])),h=r(d[10]);
+// 函数
+function p(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(p=function(){
+return!!e
+}
+)()
+}
+var y=(function(e){
+// 函数
+function c(e: any): any {
+var n,l,s,f;
+return(0,t.default)(this,c),l=this,s=c,f=[e],s=(0,u.default)(s),(n=(0,o.default)(l,p()?Reflect.construct(s,f||[],(0,u.default)(l).constructor):s.apply(l,f))).state={
+
+}
+,n
+}
+return(0,l.default)(c,e),(0,n.default)(c,[{
+key:"componentDidMount",value:function(){
+
+}
+
+}
+,{
+key:"render",value:function(){
+var e=this.props,t=e.total,n=void 0===t?100:t,o=e.value,u=void 0===o?0:o,l=e.color,c=void 0===l?'#D4D4D4':l,p=e.children,y=100*u/n,j={
+width:y<0?0:(y>100?100:y)+'%',backgroundColor:c
+}
+;
+return(0,h.jsx)(f.WithTheme,{
+themeStyles:v.default,children:function(e){
+return(0,h.jsxs)(s.View,{
+style:[e.progressbox],children:[(0,h.jsx)(s.View,{
+style:[e.progressitem,j]
+}
+),(0,h.jsx)(s.View,{
+style:e.progresschild,children:p
+}
+)]
+}
+)
+}
+
+}
+)
+}
+
+}
+])
+}
+)(c.default.Component);
+_e.default=y
+}
+),"8cc77830fc101cf1bdd5b1c7954ea62e159283e11c5c4865ed306fa41681dbdd",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),n=e(r(d[2])),o=e(r(d[3])),u=e(r(d[4])),l=e(r(d[5])),c=e(r(d[6])),s=r(d[7]),f=r(d[8]),v=e(r(d[9])),p=r(d[10]),h=r(d[11]);
+// 函数
+function y(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(y=function(){
+return!!e
+}
+)()
+}
+var x=(function(e){
+// 函数
+function c(e: any): any {
+var n,l,s,f;
+return(0,t.default)(this,c),l=this,s=c,f=[e],s=(0,u.default)(s),(n=(0,o.default)(l,y()?Reflect.construct(s,f||[],(0,u.default)(l).constructor):s.apply(l,f))).state={
+
+}
+,n
+}
+return(0,l.default)(c,e),(0,n.default)(c,[{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,n=t.text,o=t.url,u=t.textStyle,l=t.boxStyle,c=t.newTab,p=t.timeStamp;
+return(0,h.jsx)(f.WithTheme,{
+themeStyles:v.default,children:function(t){
+return(0,h.jsx)(s.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return e.onPress(o,!!c,p)
+}
+,style:l,children:(0,h.jsx)(f.Hoverable,{
+children:function(o){
+return(0,h.jsx)(s.Text,Object.assign({
+style:[t.textnormal,u,o&&t.selecttextactive]
+}
+,e.props,{
+children:n
+}
+))
+}
+
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(e,t,n){
+if(e)if(n){
+// 变量
+var o: any = e.includes('?')?'&':'?';
+(0,p.gotoPage)(""+e+o+"t="+(new Date).getTime(),t)
+}
+else(0,p.gotoPage)(e,t);
+else{
+var u=this.props.onPress,l=void 0===u?function(){
+
+}
+:u;
+l()
+}
+
+}
+
+}
+])
+}
+)(c.default.Component);
+_e.default=x
+}
+),"513e7136b37f99b155af355907b9c4bf04e5c36b6392c138531f2849f5e64611",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,_i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),i=e(r(d[2])),n=e(r(d[3])),l=e(r(d[4])),s=e(r(d[5])),o=e(r(d[6])),u=e(r(d[7])),c=e(r(d[8])),f=r(d[9]),p=e(r(d[10])),y=r(d[11]),h=e(r(d[12])),x=r(d[13]),v=r(d[14]),C=r(d[15]),T=e(r(d[16])),P=e(r(d[17])),b=e(r(d[18])),j=r(d[19]),I=r(d[20]);
+// 函数
+function w(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(w=function(){
+return!!e
+}
+)()
+}
+var L=(function(e){
+// 函数
+function c(e: any): any {
+var t,l,u,v;
+return(0,n.default)(this,c),l=this,u=c,v=[e],u=(0,o.default)(u),(t=(0,s.default)(l,w()?Reflect.construct(u,v||[],(0,o.default)(l).constructor):u.apply(l,v))).gotoProductDetail=function(e){
+// 变量
+var t: any = p.default.get(e,'sbom.productId')||'',i=y.RouterUtils.getProductDetailUrlForWebAll(t);
+y.RouterUtils.gotoPage(i,!0)
+}
+,t.renderItemTypePOrG=function(e,t,i,n,l){
+return(0,I.jsxs)(f.View,{
+style:e.commonTypeCls,children:[(0,I.jsxs)(f.Text,{
+style:e.itemTypeTitle,children:["\u3010",l,"\u3011"]
+}
+),(0,I.jsx)(f.Text,{
+style:e.itemNameDescriptionCls,numberOfLines:1,children:(0,I.jsx)(f.Text,{
+children:p.default.map(t,(function(l,s){
+// 变量
+var o: any = 0!==l.invalidCauseReason?e.invalidClickCls:null,u=parseInt(s,10)!==p.default.size(t)-1,c='G'===i?n:l.qty;
+return(0,I.jsxs)(f.Text,{
+style:[e.subItemText,o],children:[l.itemName," x ",c,u?(0,I.jsx)(f.Text,{
+children:","
+}
+):null]
+}
+)
+}
+))
+}
+)
+}
+)]
+}
+)
+}
+,t.renderItemCommonType=function(e,t){
+var i={
+DP:(0,y.t)('collocation'),S6:(0,y.t)('broken_screen_treasure'),S1:(0,y.t)('extended_warranty'),S15:(0,y.t)('worry_free_service'),S13:'\u6280\u672f\u670d\u52a1'
+}
+;
+return p.default.map(t,(function(t){
+// 变量
+var n: any = t.salePrice,l=t.originalPrice,s=n!==l?n:l,o=0!==t.invalidCauseReason?e.invalidClickCls:null;
+return(0,I.jsxs)(f.View,{
+style:e.commonTypeCls,children:[(0,I.jsx)(f.Text,{
+style:[e.itemTypeTitle,o],children:(0,I.jsxs)(f.Text,{
+children:["\u3010",i[t.itemType],"\u3011"]
+}
+)
+}
+),(0,I.jsx)(f.Text,{
+style:[e.itemNameDescriptionCls,o],numberOfLines:1,children:t.itemName
+}
+),(0,I.jsx)(f.Text,{
+style:e.primaryPrice,children:(0,I.jsxs)(f.Text,{
+style:[e.normalPrice,o],children:["\xa5 ",s.toFixed(2),(0,I.jsxs)(f.Text,{
+style:e.primaryQty,children:[" x ",t.qty]
+}
+)]
+}
+)
+}
+)]
+}
+)
+}
+))
+}
+,t.renderSubitem=function(e,i,n){
+var l=p.default.filter(n,(function(e){
+return'G'===e.itemType
+}
+)),s=p.default.filter(n,(function(e){
+return'P'===e.itemType
+}
+)),o=p.default.filter(n,(function(e){
+return'G'!==e.itemType&&'P'!==e.itemType
+}
+));
+return(0,I.jsxs)(f.View,{
+style:e.subItemWrapperCls,children:[p.default.size(l)>0?t.renderItemTypePOrG(e,l,'G',i,(0,y.t)('match')):null,p.default.size(s)>0?t.renderItemTypePOrG(e,s,'P',i,(0,y.t)('set_meal')):null,p.default.size(o)>0?t.renderItemCommonType(e,o):null]
+}
+)
+}
+,t.renderPrimayProductTemplate=function(){
+
+}
+,t.getInvalidCause=function(e){
+var i,n;
+'DP'===e.itemType&&t.handleItemTypeDP(e),'P'===e.itemType&&t.handleItemTypeP(e);
+var l=(p.default.head(p.default.filter(j.INVALIDCAUSEREASONLIST,(function(t){
+return t.reasonType===e.invalidCauseReason
+}
+)))||{
+
+}
+).description,s=void 0===l?'':l,o=Math.min(null==e||null==(i=e.sbom)?void 0:i.productLimit,null==e||null==(n=e.sbom)?void 0:n.sbomLimit);
+return e.qty>o&&7===e.invalidCauseReason&&(s="\u6b64\u5546\u54c1\u9650\u8d2d"+e.invalidCauseLeftValue+"\u4ef6"),s
+}
+,t.handleItemTypeDP=function(e){
+6===e.invalidCauseReason?e.invalidCauseReason=106:7===e.invalidCauseReason?e.numblimit||(e.invalidCauseReason=101):e.invalidCauseReason>0&&(e.invalidCauseReason=101)
+}
+,t.handleItemTypeP=function(e){
+if(6===e.invalidCauseReason)e.invalidCauseReason=106;
+else if(7===e.invalidCauseReason)e.numblimit||(e.invalidCauseReason=101);
+else if(e.invalidCauseReason>0)e.invalidCauseReason=101;
+else for(var t=e.subItems,i=0;
+i<t.length;
+i++)'P'===t[i].itemType&&t[i].invalidCauseReason>0&&(e.invalidCauseReason=101)
+}
+,t.getMinLimit=function(e){
+return 0!==e.sbom.productLimit&&0!==e.sbom.sbomLimit?Math.min(e.sbom.productLimit,e.sbom.sbomLimit):0!==e.sbom.productLimit?e.sbom.productLimit:0!==e.sbom.sbomLimit?e.sbom.sbomLimit:void 0
+}
+,t.renderPrimary=function(){
+var e=p.default.get(t.state.cartInfo,'itemInfos')||{
+
+}
+,i=t.props.scrollY>434;
+return(0,I.jsx)(y.WithTheme,{
+themeStyles:h.default,children:function(n){
+return p.default.map(e,(function(e){
+var l=e||{
+
+}
+,s=l.sbom,o=l.subItems,u=s||{
+
+}
+,c=u.photoName,p=void 0===c?'':c,h=u.photoPath,x=void 0===h?'':h,v=e.selected?'Checkbox-Checked-1':'Checkbox-Unchecked',C=e.selected?j.checkedColor:j.unCheckColor,T=t.getInvalidCause(e),b=e.qty>t.getMinLimit(e),w=T||b;
+return(0,I.jsxs)(f.View,{
+style:[i?n.productPaddingRightCls:n.productWrapper],children:[(0,I.jsxs)(f.View,{
+style:{
+opacity:w?.4:1
+}
+,children:[(0,I.jsxs)(f.View,{
+style:n.primaryProductCls,children:[(0,I.jsx)(f.View,{
+style:n.primaryProductIcon,children:(0,I.jsx)(f.TouchableHighlight,{
+underlayColor:'transparent',onPress:function(){
+return t.checkClick(e)
+}
+,activeOpacity:1,children:(0,I.jsx)(P.default,{
+iconName:v,width:"20",height:"20",normalCol:C
+}
+)
+}
+)
+}
+),(0,I.jsxs)(f.View,{
+style:n.primaryProductContainer,children:[(0,I.jsx)(f.TouchableOpacity,{
+onPress:function(){
+return t.gotoProductDetail(e)
+}
+,activeOpacity:1,style:n.primaryImg,children:(0,I.jsx)(f.View,{
+children:(0,I.jsx)(f.Image,{
+source:{
+uri:y.Service.cmsCndProdPath+"/"+x+"78_78_"+p
+}
+,style:{
+height:64,maxWidth:64
+}
+
+}
+)
+}
+)
+}
+),(0,I.jsx)(f.TouchableOpacity,{
+onPress:function(){
+return t.gotoProductDetail(e)
+}
+,activeOpacity:1,style:n.primaryTitle,children:(0,I.jsxs)(f.Text,{
+children:[(0,I.jsx)(y.Hoverable,{
+children:function(t){
+return(0,I.jsx)(f.Text,{
+style:[t&&!w?n.prdItemHover:'',n.prdItemText],numberOfLines:2,children:e.itemName
+}
+)
+}
+
+}
+),(0,I.jsx)(f.Text,{
+style:n.invalidCauseReasonTitle,children:T
+}
+)]
+}
+)
+}
+),(0,I.jsxs)(f.Text,{
+style:n.primaryPrice,numberOfLines:1,children:[(0,I.jsxs)(f.Text,{
+style:n.priceTotal,numberOfLines:1,children:[(0,I.jsxs)(f.Text,{
+style:n.originalPrice,numberOfLines:1,children:["\xa5 ",e.salePrice.toFixed(2)]
+}
+),e.salePrice!==e.originalPrice?(0,I.jsxs)(f.Text,{
+style:n.salePricecls,numberOfLines:1,children:["\xa5 ",e.originalPrice.toFixed(2)]
+}
+):null]
+}
+),(0,I.jsxs)(f.Text,{
+style:n.primaryQty,numberOfLines:1,children:["x ",e.qty]
+}
+)]
+}
+)]
+}
+)]
+}
+),(0,I.jsx)(f.View,{
+style:n.packageCls,children:t.renderSubitem(n,e.qty,o)
+}
+),(0,I.jsx)(f.View,{
+style:n.bottomColorLine
+}
+)]
+}
+),w?(0,I.jsx)(f.View,{
+style:n.primaryMaskCls
+}
+):null]
+}
+)
+}
+))
+}
+
+}
+)
+}
+,t.getLogin=function(){
+var e=t.state,i=e.isLogin,n=e.cartInfo,l=p.default.get(n,'itemInfos')||{
+
+}
+,s=p.default.compact(p.default.map(l,'selected')),o=t.getLoginUrl(),u=t.handleParams(l),c=y.Cookies.get('CSRF-TOKEN'),f=y.Cookies.get('uid');
+p.default.size(s)>0&&(i||f?t.postForm({
+orderReqJson:JSON.stringify(u),state:1,CsrfToken:c
+}
+):(0,x.gotoPage)(o,!0))
+}
+,t.getLoginUrl=function(){
+return'/account/login?url='+encodeURIComponent(window.location.href)+'&_t='+(new Date).getTime()
+}
+,t.handleParams=function(e){
+var i=p.default.filter(e,(function(e){
+return e.selected
+}
+));
+return p.default.map(i,(function(e){
+var i=t.handleSubList(e),n=t.handleNewSubList(i),l=t.handleGiftItem(e),s={
+itemId:e.itemCode,qty:e.qty,itemType:e.itemType,id:e.itemId,gifts:l,subOrderItemReqArgs:n
+}
+;
+return p.default.size(l)<1&&delete s.gifts,t.handleItemProp(e,s),s
+}
+))
+}
+,t.handleGiftItem=function(e){
+var t=[],n={
+
+}
+;
+return p.default.filter(e.subItems,(function(e){
+var l,s,o,u=null==e||null==(l=e.attrsMap)?void 0:l.g_group,c=null==e||null==(s=e.attrsMap)?void 0:s.g_actId,f=null==e||null==(o=e.attrsMap)?void 0:o.g_type;
+'G'===e.itemType&&(n.sbomCode=e.itemCode,u&&(n.group=u),c&&(n.actId=c),f&&(n.type=f),t=[].concat((0,i.default)(t),[n]))
+}
+)),t
+}
+,t.handleSubList=function(e){
+return p.default.map(e.subItems,(function(e){
+var t,i={
+itemId:e.itemCode,qty:e.qty,itemType:e.itemType
+}
+;
+(['S1','S6','S15'].includes(e.itemType)&&(i.mainSkuCode=e.mainItemCode),'DP'===e.itemType)&&(i.itemProp={
+dp_group:null==e||null==(t=e.attrsMap)?void 0:t.dp_group
+}
+);
+return i
+}
+))
+}
+,t.handleNewSubList=function(e){
+return p.default.uniqBy(p.default.filter(e,(function(e){
+return'S0'!==e.itemType&&'G'!==e.itemType
+}
+)),'itemId')
+}
+,t.handleItemProp=function(e,t){
+var i,n;
+'DP'===e.itemType&&(t.itemProp={
+dp_package_code:null==e||null==(i=e.attrsMap)?void 0:i.dp_package_code
+}
+);
+'P'===e.itemType&&(t.itemProp={
+package_code:null==e||null==(n=e.attrsMap)?void 0:n.package_code
+}
+)
+}
+,t.renderSettlement=function(e){
+var i=t.state.cartInfo||{
+
+}
+,n=i.originalPrice,l=i.cashPay,s=p.default.get(t.state.cartInfo,'itemInfos')||{
+
+}
+,o=p.default.filter(s,(function(e){
+return 0===e.invalidCauseReason
+}
+)),u=p.default.compact(p.default.map(s,'selected'));
+return(0,I.jsx)(f.View,{
+children:p.default.size(o)?(0,I.jsxs)(f.View,{
+style:e.settlementCls,children:[(0,I.jsxs)(f.View,{
+style:e.settlementTitleCls,children:[(0,y.t)('total'),":"]
+}
+),(0,I.jsxs)(f.View,{
+style:e.settlementPriceCls,children:[(0,I.jsx)(f.View,{
+style:e.settlementSalePriceCls,children:l.toFixed(2)
+}
+),l!==n?(0,I.jsx)(f.View,{
+style:e.settlementCountPriceCls,children:n.toFixed(2)
+}
+):null,(0,I.jsx)(y.Hoverable,{
+children:function(i){
+return(0,I.jsx)(f.TouchableOpacity,{
+activeOpacity:1,children:(0,I.jsx)(f.Text,{
+style:[e.settlementCountCls,i?e.settlementHoverCls:'',p.default.size(u)>0?'':e.settlementOpacityCls],onPress:t.getLogin,children:(0,y.t)('settlement')
+}
+)
+}
+)
+}
+
+}
+)]
+}
+)]
+}
+):null
+}
+)
+}
+,t.state={
+isChecked:'',cartInfo:{
+
+}
+,preCartInfoData:{
+
+}
+,isLogin:!1
+}
+,t
+}
+return(0,u.default)(c,e),(0,l.default)(c,[{
+key:"componentDidMount",value:(L=(0,t.default)((function*(){
+// 变量
+var e: any = yield(0,v.getAppStoreLoginStatus)();
+this.setState({
+isLogin:e
+}
+)
+}
+)),function(){
+return L.apply(this,arguments)
+}
+)
+}
+,{
+key:"checkClick",value:function(e){
+// 变量
+var t: any = this,i=JSON.stringify([e.itemId]);
+(e.selected?C.disselectCartItem:C.selectCartItem)('1',i).then((function(e){
+e&&e.cartInfo&&t.setState({
+cartInfo:e.cartInfo
+}
+)
+}
+))
+}
+
+}
+,{
+key:"postForm",value:function(e){
+if('web'===f.Platform.OS){
+// 变量
+var t: any = y.Service.webDomain+"order/confirmcart",i=document.createElement('form');
+for(var n in i.action=t,i.method='post',i.target='_self',i.style.display='none',e)if(Object.prototype.hasOwnProperty.call(e,n)){
+// 变量
+var l: any = document.createElement('input');
+l.name=n,l.value=e[n],i.appendChild(l)
+}
+document.body.appendChild(i),i.submit(),document.body.removeChild(i)
+}
+
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props.hasDataStatus;
+return(0,I.jsx)(y.WithTheme,{
+themeStyles:h.default,children:function(i){
+return(0,I.jsx)(f.TouchableOpacity,{
+activeOpacity:1,children:(0,I.jsx)(f.View,{
+style:i.buycartbox,children:t?(0,I.jsxs)(f.View,{
+children:[(0,I.jsx)(f.View,{
+style:i.primaryCls,children:e.renderPrimary()
+}
+),(0,I.jsx)(f.View,{
+children:e.renderSettlement(i)
+}
+)]
+}
+):(0,I.jsxs)(f.View,{
+style:i.noProductWrapper,children:[(0,I.jsx)(f.View,{
+style:i.buycartnull,children:(0,I.jsx)(f.View,{
+style:{
+width:80
+}
+,children:(0,I.jsx)(b.default,{
+imgUri:T.default.tool_cartbig,imgProportion:1
+}
+)
+}
+)
+}
+),(0,I.jsx)(f.Text,{
+style:i.buycartmsgnull,children:(0,y.t)('empty_shopping_cart')
+}
+)]
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(e,t){
+// 变量
+var i: any = e.cartInfoData;
+return i!==t.preCartInfoData?{
+cartInfo:i,preCartInfoData:i
+}
+:{
+
+}
+
+}
+
+}
+]);
+var L
+}
+)(c.default.PureComponent);
+_e.default=L
+}
+),"45346afc32addb2c05d47d0d982bf262291f7d41b486ae5d1aa94b3b25752eed",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","aebe44e2905aa94571dfb51409bd26ee6d7374e8fd7c51f5f6baac049a32f68b","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","8052f046fc780ff8c4d732e08c85465d11307371085ee6babe8c74f3abeb91f6","28829a849d1996c439502b0b67e362db83f69db3da65e4508c3e24b0f874652f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.unCheckColor=e.checkedColor=e.INVALIDCAUSEREASONLIST=void 0;
+e.INVALIDCAUSEREASONLIST=[{
+reasonType:1,description:'\u6b64\u5546\u54c1\u5df2\u5931\u6548'
+}
+,{
+reasonType:2,description:'\u6b64\u5546\u54c1\u5df2\u5931\u6548'
+}
+,{
+reasonType:3,description:'\u6b64\u5546\u54c1\u5df2\u5931\u6548'
+}
+,{
+reasonType:4,description:'\u6b64\u5546\u54c1\u5df2\u5931\u6548'
+}
+,{
+reasonType:5,description:'\u6b64\u5546\u54c1\u6682\u4e0d\u53ef\u8d2d\u4e70'
+}
+,{
+reasonType:6,description:'\u6b64\u5546\u54c1\u6682\u65f6\u7f3a\u8d27'
+}
+,{
+reasonType:7,description:'\u6b64\u5546\u54c1\u9650\u8d2d'
+}
+,{
+reasonType:8,description:'\u8d85\u8fc7\u5185\u8d2d\u9650\u989d'
+}
+,{
+reasonType:9,description:'\u6b64\u5546\u54c1\u4e0d\u5728\u672c\u6e20\u9053\u9500\u552e'
+}
+,{
+reasonType:10,description:'\u6b64\u5546\u54c1\u5df2\u5931\u6548'
+}
+,{
+reasonType:12,description:'\u6b64\u5546\u54c1\u6682\u4e0d\u652f\u6301\u8be5\u5730\u533a\u7684\u914d\u9001'
+}
+,{
+reasonType:18,description:'\u5df2\u8d85\u51fa\u9650\u8d2d\u6570\u91cf'
+}
+,{
+reasonType:101,description:'\u6b64\u5957\u9910\u5df2\u5931\u6548'
+}
+,{
+reasonType:106,description:'\u6b64\u5957\u9910\u6682\u65f6\u7f3a\u8d27'
+}
+],e.checkedColor='#CF0A2C',e.unCheckColor='rgba(0,0,0,0.40)'
+}
+),"28829a849d1996c439502b0b67e362db83f69db3da65e4508c3e24b0f874652f",[]);
+
+__d((function(g,r,_i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),n=e(r(d[2])),i=e(r(d[3])),o=e(r(d[4])),l=e(r(d[5])),c=e(r(d[6])),s=r(d[7]),u=r(d[8]),f=e(r(d[9])),h=e(r(d[10])),x=r(d[11]),p=e(r(d[12])),y=r(d[13]),w=r(d[14]);
+// 函数
+function j(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(j=function(){
+return!!e
+}
+)()
+}
+var v=(function(e){
+// 函数
+function c(e: any): any {
+var n,l,s,u;
+return(0,t.default)(this,c),l=this,s=c,u=[e],s=(0,o.default)(s),(n=(0,i.default)(l,j()?Reflect.construct(s,u||[],(0,o.default)(l).constructor):s.apply(l,u))).state={
+
+}
+,n
+}
+return(0,l.default)(c,e),(0,n.default)(c,[{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,n=t.list,i=t.templateMap;
+return i&&i.mobDownload&&(0,y.showhtml)(i.mobDownload)||(0,w.jsx)(u.WithTheme,{
+themeStyles:f.default,children:function(t,i){
+return(0,w.jsx)(s.View,{
+style:{
+padding:22
+}
+,children:n&&n.map((function(n,o){
+return(0,w.jsxs)(s.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return e.onPress(n)
+}
+,children:[0===o?null:(0,w.jsx)(s.View,{
+style:t.imgline
+}
+),(0,w.jsxs)(s.View,{
+style:[t.flexBox,{
+alignItems:'flex-start'
+}
+],children:[(0,w.jsx)(s.View,{
+style:{
+width:n.imgwidth,marginRight:12
+}
+,children:(0,w.jsx)(p.default,{
+imgUri:n.imgUrl,imgProportion:n.imgProportion,actionUrlWeb:n.uri
+}
+)
+}
+),(0,w.jsxs)(s.View,{
+style:{
+width:100
+}
+,children:[(0,w.jsx)(s.Text,{
+numberOfLines:1,style:t.qrcodetitle,children:n.code&&(0,u.t)(n.code)||n.text
+}
+),n.msgList&&n.msgList.map((function(e){
+return(0,w.jsx)(s.Text,{
+numberOfLines:1,style:[t.qrcodemsg,{
+color:e.color&&i[e.color].color||i.C12.color
+}
+],children:e.text
+}
+)
+}
+)),n.iconList&&(0,w.jsx)(s.View,{
+style:t.flexBox,children:n.iconList.map((function(e){
+return(0,w.jsxs)(s.View,{
+style:{
+width:'33%',alignItems:'center',marginTop:5
+}
+,children:[(0,w.jsx)(h.default,{
+normalCol:"#000000",opacity:.6,iconName:e.icon,width:20,height:20
+}
+),(0,w.jsx)(s.View,{
+style:{
+marginVertical:-10
+}
+,children:(0,w.jsx)(h.default,{
+normalCol:"#000000",opacity:.6,iconName:e.textIcon,width:30,height:30
+}
+)
+}
+)]
+}
+)
+}
+))
+}
+)]
+}
+)]
+}
+)]
+}
+)
+}
+))
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(e){
+e.url&&(0,x.gotoPage)(e.url,!!e.newTab)
+}
+
+}
+])
+}
+)(c.default.Component);
+_e.default=v
+}
+),"07904ae337b5d10546980ebd022652429854b8dff147fe9c70f910e54edd12a8",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","572891d01b6d1e003ca9eea79eb333224dec676917dd1d3b2f890efd55ddd420","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","8052f046fc780ff8c4d732e08c85465d11307371085ee6babe8c74f3abeb91f6","82719f5b4b8336f9f3ab5d3847de10f3550ff4b54a9ed40a3afb100b3185e77f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var f: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = f(r(d[1]));
+e.default=function(f){
+// 变量
+var u: any = f.cacheLife;
+return(0,t.default)({
+cacheLife:u||3e5
+}
+)
+}
+
+}
+),"a5beefda71d9d7735ee9cb109de7386848bf3a8fb0b1b92b22bb62b702bceb75",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","06e5c96fab264555f99b8df704ff06e8288df708e7c4c7faf761b30273c1d1ff"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var n: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var t=n(r(d[1])),u='useHTTPcache',o=function(){
+try{
+var n;
+return'undefined'!=typeof window?JSON.parse((null==(n=window.localStorage)?void 0:n.getItem(u))||'{
+
+}
+'):{
+
+}
+
+}
+catch(n){
+var t;
+return'undefined'!=typeof window&&(null==(t=window.localStorage)||t.removeItem(u)),{
+
+}
+
+}
+
+}
+;
+// 函数
+function f(n: any): any {
+var t;
+'undefined'!=typeof window&&(null==(t=window.localStorage)||t.setItem(u,JSON.stringify(n)))
+}
+e.default=function(n){
+var l=n.cacheLife,c=(function(){
+var n=(0,t.default)((function*(){
+for(var n=o(),t=arguments.length,u=new Array(t),l=0;
+l<t;
+l++)u[l]=arguments[l];
+u.forEach((function(t){
+return delete n[t]
+}
+)),f(n)
+}
+));
+return function(){
+return n.apply(this,arguments)
+}
+
+}
+)(),v=function(n){
+var t=o()[n]||{
+
+}
+,u=t.expiration,f=t.response,l=u>0&&u<Date.now();
+return l&&c(n),l||!f
+}
+,w=(function(){
+var n=(0,t.default)((function*(n){
+return!v(n)
+}
+));
+return function(t){
+return n.apply(this,arguments)
+}
+
+}
+)(),p=(function(){
+var n=(0,t.default)((function*(n){
+if(!v(n))return o()[n].response
+}
+));
+return function(t){
+return n.apply(this,arguments)
+}
+
+}
+)(),s=(function(){
+var n=(0,t.default)((function*(n,t){
+// 变量
+var u: any = o();
+u[n]={
+response:t,expiration:Date.now()+l
+}
+,f(u)
+}
+));
+return function(t,u){
+return n.apply(this,arguments)
+}
+
+}
+)(),y=(function(){
+var n=(0,t.default)((function*(){
+var n;
+'undefined'!=typeof window&&(null==(n=window.localStorage)||n.setItem(u,JSON.stringify({
+
+}
+)))
+}
+));
+return function(){
+return n.apply(this,arguments)
+}
+
+}
+)();
+return Object.defineProperties(o(),{
+get:{
+value:p,writable:!1
+}
+,set:{
+value:s,writable:!1
+}
+,has:{
+value:w,writable:!1
+}
+,delete:{
+value:c,writable:!1
+}
+,clear:{
+value:y,writable:!1
+}
+
+}
+)
+}
+
+}
+),"06e5c96fab264555f99b8df704ff06e8288df708e7c4c7faf761b30273c1d1ff",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=t(_r(d[1])),r=t(_r(d[2])),a=t(_r(d[3])),o=t(_r(d[4])),n=t(_r(d[5])),c=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var r: any = y(e);
+if(r&&r.has(t))return r.get(t);
+var a={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in t)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(t,n)){
+// 变量
+var c: any = o?Object.getOwnPropertyDescriptor(t,n):null;
+c&&(c.get||c.set)?Object.defineProperty(a,n,c):a[n]=t[n]
+}
+return a.default=t,r&&r.set(t,a),a
+}
+)(_r(d[6])),i=_r(d[7]),u=t(_r(d[8])),s=_r(d[9]),l=t(_r(d[10])),f=_r(d[11]);
+// 函数
+function y(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,r=new WeakMap;
+return(y=function(t){
+return t?r:e
+}
+)(t)
+}
+// 函数
+function p(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(p=function(){
+return!!t
+}
+)()
+}
+var h=(function(t){
+// 函数
+function c(t: any): any {
+var r,n,i,u;
+return(0,e.default)(this,c),n=this,i=c,u=[t],i=(0,o.default)(i),(r=(0,a.default)(n,p()?Reflect.construct(i,u||[],(0,o.default)(n).constructor):i.apply(n,u))).state={
+categoryList:r.props.categoryList||[]
+}
+,r
+}
+return(0,n.default)(c,t),(0,r.default)(c,[{
+key:"configProductListWithCategoryList",value:function(){
+// 变量
+var t: any = this,e=this.props,r=e.categoryList,a=e.width;
+if(r.length){
+this.updateStoreAllCategory(r[0]),this.setState({
+categoryList:r
+}
+);
+var o,n=this.calAllCategoryDateSource(r),c=JSON.stringify(n);
+return o='large'===(0,i.screenSize)(a)?'1':'2',new Promise((function(e){
+(0,s.getProdInfoListWithPage)(c,o).then((function(a){
+// 变量
+var o: any = !!a.dataMap&&a.dataMap;
+o&&t.calAllCategoryProductList(o,r),t.updateStoreAllCategory(r[0]),e(r)
+}
+))
+}
+))
+}
+return Promise.resolve()
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+// 变量
+var t: any = this;
+this.configProductListWithCategoryList().then((function(e){
+t.setState({
+categoryList:e
+}
+)
+}
+)).catch((function(){
+
+}
+))
+}
+
+}
+,{
+key:"componentDidUpdate",value:function(t){
+// 变量
+var e: any = this;
+t.categoryList!==this.props.categoryList&&this.configProductListWithCategoryList().then((function(t){
+e.setState({
+categoryList:t
+}
+)
+}
+)).catch((function(){
+
+}
+))
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this.props,e=t.width,r=t.reportUrl,a=t.cardId,o=t.configInfo,n=t.isSSR,c=t.isSsrPc,s=this.state.categoryList;
+return'large'===(0,i.screenSize)(e)||n&&c?(0,f.jsx)(u.default,Object.assign({
+
+}
+,this.props,{
+categoryList:s,reportUrl:r,cardId:a,width:e,configInfo:o
+}
+)):(0,f.jsx)(f.Fragment,{
+
+}
+)
+}
+
+}
+,{
+key:"calAllCategoryDateSource",value:function(t){
+// 变量
+var e: any = this,r=this.calCategoryDateSource(t);
+return null==t||t.forEach((function(t){
+// 变量
+var a: any = e.calCategoryDateSource(t.subCategoryList);
+a.length&&(r=r.concat(a))
+}
+)),r
+}
+
+}
+,{
+key:"calCategoryDateSource",value:function(t){
+// 变量
+var e: any = [];
+return null==t||t.forEach((function(t){
+// 变量
+var r: any = JSON.parse(t.configInfo).dataSourceList[0];
+t.dataSourceType=r,e.push(r.dataSourceCode)
+}
+)),e
+}
+
+}
+,{
+key:"calCategoryProductList",value:function(t,e){
+null==e||e.forEach((function(e,r){
+// 变量
+var a: any = e.dataSourceType.dataSourceCode,o=t[a];
+e.productList=o&&o.dataInfos&&o.dataInfos.map((function(t,e){
+return Object.assign({
+id:e,uri:i.Service.cmsCdnPath+t.photoPath+t.photoName
+}
+,t)
+}
+))||[]
+}
+))
+}
+
+}
+,{
+key:"calAllCategoryProductList",value:function(t,e){
+// 变量
+var r: any = this;
+this.calCategoryProductList(t,e),null==e||e.forEach((function(e){
+r.calAllCategoryProductList(t,e.subCategoryList)
+}
+))
+}
+
+}
+,{
+key:"updateStoreAllCategory",value:function(t){
+// 变量
+var e: any = this.props.configInfo;
+e&&'true'==e.showBannerCategory&&l.default.updateAllCategory(t)
+}
+
+}
+])
+}
+)(c.Component);
+h.defaultProps={
+categoryList:[]
+}
+;
+_e.default=(0,i.componentautoscaling)(h)
+}
+),"748ee3dbfb8dabd363dd63534db13ee5b3cb7af2eaea71d47772728adfe5e139",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","280ffb56af58945c9f9f87895743880c6ee629be2a353fa8c89622be8ec675f0","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","95628f985d313d0d05ae0cc7caace21ba9f0f1cf79c05e52e79672e18c65aef5","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o,a=e(_r(d[1])),n=e(_r(d[2])),r=e(_r(d[3])),s=e(_r(d[4])),i=e(_r(d[5])),l=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = V(t);
+if(o&&o.has(e))return o.get(e);
+var a={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var r in e)if("default"!==r&&{
+
+}
+.hasOwnProperty.call(e,r)){
+// 变量
+var s: Function = n?Object.getOwnPropertyDescriptor(e,r):null;
+s&&(s.get||s.set)?Object.defineProperty(a,r,s):a[r]=e[r]
+}
+return a.default=e,o&&o.set(e,a),a
+}
+)(_r(d[6])),c=_r(d[7]),u=_r(d[8]),h=e(_r(d[9])),y=e(_r(d[10])),f=e(_r(d[11])),w=_r(d[12]),p=_r(d[13]),S=e(_r(d[14])),v=e(_r(d[15])),b=_r(d[16]),I=e(_r(d[17])),x=e(_r(d[18])),k=e(_r(d[19])),C=e(_r(d[20])),L=_r(d[21]),j=_r(d[22]);
+// 函数
+function V(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(V=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function T(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(T=function(){
+return!!e
+}
+)()
+}
+var _=(0,b.observer)((o=(function(e){
+// 函数
+function t(e: any): any {
+var o,n,i,l;
+return(0,a.default)(this,t),n=this,i=t,l=[e],i=(0,s.default)(i),(o=(0,r.default)(n,T()?Reflect.construct(i,l||[],(0,s.default)(n).constructor):i.apply(n,l))).itemlist=[],o.navRef=function(e){
+e&&o.itemlist.push(e)
+}
+,o.onSetTabTopState=function(e){
+o.setState({
+ZnavTop:e.navTop
+}
+)
+}
+,o._onLayout=function(e){
+o.setState({
+stickyLayoutY:e.nativeEvent.layout.y
+}
+)
+}
+,o.getView=function(){
+// 变量
+var e: any = o.props,t=e.stickyScrollY,a=e.isFixed,n=e.configInfo,r=e.width;
+n.topFixed;
+var s=o.state,i=s.stickyLayoutY,l=s.ZnavTop,w=i,p='true'===String(a)?t.interpolate({
+inputRange:[-1,0,w,w+1],outputRange:[0,0,0,1]
+}
+):0;
+return(0,j.jsx)(u.WithTheme,{
+themeStyles:f.default,children:function(e){
+// 变量
+var t: any = o.props,a=t.categoryList,s=t.logo,i=t.cardId;
+return(0,j.jsx)(c.Animated.View,{
+onLayout:o._onLayout,style:['web'===c.Platform.OS?[o.state.w,'true'===String(false)&&o.state.navTop&&{
+position:'fixed',top:0,width:'100%',margin:'auto',zIndex:11
+}
+,l&&{
+position:'relative',top:'auto'
+}
+,l?{
+zIndex:2
+}
+:{
+zIndex:4
+}
+]:{
+zIndex:1,transform:[{
+translateY:p
+}
+]
+}
+],children:(0,j.jsx)(c.ImageBackground,{
+source:{
+uri:o.state.headerBoxStyle.bgImg
+}
+,style:{
+position:'relative',zIndex:2
+}
+,children:(0,j.jsx)(c.View,{
+style:[o.state.navTop?e.layout_bottom:e.layout,o.state.showSearch&&e.layout_search,o.state.headerBoxStyle.imgStyle],ref:o.navRef,children:(0,j.jsx)(u.Hoverable,{
+onHoverOut:function(){
+return o.clear()
+}
+,children:o.state.showSearch?(0,j.jsx)(c.View,{
+style:e.pcContainer,children:(0,j.jsx)(x.default,{
+color:o.state.headerBoxStyle,onHideSearch:function(){
+return o.onHideSearch()
+}
+,configInfo:o.props.configInfo
+}
+)
+}
+):(0,j.jsxs)(c.View,{
+children:[(0,j.jsxs)(u.Layout,{
+children:[(0,j.jsxs)(c.View,{
+style:e.pcContainer,children:[(0,j.jsx)(c.View,{
+style:e.img_Box,children:(0,j.jsx)(L.Image,Object.assign({
+
+}
+,s,{
+isRadius:!1
+}
+))
+}
+),(0,j.jsx)(c.View,{
+style:e.menuBox,children:(0,j.jsx)(h.default,{
+color:o.state.headerBoxStyle,chooseId:o.state.chooseId,categoryList:a,cardId:i,isShowItem:o.isShowItem,clickItem:o.clickItem,hasAllCategory:o.hasAllCategory()
+}
+)
+}
+),(0,j.jsx)(c.View,{
+style:e.iconBox,children:(0,j.jsx)(k.default,{
+configInfo:n,color:o.state.headerBoxStyle,toShowSearch:function(e){
+return o.toShowSearch(e)
+}
+
+}
+)
+}
+)]
+}
+),o.state.showSubCategoryView?(0,j.jsx)(u.Hoverable,{
+onHoverOut:function(){
+return o._onHoverInItem()
+}
+,children:(0,j.jsx)(c.View,{
+style:e.subCategory,children:(0,j.jsx)(L.BannerItem,{
+category:a[0],cardId:i,width:r,clickCateGoryStatus:o.state.showSubCategoryView
+}
+)
+}
+)
+}
+):null]
+}
+),o.state.showGoods?(0,j.jsx)(c.View,{
+style:e.goodsBox,children:(0,j.jsx)(y.default,{
+list:o.state.chooseList,cardId:i,categoryName:o.state.categoryName,categoryIndex:o.state.categoryIndex,toHideGoods:function(){
+return o.toHideGoods()
+}
+
+}
+)
+}
+):null]
+}
+)
+}
+)
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+,o.isShowItem=function(e,t){
+return!('0'===String(t)&&o.hasAllCategory()&&!o.needShowAllCategory())
+}
+,o.clickItem=function(e,t){
+o.setState({
+categoryName:e.categoryName,categoryIndex:t
+}
+),null!=e&&e.actionUrlWeb?(0,p.gotoPage)(e.actionUrlWeb,!('1'!==e.newTabFlag)):'0'===String(t)&&o.hasAllCategory()&&o.needShowAllCategory()?o.clickAllCategory():o.setChooseList(e.categoryId)
+}
+,o.state={
+chooseList:[],showSearch:!1,showGoods:!1,chooseId:'',headerBoxStyle:{
+bgImg:'',imgStyle:{
+
+}
+,textStyle:{
+
+}
+
+}
+,showSubCategoryView:!1,stickyLayoutY:0,navTop:!1,ZnavTop:!1,categoryName:'',categoryIndex:''
+}
+,o
+}
+return(0,i.default)(t,e),(0,n.default)(t,[{
+key:"componentDidMount",value:function(){
+window.addEventListener('scroll',this.handleScroll.bind(this)),'web'===c.Platform.OS&&(this.tabListener=c.DeviceEventEmitter.addListener('tabViewWeb',this.onSetTabTopState))
+}
+
+}
+,{
+key:"handleScroll",value:function(){
+// 变量
+var e: any = document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop;
+!this.state.navTop&&e>=this.state.stickyLayoutY&&(I.default.setNavTop(!0),this.setState({
+navTop:!0
+}
+)),(e<this.state.stickyLayoutY&&this.state.navTop||e===this.state.stickyLayoutY&&0===this.state.stickyLayoutY)&&(I.default.setNavTop(!1),this.setState({
+navTop:!1
+}
+))
+}
+
+}
+,{
+key:"_onHoverInItem",value:function(){
+this.setState({
+showSubCategoryView:!1
+}
+),v.default.setclickGb(!1)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e;
+'web'===c.Platform.OS&&(window.removeEventListener('scroll',this.handleScroll.bind(this)),null==(e=this.tabListener)||e.remove())
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.props.showBannerCategory;
+return S.default.bannerVisible&&'true'===String(e)&&this.state.showSubCategoryView&&this.setState({
+showSubCategoryView:!1
+}
+),this.getView()
+}
+
+}
+,{
+key:"setChooseList",value:function(e){
+// 变量
+var t: any = this,o=this.props.categoryList;
+if(void 0!==e&&void 0!==o){
+var a=o.find((function(t){
+return t.categoryId===e
+}
+));
+if((null==a?void 0:a.categoryId)===this.state.chooseId)this.clear();
+else if(a&&a.productList)if(this.state.showGoods)this.setState({
+chooseList:a.productList,chooseId:a.categoryId
+}
+);
+else{
+// 变量
+var n: any = a;
+this.setState({
+showGoods:!0,showSubCategoryView:!1
+}
+,(function(){
+t.setState({
+chooseList:n.productList,chooseId:n.categoryId
+}
+)
+}
+))
+}
+else this.clear()
+}
+else this.clear()
+}
+
+}
+,{
+key:"clear",value:function(){
+this.setState({
+chooseList:[],chooseId:''
+}
+)
+}
+
+}
+,{
+key:"clickAllCategory",value:function(){
+// 变量
+var e: any = !this.state.showSubCategoryView;
+this.setState({
+showSubCategoryView:e,showGoods:!1
+}
+),v.default.setclickGb(e),this.clear()
+}
+
+}
+,{
+key:"hasAllCategory",value:function(){
+// 变量
+var e: any = this.props.configInfo;
+return e&&'true'===String(e.showCategory)
+}
+
+}
+,{
+key:"needShowAllCategory",value:function(){
+// 变量
+var e: any = this.props.configInfo;
+return e&&'true'===String(e.showBannerCategory)&&S.default.bannerVisible?(S.default.getAllCategory(!1),!1):(S.default.getAllCategory(!0),!0)
+}
+
+}
+,{
+key:"toHideGoods",value:function(){
+this.setState({
+showGoods:!1
+}
+)
+}
+
+}
+,{
+key:"toShowSearch",value:function(e){
+this.setState({
+showSearch:e||!1
+}
+)
+}
+
+}
+,{
+key:"onHideSearch",value:function(){
+this.clear(),this.toShowSearch(!1)
+}
+
+}
+])
+}
+)(l.Component),o.defaultProps={
+logo:{
+imgUri:w.logo_pc,imgProportion:1.3918918918918919,actionUrl:'',actionUrlWeb:C.default.webHomePageUrl,actionUrlWap:C.default.webHomePageUrl
+}
+,configInfo:{
+showCategory:'false',showBannerCategory:'true'
+}
+,isFixed:'true',stickyScrollY:new c.Animated.Value(0)
+}
+,t=o))||t;
+_e.default=(0,u.componentautoscaling)(_)
+}
+),"280ffb56af58945c9f9f87895743880c6ee629be2a353fa8c89622be8ec675f0",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","26813c8587b7f2db3586ddccffc2617608ebac05f33913a50e551ab80877f7d1","357a599ebaf4183b5ba91a30fe039162df4e8c3930d6bf666c3255d2d77ab783","50b5f26c5240b58257c1f71bc2060d8a9509d09221426cd72426ce51af2cc032","fc0eafff3adc08164918ff7548cb60069632445d5a84c23f35a39ce109465a75","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","95628f985d313d0d05ae0cc7caace21ba9f0f1cf79c05e52e79672e18c65aef5","4a8594163c59c557a9bb9d1164edca4f862c7c09259d8a0019ed8a58c8f6adf3","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","1989a3c00ca5806c4a40991a204fe654cc548ab13fa8a7c91dbf384b03e7d6e5","d4fcfafd618c51d03d101ae29200e69c44c0d5c7c7b713184ea82ceac9c0bd9d","bcbb2e10604006acc3b5e5ba4d6ce545afaef726ac38b9388329c687d3849f71","260d8a22557ef5fdd84f63da99ad533f4da15d36024010585dfec5436841d8e7","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,_i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),o=e(r(d[2])),n=e(r(d[3])),l=e(r(d[4])),u=e(r(d[5])),c=e(r(d[6])),i=r(d[7]),s=r(d[8]),f=e(r(d[9])),h=e(r(d[10])),v=e(r(d[11])),y=r(d[12]);
+// 函数
+function p(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(p=function(){
+return!!e
+}
+)()
+}
+var _=(function(e){
+// 函数
+function c(e: any): any {
+var o,u,i,s;
+return(0,t.default)(this,c),u=this,i=c,s=[e],i=(0,l.default)(i),(o=(0,n.default)(u,p()?Reflect.construct(i,s||[],(0,l.default)(u).constructor):i.apply(u,s))).state={
+hoverId:''
+}
+,o
+}
+return(0,u.default)(c,e),(0,o.default)(c,[{
+key:"render",value:function(){
+var e=this,t=function(t,o,n){
+var l,u,c;
+return t===o[n].categoryId||e.state.hoverId===n?'#CE0E2D':null!=(l=e.props)&&null!=(u=l.color)&&null!=(c=u.textStyle)&&c.color?e.props.color.textStyle.color:'#000'
+}
+;
+return(0,y.jsx)(i.View,{
+style:{
+width:860,overflow:'hidden',marginLeft:32
+}
+,children:(0,y.jsx)(s.WithTheme,{
+themeStyles:f.default,children:function(o,n){
+// 变量
+var l: any = e.props,u=l.categoryList,c=l.chooseId,f=l.isShowItem,p=l.hasAllCategory,_=[],x=(null==u?void 0:u.length)||0;
+if(u){
+x>12&&u.splice(12);
+var I=function(l){
+if(Object.prototype.hasOwnProperty.call(u,l)&&u[l]){
+var I,C,j;
+if(!f(u[l],l))return 1;
+var w=x>8&&x<11?o.menu_title_md:x>10&&o.menu_title_mini;
+_.push((0,y.jsx)(i.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return e.onClick(u[l],l)
+}
+,children:(0,y.jsx)(s.Hoverable,{
+onHoverIn:function(){
+return e.onHoverChange(l)
+}
+,onHoverOut:function(){
+return e.onHoverChange()
+}
+,children:(0,y.jsxs)(i.View,{
+style:o.menu_sub_container,children:['0'===l&&p?(0,y.jsx)(h.default,{
+iconName:"allCategory",width:"20",height:"20",normalCol:t(c,u,l),opacity:'0.9'
+}
+):null,(0,y.jsx)(i.Text,{
+style:[o.menu_title,(v.default.showSubCategory,w),{
+color:null!=(I=e.props)&&null!=(C=I.color)&&null!=(j=C.textStyle)&&j.color?e.props.color.textStyle.color:n.C11.color
+}
+,(c===u[l].categoryId||e.state.hoverId===l)&&o.menu_title_choose,'0'===l&&o.menu_all_category_title],children:u[l].categoryName
+}
+)]
+}
+)
+}
+)
+}
+,l))
+}
+
+}
+;
+for(var C in u)I(C);
+return(0,y.jsx)(i.View,{
+style:o.menu_container,children:_
+}
+)
+}
+return null
+}
+
+}
+)
+}
+)
+}
+
+}
+,{
+key:"onClick",value:function(e,t){
+(0,this.props.clickItem)(e,t),this.onPress(e,t)
+}
+
+}
+,{
+key:"onHoverChange",value:function(e){
+this.setState({
+hoverId:e||''
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(e,t){
+
+}
+
+}
+])
+}
+)(c.default.Component);
+_.defaultProps={
+categoryList:[],chooseId:'',isShowItem:function(){
+return!0
+}
+,clickItem:function(){
+
+}
+
+}
+;
+_e.default=_
+}
+),"26813c8587b7f2db3586ddccffc2617608ebac05f33913a50e551ab80877f7d1",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","50b5f26c5240b58257c1f71bc2060d8a9509d09221426cd72426ce51af2cc032","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","95628f985d313d0d05ae0cc7caace21ba9f0f1cf79c05e52e79672e18c65aef5","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var o: any = r(d[0]),t=r(d[1]);
+e.default=function(n){
+return o.StyleSheet.create({
+layout:{
+zIndex:200,backgroundColor:n.S31.backgroundColor
+}
+,layout_search:{
+margin:'unset',width:'unset',fontWeight:n.T11.fontWeight
+}
+,layout_bottom:{
+zIndex:200,backgroundColor:n.S31.backgroundColor,borderColor:'rgba(0, 0, 0, 0.05)'
+}
+,pcContainer:{
+display:'flex',position:'relative',height:n.navigationHeight,alignItems:'center',flexDirection:'row'
+}
+,img_Box:{
+width:103,height:74
+}
+,menuBox:{
+flex:1,marginLeft:8
+}
+,iconBox:{
+
+}
+,goodsBox:{
+position:'absolute',top:n.navigationHeight-1,left:0,width:'100%',borderTopLeftRadius:0,borderTopRightRadius:0,borderBottomRightRadius:32,borderBottomLeftRadius:32
+}
+,subCategory:{
+marginTop:27,width:0,position:'absolute',top:n.navigationHeight-1,left:0
+}
+,menu_container:{
+flexDirection:'row',alignItems:'center'
+}
+,menu_sub_container:{
+flexDirection:'row',alignItems:'center'
+}
+,menu_all_category_title:{
+marginLeft:4
+}
+,menu_title:{
+display:'flex',position:'relative',alignItems:'center',flexDirection:'column',fontSize:n.T9.fontSize,lineHeight:16,marginLeft:40,color:n.C12.color,fontFamily:t.PublicFont.fontFamilyBase
+}
+,menu_title_m:{
+marginLeft:40
+}
+,menu_title_md:{
+marginLeft:30
+}
+,menu_title_mini:{
+marginLeft:20
+}
+,menu_title_choose:{
+color:n.C18.color,fontSize:n.T10.fontSize
+}
+,menu_title_border:{
+display:'flex',position:'absolute',bottom:0,height:2,backgroundColor:n.primaryColor
+}
+,iconbox_container:{
+display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center',marginRight:3.5
+}
+,iconbox_item:Object.assign({
+marginLeft:16
+}
+,n.C22,{
+width:26,height:26,alignItems:'center',justifyContent:'center'
+}
+),iconbox_cart:{
+height:16,position:'absolute',borderRadius:400,backgroundColor:'#CF0A2C',top:-2,zIndex:1
+}
+,iconbox_cart_item:{
+textAlign:'center',color:'#FFFFFF',fontSize:10,lineHeight:16,fontWeight:400
+}
+,iconbox_choose:{
+marginLeft:16,width:26,height:26,alignItems:'center',justifyContent:'center'
+}
+,goodslist_container:{
+display:'flex',flexDirection:'row',alignItems:'center',paddingTop:56,paddingBottom:56
+}
+,goodslist_container_bg:{
+backgroundColor:'#fefefe'
+}
+,goodslist_goods:{
+position:'relative',flex:1,height:273
+}
+,goodslist_nav:{
+display:'flex',justifyContent:'center',width:180,height:228,paddingBottom:60
+}
+,goodslist_goodsitem:{
+display:'flex',justifyContent:'center',alignItems:'center',color:'#000'
+}
+,goodslist_goodsitem_active:Object.assign({
+
+}
+,n.T11,n.C11,{
+marginTop:10,marginBottom:10,fontFamily:t.PublicFont.fontFamilyBase
+}
+),goodslist_goodsitem_normal:Object.assign({
+
+}
+,n.T11,n.C14,{
+marginTop:10,marginBottom:10,fontFamily:t.PublicFont.fontFamilyBase
+}
+),goodslist_goods_row:{
+justifyContent:'center'
+}
+,goodslist_goods_title:{
+textAlign:'center',marginTop:52,fontSize:14,color:'#000'
+}
+,goodslist_goods_choose:Object.assign({
+
+}
+,n.C73,{
+textAlign:'center',marginTop:52,fontSize:14
+}
+),goodslist_goods_box:{
+position:'relative',width:190,height:190,margin:'auto',backgroundColor:'#FFFFFF',overflow:'hidden'
+}
+,goodslist_goods_img:{
+position:'absolute',top:15,left:15,width:160,height:160
+}
+,layoutPosition:{
+position:'absolute',top:0,justifyContent:'center'
+}
+
+}
+)
+}
+
+}
+),"50b5f26c5240b58257c1f71bc2060d8a9509d09221426cd72426ce51af2cc032",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var o,l,n,u,b=t(r(d[1])),p=t(r(d[2])),y=t(r(d[3])),s=t(r(d[4])),f=(t(r(d[5])),r(d[6])),c=(o=(function(){
+return(0,y.default)((function t(){
+(0,p.default)(this,t),(0,b.default)(this,"bannerVisible",l,this),this.allCategory=(0,f.observable)([]),(0,b.default)(this,"showSubCategory",n,this),(0,b.default)(this,"subCategory",u,this),(0,f.makeObservable)(this)
+}
+),[{
+key:"setBannerVisible",value:function(t){
+this.bannerVisible=t
+}
+
+}
+,{
+key:"updateAllCategory",value:function(t){
+this.allCategory=t
+}
+
+}
+,{
+key:"getAllCategory",value:function(t){
+this.showSubCategory=t
+}
+
+}
+,{
+key:"getSubCategory",value:function(t){
+this.subCategory=t
+}
+
+}
+])
+}
+)(),l=(0,s.default)(o.prototype,"bannerVisible",[f.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!0
+}
+
+}
+),n=(0,s.default)(o.prototype,"showSubCategory",[f.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),u=(0,s.default)(o.prototype,"subCategory",[f.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),(0,s.default)(o.prototype,"setBannerVisible",[f.action],Object.getOwnPropertyDescriptor(o.prototype,"setBannerVisible"),o.prototype),(0,s.default)(o.prototype,"updateAllCategory",[f.action],Object.getOwnPropertyDescriptor(o.prototype,"updateAllCategory"),o.prototype),(0,s.default)(o.prototype,"getAllCategory",[f.action],Object.getOwnPropertyDescriptor(o.prototype,"getAllCategory"),o.prototype),(0,s.default)(o.prototype,"getSubCategory",[f.action],Object.getOwnPropertyDescriptor(o.prototype,"getSubCategory"),o.prototype),o);
+e.default=new c
+}
+),"95628f985d313d0d05ae0cc7caace21ba9f0f1cf79c05e52e79672e18c65aef5",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","0513c9aec1df8b193fb6e7118d38330920d6f86b6f168b15f210858e15b09551","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","238db300b8230394a7d5170f0b40f8df9292454df0796f0bcc766fd45e231b9f","e8b933b691eb434ae798f2ebfc685acb60972917ddcf03d73f892839d981c1a5","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14"]);
+
+__d((function(g,r,_i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),i=t(r(d[3])),o=t(r(d[4])),s=t(r(d[5])),l=t(r(d[6])),u=r(d[7]),c=r(d[8]),f=r(d[9]),p=r(d[10]),h=t(r(d[11])),v=t(r(d[12])),y=r(d[13]);
+// 函数
+function x(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(x=function(){
+return!!t
+}
+)()
+}
+var A=null,_=(function(t){
+// 函数
+function l(t: any): any {
+var n,s,c,f;
+return(0,e.default)(this,l),s=this,c=l,f=[t],c=(0,o.default)(c),(n=(0,i.default)(s,x()?Reflect.construct(c,f||[],(0,o.default)(s).constructor):c.apply(s,f))).state={
+goodsList:[],navList:[],activeId:'',opacity:new u.Animated.Value(1),boxOpacity:new u.Animated.Value(0),marginTop:new u.Animated.Value(50),display:'none'
+}
+,n
+}
+return(0,s.default)(l,t),(0,n.default)(l,[{
+key:"componentDidUpdate",value:function(t,e){
+// 变量
+var n: any = this,i=this.state,o=i.goodsList,s=i.navList,l=this.props.list;
+o.length||s.length?l.length?t.list!==this.props.list&&this.toAction(!0).then((function(){
+l.length&&n.setData(l).then((function(){
+n.toAction()
+}
+))
+}
+)):Promise.all([this.toAction(!0,!0),this.boxAction(!0)]).then((function(){
+n.setData(l)
+}
+)):l.length?this.setData(l).then((function(){
+n.boxAction(),n.toAction(!1,!0)
+}
+)):this.setData(l)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+A&&clearTimeout(A)
+}
+
+}
+,{
+key:"setData",value:function(t){
+// 变量
+var e: any = this;
+return new Promise((function(n){
+e.setState({
+goodsList:t.filter((function(t){
+return'prod'===t.dataType||'tag'===t.dataType
+}
+)).slice(0,5),navList:t.filter((function(t){
+return'link'===t.dataType
+}
+)).map((function(t,e){
+return Object.assign({
+
+}
+,t,{
+id:e
+}
+)
+}
+)).slice(0,5)
+}
+,(function(){
+n(0)
+}
+))
+}
+))
+}
+
+}
+,{
+key:"boxAction",value:function(){
+// 变量
+var t: any = this,e=arguments.length>0&&void 0!==arguments[0]&&arguments[0],n=e?0:1;
+return new Promise((function(i){
+u.Animated.timing(t.state.boxOpacity,{
+toValue:n,duration:600,useNativeDriver:!0
+}
+).start((function(){
+i(0),e&&t.props.toHideGoods()
+}
+))
+}
+))
+}
+
+}
+,{
+key:"toAction",value:function(){
+// 变量
+var t: any = this,e=arguments.length>0&&void 0!==arguments[0]&&arguments[0],n=arguments.length>1&&void 0!==arguments[1]&&arguments[1],i=e?0:1,o=e?50:0;
+return new Promise((function(e){
+u.Animated.timing(t.state.marginTop,{
+toValue:o,duration:300,useNativeDriver:!0
+}
+).start(),n?e(0):u.Animated.timing(t.state.opacity,{
+toValue:i,duration:300,useNativeDriver:!0
+}
+).start((function(){
+e(0)
+}
+))
+}
+))
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this;
+return(0,y.jsx)(c.WithTheme,{
+themeStyles:v.default,children:function(e){
+// 变量
+var n: any = t.state,i=n.goodsList,o=n.navList;
+return(0,y.jsx)(u.Animated.View,{
+style:[e.goodslist_container_bg,{
+opacity:t.state.boxOpacity
+}
+],children:(0,y.jsxs)(c.Layout,{
+style:e.goodslist_container,children:[(0,y.jsx)(u.Animated.View,{
+style:[e.goodslist_goods,{
+top:t.state.marginTop,opacity:t.state.opacity
+}
+],children:(0,y.jsx)(p.Row,{
+size:5,style:e.goodslist_goods_row,gutter:44,children:i.map((function(e,n){
+return(0,y.jsx)(p.Col,{
+sm:1,children:(0,y.jsx)(h.default,{
+propsNew:t.props,info:i[n],index:n
+}
+)
+}
+,n)
+}
+))
+}
+)
+}
+),(0,y.jsx)(u.Animated.View,{
+style:[e.goodslist_nav,{
+top:t.state.marginTop,opacity:t.state.opacity
+}
+],children:o.map((function(n,i){
+return(0,y.jsx)(c.Hoverable,{
+children:function(o){
+return(0,y.jsx)(u.TouchableOpacity,{
+style:[e.goodslist_goodsitem],onPress:function(){
+return t.onPress(n,i)
+}
+,children:(0,y.jsx)(u.Text,{
+style:[o||t.state.activeId===n.id?e.goodslist_goodsitem_active:e.goodslist_goodsitem_normal],children:n.linkName
+}
+)
+}
+)
+}
+
+}
+,i)
+}
+))
+}
+)]
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(t,e){
+this.setState({
+activeId:t.id
+}
+),t.linkUrlWeb&&(A=setTimeout((function(){
+(0,f.gotoPage)(t.linkUrlWeb,!('1'!==t.newTabFlag))
+}
+),150))
+}
+
+}
+])
+}
+)(l.default.Component);
+_.defaultProps={
+list:[],toHideGoods:function(){
+
+}
+
+}
+;
+_e.default=_
+}
+),"357a599ebaf4183b5ba91a30fe039162df4e8c3930d6bf666c3255d2d77ab783",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","2da0c086caf1217b1b344d2df8abfc30ec99e2a1f85b1ccd934c8d3f962a083a","50b5f26c5240b58257c1f71bc2060d8a9509d09221426cd72426ce51af2cc032","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),o=e(r(d[2])),n=e(r(d[3])),s=e(r(d[4])),l=e(r(d[5])),u=e(r(d[6])),c=r(d[7]),f=e(r(d[8])),p=r(d[9]),h=e(r(d[10])),v=e(r(d[11])),y=r(d[12]);
+// 函数
+function x(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(x=function(){
+return!!e
+}
+)()
+}
+var N=(function(e){
+// 函数
+function u(e: any): any {
+var o,l,f,p;
+return(0,t.default)(this,u),l=this,f=u,p=[e],f=(0,s.default)(f),(o=(0,n.default)(l,x()?Reflect.construct(f,p||[],(0,s.default)(l).constructor):f.apply(l,p))).state={
+imgScale:new c.Animated.Value(1),moreUrl:''
+}
+,o
+}
+return(0,l.default)(u,e),(0,o.default)(u,[{
+key:"imgHover",value:function(){
+this.state.imgScale.setValue(1),c.Animated.spring(this.state.imgScale,{
+toValue:1.2,bounciness:6,speed:5,useNativeDriver:!0
+}
+).start()
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+this.dataHandle()
+}
+
+}
+,{
+key:"imgHoverOut",value:function(){
+this.state.imgScale.setValue(1.2),c.Animated.spring(this.state.imgScale,{
+toValue:1,bounciness:1,speed:5,useNativeDriver:!0
+}
+).start()
+}
+
+}
+,{
+key:"dataHandle",value:function(){
+// 变量
+var e: any = this.props,t=e.info,o=e.propsNew;
+if('tag'===t.dataType){
+// 变量
+var n: any = t.prdName,s=o.categoryName,l=JSON.parse(t.tagCode),u=[],c=[];
+v.default.map(l,(function(e){
+u.push(e.cnName),c.push(e.code)
+}
+));
+// 变量
+var f: any = encodeURIComponent(encodeURIComponent(s)),h=encodeURIComponent(encodeURIComponent(n)),y=p.Service.webDomain+"portal/category/?targetRoute=CategoryList&tagid="+c+"&categoryName="+f+"&prdName="+h+"&searchResultPageProdShow=true&searchHistoryShow=true";
+this.setState({
+moreUrl:y
+}
+)
+}
+
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this;
+return(0,y.jsx)(p.WithTheme,{
+themeStyles:h.default,children:function(t){
+// 变量
+var o: any = e.props,n=o.info,s=o.index,l=o.propsNew;
+return(0,y.jsxs)(c.View,{
+children:[(0,y.jsx)(p.Hoverable,{
+onHoverIn:function(){
+return e.imgHover()
+}
+,onHoverOut:function(){
+return e.imgHoverOut()
+}
+,children:function(o){
+return(0,y.jsx)(c.View,{
+style:t.goodslist_goods_box,children:(0,y.jsx)(c.Animated.View,{
+style:[t.goodslist_goods_img,{
+transform:[{
+scale:e.state.imgScale
+}
+]
+}
+],children:(0,y.jsx)(f.default,{
+propsNew:l,headIndex:s,imgUri:n.uri,info:n,imgProportion:1,headeClick:!0,actionUrlWeb:n.actionUrlWeb||e.state.moreUrl
+}
+)
+}
+)
+}
+)
+}
+
+}
+,s),(0,y.jsx)(c.TouchableOpacity,{
+children:(0,y.jsx)(p.Hoverable,{
+children:function(e){
+return(0,y.jsx)(c.Text,{
+ellipsizeMode:"tail",numberOfLines:1,style:[e?t.goodslist_goods_choose:t.goodslist_goods_title],children:n.prdName
+}
+)
+}
+
+}
+,s)
+}
+)]
+}
+)
+}
+
+}
+)
+}
+
+}
+])
+}
+)(u.default.Component);
+_e.default=N
+}
+),"2da0c086caf1217b1b344d2df8abfc30ec99e2a1f85b1ccd934c8d3f962a083a",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","8052f046fc780ff8c4d732e08c85465d11307371085ee6babe8c74f3abeb91f6","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","50b5f26c5240b58257c1f71bc2060d8a9509d09221426cd72426ce51af2cc032","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.logo_pc=e.iconpc_shopping=e.iconpc_search=e.iconpc_myself=void 0;
+e.iconpc_myself=r(d[0]),e.iconpc_search=r(d[1]),e.iconpc_shopping=r(d[2]),e.logo_pc=r(d[3])
+}
+),"fc0eafff3adc08164918ff7548cb60069632445d5a84c23f35a39ce109465a75",["1cac5b45eec6d3cb0cb2013a545ec968d3b251a4a9add692136a41490ad1539d","ab24021851e0d42d212c8484fa57fdcf32b95b526ce3f9aa2bc33fb42a64eb16","4f2aed0faf21cf02f7147bb98d5440ea996749a0e7543f25ad22f29913df1a8d","977dfac9beeb4b4d6f44eb2c0467052ece304a8e67e698d98798d2778d68c921"]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports='data:image/png;
+base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAAXRQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClMElwAAAHx0Uk5TDmcYPx98Ojd3LiuOf14QWS+AMYlPbYtqYEJyXztVRDQKbEg4dAczfmWQaxMwUElLDyEkJk0LgWiIJQlKBVwqfWlOhQxaI1s8UgMeeoKRlnUUGmEVIIYGHVYyUXMNBGOMjZMCcRwShyhkGxeVQYoRknspU5cIASePg5iZAO0habwAAAOcSURBVGje7Zhle9swEIAzZmZeGVfuuvLKTTHQhpOmaZgZnD+/rvE5Ti3Z8in7sif3LTnpXgsOdIb6PxZDB9ABdAB6ALFFn7uayVTdvsVY+wExx6kgk1NHrK2AkKUmXJOaJdQ2gHc3IRAksettD8BzLFDk2NMOQDAsUCUc5AcEM4KKZIK8AE9YUJWwhw/gle9/NZ+LF4vxXL4qPwcvFyDftJSNNP+OZJv/7/IAQtL9LCRLckUpWZBua4gDYAErlfJ1VbkCOgseEAP/LZSVyjKsoRZDAxzwkUmSNglaBxoA8S1bImlLcNKnWEAQPjFC1kdAH0QCxsX5B7QB4A/jSIBPnJ/X8hIfEuAW5+doA3LiADcSADsQpw2IQwxBAiCOFmkDihBTkYAEKyCBBPhZtyiFBPxkPeQXSMAc6zWdQwJmWB1tDAmws4aKMjbYVdmCnT+ABfxgC9eb+IQjsCQcwY5PmVGWlPmbIyenz7WTfs3OU7Z0a5ctLr7Ca1VWYx2QCq+BJb7ScWJdvXQ8M/EWv9Yz1eL3hL98d6p9/x53+W56UqDbX7XyPkBCy0d087XGE2rLjAZsPFMxL3Q1tude4shlwwH6/XTrh8s3G4PW/v5af4gA2N5TNuawOjyTEy+/4Yb477ZRL2Dj/nXD+66d55OmPtmYpe7m+829oQ9gOmix/mvbOasMpy1v/3WzHsDtFu+6eEDMKMae1Rafm2cH5M7l5lWcdaVXfvB7rIBJmf1Uv7of7QzJ/DrOBhiR7c+7BS1PfTosezSnWQC2geaMtRJDuyPZ7MRkjQyAT9LwcydbS+hlQiX7GOjB0x+sM8qUlJ9r01qAWSk+VHT0zezStQh/1wBswsijaT2tv1Fp3dvqALt0YDv6motjUvlhVQVcCAzvOqIMUma2AuZh1KsFvQBPhdxZaAV0AcBZ1y23yJVeC8AqxR9EizewD0uYoAKkavoEAahvweyvNEApzLGAS4El3KEBpE8YxQHuwnwzBeCC/BXAAWxwkV5TAFmtV6WWQAPrIxlQBC+ewgJWIHsGiIAypD4jFiB9opkI+CBq39TRAvfoMxGwDGkMD/iifHcalIHuGx7Qo4wWBmXv4wQPgFPuJQIgl6XxgD3RxGMiANJeHx4QUjaQZAC4YwE8wKZsgckAqYbybZ1DUmorEPsGgzwA0UaUCEhfxapHIzyAho1Kmhzs0tHUUDRU55JLG6loWtc7mVM6gA6gA/gfAH8ACSsFXX9b9RcAAAAASUVORK5CYII='
+}
+),"1cac5b45eec6d3cb0cb2013a545ec968d3b251a4a9add692136a41490ad1539d",[]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports='data:image/png;
+base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAATtQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeYXp2gAAAGl0Uk5TFzmDkUJzQzyQezEbaUqLkieXM4QQf1Q3Ul8+gSpAd2c2LnlGE06ViDolUQ4vcQtmB4dlA3R9SEsJMiRMjBJWjUUfTYZVDY6ACnpgdmNcfjAslCBETwQWYgGJk3gCDGuYBQaPljsID5kAKYodRAAAAvVJREFUaN7tmWd/2jAQh+nebbr3SnezmsUMYQ+zwx422GBb/v6foJBYluHnIAl8r+J7aet4ZOlO/9PhM4DN5wE8gAe4IoBMKFISUtnJJJsSSpFQxl1AIl1BC1ZJJ9wCaPEccrRcXHMBkE+O0aU2TubXBHTVGFpqMbW7DiBaRFQrRlcHhE8Qg52EVwWoE8RkE3UlgHg6/zNnw0atLbVaUrvWGJ7NvzsV+QHicC5cClXF/lapFuaCayhyA+zz7zcdAl5r9u3fwAtQie+orDu76eURGaXyAcJkf3v1yx3rPbLTYR5AlMTnQF82NX1AojXKDuiS/OrIy+ND7pCM6zIDyAZ06FnaYdiGBUDeOn8GMh0gW6sUyzMCktb+6ixHpW7tdJINoOEUGtXZTvs6jtaxxgSI4wmVWQWrjD3iTACsX32dFaDjnM6xABJ4Ok12zW1inwQDIE1bUCfZxtuWZgDg+qHAU5cUcK1BB2Tw11Z5AFXslaECQlhfFB6AghUoRAVEsITwFYdYniJUQMkc2eADNEy3EhUgmCNrfICa6SZQASlzZJsP0DbdUlRA1hwp8QEk0y1LBWCtbPEBWlg5oQF96CX6Bb3Jx9BhugOdaAfQR0UA+rDbAD6unyrAgiMASWYQS+YraNF/AFy2DKALLxW4dLyhABe/AeDyfV8GvoA8A75CHQFfAvs+2Gssug98EQ+43koIzrUS9mZ32LbCAeBrhuwdzk761K1/QO2ct7NmizyNvSMNoiGF0rP1Ec/VvKi531J7/NWwfh+hT0G3m4Kfz0u01kMrcYKutjWzXy4G/iaPhLx7jdn921bY/CVP7+261FquvD60DftBXhxL6zfHf+74Fy/dSRtaWqO9f7e3edD84JSzjwjh5RY3gMX8ts78FgTA+EYI73UIgFVkT+36CwiAcZMQnu9CAIyPyEHQXf0X6h3p1cogAOOORfgOAzBUU0mfdIEAxrULgt+AAhjb02pj9EaEAxjKn22YROOoKjyAB/AALtt/8BFlineou58AAAAASUVORK5CYII='
+}
+),"ab24021851e0d42d212c8484fa57fdcf32b95b526ce3f9aa2bc33fb42a64eb16",[]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports='data:image/png;
+base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAAZtQTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdhPlvwAAAIl0Uk5TbignPhs6cFiFL35kjWWOTk19THQTQoxRSh4NRpU0W4JeHE+Ii2wrgX+PVlOXSzMKODBoKgcLPxJpIRpzg0kEfIpaPWMPXzxZeyNUNpE1Dm1DFlVBUG8RkDlHYglcgHcVJUCESDJrDHIYdXpXZil4cQMIEB0gAgaTAYlFFCaGLGAFlpg7knYkmQCdjwRaAAADSklEQVRo3u2Z51saQRCHSe+9994tMfZo7N2oMRoLqBSDSBOQIqKIlHj82QmPM4Syu7e73iVfbr7x3G/mfe52dmZ3MOV1NpMBMADaAMLegNvt8nnr1vQBLKQVsIwvogNgbkspsd6Q5oCsUmbLm1oDVssBSnJTY4C/AqC4g9oC4oFKwheNs6i5P1MOmG/WeqOF2m22xlsrRcKqTju5DwEevUpFLRI2dQKEcgCoO/zdFDkQtVFrjFXs+gHgLfyoN2cUCct0tHRRAfbSRTityFrSTwOEQVHz5z2PKfKWsVMA0a+gOJ7PLypHsZ+UhvMDntfm86eOBMgNkAHX4XlVGRe2JTIAK998vLQRydhWjAgIYWaeLCz5GdcvUdsovvc5ctPvhscnZLfupAMiLJIBw/DYLF0csIG9JwMm4PFZacAsRJglA1rxEw7IAjDT7ZSD14uKnSJslyGAjQK4BM+/S8bfwWrRRAHMgGBDEvAIjz+0s+k9EKRjcoAP4J+iAaLYdHblAB3gPkM9XQeOdHiJYz1upwKugOKVFGAdv/A+FdAIkndxGcBH8B6hX0AsWO8+ywC85dWaeMO5BpohGQCe3voYgN7yRBOyKFbrMAMwDppOCcAz8H0YZABuYr27Lw7IVtYB4i2zB1QN4oDH4DrMBPhANSYO8IDrAhPwDVQrwvG70pUpTgREKnYjv6FnLsoEBDHXDkQBLeB4Q2WU4Co7GAjYYFW3IgOeg84pCjgPjhMqgD3QXRSMH8MyNq0CqMetti4GGMWDp+o45y0os2IAzO+AKmAJlINiADO43VEFYNt4IgZ4U32mogCsuAhCIyoLerWqj9ReyiwCJt9tjpndJ9B2RwUA6DTFARjCt33K3/qLk60HHIC14h18pIFrrhCLpDKk3UMda16Qv51tcM1Np2ukAa/5BrN3ZeP7OCe/cadcfIeFd7S83yYTv3OOf3YdvCp+E3dOCg3Hw21iE6PlceHpuzUx5cjxxE73eMb8ceMPCs0BO6nt9HZqh+t6TJEyAdnD5c1xNAWqlAXYLaaI6o2WLmXt5OTfMaXKIZUhNak3wILt8fVKgpQBSJR4JdgAhvR/AnT/RLovsu5pqv9G079UGOXaABgAA/CPAL8B77/aYbf9UzEAAAAASUVORK5CYII='
+}
+),"4f2aed0faf21cf02f7147bb98d5440ea996749a0e7543f25ad22f29913df1a8d",[]);
+
+__d((function(g,r,i,a,m,e,d){
+m.exports='data:image/png;
+base64,iVBORw0KGgoAAAANSUhEUgAAATUAAADeCAYAAABc65fxAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAABNaADAAQAAAABAAAA3gAAAAB0523lAAArMElEQVR4Ae2dB5xVxb3Hz9wtsIWmQGxRjCgiWyVqbFiisUd9Ro3h+WyJihpbFCtSbWCLWBJrfNHEhi/Gh8YSJXlGowa3oihoUIlGpQm7C+zuvef9/nfvLMPde8+d28v+5sOfM3fmf+bMfPec/9Qzx3HoSIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESGAzAmpJZf2I9kD3FEc54zaLCf1wHWejUu4LdW2tcyPF51vYohEHVnZ1rJrmOG4d8q765t/tRvBrtZefMFtNmxYw4xcNG799V2fndJx7uOuqIUo5i13lPFg3pvQ+tXBhl6mbT/7GitofuE7gMpRrL+Uov+O6r/t86paatpa/5lI5FlXW79bldE1wAqoe+RrpKLcMx9X4e33i+Ny3BhUPeHWn1Qu/yWSel2yx1+D2jR1Tcc1aSN/7yXXeLysqnTZm3cIVmcxXItdqqqjBfe2eg1IM7nO+67Y7PudR2IEn+8TlWIBqqKh+CTfxobHy5VO+y2vbm2+JpZfr8Sjv8yjvEbHyqZS6qq695Sat1zS45nuuP/CS6zqDdFjvUamXhw+rPPbby99c3xuWJ56GipobHDdwVXh28XS6jk9dWNfWcld4XCZ/uyeeWNQ0//3THKUuwAMnxiyqQ543uEr9j0+pG2rbmlujKqYworGi+mHk63SvJJGv5+o6Wn/opZPtuJYh43fq7up8H3/2kmh5kXuiuLh4r6q1je9E08mFcJ9y3PE2GXHdwNRFFXtsZaObqzqN5bVH2xi0YP5d97u6HP8cdeDAgD/wTESDJkqoFFasbvvjZ9vtLS2HvHF4IG+KZNCkAGihKyfg/rKhok5atFlxzRXV1U3PL25CXh6MZdAkg9AbiL/FKW4g0NRQXnX3onEnlqY748jX/jGvodR+MXWyrOB2d+4FglENmmRP7okuf2DfLGc15uV90Hg5phYUUKDKLmf9LBvdXNRxx48vcVTAvqXpU71c1n696mQA2NqzXK57yMrVbb+RloWnXo5ESgsND+QVXtnB3xyVnv/nXjrpipMKKOC6byCPEYdFvK4r+Ub8eZ3LFr/8waDxw710k41Dd93i7+0WJ3uddJ/vOsoqjwBrpZfu/Hql73N8RdeJAfZS6o1znTNaK+pl7CDvXPMHGyfhARljlXHlLKkdU/qQ1g04Ac9uj9ZD+ic1Pr/4t7lu2Boqq66P1kLTZTGOexr+jHgbK6p+4Tj+Z6UiTeqCrjthvb/zrZbK3ccmlU4/OBlGDbgLw/nq1jV9iPGje22KIzVgt9N1u41uLuk0D6kehq7jVOs8+dTkzQf+1VDrc9H9QZfpEXfaNGkt5JxrrKye4QScq60z5iZpWKwv1KOIwepT8Le6Re61OE+NqO467ne6A50vfDRs/JCICgwsOALBG2eAb+AMGLY1NqXDDXdQw6Dq42x0c0Un0K2mId9bWOVHqb/Ur2v5g5VuFCW02CY2zXn6N7lm2Boqa6a5AXdKlGxnPbhhaN2ogONaVbBxZnaHtZ2d6Ug3zmxQPRMEgkZt7Lq3V2LUzH68zO/OycQgbCoANA2qGQMjM8kmLZndKXIddH2SdzCipzbOmfdQrhi2xvLqKU4gYN9aTR5BXClIl111dj+Kgf70tKjQgsbSlVPjyhSV85JAbxO/ZNTYuRj0/NiyFKO7lr2flQFky/z1qqFlcitsleesTq+ych6t6WhZ2Pu714PVaIk41z2tac68B7Nt2GDQrkU3bEYiRcjUOY3Pf3Apupxpnlnz3/1e+XjvCZ9MFZjXSRuBXqM2btFTna7PudL2ShhYnCILd231s6EXXFTqukfZXVutLxpQdk1k3cQHUdFKPB2G7X4cEzOMkTNkHdpUUXUVDNpM6xOyoNhSUfUtxwlcm+5Lo/U8qFN1Xp/u6zD97BLoNWqSjfq2lqdweMMqS+gmtAf8OVv798xABm6zKguUfD73tupV73wWWT85gwSDdmbjoOr7Mm3YsA7tioDr3BC5TLkT2q2cWVgy03cVe9Qsqn8oX9GPi3zqAFkUjjc7/h1VNTxCWs/lNbuHB/N34RDYzKhJsXzFvktlbMmmiGgB/KypsqbKRjfTOs0vfHA2jIjVGid5KIrLhve+PZCWvAacn2Jm71eZMmxYh3Y5rpXeMqUAlCzuVQHnTNukMKE1v25s6T51bU1PyGtc8paLUr5aLBVusklDZlVd5d5ho0ud/CTQx6jVrm1+C6+kPGZXHLcICyStW0N2aSavJdP3ATcQRytSXT3u6wVt0a+cePfTTBOVwNlNFbX3pNuwBdd5uYHZ5rVz1a+c7tvE0NjkDwbtS1+xc+rmy23w0mVb81dOSfFxqJzW2aQD/vujMv6RjS518o9AxJtJDVB4F1B1WBUHrwgFXz+yUs6M0rrOriloa1qtJMeD8i5eXn/EO2fJdT/NtPHi+LnoFt5lhqXSj7QvwdiR/ZsTqbx4nGk1Dqo6Hnk9yP403+U137SsjqRfv6ZxmXJ81stVMIE0e8noIwZESoth+U0golGrXdW83Oe49jU9Xj8KvoaUAywWDd59NFbLW8/M4j2gS8J34+hbjNS01Ix0z8OM5Fzjd0q86N5ehFZIzrWcIxVOlgS5fmdOpLgoYe/UtjU+GiUuGFyza8k9qKQ+8NLRcWg179j+xfJL9G8eC4dARKMmxRsxdMAcLPFYblNUPEhjmhd3nWejm26dzu4uWY1u+SKzejpb2+vgobqgsaLml6ni0VhZ9XN0ufNmrKhz2QcXoew72Za/uKj4Yhgsz7Fe6ZbiXoxjnaF7dc/Mq20uqJcPBKIatW0+X9iBTlccSzzcqYsG7223aj9NZDBOcjDmOI61SR6TIRt9JWqyjS7ShHrqHXY+ubCpovr2ZFNuqKw+3w04dyabTqbOx99pZDxLODBW9nj1ukarWfn6jtb5GBPu3YzAq0yyxMPvOFzi4QUpD+OiGjUpS11b8+/QWnvLplyoIYd1dbdNt9FNh44scEVLxb7rpdTttd80/zOVeQGru2D9PFsT4dfDRMvFGAfDAuHEHAzEJGwRlMAYne9a5LUtsasmdxbGs2baLuFAHjeUlpRYV66SM+yndinGhGGvLBw2acjm9koWOaRKnAQ8jZo091Wxutg2TTzN52ZrR4TG2fPOwoNSa5NXlOvLgWWD41i/5d3t2XRN30MYrD47XsOGCuHShoqqeMaXgpfEy+nnYO+wuzdd384H43tdfUdzVloo6O7V4D45yy6nME0+59bd1jR8YqsverJBJMp4v805yAuGVbuTbi3bXIs6mSHgadQkC1ji8Xc0539nlx23uNvtSrjVYXeNvlqLh+87CF0U63dXYaqv2XXF36ym/3uuZt/9rO1ofgCP4rnxGjYY5MvQYru5b+kih0D3CrTQ7sVDiUvZO/zBp9V1tGTtDQO/o2BA3CKrHCvni0TXD1bIllpKfWNzHXRDD2ysrP0PG13q5D6BmEZNilA8YCCa/2q9VXGwVbbsdW6lmyKlDevXXoPWDsZpYjsYv8aayf/xcGzNxDVgNO7Dyqvz4jVsKMNkGCvPBbOy+3BDefVT0L0pXoOmfGpGbUfr9MRLltyZzYOqj0W+D7ZNBa2ta7zXD0ZPaee2hq+xq7O98Q4E8maThuilZowQsDJq8voQugHW3SNsqnire+CBxZlA3DSkZkfs7GDfRVbFFks4ks85PlDxK+XzXRBvSnjor8Di2edaB9ftoc8VlvKNBCwDubPLXb8ELZ0f6TjbIwzaLHxvYKqtfqr1ZAmH3+9ar5/DEIHF+kHvXMomDdBY6q3VE4vZ6O9gp1zr+8gmTepkh4CVUZOsqQo1GzXnv6yy6Tq7Nf5j5TlWukkquV2BOWixWC2iRMvpmfq2xgVJXtL6dIzt3ANjYr1mTieM7tDRXd3db6NF1gED90XT2yvwwa/Am3jwfo6yVmo966PPuQEGzXphqnW6cSiGdnUZbXuK3fpB79RkkwanSF3urWXGutf0zMyaYfTnGwFro1b7ZXM7Rm3xpoGlc93p2PRvqKV2QmrNldUT8JCfYHMyDFpnUckAyyUc4SnaThSEnyczyC13+XzORX1jbELcMhi4rVBGy3V3fdNEi+em+rbWKLuP9NVPR4h8J0B2dbFNG3+realaPygbfmLI4TWra+Ol+uDMrJUylXKVgLVRkwKEVnS/Y1UY19kSn57B9w/S43qWcDjWs1a4sX9Z/c3Cj9KTG+9Ua9ta70SFkPHV6zBos/GZP/uKyLsYCceu93dhCYfd5o8waBtViS+O1lXsbLlOsWzSEIitKRruT2WG1k6XWrlIIC6jhofElZXdtgVBK+OCxkG1u9jqx6OHPcpOw/jT7jbnIN9flQ+osJ4dtUkzXp369uY7kI84VrvHe4UwfeXcAoN2RVhoxn+iO1eFbvPPrC+s1B2pXj9Y397YiL0Cez+k45UXtIp9PTO0XlqMy2UCcRk1KYis7Ear53G7QmHHWb/fenDYLk3Hka+s40GxX2flOlN2XvXWWtv0++rZL+noe+6mEBiZ22T/r00hqfehReJiPOrq+vbWtF7HNudYXGy9hEMqn4oB5XGsH7TNBWbwXeda3LdWy3hkhlZmau1Tp2YuEYjbqEnmS0oHXIGHZ4NNQVDzHYOP0h5io2ur071+xZVY17W1lb5SzbWTT8Dasdxwwa/cK5WmFpTqwIzribXtrTfmQmnxfYhj0O20/tujZX9tcpVP9FJXt7d+iekua4MpM7X58h2O6KXunzEJGbVxqxd+inXY1i0wDGbclqpvYb43tH4HvOdo3Y3DKzMZWcIRz+1T394yG0tkTsZscns853npopXTghWtEzDjOs9LL1NxsmsLBt2t7xHZ5LFu8gkPpjN/FVtvdzuYL7O8Rt58h8OyPP1GLSGjJnSwxAOLRNXnNqTQnK9uemHxT210Y+l0dnXdjNbfwFh6PfHqWTzkr9rpZlYL69ieRDdxbxijD5O6snJW+ny+82uP3LU+8kdjkko94ZObFndegL/7LrYJoFt+aewtoGxTi6y389IXNmJszXoGPB++wxG5pP07NGGjJks80Aqy/iguuhYzl2yx1+BkcLcMqtsH6Zxskwa6x52lxSWX2ehmS6emvaWldo8tx2Gs51QYt0Vx5QMtG5x3WVGx2jm4Hu6pp/xxnZ9G5fcH7bklkr/O/hKZq3zkOxy4N163yluOf4fDqgz9UKk4mTLXtDX9N16JwoJQd3zMdFx3RMfGdvlikHVNaaaJWl/hFaI7zDBPv/LNHbf2XavV5J7ppDlSLVjQjUs8ivI91jS4bl8V8O+Plug+8nI+pifKEFeKhxD/HCxHCRq+VtRE88UgpjlrCSe/wd8xAydbrVGUyqckQuXTUFE9EXFnohITBql2W2E+xSpNmbnFDO7dqDharU7IUyW8Upb4YswcK3NSRg2tCxdLNi7GDOf/2ZQLN+hFLUPG/zqR9WJNldUTcY09bK6DF5m/HlRaMtNJ2YiV1VWTUhKWSEBaEHatiKSulr6T8WL4OOwcgrdJ7IwG1u/1qXzklTC3O/BbpCDGPOXOMmeh68p3OILrIQ+NkhEMGcdwLkZQc9wFHOxDbOGgl/NlSTqDdeuaXscD+aQFD7nNS/1dndbvkOo0P99mfDkqEs8XvbWuHGEfrttp9UKrHRrM86L7C6YSi17EVMW4fuxpZ70Lx4pg5RN27UC3Kx9jSYtBC7uU3U/M4AZnciNooyW3MkLwZkHQqciV7e43y5jxw+eomOXoUVdWLXAj6Yx7kzZqkmO3pCiOJR7u8Q2VdQfGU9Iv13ZNxo2xrc05MLCttUeMvd9G114nNevU7K+Xn5oN5VVHoTX+A9vcY3KgT+WDbclPwh21t20amdKTmdxIhgnjmlgqEtu1LnW2j62VRQ3X+cru6u4OdnrZ00qJUZMv+aBRar3rrHK7b5fXnGyK3bRFzXbYN+xyG13RQaKXqBwaNLfNd77ryQOPCuVW23JAd1HNEWPuM/WDX3cK2LfIzXPT7ZeZXJnR7XsdZWUM/N0bc85Qm2Vxy5SVcUafJafLIWWyMixm4aP5S8uG34ha69/R4s1w1OZ1zbOfOcMMi+Z3N7pYSOqWR4s3w9FfeQ4D6K+YYfRnhoB8eAcP/hj7q2EJR1jl0/bF8ovQIt/RPo2Ma14XmtntvTA2HMUETmyH5SH2r4rFTi7lGrXVw760WTcpfx9MDn4/5RlIYYIpM2o9m/nFscRDBWbJjrVeZWkcXLsnVqTLBIGFU11OUVFOL+GwKEReqsgHd3CzT7XNPFpp8+vam14y9WX1Piqlq8ywXPPDaA8Nzexuylqx8+dNPzx8rjsBk2r7eWhkNUpm4THI8hebTODbtdfY6GVLJ2VGTQogHwXGDfuuTWHQWttq/fpvou5MGtxksjtwj+2AMVqJd2HSIrmFrDYZp04fAvLBHTzww/pERAxQ3dhjrs8bIf5li8eI0Yh4Sk4FqnMWVdbvprNUc9iYf+CeX6N/ex4D/pm2wy6e6aQpEpWKVS8Hz+5BudxaS6lRkxXhsrmfLXP0zy+Mtjd80zurbkXtH3v9m1wMq+oxWTHD9rrUSx0B+dAOKp5zbVOEAbindl3zB+H6ReVb/hNxq8PDc++3W9TldvWOHwe70K5r9dYKjMGBjbOfnpuzhk35Nms9e7HH7tZP4J3uai+dbMWl1KhJIXo291NP2xRIWmFY0/RkU2XVLPmoLGpqJbVgY3nV0/JNTJs0gjpKTcVkhV1taZ0oFW0I9Hxox7Va74jW9CpfsTstUro9wxe+UxD3aaT4XAqDcTqsubz6SJ0nbCJwt/ZbHM9rmvP0K1gisn+k2VSL89OmUtfWtAjrof5qdQHsl4j1e2/KB4By7YPQaHGm3sl3A7DN9vswWgPiSR2Z6cQ5pfGcg1bae3VHjq0JH3SOK40Yyvh83SNYZPdfMdSQlaLd6zqaGmLp5Uo8Ko914F3plR95ARwfktkxkg5u5kO7Xce6dscS1AvxzuvcSGmZYbKl9oCBRcWBDh+yh2ki1XMMOOuDvyUsEAord4qCYfp3MK43rCfOr9qCOn7V81t0Bof8AYVNieA6i8oCXetXTsbSjSnyO6YLu++w9To2T3W/G/O8zRTQFVfZ+faqzgYMdAfy8DjemLgMLWUXxvoIv+M+r+Ntj3h222AQ5e2YrDk0ipYUOWpSWoyalAoW/EZcJK6P0CZCQ6miwzHo/GIi59qeQ6PW16hJF6pxzrwGTOTU2HDEA7MY77lWh14Lszkl4zqyyPurNZ0fYthjW5uLw0hPkg/siC4M8QmBQMCqh2KTdqZ1lK/oBLTUnpHr4n5vRCVem+k8pOJ6uM8Wpbz7qTM2ckjpTLmR9e90HFHD/DbdBi0d+S6ENINLciwNmpQXba1f5LJBkzxu8/nCjvi+w6Gm600a0NKZh/vxfyWdvHSBwDidb1+RD6+5ZbfVpfMS7xENqXFpM2rBG8T1/US6lPFmzEYf3aKPB5YNOd9GN3kdviZlMmz6Vk1FQAWizlybuuLHw/4itkWKu0sTnk4mfsfzHQ48QCPbN3b0LkNRyncWKnKrxbiZKEuc1+jtteED5m/hx4w4z88Z9bQZNSmhjC/hD52GNS0YiyhWE+P7ynoyzPmalEnPbXcno3uytRkW3a/8Jark0ujxuRUDoxTXdzjQ/b540bDxwVeg0Fr7CpXtafnayjH/ErVH7XoDWFjN6prn5YI/rUZNCojtiW7FCPp/p66wyo9a5HzUJn9PXZpMyZZA45a122Ln4TgWObu/HtfW8J5t+rmgF/oOxxM2ecEsw8DOzk689dLjsF37n3xF6gTcoxt1WD4eZeINQ0jHoJlttXYtl8qYdqMmNR8+AoLay3ct/tDBmaaEAShnLTamPBqzcfclnAZPTI7AhsAs69fWsCi1vGjA1OQumJ2z3ZLiK3G/brC5unLdU1qGVPXOfGId3h8dVXSszWtHNulnS0eGkCq33u5ocHguW3lI5LppN2o6U/UdzdfLR0GS+EN/VKpK9paaUKeZqSPyHLC5lk8FsjqlbZNHUwed6pjlwkxgb5mCb3m4zolmGt5+d9aYdQtXeOvkZqxs0oBWyh02uUNNrfzd6iemrkxguaVFVTKeaIbnsD9ig0O2QK9tbxEDfQ4aKHmxFjRjRk3+mDJDVOqU7gxA91k3z7HhI2BeOXTk8KqsdWNcN/YmmMjnsGGVS3P4pu2TNfwdLMrlvNF74muv4ZOY1ltvLi0ZNTbmmrTetHPQM7BssIwrWe5e4fbZv08MY1176+HYYgkTZmphDhaxN0t4dW1J748wj/S2pHdU4gwc6/Op+3EPJPG5ybDEU/1TOUtgW7LjmodUDwt0OSeitXAgMiGvQ43EQsBKvGOwBjfAZ1hx+ZZb5L5Yt0vpfLVwYVd2ctlzVcxyKaxDwutfLvYKUyUR8rLCdYpulI/mRojL2aAllfUj2gJd03DT7hopk/i7NJcPKJ9qfrausaL2MNfxz8VAws5RztmAFg6+DasuQiXWGkknn8JkUwXX738Y5e1939PMv1TO2IHjT2Xlg0+NNXElr5QFnM6JAVfV4zxMLrg74J733NTBvFZ6/Go9WpO/x4d7zrZdwP7ZdnuXrVzT8UPHDRyNiZIdka/twWAblKcoPXm0TnUplqOcaa1NRRIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIgARIggbQTyOYLqLeidPIi+/uQ9WEl3QG/T4XsGRJ5UdwP6Y+uDoX+t0fB90WcvGw9GjIQ8jWELjqBLRE1CSKfYJwNaYfkzRfAkNdUOvkANV5Ed+QoO/aEP4cIiukmQ+MkyBEQ2aVmFUTsyuUQ4ZrVzShw/Yw5gSD7N4kISOx+sZkTQDpejkM3i+0fP+TGuBMie56dDonmPkOEZiX6dN4E5LONyyGa2YfwZ3QLLu/sZTR2usHhtgSvLFtTaZZHwl8KmRcKexXHMkhGXTb+mNuhhMHPioVK+jGOryVZammpSKuukNxTKMzPIdilxnkAcjwkkpOWh3ZSS9J5E5Bttm82VGQLpTg2vjTOpFcIrDMwyDZKW0H2C4UdhOMfIdKDyJiz+rJ2CnMjD+gjEGnuihMLfzYk0SZqBc6Vj89eCvkIUgNJNC2cmlPuQeTmaIjs3yattt+Hfr+Co3ZSC5o1YX8zatKCl0oyXvcmTpCHUR5CcVdBFgV98f33HtSlJd2fXbhR+xQwjoIsgMjzeQjkWcixEKvt0aGXV04+2KGbqnI0W2xmQY4I04vU/ZSWiwA005N+fCG5k1EYGUvUZWyDfy+jgPJA6zg5/qcR1x+8Z4SV32SRCb/n1+3z4A8w3eCXaPfzYSONS4wyyzMsDQz5O4jxlxZcRlwmu5/yxefrjVLJ4PeVxm9b735Q/DPkGci3jZPa4e80fheC9wkU4lyjIFLzvQAZFwozu54S1N9aaiEMPGSRgNlSM4283KfnQN6B7A+R5z0jLlPdz5EojTygMoio3Ux41ugfFkcBMw1ycATdJxH2C8jyCHH5HnQ/CjAYckuoINI6/SrkHx466kN/M2orUPC3deGjHEcjfAvIMojmBm9UtytiyiEycyetDC/n94rM87izkH99z3kVpcyIvBp+GQoynQydLA0F/A3Ho83IfPWLQZO96sO7Ayd5FEiarqb+G2G/dZyMg0Qych5J523UDORcaj15QLUThpqFHMfoCB6DBKbifzE8wkbuFT2GBm9E9z2EykSC6AvrGkghO6/u53kouHBIpSzIBMx0t9RGoBAyrau7S7ZlksFx0+1t/oD/M8gcyL2QbkihuF1QEDFekZxC4BeQe4zI7xh+8QqTjrCwWD9vhoK0SgrR/QmFugbig+wGeQwiA9byoIY7uVefgujexCj4bVp2UKPrLwTkJonUQtOWP7ylVgH9H0P+CNG1pdbVx8WIk8HhcKOHoIJw+6AUuqyZOk4oCHLRC3FxGFNpnYQ76SL9GWIyl4moQnRSKf5PSOR50mWWLqIO/xH8ZkttPn6PiyInI1ynIcuzoulJ+ChI2l26WmqRWmhi4KrCSiS14mGQUyA/hIhhi+TeReCNkGcgkabQpdslLZzXIXJzvgehsyMQz7imXYqZ1xqJS9ZFuez7CJeHV8bKNkDWQn4AMZ203g42Av4BfzskXE9U5AF+WTx56g5FvmWcMdzthAARce9AzPviG/xeJBER3EojTLr30fQMtfR602XUnkO2TQP2N/w+DvK1URwxfDIjMswIi+b9PiJMyOF6wxEgLT+RlyBiKPPRyc3zShwZ3xe6eqBWWErFEct9CwrVhpJcM9+dtHCllRHLDYTCLbGUEP9dyItR9GS4o1B7ClGK7Bn8JWKlZzUAIuO90uo1J1BkfPxNiNfzi+jUuXQZtdeQxb1C2XwBxx9BpOCmEwO3BLKnESg6f4J8ArnQCI/lrTQUOgx/vnmllpOa1MZJmVcZivfAP9P4Hc07ERGPGpEZu9mMa9KbPQLS/R4SuvxROIrRESfP7Lygz3H+jqN+fkNBUQ/Scv0UsjNExi5lmZEei5SGzfMQMXJSmVwJSbtLl1Gbg5xPgsyHnA7pgogFD3ePIKAe8jLkCcgfINI9ENCmUdODtwiO6MzWXj4btYiFixJ4AMLNFsMbUfTCg6WLoJ3ckMK7kNxnKMzjUQq0LcL/FSVOWhrCZkWE+DKEXRAhPB+DzAptJAogz5q4RsjdQV/Pf6ZR2w5Bxxlx2tsJjxgtaYSIURMnaWqjdnwwpOfZbwn58/qwH3KvjBKIUZOHSMtJ8FdATIOEn0H3ffyv9eR4UE9w1P/vNfTnRtUqrIjbjTJLl6gyVLytYhTzcuO8QmmlyQOn75cFUcovXdTVkAcg4ZV5OcKkYv0IMgYS7kYgQKcvFXShuOkoiC7XbWGFMicKtE74USoQcQ9CdNwhwZCe/94NhUsPbLARnlZv+B83lRd73SKxduiIhDvpmpruGfx4FhJpkkBqBmlGa9egPQV+NG8eqQXbIJdArof8EPIKJJLTxk/iCsWoRSqnGSas/gCRSvQsiLQkroZoJy07zVNavNLC+KuO7KfHWL0jwbI+xEZaatpJi03uvR0h9aFAqTAy1iMoDl001w7vIUPLIduFMjYUx9NCfq9DNyL7w80orbEqA4Q8iDdC9JiFPMCHQmSANtyZ3c9vwiML8PdxKJMYLeleipMHbFbQt+k/4VYL2R4ig92icybkMUh/deZ9shIQpBUrTkH2CPo2rYnUcRK8SyjunNBRDvMMf9q9MrCXi06Mk9xo0vqwdRugeDFkqe0Jeax3ZFjexai9DvGHwqVF8jxEHtRw159aaleg8PJAaYP2LPzHQDogppNK9HsQ3cqXVsqjkGsh/dUNMgoulaSMsYlIN147zXGhDsBxDES68z8LhcmzLNwz5oozdiW7C42CmnQPtDsYnq0g0qQVUOFO+vHSfV0DWQBZBil0V4QCysOqnRiyv0CWQy6A3AsRNxTyEmR/yIcQ7cybtVBbanKvPAQ5WRcax99BpLUvD1kk9wUCJ0CehhwWUpiJ43cg/dG4mfeJ2XUsCbGRw/qQ/wMcRUfGzcSonQqRFq+41yCrgr4M/ZdJoybjYRONcsm0cbjbAQHmDSTdgOfClfr5b2G4i8FAWhRi0MT9CjIKoo3eSPiFoRi2TyHiCr2lNgRlfAMS3krdNRSOg6czH1pRPAMy2vOMwoy0MWq6pSaNC2mtHQSRZ/hSiHa/1p7+ejwABRdAWqTmpNtEQCqhpRDNR1od0oo1ncKP30O0jhylJh0IEbcAouPulIACcMehDLpMC+B/IPS7E8cXQn4db3ucFTpPhjVOMtLogr9Q3HQURPO4LaxQ0pjQcaaRGm6EyzIs7WbDo/X1USaw5H7MqJOHhC5/CJyPrO5kZFe6VEuM3+KVG+p0yDYQqRSkhXw7RB5OcWZLrVC7n5NQTumm3wvZHnI4JF4nRm0F5BPI6/GenMf6YhNkSGO0UYa1ht9syerup0S/Y+ho7wx45H7MqJMCpMNJd0duqHidDHCb7hH8iLTkw9SJ5D8XgYV2I1ahTDcZhZUWg4z5RHKyLkhaL3+B3Ax5DKKd2a2QschCdMLmjFDBxKhpdz88F+gfEY4yrraFEX5HyD/CCCtU71gU7D7I8ZDxENOoLcNv7UyjprufEhdu1BYh7Gl9Eo4yNrkcIq3ntLp0GbVK5HpcCnI+KsE0zAc3wSRy6jQx9tKl1F1IydwsSHgrTcK1Ww2P3JzygJvOZFOoLTWzvKZfWiBeD1XGWxVm5jLsl3tpW+Oahxv+veA3bcO7RpzZ8DCN2pfQEbalIV25P02eMt67D+RFyAmQtDkz42m7CBNOioD8jZ6CSEtNOxmUvUH/8DiGGzRRlQpHu0Jtqeny8bg5gW/h54mQIyAHQcogkdyhRuDH8Juzl/sacWb3826Ea4MmKuGrFaTFLAZRZkfT6tJl1D5Crm9MIOdS8InGedJt0rN2RnBMr1y/EJwPhXgQIjehdjK+cSpEJgnidQNwgmnU+ltLLV5ehab/PRRobpRCrUT4M5AnIT81dBrgl5lksRU7QKZAtPt3yCP6uruv434Cz0P6B47fDvkXG2H9wnsASilNVi0T+kWpIxdyCILnGyyEibS8fgBJ1B2CEzVbOe6RaEI5dp6MH+pyLQjLm+wQo+Pa4f+XhwQMXbOrP8IIj9T6RXReOBnX0izkKC0wMTyHQcRoiZPZTZlU0npSgX5h/NbhcpQW3e4QabGZ4eL3Q7aBiNsWouOjjQMHFQvxvwOMwguE/mrUdkXZZRmGvhH0UWrERJ3Cic9BdFpy1Dddomnmynm2Rs0seyy/adR2NLjls1GTe0CM+iOQoyAlkHB3BQI0m8/gF515RpiOa0XYaMgyI+5R+B83fl8PvzgxjPq8icGQNP6nrXMaL8Gk4yRwDPTl5hhsnNcJ/9kQuRmjuZ0R8V8RImVsYyjk+5AdjHjpxn5u/C5Ur7BbkUDh5CHUzmzRCrd8dVKm7SHSiorkRiLwSiPil/CLEX8VIg0MGfKQCSjpQv4K8jJE31NN8P8MUg05GSLuIsjvINJa1u7v2tNfjgegoAJei4DsL05q0SmQAESXX47yQNpw2DHsPDONSP4/QL9QnFdLLZ4yfhvK0pIwRR5MeZA1w4XwF6p7CAXT5ZQupznTaZZZ7rVlEK27En4J0+5VeHSceT9/rBX60/EAA4ZAmdCPCr81yho+diE14k5xMJAxEn0zeR1fg5603grFpcqo1QCIFzeJizbQnu8s90YBTAN0bpQCSXf0Q4jm1Ab/PmG6e+L3BkNH614cptcvfh4QBqI/GTX5A9dC1oQYvIJjvIZHxjM+iSAtCJP1QQ9DDoEUmkuVUZPhGFl7pR/C8OM8xMlAeiG6e1EoXV4Zz/UampJ7SCZdxHAdConkTkKgadjexu/SSIqpDvPKeKqvxfRiE5BxiaMhP4ZIrRbvsg05rz+6ZSj0/aGCywOZqBPe50NMwyVjclJRvAeRFkqhukko2BOQayBi4LzuPalwZZnRMMjLkEhOloZIZSrja1JRPwARlnQkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkQAIkkGkC/w9QHC1xibpAKgAAAABJRU5ErkJggg=='
+}
+),"977dfac9beeb4b4d6f44eb2c0467052ece304a8e67e698d98798d2778d68c921",[]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var o,l,n,p,u,c=t(r(d[1])),b=t(r(d[2])),s=t(r(d[3])),f=t(r(d[4])),y=(t(r(d[5])),r(d[6])),k=new(o=(function(){
+return(0,s.default)((function t(){
+(0,b.default)(this,t),(0,c.default)(this,"darkBool",l,this),(0,c.default)(this,"QMbool",n,this),(0,c.default)(this,"clickGb",p,this),(0,c.default)(this,"pageId",u,this),(0,y.makeObservable)(this)
+}
+),[{
+key:"setDarkBool",value:function(t){
+this.darkBool=t
+}
+
+}
+,{
+key:"setQMBool",value:function(t){
+this.QMbool=t
+}
+
+}
+,{
+key:"setpageId",value:function(t){
+this.pageId=t
+}
+
+}
+,{
+key:"setclickGb",value:function(t){
+this.clickGb=t
+}
+
+}
+])
+}
+)(),l=(0,f.default)(o.prototype,"darkBool",[y.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),n=(0,f.default)(o.prototype,"QMbool",[y.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),p=(0,f.default)(o.prototype,"clickGb",[y.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),u=(0,f.default)(o.prototype,"pageId",[y.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return''
+}
+
+}
+),(0,f.default)(o.prototype,"setDarkBool",[y.action],Object.getOwnPropertyDescriptor(o.prototype,"setDarkBool"),o.prototype),(0,f.default)(o.prototype,"setQMBool",[y.action],Object.getOwnPropertyDescriptor(o.prototype,"setQMBool"),o.prototype),(0,f.default)(o.prototype,"setpageId",[y.action],Object.getOwnPropertyDescriptor(o.prototype,"setpageId"),o.prototype),(0,f.default)(o.prototype,"setclickGb",[y.action],Object.getOwnPropertyDescriptor(o.prototype,"setclickGb"),o.prototype),o);
+e.default=k
+}
+),"4a8594163c59c557a9bb9d1164edca4f862c7c09259d8a0019ed8a58c8f6adf3",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","0513c9aec1df8b193fb6e7118d38330920d6f86b6f168b15f210858e15b09551","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","238db300b8230394a7d5170f0b40f8df9292454df0796f0bcc766fd45e231b9f","e8b933b691eb434ae798f2ebfc685acb60972917ddcf03d73f892839d981c1a5","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var o,n,u=t(r(d[1])),p=t(r(d[2])),l=t(r(d[3])),f=t(r(d[4])),v=(t(r(d[5])),r(d[6])),s=(o=(function(){
+return(0,l.default)((function t(){
+(0,p.default)(this,t),(0,u.default)(this,"getNavTop",n,this),(0,v.makeObservable)(this)
+}
+),[{
+key:"setNavTop",value:function(t){
+this.getNavTop=t
+}
+
+}
+])
+}
+)(),n=(0,f.default)(o.prototype,"getNavTop",[v.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),(0,f.default)(o.prototype,"setNavTop",[v.action],Object.getOwnPropertyDescriptor(o.prototype,"setNavTop"),o.prototype),o);
+e.default=new s
+}
+),"1989a3c00ca5806c4a40991a204fe654cc548ab13fa8a7c91dbf384b03e7d6e5",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","0513c9aec1df8b193fb6e7118d38330920d6f86b6f168b15f210858e15b09551","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","238db300b8230394a7d5170f0b40f8df9292454df0796f0bcc766fd45e231b9f","e8b933b691eb434ae798f2ebfc685acb60972917ddcf03d73f892839d981c1a5","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14"]);
+
+__d((function(g,r,i,a,_m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(r(d[1])),n=e(r(d[2])),o=e(r(d[3])),s=e(r(d[4])),l=e(r(d[5])),u=e(r(d[6])),c=e(r(d[7])),h=r(d[8]),f=e(r(d[9])),y=r(d[10]),v=r(d[11]),p=e(r(d[12])),w=r(d[13]),m=r(d[14]),x=e(r(d[15])),S=r(d[16]),b=r(d[17]);
+// 函数
+function k(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(k=function(){
+return!!e
+}
+)()
+}
+var j=(function(e){
+// 函数
+function c(e: any): any {
+var t,o,u,v;
+return(0,n.default)(this,c),o=this,u=c,v=[e],u=(0,l.default)(u),(t=(0,s.default)(o,k()?Reflect.construct(u,v||[],(0,l.default)(o).constructor):u.apply(o,v))).hotWords=[],t.arrLabels=[],t.listenSize=function(){
+arguments.length>0&&void 0!==arguments[0]&&arguments[0]?window.removeEventListener('resize',t.setScrollStyle):window.addEventListener('resize',t.setScrollStyle)
+}
+,t.showBox=function(){
+if(t.isLogin(),t._getHotWords(),setTimeout((function(){
+t.setState({
+visible:!0
+}
+)
+}
+),500),t.setScrollStyle(),'web'===h.Platform.OS){
+// 变量
+var e: any = document.querySelector('#searchMask'),n=t.state.banScroll,o=t.convertUndefined(n);
+o+='overflow-y:hidden;
+',null==e||e.setAttribute('style',""+o)
+}
+
+}
+,t.hideBox=function(){
+if(t.setState({
+visible:!1,showSearch:!0
+}
+),t.setScrollStyle('show'),'web'===h.Platform.OS){
+// 变量
+var e: any = document.querySelector('#searchMask'),n=t.state.initialStyle;
+null==e||e.setAttribute('style',""+t.convertUndefined(n))
+}
+t.props.onHideSearch()
+}
+,t._onLayout=function(e,n){
+// 变量
+var o: any = 0,s=e.nativeEvent.layout.width;
+t.arrLabels[n]||(t.arrLabels[n]=[]),t.arrLabels[n].push(s),t.arrLabels.map((function(e){
+o+=e.length
+}
+)),t.count===o&&t.setState({
+labelsShow:!1
+}
+)
+}
+,t._labelsListShow=function(e,n,o,s){
+var l=null==n?void 0:n.map((function(n){
+return(0,b.jsx)(h.TouchableOpacity,{
+onLayout:function(e){
+t._onLayout(e,s)
+}
+,style:[e.labelView],children:(0,b.jsx)(h.Text,{
+style:[e.labelText],children:n
+}
+)
+}
+)
+}
+));
+return l
+}
+,t._labelsListShowOther=function(e,n,o,s){
+return null==n?void 0:n.map((function(l,u){
+return s<t.arrLabels.length&&t.arrLabels[s]&&t.arrLabels[s][0]<=296?(0,b.jsx)(y.Hoverable,{
+children:function(s){
+return(0,b.jsx)(h.TouchableOpacity,{
+style:[e.labelView],onPress:t.turnToPage.bind(t,o+n[u],'',7),children:(0,b.jsx)(h.Text,{
+style:[e.labelText,s?f.default.relationHover:{
+
+}
+],children:l
+}
+)
+}
+)
+}
+
+}
+):null
+}
+))
+}
+,t.itemlist=[],t.receiveRef=function(e){
+e&&t.itemlist.push(e)
+}
+,t.state={
+banScroll:'',count:0,fadeAnim:new h.Animated.Value(0),freshValue:new h.Animated.Value(1),hotTagsArr:[],isLogin:!1,initialStyle:'',isPostList:!1,keyword:'',labelsShow:!0,openApiDomain:'',plAnim:new h.Animated.Value(200),relationArr:[],searchConDomain:'',searchHistory:[],searchIconList:{
+
+}
+,showBor:!1,showSearch:!1,slide:0,spinValue:new h.Animated.Value(0),value:'',visible:!1
+}
+,t
+}
+return(0,u.default)(c,e),(0,o.default)(c,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this,t=y.Service.openApiDomain,n=y.Service.searchConDomain;
+if(this.setState({
+openApiDomain:t,searchConDomain:n
+}
+,(function(){
+e.isLogin(),e.showBox(),e.fadeIn(),e.hideOutline()
+}
+)),'web'===h.Platform.OS){
+var o,s,l=document.querySelector('#searchMask'),u=document.createElement('div');
+u.style.cssText='width: 99px;
+ height: 99px;
+ overflow: scroll;
+ position: absolute;
+ top: -9999px;
+',document.body.appendChild(u);
+// 变量
+var c: any = u.offsetWidth-u.clientWidth;
+this.setState({
+initialStyle:null==l||null==(o=l.getAttribute('style'))?void 0:o.valueOf(),banScroll:null==l||null==(s=l.getAttributeNode('style'))?void 0:s.value,slide:c
+}
+)
+}
+this.listenSize()
+}
+
+}
+,{
+key:"fadeIn",value:function(){
+h.Animated.timing(this.state.fadeAnim,{
+toValue:1,duration:500,useNativeDriver:!0
+}
+).start(),h.Animated.timing(this.state.plAnim,{
+toValue:0,duration:500,useNativeDriver:!0
+}
+).start()
+}
+
+}
+,{
+key:"hideOutline",value:function(){
+if('web'===h.Platform.OS){
+// 变量
+var e: any = document.getElementsByTagName('input')||[];
+e&&Array.from(e).map((function(e){
+e.style.outline='none'
+}
+))
+}
+
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.setScrollStyle('show'),this.listenSize(!0)
+}
+
+}
+,{
+key:"isLogin",value:function(){
+// 变量
+var e: any = this,t=this.state.openApiDomain+"mcp/user/queryUserLoginStatus";
+y.Http.get((0,m.formatUrl)(t,!0,{
+portal:'1',country:'CN',lang:'zh_CN'
+}
+)).then((function(t){
+// 变量
+var n: any = t.login;
+e.setState({
+isLogin:n
+}
+),e._getHistory(n)
+}
+))
+}
+
+}
+,{
+key:"convertUndefined",value:function(e){
+return''==e||null==e||'undefined'==e?'':e
+}
+
+}
+,{
+key:"setScrollStyle",value:function(e){
+if('web'===h.Platform.OS){
+// 变量
+var t: any = (0,S.isScale)()?(0,S.getInnerHeight)()+'px':'100%',n='hidden',o='hidden';
+if('show'===e){
+t='',n='',o='';
+// 变量
+var s: Function = document.getElementById('scrollView');
+s&&(s.style.overflowY='auto',s.style.overflowX='hidden')
+}
+else{
+// 变量
+var l: any = document.getElementById('scrollView');
+l&&(l.style.overflowY='hidden',l.style.overflowX='hidden')
+}
+if('web'===h.Platform.OS&&document.body){
+// 变量
+var u: any = document.body;
+if(u.style.height=t,u.style.overflowY=n,u.style.overflowX=n,u.parentNode){
+// 变量
+var c: any = u.parentNode;
+c.style&&(c.style.height=t,c.style.overflowY=o)
+}
+
+}
+
+}
+
+}
+
+}
+,{
+key:"onChangeTextKeyword",value:function(){
+// 变量
+var e: any = this.state.value.trim();
+this.turnToPage(e,'',1)
+}
+
+}
+,{
+key:"spin",value:function(){
+// 变量
+var e: any = this;
+h.Animated.timing(this.state.spinValue,{
+duration:1e3,easing:h.Easing.linear,toValue:this.state.count,useNativeDriver:!0
+}
+).start(),Promise.all([this.inAndOut(),this._getHotWords()]).then((function(){
+e.inAndOut(!1)
+}
+))
+}
+
+}
+,{
+key:"inAndOut",value:function(){
+// 变量
+var e: any = this,t=!(arguments.length>0&&void 0!==arguments[0])||arguments[0]?0:1;
+return new Promise((function(n){
+h.Animated.timing(e.state.freshValue,{
+duration:750,easing:h.Easing.linear,useNativeDriver:!0,toValue:t
+}
+).start((function(){
+n(0)
+}
+))
+}
+))
+}
+
+}
+,{
+key:"_rotateHistory",value:function(){
+// 变量
+var e: any = this;
+this.setState({
+count:this.state.count+1
+}
+,(function(){
+e.spin()
+}
+))
+}
+
+}
+,{
+key:"_getHistory",value:function(e){
+// 变量
+var t: any = this;
+if(e){
+// 变量
+var n: any = this.state.openApiDomain+"mcp/querySearchHis";
+y.Http.get((0,m.formatUrl)(n,!0,{
+brandType:0,country:'CN',lang:'zh_CN',portal:'1'
+}
+)).then((function(e){
+// 变量
+var n: any = e.searchHistoryList||[];
+t.setState({
+searchHistory:n
+}
+)
+}
+))
+}
+else if('web'===h.Platform.OS){
+var o=(window.localStorage.getItem('searchHistoryList')?JSON.parse(window.localStorage.getItem('searchHistoryList')||'[]'):[]).map((function(e){
+return{
+keyword:e
+}
+
+}
+));
+this.setState({
+searchHistory:o
+}
+)
+}
+
+}
+
+}
+,{
+key:"_delHistory",value:function(){
+this.setState({
+searchHistory:[]
+}
+),'web'===h.Platform.OS&&window.localStorage.setItem('searchHistoryList','');
+// 变量
+var e: any = this.state.openApiDomain+"mcp/v1/deleteQueryHis?_="+(new Date).getTime();
+return y.Http.post(e,{
+brandType:0,country:'CN',lang:'zh_CN',portal:'1'
+}
+)
+}
+
+}
+,{
+key:"setLocalHistory",value:function(e){
+if(''!==e){
+// 变量
+var t: any = 'searchHistoryList',n=[];
+try{
+'web'===h.Platform.OS&&(n=JSON.parse(window.localStorage.getItem(t)||'[]').filter((function(t){
+return t!==e
+}
+)))
+}
+catch(e){
+
+}
+n.unshift(e),n.splice(10),'web'===h.Platform.OS&&window.localStorage.setItem(t,JSON.stringify(n))
+}
+
+}
+
+}
+,{
+key:"exposeHotWords",value:function(e){
+var n,o=[];
+(e.forEach((function(e){
+o.push(e.word)
+}
+)),0===this.hotWords.length)&&((n=this.hotWords).push.apply(n,(0,t.default)(e)),this.props.slideItem(o))
+}
+
+}
+,{
+key:"_getHotWords",value:function(){
+// 变量
+var e: any = this,t=y.Cookies.get('TID');
+this.hotWords.length,(0,v.getHotWordForApk)(t||'88888888888').then((function(t){
+// 变量
+var n: any = t.hotWordList||[];
+e.setState({
+hotTagsArr:n
+}
+),e.exposeHotWords(n)
+}
+)).catch((function(){
+e.setState({
+hotTagsArr:[]
+}
+)
+}
+))
+}
+
+}
+,{
+key:"turnToPage",value:function(e,t,n,o,s){
+if(this.props.clickItem(e,n,o,s),y.EventTracking.execReportData('',!0),this.hideBox(),t)'web'===h.Platform.OS&&window.open(t,'_blank');
+else{
+this.state.isLogin||this.setLocalHistory(e);
+// 变量
+var l: any = y.Cookies.get('CSRF-TOKEN');
+this.postForm({
+keyword:e,CsrfToken:l,configInfo:this.props.configInfo
+}
+)
+}
+
+}
+
+}
+,{
+key:"postForm",value:function(e){
+var t,n,o=y.UrlUtils.getQueryStr('searchHistoryShow');
+o||(o=null!=(t=this.props.configInfo)&&t.searchHistoryShow?this.props.configInfo.searchHistoryShow:'true');
+// 变量
+var s: Function = y.UrlUtils.getQueryStr('searchResultPageProdShow');
+s||(s=null!=(n=this.props.configInfo)&&n.searchResultPageProdShow?this.props.configInfo.searchResultPageProdShow:'true'),e.keyword=encodeURIComponent(encodeURIComponent(e.keyword));
+// 变量
+var l: any = y.Service.webDomain+"portal/search/index.html?targetRoute=searchresult&searchWord="+e.keyword+"&searchHistoryShow="+o+"&searchResultPageProdShow="+s;
+(0,w.gotoPage)(l,!0)
+}
+
+}
+,{
+key:"searchValue",value:function(e){
+this.setState({
+value:e,labelsShow:!0
+}
+),this.arrLabels=[],e?this.getAssociationWordList(e):this.setState({
+isPostList:!1,relationArr:[]
+}
+)
+}
+
+}
+,{
+key:"getAssociationWordList",value:function(e){
+// 变量
+var t: any = this,n=this.state.openApiDomain+"mcp/v1/queryAssociationWordInfo";
+y.Http.post(n,{
+brandType:0,keyword:e,country:'CN',lang:'zh_CN',portal:'1'
+}
+).then((function(n){
+// 变量
+var o: any = n.wordList;
+o.length>0?(t.setState({
+isPostList:!0,keyword:e,labelsShow:!0,relationArr:o
+}
+),t.count=0,o.map((function(e){
+var n;
+t.count+=null==e||null==(n=e.labels)?void 0:n.length
+}
+)),t.arrLabels=[]):t.setState({
+isPostList:!1,keyword:'',relationArr:[]
+}
+)
+}
+))
+}
+
+}
+,{
+key:"queryPosListData",value:function(){
+var e=this,t=this.state.relationArr.map((function(t,n){
+// 变量
+var o: any = t.keyword.indexOf(e.state.keyword);
+return(0,b.jsxs)(h.View,{
+style:[f.default.wordItem],children:[(0,b.jsx)(y.Hoverable,{
+children:function(n){
+return(0,b.jsx)(h.TouchableOpacity,{
+onPress:e.turnToPage.bind(e,t.keyword,'',4),style:[f.default.word],children:o>=0?(0,b.jsxs)(h.Text,{
+style:[f.default.relationItem,n?f.default.relationHover:{
+
+}
+],numberOfLines:1,ellipsizeMode:'clip',children:[t.keyword.substr(0,o),(0,b.jsx)(h.Text,{
+style:n?f.default.relationHover:f.default.keywords,children:e.state.keyword
+}
+),t.keyword.substr(o+e.state.keyword.length)]
+}
+):(0,b.jsx)(h.Text,{
+ellipsizeMode:'clip',numberOfLines:1,style:[f.default.relationItem,n?f.default.relationHover:{
+
+}
+],children:t.keyword
+}
+)
+}
+,t.keyword)
+}
+
+}
+),(0,b.jsx)(h.View,{
+style:[f.default.wordLabels],children:e.state.labelsShow?e._labelsListShow(f.default,t.labels,t.keyword,n):e._labelsListShowOther(f.default,t.labels,t.keyword,n)
+}
+)]
+}
+)
+}
+));
+return(0,b.jsx)(h.View,{
+style:[{
+paddingBottom:16
+}
+,f.default.box],children:(0,b.jsx)(h.View,{
+style:f.default.relationList,children:t
+}
+)
+}
+)
+}
+
+}
+,{
+key:"showBarStyle",value:function(){
+this.setState({
+showBor:!0
+}
+)
+}
+
+}
+,{
+key:"hideBarStyle",value:function(){
+this.setState({
+showBor:!1
+}
+)
+}
+
+}
+,{
+key:"searchBtnRender",value:function(){
+var e,t,n,o=this,s=null==(e=this.props)||null==(t=e.color)||null==(n=t.textStyle)?void 0:n.color;
+return(0,b.jsx)(y.Hoverable,{
+children:function(e){
+return(0,b.jsx)(h.View,{
+style:[f.default.inputIconLeft,f.default.inputIcon],children:(0,b.jsx)(h.View,{
+style:e?f.default.inputImage_choose:f.default.inputImage,children:(0,b.jsx)(h.TouchableOpacity,{
+activeOpacity:.3,onPress:o.turnToPage.bind(o,o.state.value,'',1),children:(0,b.jsx)(p.default,{
+iconName:"search",width:"16",height:"16",normalCol:s||'#000'
+}
+)
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"searchInputRender",value:function(){
+// 变量
+var e: any = this;
+return(0,b.jsx)(h.View,{
+nativeID:"textInput",style:{
+flex:1,marginLeft:-11
+}
+,ref:this.receiveRef,children:(0,b.jsx)(h.TextInput,{
+style:f.default.inputText,ref:"xxx",autoCapitalize:"none",value:this.state.value,onChangeText:this.searchValue.bind(this),onSubmitEditing:this.onChangeTextKeyword.bind(this),returnKeyType:"done",placeholder:(0,y.t)('search_placeholder'),placeholderTextColor:'rgba(25,25,25,0.38)',underlineColorAndroid:"transparent",clearButtonMode:"never",onFocus:function(){
+return e.showBarStyle()
+}
+,onBlur:function(){
+return e.hideBarStyle()
+}
+,keyboardType:"default",autoFocus:!0
+}
+)
+}
+)
+}
+
+}
+,{
+key:"closeBtnRender",value:function(){
+var e,t,n,o=this,s=null==(e=this.props)||null==(t=e.color)||null==(n=t.textStyle)?void 0:n.color;
+return(0,b.jsx)(y.Hoverable,{
+children:function(e){
+return(0,b.jsx)(h.View,{
+style:[f.default.inputIconRight,f.default.inputIcon],children:(0,b.jsx)(h.View,{
+style:e?f.default.inputImage_choose:f.default.inputImage,children:(0,b.jsx)(h.TouchableOpacity,{
+activeOpacity:.3,onPress:function(){
+'web'!==h.Platform.OS&&o.hideBox()
+}
+,onFocus:function(){
+'web'===h.Platform.OS&&o.hideBox()
+}
+,children:(0,b.jsx)(p.default,{
+iconName:"cancel1",width:"16",height:"16",normalCol:s||'#000'
+}
+)
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"boxRender",value:function(){
+// 变量
+var e: any = this;
+return(0,b.jsx)(h.TouchableHighlight,{
+activeOpacity:.3,onPress:function(){
+'web'!==h.Platform.OS&&e.hideBox()
+}
+,onFocus:function(){
+'web'===h.Platform.OS&&e.hideBox()
+}
+,children:(0,b.jsx)(h.View,{
+style:[f.default.fullScreen,{
+width:(0,S.getInnerWidth)(window.innerWidth<1200?window.screen.width:window.innerWidth),height:(0,S.getInnerHeight)()
+}
+],nativeID:"fullScreen"
+}
+)
+}
+)
+}
+
+}
+,{
+key:"contentRender",value:function(){
+var e,t=y.UrlUtils.getQueryStr('searchHistoryShow');
+return t||(t=null!=(e=this.props.configInfo)&&e.searchHistoryShow?this.props.configInfo.searchHistoryShow:'true'),(0,b.jsx)(h.Animated.View,{
+style:[f.default.box,{
+paddingLeft:this.state.plAnim
+}
+],children:(0,b.jsxs)(h.ScrollView,{
+children:[this.state.searchHistory.length>0&&'true'===t&&this.searchHistoryRender(),(0,b.jsxs)(b.Fragment,{
+children:[(0,b.jsxs)(h.View,{
+style:f.default.headFind,children:[(0,b.jsx)(h.Text,{
+style:[f.default.nearText],children:(0,y.t)('search_discovery')
+}
+),this.refreshBtnRender()]
+}
+),this.state.hotTagsArr.length>0?this.hotTagsRender():(0,b.jsx)(h.View,{
+style:{
+paddingBottom:32
+}
+
+}
+)]
+}
+)]
+}
+)
+}
+)
+}
+
+}
+,{
+key:"searchHistoryRender",value:function(){
+return(0,b.jsxs)(h.View,{
+children:[(0,b.jsxs)(h.View,{
+style:f.default.headNear,children:[(0,b.jsx)(h.Text,{
+style:[f.default.nearText],children:(0,y.t)('search_recent')
+}
+),this.searchHistoryDelBtnRender()]
+}
+),(0,b.jsx)(h.Animated.View,{
+style:[f.default.queryList,f.default.recentSearch,{
+opacity:this.state.fadeAnim
+}
+],children:this.searchHistoryTagsRender()
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"searchHistoryDelBtnRender",value:function(){
+var e,t,n,o=this,s=null==(e=this.props)||null==(t=e.color)||null==(n=t.textStyle)?void 0:n.color;
+return(0,b.jsx)(y.Hoverable,{
+children:function(e){
+return(0,b.jsx)(h.View,{
+style:e?f.default.inputImage_choose:f.default.inputImage,children:(0,b.jsx)(h.TouchableOpacity,{
+activeOpacity:.3,onPress:function(){
+'web'!==h.Platform.OS&&o._delHistory()
+}
+,onFocus:function(){
+'web'===h.Platform.OS&&o._delHistory()
+}
+,children:(0,b.jsx)(p.default,{
+iconName:"delete",width:"16",height:"16",normalCol:s||'#000'
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"searchHistoryTagsRender",value:function(){
+// 变量
+var e: any = this;
+return this.state.searchHistory.map((function(t,n){
+return(0,b.jsx)(h.View,{
+children:(0,b.jsx)(y.Hoverable,{
+children:function(n){
+return(0,b.jsx)(h.TouchableOpacity,{
+onPress:e.turnToPage.bind(e,t.keyword,'',3),activeOpacity:.3,children:(0,b.jsx)(h.Text,{
+numberOfLines:1,style:[f.default.queryItem,n&&f.default.hoverItem],children:t.keyword
+}
+)
+}
+)
+}
+
+}
+)
+}
+,n)
+}
+))
+}
+
+}
+,{
+key:"refreshBtnRender",value:function(){
+var e,t,n,o=this,s=this.state.spinValue.interpolate({
+inputRange:[0,1],outputRange:['0deg','360deg']
+}
+),l=null==(e=this.props)||null==(t=e.color)||null==(n=t.textStyle)?void 0:n.color;
+return(0,b.jsx)(y.Hoverable,{
+children:function(e){
+return(0,b.jsx)(h.TouchableOpacity,{
+activeOpacity:.3,onPress:function(){
+o._rotateHistory()
+}
+,children:(0,b.jsx)(h.Animated.View,{
+style:[e?f.default.inputImage_choose:f.default.inputImage,{
+transform:[{
+rotate:s
+}
+]
+}
+],testID:"refreshImage",children:(0,b.jsx)(p.default,{
+iconName:"rotate",width:"16",height:"16",normalCol:l||'#000'
+}
+)
+}
+)
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"hotTagsRender",value:function(){
+// 变量
+var e: any = this,t=this.state.freshValue;
+return(0,b.jsx)(h.Animated.View,{
+style:[f.default.queryList],children:this.state.hotTagsArr.map((function(n,o){
+return(0,b.jsx)(y.Hoverable,{
+children:function(s){
+return(0,b.jsx)(h.Animated.View,{
+nativeID:"searchFindArr",style:{
+opacity:t
+}
+,children:(0,b.jsx)(h.TouchableOpacity,{
+onPress:e.turnToPage.bind(e,n.word,n.activityUrl,2,n.wordType,o),activeOpacity:.3,children:(0,b.jsx)(h.Text,{
+numberOfLines:1,style:[f.default.queryItem,s&&f.default.hoverItem],children:n.word
+}
+)
+}
+)
+}
+,n.id)
+}
+
+}
+)
+}
+))
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.state.isPostList?this.queryPosListData():this.contentRender();
+return(0,b.jsx)(h.View,{
+style:f.default.searchItem,children:!this.state.showSearch&&(0,b.jsxs)(h.Animated.View,{
+style:{
+zIndex:11,opacity:this.state.fadeAnim
+}
+,nativeID:"searchMask",children:[(0,b.jsx)(h.View,{
+style:f.default.center,children:(0,b.jsxs)(h.View,{
+children:[(0,b.jsx)(h.View,{
+style:f.default.bar,children:(0,b.jsxs)(h.Animated.View,{
+style:[f.default.inputBox,{
+paddingLeft:this.state.plAnim
+}
+,this.state.showBor&&f.default.inputBor],children:[this.searchBtnRender(),this.searchInputRender(),this.state.visible&&this.closeBtnRender()]
+}
+)
+}
+),this.state.visible?e:null]
+}
+)
+}
+),this.state.visible?this.boxRender():null]
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(c.default.Component);
+_e.default=(0,y.Componentautoscaling)((0,y.monitor)(x.default)((0,y.ItemExposeHoc)(j)))
+}
+),"d4fcfafd618c51d03d101ae29200e69c44c0d5c7c7b713184ea82ceac9c0bd9d",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","b9781636b30151fd1c096f6d3f29cb295b96dfa26d09e4fc507454c2b55db37d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","9399da1f65868800d1a41457d1d37cf46ef9ec4a4b363a5dae4e8e973bb03d8f","644dc2d2c638bfc3c525b7a086366b773404cd5244935fc97a365641e0cad6f2","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]);
+e.default=t.StyleSheet.create({
+searchItem:{
+position:'absolute',left:0,right:0,bottom:0,top:0,zIndex:11
+}
+,fullScreen:{
+opacity:.3,height:'100vh',position:'relative',top:0,left:0,zIndex:9999,backgroundColor:'#000'
+}
+,center:{
+position:'relative',justifyContent:'center',alignItems:'center',zIndex:1e4,backgroundColor:'transparent'
+}
+,bar:{
+paddingLeft:24,paddingRight:24,marginTop:19,marginBottom:19
+}
+,box:{
+paddingBottom:24,paddingTop:4,width:640,backgroundColor:'#ffffff',borderBottomEndRadius:16,borderBottomStartRadius:16,position:'absolute',top:70
+}
+,inputBox:Object.assign({
+height:36,width:592,display:'flex',flexDirection:'row'
+}
+,o.SuitStyle.S13,{
+borderRadius:18
+}
+),inputBor:{
+borderWidth:1,borderColor:'rgba(0,0,0,0.05)',backgroundColor:'rgba(241,243,245,0.40)'
+}
+,inputIcon:{
+display:'flex',justifyContent:'center',alignItems:'center'
+}
+,inputIconLeft:{
+paddingLeft:2,paddingRight:10
+}
+,inputIconRight:{
+paddingRight:5
+}
+,inputImage:Object.assign({
+
+}
+,o.SuitStyle.C23,{
+width:36,height:36,alignItems:'center',justifyContent:'center'
+}
+),inputImage_choose:Object.assign({
+
+}
+,o.SuitStyle.C71,{
+width:36,height:36,alignItems:'center',justifyContent:'center'
+}
+),inputText:Object.assign({
+flex:1
+}
+,o.SuitStyle.T5,{
+fontFamily:'Microsoft YaHeiUI',color:'#191919',textAlignVertical:'center',borderWidth:0,borderColor:'transparent'
+}
+),placeholderTextColor:{
+opacity:.38,fontFamily:'Microsoft YaHeiUI',color:'#191919'
+}
+,headNear:{
+marginTop:13,marginBottom:4,paddingHorizontal:24,flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:24,lineHeight:24
+}
+,headFind:{
+marginTop:12,marginBottom:4,paddingHorizontal:24,flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:24,lineHeight:24
+}
+,nearText:Object.assign({
+height:24,fontSize:o.SuitStyle.T10.fontSize,lineHeight:24,fontWeight:o.SuitStyle.T10.fontWeight,fontFamily:'HYQiHei-FES'
+}
+,o.SuitStyle.C11),queryList:{
+marginTop:12,marginHorizontal:24,flexDirection:'row',flexWrap:'wrap',overflow:'hidden',maxHeight:108,alignItems:'center',backgroundColor:'#fff'
+}
+,recentSearch:{
+marginBottom:11
+}
+,queryItem:Object.assign({
+flex:1,fontFamily:'HYQiHei-EES'
+}
+,o.SuitStyle.S13,{
+minHeight:28,lineHeight:28,fontSize:o.SuitStyle.T3.fontSize
+}
+,o.SuitStyle.C12,{
+paddingHorizontal:8,borderRadius:14,marginRight:8,marginBottom:12,minWidth:44,maxWidth:592,textAlign:'center'
+}
+),hoverItem:Object.assign({
+
+}
+,o.SuitStyle.C18),listView:{
+flex:1,flexDirection:'row',justifyContent:'center',marginLeft:0,marginRight:0,marginTop:10
+}
+,relationList:{
+marginLeft:24,marginRight:24
+}
+,relationItem:Object.assign({
+
+}
+,o.SuitStyle.T7,{
+color:o.SuitStyle.C11.color+o.SuitStyle.opacityMap[o.SuitStyle.C11.opacity]
+}
+),relationOrder:{
+borderBottomColor:'rgba(0,0,0,0.05)',borderBottomWidth:1
+}
+,relationHover:Object.assign({
+
+}
+,o.SuitStyle.C18),keywords:Object.assign({
+
+}
+,o.SuitStyle.C14),wordItem:{
+height:48,flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderBottomColor:o.SuitStyle.C39.color+o.SuitStyle.opacityMap[o.SuitStyle.C39.opacity],borderStyle:'solid',borderBottomWidth:1,overflow:'hidden'
+}
+,word:{
+flexDirection:'row',justifyContent:'flex-start',flex:1,maxHeight:19,overflow:'hidden'
+}
+,wordLabels:{
+flex:1,flexDirection:'row',justifyContent:'flex-end',alignItems:'center',flexWrap:'wrap',height:28,overflow:'hidden',marginRight:-8,marginLeft:8
+}
+,labelView:{
+borderRadius:20,backgroundColor:o.SuitStyle.C39.color+o.SuitStyle.opacityMap[o.SuitStyle.C39.opacity],paddingHorizontal:8,paddingVertical:6,height:28,marginRight:8
+}
+,labelText:Object.assign({
+
+}
+,o.SuitStyle.T3,{
+color:o.SuitStyle.C21.color+o.SuitStyle.opacityMap[o.SuitStyle.C21.opacity]
+}
+)
+}
+)
+}
+),"b9781636b30151fd1c096f6d3f29cb295b96dfa26d09e4fc507454c2b55db37d",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]);
+e.default={
+exposeItem:function(o){
+// 变量
+var n: any = this.props.width;
+return{
+data:{
+actionCode:t.PlatformUtils.isPc(n)?'300090001':t.PlatformUtils.isApp()?'100090001':'200090001',actionName:'\u52a0\u8f7d\u9875\u9762\u62a5\u5168\u90e8\u5546\u54c1\u5217\u8868',eventType:t.EVENT_TYPE.EVENT_TYPE_LOADING_PAGE,pageId:this.props.pageId,content:{
+load:'1'
+}
+
+}
+
+}
+
+}
+,slideItem:function(o){
+// 变量
+var n: any = this.props.width;
+return{
+data:{
+actionCode:t.PlatformUtils.isPc(n)?'300090003':t.PlatformUtils.isApp()?'100090003':'200090003',actionName:'\u70ed\u641c\u8bcd\u66dd\u5149\u7387',eventType:t.EVENT_TYPE.EVENT_TYPE_EXPOSURE,pageId:this.props.pageId,content:{
+word:o
+}
+
+}
+
+}
+
+}
+,clickItem:function(o,n,p,s){
+var c=this.props.width,l={
+actionCode:t.PlatformUtils.isPc(c)?'300090101':t.PlatformUtils.isApp()?'100090101':'200090101',actionName:'\u6267\u884c\u641c\u7d22\u52a8\u4f5c',eventType:t.EVENT_TYPE.EVENT_TYPE_CLICK,pageId:this.props.pageId,content:{
+searchWord:o,type:String(n),urlType:'1',click:'1'
+}
+
+}
+;
+return 2===n&&(l.content.wordType=p,l.content.index=String(s+1)),{
+data:l
+}
+
+}
+
+}
+
+}
+),"644dc2d2c638bfc3c525b7a086366b773404cd5244935fc97a365641e0cad6f2",["11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,n,r=e(_r(d[1])),o=e(_r(d[2])),a=e(_r(d[3])),i=e(_r(d[4])),s=e(_r(d[5])),u=e(_r(d[6])),c=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = P(t);
+if(n&&n.has(e))return n.get(e);
+var r={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var i: any = o?Object.getOwnPropertyDescriptor(e,a):null;
+i&&(i.get||i.set)?Object.defineProperty(r,a,i):r[a]=e[a]
+}
+return r.default=e,n&&n.set(e,r),r
+}
+)(_r(d[7])),l=_r(d[8]),f=_r(d[9]),h=_r(d[10]),p=e(_r(d[11])),v=e(_r(d[12])),y=_r(d[13]),b=_r(d[14]),S=_r(d[15]),C=_r(d[16]),_=_r(d[17]);
+// 函数
+function P(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(P=function(e){
+return e?n:t
+}
+)(e)
+}
+// 函数
+function w(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(w=function(){
+return!!e
+}
+)()
+}
+var x=h.Service.openApiDomain,j=h.Service.webDomain,O=j+"cart2",k=!1,R=(0,b.inject)('store')(t=(0,b.observer)((n=(function(e){
+// 函数
+function t(e: any): any {
+var n,r,a,u;
+return(0,o.default)(this,t),r=this,a=t,u=[e],a=(0,s.default)(a),(n=(0,i.default)(r,w()?Reflect.construct(a,u||[],(0,s.default)(r).constructor):a.apply(r,u)))._panResponder=null,n.setCartData=function(){
+// 变量
+var e: any = n.props.store;
+n.setState({
+cartItem:e.cartNum
+}
+)
+}
+,n.setCartDataAsync=function(){
+// 变量
+var e: any = n.props.store;
+e.getCartNum().finally((function(){
+n.setState({
+cartItem:e.cartNum
+}
+)
+}
+))
+}
+,n.onHoverIn=function(){
+n.setCartDataAsync()
+}
+,n.isShowStyleChange=function(){
+var e=(n.props.styleChange||{
+
+}
+).bgFill;
+return'1'===e||'2'===e
+}
+,n.isShowFontStyle=function(){
+return!!n.props.styleChange.fontColor
+}
+,n.isLogin=function(){
+// 变量
+var e: any = x+"mcp/user/queryUserLoginStatus";
+return h.Http.get((0,C.formatUrl)(e,!0,{
+portal:'1',country:'CN',lang:'zh_CN'
+}
+)).then((function(e){
+return e.login
+}
+))
+}
+,n.state={
+cartItem:0
+}
+,n
+}
+return(0,u.default)(t,e),(0,a.default)(t,[{
+key:"componentDidMount",value:function(){
+this.listener1=l.DeviceEventEmitter.addListener('refreshCartNum',this.setCartData),this.setCartData();
+// 变量
+var e: any = h.Cookies.get('TID')||(0,f.randomTid)();
+h.Cookies.get('callAB')||k||(k=!0,(0,y.getStrategyForWebWap)(e,'1'))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.listener1&&this.listener1.remove()
+}
+
+}
+,{
+key:"_onPressItemCart",value:function(){
+(0,f.gotoPage)(O)
+}
+
+}
+,{
+key:"_onPressItemUser",value:function(){
+// 变量
+var e: any = j+"member";
+e=h.Cookies.get('rnpersonalurlweb')?h.Cookies.get('rnpersonalurlweb'):j+S.URL_CONSTANTS.PERSONAL_URL_WEB,this.openOnlineCustome(e)
+}
+
+}
+,{
+key:"openOnlineCustome",value:(n=(0,r.default)((function*(e){
+if(yield this.isLogin())(0,f.gotoPage)(e);
+else{
+// 变量
+var t: any = j+"account/login?url="+encodeURIComponent(e);
+(0,f.gotoPage)(t)
+}
+
+}
+)),function(e){
+return n.apply(this,arguments)
+}
+)
+}
+,{
+key:"render",value:function(){
+var e=this,t=this.props.configInfo||{
+
+}
+,n=t.showCart,r=t.showPersonalCenter,o=t.showSearch,a=this.state.cartItem,i=a>9,s=this.isShowStyleChange();
+return(0,_.jsx)(h.WithTheme,{
+themeStyles:p.default,children:function(t){
+var u=e.props.list,f=[],p=function(p){
+if(!Object.prototype.hasOwnProperty.call(u,p))return 1;
+f.push('true'===o&&(0,_.jsx)(h.Hoverable,{
+children:function(n){
+return(0,c.createElement)(l.View,Object.assign({
+
+}
+,e._panResponder(u[p]).panHandlers,{
+key:p,style:n?t.iconbox_choose:t.iconbox_item
+}
+),(0,_.jsx)(l.TouchableOpacity,{
+children:(0,_.jsx)(v.default,{
+iconName:"search",width:"26",height:"26",normalCol:s?'rgba(255,255,255,1)':'rgba(0,0,0,0.6)'
+}
+)
+}
+))
+}
+
+}
+),'true'===r&&(0,_.jsx)(h.Hoverable,{
+children:function(n){
+return(0,_.jsx)(l.View,{
+style:[n?t.iconbox_choose:t.iconbox_item,{
+
+}
+],children:(0,_.jsx)(l.TouchableOpacity,{
+onPress:function(){
+return e._onPressItemUser()
+}
+,children:(0,_.jsx)(v.default,{
+iconName:"user",width:"26",height:"26",normalCol:s?'rgba(255,255,255,1)':'rgba(0,0,0,0.6)'
+}
+)
+}
+)
+}
+,p)
+}
+
+}
+),'true'===n&&(0,_.jsx)(h.Hoverable,{
+onHoverIn:function(){
+return e.onHoverIn()
+}
+,children:function(n){
+return(0,_.jsxs)(l.View,{
+style:{
+position:'relative'
+}
+,children:[(0,_.jsx)(l.View,{
+style:[n?t.iconbox_choose:t.iconbox_item],children:(0,_.jsx)(l.TouchableOpacity,{
+onPress:function(){
+return e._onPressItemCart()
+}
+,children:(0,_.jsx)(v.default,{
+iconName:"cart",width:"26",height:"26",normalCol:s?'rgba(255,255,255,1)':'rgba(0,0,0,0.6)'
+}
+)
+}
+)
+}
+,p),a>0?(0,_.jsx)(l.View,{
+style:[t.iconbox_cart,{
+width:i?24:16,right:i?-10:-2
+}
+],children:(0,_.jsx)(l.Text,{
+style:t.iconbox_cart_item,children:a
+}
+)
+}
+):null]
+}
+)
+}
+
+}
+))
+}
+;
+for(var y in u)p(y);
+return(0,_.jsx)(l.View,{
+style:t.iconbox_container,children:f
+}
+)
+}
+
+}
+)
+}
+
+}
+,{
+key:"onPress",value:function(e){
+if(e.isSearch)this.props.toShowSearch(!0);
+else{
+// 变量
+var t: any = null==e?void 0:e.url;
+t&&(0,f.gotoPage)(t)
+}
+
+}
+
+}
+,{
+key:"UNSAFE_componentWillMount",value:function(){
+// 变量
+var e: any = this;
+this._panResponder=function(t){
+return l.PanResponder.create({
+onStartShouldSetPanResponder:function(){
+return!0
+}
+,onStartShouldSetPanResponderCapture:function(){
+return!0
+}
+,onMoveShouldSetPanResponder:function(){
+return!0
+}
+,onMoveShouldSetPanResponderCapture:function(){
+return!0
+}
+,onPanResponderEnd:function(){
+e.onPress(t)
+}
+
+}
+)
+}
+
+}
+
+}
+]);
+var n
+}
+)(c.default.Component),n.defaultProps={
+list:[{
+icon:'iconName',isSearch:!0
+}
+],toShowSearch:function(){
+
+}
+
+}
+,t=n))||t)||t;
+_e.default=R
+}
+),"bcbb2e10604006acc3b5e5ba4d6ce545afaef726ac38b9388329c687d3849f71",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","50b5f26c5240b58257c1f71bc2060d8a9509d09221426cd72426ce51af2cc032","5c1424308c4e8a0eba63d34fef95271eb22c4fcaba9500640bdb0450a4a57e6c","cc17bb93c4ccd9b88481c53ea633d95e11477813ea5f5042954fa5a3fd9c8483","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","9399da1f65868800d1a41457d1d37cf46ef9ec4a4b363a5dae4e8e973bb03d8f","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+e.default={
+applUrlFootWap:'https://m.vmall.com/app/download',feedbackUrlFootWap:'https://club.huawei.com/thread-1144534-1-1.html',mpLoadingImg:'https://res.vmallres.com/nwap/20210415/staticm/img/loading.91fb745.gif',webLoadingImg:'https://res.vmallres.com/portal/1.10.10.301SP01/h5/images/loading.webp',indexGoodsUrl:'https://res.vmallres.com/portal/1.10.10.300/h5/images/mp/index_goods.png',webHomePageUrl:'https://www.vmall.com/index_new.html',downloadPageUrl:'https://www.vmall.com/portal/activity/index.html?pageId=401001427',zoomOutUrl:'https://res.vmallres.com/20211026/images/echannel/icon/zoom-out.cur',arrowLeftUrl:'https://res.vmallres.com/20211026/images/echannel/icon/arrow-left.cur',arrowRightUrl:'https://res.vmallres.com/20211026/images/echannel/icon/arrow-right.cur',loadingGif:'https://res.vmallres.com/nwap/20210415/staticm/img/loading.91fb745.gif',imgQALoading:'https://res.vmallres.com/nwap/20210415/staticm/img/loading.91fb745.gif'
+}
+
+}
+),"260d8a22557ef5fdd84f63da99ad533f4da15d36024010585dfec5436841d8e7",[]);
+
+__d((function(g,r,i,a,m,e,d){
+var _=r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.getCarErrTip=e.SUCCESS_CODE=e.CAR_ORDER_ERR=e.CAR_ERR_TIP=e.CAR_ERR=void 0;
+var E,I=_(r(d[1])),O=r(d[2]),R=r(d[3]),T=e.CAR_ORDER_ERR={
+NOT_SUPPORT_PREINSTALL_SKU:'11100006',LACK_OF_USERID:'11100007',NEED_CAPTCHA_GRAPH:'11100104',REGIST_CAPTCHA_PHOTO_FAIL:'11100105',SEND_SMS_FAIL:'11100106',VERIFY_CODE_FAIL:'11100109',O2O_ACTIVITY_OFFLINE:'11100110',OUTOF_CAPTCHA_LIMIT:'11100111',NOT_IN_PAY_TIME:'11100115',INVALID_PICKUP_CENTER_ADDBOOK:'11100118',CAR_API_DEBOUNCE:'11100121',FORBID_MINOR_CARBOOK:'11100124',CAPTCHA_CODE_FREQUENT:'11100125',CAPTCHA_CODE_LIMIT:'11100126',NOT_VERITY_CODE:'11100127',PHONE_FORMAT_ERR:'11100128',CAPTCHA_CODE_EXPIRED:'11100129',CAPTCAHA_PHOTO_FAIL:'11100130',RIGHTS_ERR:'11510001',NOT_EXPERIENCE:'11510002',INVALID_EXPERIENCE:'11510003',INVALID_PRODUCT:'11510004',EMPTY_CITY:'11510005',EMPTY_PICKUP_CENTER:'11510006',INVALID_PICKUP_CENTER:'11510007',NOT_IN_PAY_TIME_ORDER:'11510008',EMPTY_USER_INFO:'11510009',EMPTY_LICENSE_USER_INFO:'11510010',CAR_PRODUCT_CHANGED:'11510015',DUPLICATED_PRD_CONFIG:'11510016',INVALID_COUPON:'11510017',CAR_RIGHTS_COMPLEMENT:'11510018',EXPERIENCE_CENTER_PAUSE:'11510019',PICKUP_CENTER_PAUSE:'11510020',O2O_PRICE_INVAILD:'11510021',UPDATE_DEPOSIT:'11510022',ORDER_STATUS_CHANGED:'11510023',RECHANGE_PRD_RELATION_ERR:'11510024',RECHANGE_PRD_PRICE_ERR:'11510025',INVALID_PRD_NUM:'11520002',ORDER_STATUS_ERR:'11520003',O2O_ACTIVITY_INCONSISTENT:'11520007',NORMAL_INVALID_PRD:'11520008',NORMAL_PAY_PATHWAY_ERR:'11520009',NOT_FIND_O2O_ACTIVITY:'11590002',NOT_FIND_O2O_PROMOTION:'11590003',NOT_FIND_CAR_RIGHTS:'11590004',EXPIRED_PROMOTION:'34116',CITY_NON_CONDITION:'34120',USERID_NON_CONDITION:'34122',CENTER_NON_CONDITION:'34124',AMOUNT_ERR:'34219',DUPLICATE_SUBMIT_ORDER:'34244',NOT_O2O_ACTIVITY:'34384',NOT_IN_O2O_ACTIVITY_TIME:'34387',NORMAL_NOT_O2O_ACTIVITY:'34391',NOT_VALID_STORE_GROUP:'34900',REDIS_ERR:'34902',NOT_LOGIN_ADDBOOK:'50001'
+}
+,C=e.CAR_ERR=Object.assign({
+
+}
+,T,R.COMMMON_ERR),t=e.CAR_ERR_TIP=(E={
+
+}
+,(0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)(E,C.INVALID_PICKUP_CENTER_ADDBOOK,'carErr_reSelectPickupCenter'),C.CAR_API_DEBOUNCE,'carErr_ApiDebounce'),C.FORBID_MINOR_CARBOOK,'carErr_forbidMinorCarBook'),C.RIGHTS_ERR,'carErr_rightsChangedErr'),C.NOT_EXPERIENCE,'carErr_selectExperience'),C.INVALID_EXPERIENCE,'carErr_reSelectExperience'),C.INVALID_PRODUCT,'carErr_reChangePrdConfig'),C.EMPTY_CITY,'carErr_selectLicenseCity'),C.EMPTY_PICKUP_CENTER,'carErr_selectPickupCenter'),C.INVALID_PICKUP_CENTER,'carErr_reSelectPickupCenter'),(0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)(E,C.NOT_IN_PAY_TIME_ORDER,'carErr_outOfTimeRange'),C.EMPTY_USER_INFO,'carErr_fullInPurchaserInfo'),C.EMPTY_LICENSE_USER_INFO,'carErr_fullInLicenseUserInfo'),C.CAR_PRODUCT_CHANGED,'carErr_carPrdChanged'),C.CITY_NON_CONDITION,'carErr_reloadForPromotion'),C.USERID_NON_CONDITION,'carErr_reloadForPromotion'),C.CENTER_NON_CONDITION,'carErr_reloadForPromotion'),C.AMOUNT_ERR,'carErr_customerServiceForAmoumt'),C.DUPLICATED_PRD_CONFIG,'carErr_modifyOrderConfig'),C.INVALID_COUPON,'carErr_reSelectCoupon'),(0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)(E,C.EXPERIENCE_CENTER_PAUSE,'carErr_experienceCenterPause'),C.PICKUP_CENTER_PAUSE,'carErr_pickupCenterPause'),C.O2O_PRICE_INVAILD,'carErr_waitForActivity'),C.UPDATE_DEPOSIT,'carErr_reloadForPrdActivity'),C.ORDER_STATUS_CHANGED,'carErr_orderStatusChanged'),C.RECHANGE_PRD_RELATION_ERR,'carErr_reChangeCarPrd'),C.RECHANGE_PRD_PRICE_ERR,'carErr_reloadForPrdActivity'),C.INVALID_PRD_NUM,'carErr_reSelectProduct'),C.ORDER_STATUS_ERR,'carErr_reloadForOrderStatus'),C.EXPIRED_PROMOTION,'carErr_reloadForPromotion'),(0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)(E,C.NOT_O2O_ACTIVITY,'carErr_waitForActivity'),C.NOT_IN_O2O_ACTIVITY_TIME,'carErr_notInO2OActivityTime'),C.NORMAL_NOT_O2O_ACTIVITY,'carErr_waitForActivity'),C.O2O_ACTIVITY_INCONSISTENT,'carErr_reSelectProduct'),C.NORMAL_INVALID_PRD,'carErr_reSelectProduct'),C.NORMAL_PAY_PATHWAY_ERR,'carErr_customerServiceForPayment'),C.DUPLICATE_SUBMIT_ORDER,'carErr_frequentOperation'),C.REDIS_ERR,'carErr_ApiDebounce'),C.NOT_FIND_O2O_ACTIVITY,'carErr_customerServiceForPayment'),C.NOT_FIND_O2O_PROMOTION,'carErr_reloadForPromotion'),(0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)(E,C.NOT_FIND_CAR_RIGHTS,'carErr_rightsChangedErr'),C.NOT_VALID_STORE_GROUP,'carErr_notValidStoreGroup'),C.NOT_SUPPORT_PREINSTALL_SKU,'carErr_notSupportPreinstallSku'),C.O2O_ACTIVITY_OFFLINE,'carErr_customerServiceForActivity'),C.NOT_IN_PAY_TIME,'carErr_rechangeCarPrdForActivity'),C.LACK_OF_USERID,'loginAgain'),C.REGIST_CAPTCHA_PHOTO_FAIL,'getCaptchaPthotFail'),C.SEND_SMS_FAIL,'getCaptchaCodeFail'),C.VERIFY_CODE_FAIL,'validateCodeErr'),C.OUTOF_CAPTCHA_LIMIT,'getCodeDayLimit'),(0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)((0,I.default)(E,C.CAPTCHA_CODE_FREQUENT,'getCodeFrequent'),C.CAPTCHA_CODE_LIMIT,'getCodeHourLimit'),C.NOT_VERITY_CODE,'completeCaptcha'),C.PHONE_FORMAT_ERR,'fullRightPhone'),C.CAPTCHA_CODE_EXPIRED,'codeExpire'),C.CAPTCAHA_PHOTO_FAIL,'captchaPhotoFail'));
+e.getCarErrTip=function(){
+var _=arguments.length>1?arguments[1]:void 0,E=t[arguments.length>0&&void 0!==arguments[0]?arguments[0]:''],I=E?(0,O.t)(E):'';
+return I||void 0===_?I||(0,O.t)('tryAgainLater'):_
+}
+,e.SUCCESS_CODE={
+BFF_SUCCESS:'11100000'
+}
+
+}
+),"9500b24c16bfc1f7487a92364c936822f13e89774fe7c30dcb1642f52c515069",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","598dd5411f5356eab137e972eb6cee59f0eaeb909657cad20b7b3811ffae9612","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","2e10d9ce2994677c527dbdc963d0f33f12a6008edf00c5584e40a0b145f9c58d"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.COMMMON_ERR=void 0;
+e.COMMMON_ERR={
+NOT_LOGIN:'200916'
+}
+
+}
+),"2e10d9ce2994677c527dbdc963d0f33f12a6008edf00c5584e40a0b145f9c58d",[]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.refreshValue=e.parseNum=e.getInitValue=e.getBasicValue=void 0;
+var s=t(r(d[1])),n=t(r(d[2])),l=r(d[3]),u=r(d[4]),o=t(r(d[5])),c=r(d[6]),f=function(t,s){
+t=o.default.judgePcPadWidth(t);
+// 变量
+var n: any = l.ScreenUtils.isLarge(t),c=l.ScreenUtils.isSmall(t),f=l.ScreenUtils.isMedium(t),h=l.ScreenUtils.isPadHorizontal(t,s);
+return Object.assign({
+width:t,height:s,isLarge:n,isMedium:f,isSmall:c,isPc:n,isWap:!n&&u.DefaultPlatform.isWeb,isPadH:h,isPadV:f&&!h,isPadHorizontal:t>=s&&t>=900,isPadVertical:s>t&&s>=900,isPhone:c
+}
+,(0,u.getGridInfo)(t,s),{
+isHorizontal:t>=s,isVertical:t<s,isMini:l.ScreenUtils.isMini(t,s)
+}
+)
+}
+,h=e.getBasicValue=function(t,s){
+// 变量
+var n: any = f(t,s);
+return Object.assign({
+initialized:!1
+}
+,u.DefaultPlatform,n,{
+isFixScreen:!1,statusBarHeight:0,safeAreaBottomHeight:0,portal:l.CommonUtils.getPortal(t),setPageState:function(){
+
+}
+
+}
+)
+}
+,P=(e.getInitValue=function(){
+return h.apply(void 0,(0,n.default)(o.default.defaultScreenSize))
+}
+,(function(){
+var t=(0,s.default)((function*(t){
+var s,n=t.width,f=t.height,P=t.isPc,S=Object.assign({
+
+}
+,h(n,f),{
+initialized:!0,setPageState:t.setPageState
+}
+),v=yield o.default.getSystemConfig(t,S);
+(S=Object.assign({
+
+}
+,S,v),void 0!==P&&P!==S.isPc&&u.DefaultPlatform.isWeb)?null==(s=(0,u.getGlobal)().location)||s.reload():(t.isPc=S.isPc,t.setValue(S),l.ScreenMode.setWidth(n),l.ScreenMode.setHeight(f),c.DeviceEventEmitter.emit('platform-resize',S))
+}
+));
+return function(s){
+return t.apply(this,arguments)
+}
+
+}
+)()),S=e.parseNum=u.DefaultPlatform.isWeb?Math.trunc:Math.ceil;
+e.refreshValue=function(t,s){
+// 变量
+var n: any = s.width,l=s.height;
+n=S(n),l=S(l),Math.abs(t.width-n)<=1&&(!t.watchHeight||Math.abs(t.height-l)<=1)||(t.width=n,t.height=l,P(t))
+}
+
+}
+),"0399c78f722300c3277071ad655f16ba758ed7b8f155f226ea6741df29a969ff",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","5c6c1a3901cbcedc634e3331c98da8a2fd3b5baf76d653ba88d87b7d7ce39126","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(r(d[1])),n=e(r(d[2])),u=r(d[3]),o=r(d[4]),s=r(d[5]),l=r(d[6]),c=function(e,t){
+return t.isHarmony&&t.isMini?0:'number'==typeof(null==e?void 0:e.statusBarHeight)?e.statusBarHeight:(0,o.tryCatch)(0,null==u.DeviceUtils.getStatusBarHeight?void 0:u.DeviceUtils.getStatusBarHeight())
+}
+,f=function(e,t){
+return t.isHarmony&&t.isMini?0:'number'==typeof(null==e?void 0:e.mSafeAreaLayoutGuideBottom)?e.mSafeAreaLayoutGuideBottom:o.DefaultPlatform.isAndroid?0:(0,o.tryCatch)(0,u.RnBridge.invokeVmallNative('common','getEnv',{
+
+}
+).then((function(e){
+return e.mSafeAreaLayoutGuideBottom
+}
+)))
+}
+,h=function(e,t,n){
+return e.checkResetValue=function(){
+var u=e.resetValue,o=u.statusBarHeight,s=u.safeAreaBottomHeight,l={
+
+}
+;
+void 0!==o&&o!==t&&(t=o,l.statusBarHeight=o),void 0!==s&&s!==n&&(n=s,l.safeAreaBottomHeight=s),Object.keys(l).length&&e.setValue((function(e){
+return Object.assign({
+
+}
+,e,l)
+}
+))
+}
+
+}
+,v=(function(){
+var e=(0,n.default)((function*(e,n){
+var s,l;
+e.checkResetValue=null,e.resetValue={
+
+}
+;
+var v=yield Promise.all([c(e.appProps,n),f(e.appProps,n),(0,o.tryCatch)(!1,null==u.DeviceUtils.isFixScreen?void 0:u.DeviceUtils.isFixScreen()).then((function(e){
+return'boolean'==typeof e?e:(null==e?void 0:e.isMateX)||!1
+}
+))]),y=(0,t.default)(v,3),H=y[0],B=y[1],S=y[2];
+return H=Math.trunc(Number(H))||0,B=Math.trunc(Number(B))||0,h(e,H,B),{
+statusBarHeight:null!=(s=e.resetValue.statusBarHeight)?s:H,safeAreaBottomHeight:null!=(l=e.resetValue.safeAreaBottomHeight)?l:B,isFixScreen:S
+}
+
+}
+));
+return function(t,n){
+return e.apply(this,arguments)
+}
+
+}
+)(),y=s.StyleSheet.create({
+containerStyle:{
+flex:1
+}
+
+}
+),H={
+defaultScreenSize:[u.CommonUtils.getWindowSize().screenWidth,u.CommonUtils.getWindowSize().screenHeight],judgePcPadWidth:function(e){
+return e
+}
+,getSystemConfig:v,getContainerStyle:function(){
+return y.containerStyle
+}
+,useResize:function(e){
+if(o.DefaultPlatform.isHarmony){
+// 变量
+var t: any = (0,s.useWindowDimensions)();
+(0,l.useMemo)((function(){
+e.refreshValue(e,t)
+}
+),[t.width,t.height])
+}
+(0,l.useEffect)((function(){
+if(!u.PlatformUtils.isHarmony())return function(){
+
+}
+;
+var t=s.DeviceEventEmitter.addListener('NativeCallAction',(function(){
+var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+,n=t.service,u=t.action,o=t.param;
+if('screen'===n&&'avoidAreaChange'===u){
+// 变量
+var s: Function = Math.trunc(Number(o.statusBarHeight)),l=Math.trunc(Number(o.bottomBarHeight));
+if(!e.resetValue)return;
+isNaN(s)||(e.resetValue.statusBarHeight=s),isNaN(l)||(e.resetValue.safeAreaBottomHeight=l),null==e.checkResetValue||e.checkResetValue()
+}
+
+}
+));
+return function(){
+return t.remove()
+}
+
+}
+),[])
+}
+
+}
+;
+_e.default=H
+}
+),"5c6c1a3901cbcedc634e3331c98da8a2fd3b5baf76d653ba88d87b7d7ce39126",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),i=e(_r(d[3])),n=e(_r(d[4])),o=e(_r(d[5])),a=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = p(t);
+if(r&&r.has(e))return r.get(e);
+var i={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var a: any = n?Object.getOwnPropertyDescriptor(e,o):null;
+a&&(a.get||a.set)?Object.defineProperty(i,o,a):i[o]=e[o]
+}
+return i.default=e,r&&r.set(e,i),i
+}
+)(_r(d[6])),u=_r(d[7]),l=_r(d[8]),h=_r(d[9]),f=e(_r(d[10])),s=_r(d[11]),c=_r(d[12]);
+// 函数
+function p(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(p=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function v(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(v=function(){
+return!!e
+}
+)()
+}
+var y=l.PlatformUtils.isApp()?f.default:u.Image,I=(function(e){
+// 函数
+function a(e: any): any {
+var r,o,f,c;
+return(0,t.default)(this,a),o=this,f=a,c=[e],f=(0,n.default)(f),(r=(0,i.default)(o,v()?Reflect.construct(f,c||[],(0,n.default)(o).constructor):f.apply(o,c))).originWidth=Math.trunc((0,s.getInnerWidth)()),r.imgArray=[],r.btnShown=!1,r.resizeListener=u.DeviceEventEmitter.addListener('platform-resize',(function(e){
+// 变量
+var t: any = e.width;
+r.originWidth!==t&&(r.originWidth=t,r.imgArray.forEach((function(e){
+return e.rendered=!1
+}
+)),r.setImgHeightFromIndex(0,!0,!0),r.forceUpdate())
+}
+)),r.gapCheck=setInterval((function(){
+r.imgArray.every((function(e){
+return e.rendered
+}
+))?clearInterval(r.gapCheck):r.setImgHeightFromIndex(0,!1)
+}
+),5e3),r.setNoImgBtn=function(){
+r.pathArr.find((function(e){
+return'img'===e.tagName
+}
+))||r.btnShown||(r.btnShown=!0,null==r.props.setBtnShow||r.props.setBtnShow(!0))
+}
+,r.setImgRef=function(e){
+return function(t){
+e.imgObj?e.imgObj.ref=t:(e.imgObj={
+id:e.id,ref:t
+}
+,r.imgArray.push(e.imgObj))
+}
+
+}
+,r.setImgRatioById=function(e){
+return function(t){
+// 变量
+var i: any = null;
+if(l.PlatformUtils.isApp()?i=t.nativeEvent:l.PlatformUtils.isMp()&&(i=t.nativeEvent.detail),i){
+var n=r.imgArray.findIndex((function(t){
+return t.id===e
+}
+));
+-1!==n&&(r.imgArray[n].ratio=i.height/i.width,r.setImgHeightFromIndex(n,!0))
+}
+
+}
+
+}
+,r.setImgHeightFromIndex=function(e,t){
+var i,n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];
+if(0===e||null!=(i=r.imgArray[e-1])&&i.rendered){
+0!==e||r.btnShown||(r.btnShown=!0,null==r.props.setBtnShow||r.props.setBtnShow(!0));
+for(var o=e,a=r.imgArray.length;
+o<a;
+o++){
+// 变量
+var u: any = r.imgArray[o];
+if(u.ratio){
+if(!u.rendered){
+if(u.rendered=!0,u.renderHeight=Math.floor(r.originWidth*u.ratio),!n)return;
+l.PlatformUtils.isMp()?r.forceUpdateThrottle():u.ref.setNativeProps({
+style:{
+height:u.renderHeight
+}
+
+}
+)
+}
+
+}
+else if(t)break
+}
+
+}
+
+}
+,r.forceUpdateThrottle=(0,h.throttle)(r.forceUpdate,200),r.turnPage=function(e){
+e&&l.RouterUtils.gotoPage(e)
+}
+,r.getImgSrc(),r
+}
+return(0,o.default)(a,e),(0,r.default)(a,[{
+key:"componentWillUnmount",value:function(){
+this.resizeListener.remove(),clearInterval(this.gapCheck)
+}
+
+}
+,{
+key:"getImgSrc",value:function(){
+this.imgArray=[];
+for(var e=this.props.content,t=(void 0===e?'':e).replace(/<style>.*?<\/style>/g,'').split('"'),r=[],i=0;
+i<t.length;
+i++){
+// 变量
+var n: any = t[i];
+if(n.indexOf('<img ')>-1)i=this.pushImgs(i,t,r);
+else if(n.indexOf('<a ')>-1)for(var o={
+tagName:'a',path:'',child:[]
+}
+,a=i+1;
+a<t.length;
+a++)if(this.isFullPath(t[a])&&(o.path=t[a]),t[a].indexOf('<img ')>-1&&-1===t[a].indexOf('</a>')&&(a=this.pushImgs(a,t,o.child)),t[a].indexOf('</a>')>-1){
+r.push(o),i=a-1;
+break
+}
+
+}
+this.pathArr=r,this.setNoImgBtn()
+}
+
+}
+,{
+key:"pushImgs",value:function(e,t,r){
+for(var i=!0,n=e+1;
+n<t.length;
+n++)if(i&&this.isFullPath(t[n]))return i=!1,r.push({
+tagName:'img',path:t[n],id:e+"-"+l.CommonUtils.randomString()
+}
+),n
+}
+
+}
+,{
+key:"isFullPath",value:function(e){
+// 变量
+var t: any = /(http|https):\/\/([\w.]+\/?)\S*/.test(e);
+return t
+}
+
+}
+,{
+key:"renderRNDom",value:function(e){
+// 变量
+var t: any = this;
+return null==e?void 0:e.map((function(e,r){
+var i;
+return'img'===e.tagName?(0,c.jsx)(u.View,{
+ref:t.setImgRef(e),style:[O.imgBox,(null==(i=e.imgObj)?void 0:i.renderHeight)&&{
+height:e.imgObj.renderHeight
+}
+],children:(0,c.jsx)(y,{
+style:O.img,source:{
+uri:e.path,priority:'normal'
+}
+,onLoad:t.setImgRatioById(e.id),mode:"scaleToFill",resizeMode:"stretch",resizeWidth:Math.min(1300,t.originWidth),imgStyleHeight:Math.min(1300,4*t.originWidth)
+}
+)
+}
+,e.id):'a'===e.tagName?(0,c.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return t.turnPage(e.path)
+}
+,children:t.renderRNDom(e.child)
+}
+,r):void 0
+}
+))
+}
+
+}
+,{
+key:"render",value:function(){
+return this.renderRNDom(this.pathArr)
+}
+
+}
+])
+}
+)(a.PureComponent),O=(_e.default=I,u.StyleSheet.create({
+imgBox:{
+width:'100%',height:0
+}
+,img:{
+width:'100%',height:'100%'
+}
+
+}
+))
+}
+),"e31278cbd654f5b8687795da32c457a4ccf3078cde907de53c38800a685f83ad",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","80700f21fec9f5c717262de471ee3dce00f502afaf2d6fbb55dd39a0a3737502","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),o=e(_r(d[2])),r=e(_r(d[3])),i=e(_r(d[4])),a=e(_r(d[5])),n=e(_r(d[6])),l=e(_r(d[7])),s=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = w(t);
+if(o&&o.has(e))return o.get(e);
+var r={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var n: any = i?Object.getOwnPropertyDescriptor(e,a):null;
+n&&(n.get||n.set)?Object.defineProperty(r,a,n):r[a]=e[a]
+}
+return r.default=e,o&&o.set(e,r),r
+}
+)(_r(d[8])),c=e(_r(d[9])),u=_r(d[10]),p=e(_r(d[11])),f=_r(d[12]),h=e(_r(d[13])),v=e(_r(d[14])),P=e(_r(d[15])),C=_r(d[16]),y=_r(d[17]),b=_r(d[18]),S=_r(d[19]),_=_r(d[20]),I=_r(d[21]);
+// 函数
+function w(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(w=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function x(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(x=function(){
+return!!e
+}
+)()
+}
+var j=(function(e){
+// 函数
+function s(e: any): any {
+var i,l,c,u,p;
+return(0,r.default)(this,s),c=this,u=s,p=[e],u=(0,n.default)(u),(l=(0,a.default)(c,x()?Reflect.construct(u,p||[],(0,n.default)(c).constructor):u.apply(c,p))).flag=!0,l.getLocCode=function(){
+// 变量
+var e: any = l.props,t=e.defaultSkuCode,o=e.initSkuCode,r=t;
+return e.servicesRender&&o&&(r=o),r
+}
+,l.getPriceObj=(0,o.default)((function*(){
+// 变量
+var e: any = yield l.commonJs.getGroupFlag(l);
+if(e){
+// 变量
+var t: any = e.totalPrice,o=e.flag,r=e.originalPrice,i=e.detailList;
+l.priceObj={
+flag:o,detailList:i,totalPrice:t,originalPrice:r,cheapPrice:l.commonJs.minus(r,t)
+}
+;
+// 变量
+var a: any = l.props.disPrdId;
+f.StorageUtil.getStorage("chosePackageCode_"+a+"_"+l.getLocCode()).then((function(e){
+// 变量
+var t: any = [];
+e&&(t=(0,C.getPackageByCode)(l.defaultSbomCode,l.state.sbomList,e)),l.getAllPriceData(t)
+}
+))
+}
+
+}
+)),l.getAllPriceData=function(){
+var e,o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],r=l.priceObj||{
+
+}
+,i=r.totalPrice,a=r.flag,n=r.originalPrice,s=r.detailList,c=void 0===s?[]:s,u=r.cheapPrice,p=0,f=0,h=0,v=0;
+'hasPrice'===a?(null==o?void 0:o.length)>0?(o.forEach((function(e){
+v=l.commonJs.plus(v,e.originalPrice),h=l.commonJs.plus(h,e.unitPrice)
+}
+)),f=l.commonJs.plus(i,h),p=l.commonJs.minus(l.commonJs.plus(n,v),f)):(p=u,f=i):'noPrice'===a&&(f=i),e=[].concat((0,t.default)(c),(0,t.default)(o)),l.props.getCarDetailData&&l.props.getCarDetailData({
+totalPrice:f,flag:a,cheapPrice:p,detailList:e,sbomCode:l.defaultSbomCode
+}
+),l.setState({
+totalPrice:f,flag:a,detailList:e,cheapPrice:p,originalPrice:l.commonJs.plus(n,v)
+}
+)
+}
+,l.getBanner=function(e){
+var t,o,r,i=[];
+for(var a in e)Object.prototype.hasOwnProperty.call(e,a)&&((o=e[a]).photoPath&&o.photoName&&i.push({
+imgProportion:l.commonJs.isLarge()?'1:1':'360:202',imgUri:f.CommonUtils.getCDNpath(1)+o.photoPath+'800_800_'+o.photoName
+}
+),o.groupPhotoList&&o.groupPhotoList.map((function(e){
+i.push({
+imgUri:f.CommonUtils.getCDNpath(1)+e.photoPath+'800_800_'+e.photoName,imgProportion:l.commonJs.isLarge()?'1:1':'360:202'
+}
+)
+}
+)));
+!l.flag||null!=(t=i[0])&&t.imgUri?(l.setState({
+imgUrl:null==(r=i[0])?void 0:r.imgUri
+}
+),l.getPriceObj()):l.setState({
+totalPrice:-1
+}
+,(function(){
+l.flag=!1,l.getPrdDDetail()
+}
+))
+}
+,l.goToOtherPage=(0,_.clickDebunce)((function(){
+if(l.props.servicesRender)window.location.href=l.commonJs.getJumpUrl(l,'carpreview');
+else{
+var e,t=(null==(e=l.props)?void 0:e.navigation).navigate;
+t&&t('CarPreview')
+}
+
+}
+)),l.reloadConfig=(0,_.clickDebunce)((function(){
+// 变量
+var e: any = l.props,t=e.channelId,o=(e.showheader,e.servicesRender,e.disPrdId),r=e.defaultSkuCode,i=e.saleId,a=e.orderCode;
+(0,S.setSelectStorage)(o,'',a),f.PlatformUtils.isWeb()&&'undefined'!=typeof window?(window.localStorage.removeItem("sbom_"+o+"_"+r),window.localStorage.removeItem("chosePackageCode_"+o+"_"+r)):(l.emptyConfig(!0),f.StorageUtil.setStorage("package_"+o+"_"+r,[],7),f.StorageUtil.setStorage("sbom_"+o+"_"+r,r,7),v.default.clearAttr());
+// 变量
+var n: any = [];
+if(n.push("prdId="+o),n.push("sbomCode="+r),i&&n.push("saleId="+i),t&&n.push("channelId="+t),n.push("reloadCarSelect=true"),f.PlatformUtils.isApp()){
+n.push('targetPage=carselect');
+// 变量
+var s: Function = l.commonJs.apkLink()+"?"+n.join('&');
+f.RouterUtils.gotoPage(s)
+}
+else{
+// 变量
+var c: any = "?"+n.join('&')+"#/CarSelect";
+(0,y.gotoPage)(c)
+}
+
+}
+)),l.emptyConfig=function(){
+// 变量
+var e: any = arguments.length>0&&void 0!==arguments[0]&&arguments[0];
+v.default.clearPackageMap(),v.default.setDetailList([]),e&&v.default.setIndex(0)
+}
+,l.commonJs=h.default.call(l),l.state={
+benefitSbomCode:l.props.sbomCode,selectedConfig:'',sbomList:l.props.sbomList||[],imgUrl:'',originalPrice:0,totalPrice:0,cheapPrice:0
+}
+,l.diyPackageInfos=null==(i=l.props)?void 0:i.diyPackageInfos,l
+}
+return(0,l.default)(s,e),(0,i.default)(s,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this;
+f.CookieUtils.saveCpsToCookie(),this.setState({
+totalPrice:-1
+}
+,(function(){
+e.getStorage()
+}
+))
+}
+
+}
+,{
+key:"getPrdDDetail",value:function(){
+this.getStorage()
+}
+
+}
+,{
+key:"getStorage",value:function(){
+// 变量
+var e: any = this,t=this.props.disPrdId;
+f.StorageUtil.getStorage("sbom_"+t+"_"+this.getLocCode()).then((function(){
+var r=(0,o.default)((function*(o){
+o&&!b.previewScene.isPreview?(e.defaultSbomCode=o,(0,C.queryCarSbomInfoByCode)(o).then((function(r){
+if(null!=r&&r.success){
+var i=r.sbomInfo,a=void 0===i?{
+
+}
+:i,n=[a],l=(0,C.getAttrDataBySbomCodeNew)(a);
+if(l){
+// 变量
+var s: Function = '';
+null==l||l.forEach((function(e,t){
+// 变量
+var o: any = e.attrValue,r=void 0===o?'':o;
+t===l.length-1?s+=r:s+=r+"/"
+}
+)),f.StorageUtil.getStorage("chosePackageCode_"+t+"_"+e.getLocCode()).then((function(t){
+var r;
+t&&(null==(r=(0,C.getPackageByCode)(o,n,t))||r.forEach((function(e){
+// 变量
+var t: any = e.sbomAbbr;
+s+="/"+(void 0===t?'':t)
+}
+)));
+e.setState({
+selectedConfig:s,benefitSbomCode:o,sbomList:n
+}
+,(function(){
+e.getBanner(n)
+}
+))
+}
+))
+}
+else e.setState({
+selectedConfig:''
+}
+)
+}
+else e.setState({
+selectedConfig:''
+}
+)
+}
+))):e.setState({
+selectedConfig:''
+}
+)
+}
+));
+return function(e){
+return r.apply(this,arguments)
+}
+
+}
+)())
+}
+
+}
+,{
+key:"report",value:function(e){
+var t,o,r,i,a,n;
+f.Report.eventTracingReportRightNow({
+eventType:'2',actionCode:e.actionCode,actionName:e.actionName,content:{
+comId:'carContent_selected',productId:null==(t=this.props)||null==(o=t.disPrdId)?void 0:o.toString(),channelId:(null==(r=this.props)?void 0:r.channelId)||'0',saleId:(null==(i=this.props)?void 0:i.saleId)||'',SKUCode:null==(a=this.props)?void 0:a.sbomCode
+}
+,resSiteCode:'r_carContent_selected',resSiteName:(0,f.t)('prd_selected'),pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),pageId:'p_carContent_'+(null==(n=this.props)?void 0:n.disPrdId)
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=P.default.carMoreArrow,o=P.default.resetting,r=this.state,i=r.totalPrice,a=r.cheapPrice,n=r.originalPrice,l=r.sbomList,s=this.props,p=s.buttonComp,h=void 0===p?null:p,v=s.isWebBtnFixed,C=void 0!==v&&v,y=this.commonJs.getContentCardPrice(l[0],i,a,n),b=y.priceText,S=y.originalPriceText;
+return(0,I.jsx)(f.WithTheme,{
+themeStyles:c.default,children:function(r){
+return(0,I.jsxs)(u.View,{
+style:r.selectedInfoContainer,children:[(0,I.jsx)(u.Image,{
+style:r.selectedInfoCarImg,source:e.state.imgUrl
+}
+),(0,I.jsxs)(u.View,{
+style:r.selectedInfoArea,children:[(0,I.jsxs)(u.View,{
+style:r.totalCostRow,children:[(0,I.jsx)(u.Text,{
+style:[r.greyText,r.totalCostText],children:"\u603b\u4ef7: "
+}
+),(0,I.jsx)(u.Text,{
+style:r.totalCostValue,children:-1===e.state.totalPrice?(0,f.t)('in_calculation'):b
+}
+),a&&i>0?(0,I.jsx)(u.Text,{
+style:r.originalPrice,children:S
+}
+):null,(0,I.jsx)(u.View,{
+style:r.resettingWrapper,children:(0,I.jsxs)(u.TouchableOpacity,{
+activeOpacity:1,style:r.totalCostRow,onPress:function(){
+e.reloadConfig(),e.report({
+actionCode:'900027303',actionName:(0,f.t)('click_reconfigure')
+}
+)
+}
+,children:[(0,I.jsx)(u.Image,{
+style:r.resettingIcon,source:o
+}
+),(0,I.jsx)(u.Text,{
+style:[r.greyText,r.resettingText],children:(0,f.t)('reconfigure')
+}
+)]
+}
+)
+}
+)]
+}
+),(0,I.jsxs)(u.TouchableOpacity,{
+style:r.totalCostRow,activeOpacity:1,onPress:function(){
+e.goToOtherPage(),e.report({
+actionCode:'900027304',actionName:(0,f.t)('click_selected_configurations')
+}
+)
+}
+,children:[(0,I.jsxs)(u.Text,{
+style:[r.greyText,r.selectedValue],numberOfLines:1,ellipsizeMode:"tail",children:[(0,f.t)('selected_configurations'),": ",e.state.selectedConfig]
+}
+),(0,I.jsx)(u.Image,{
+style:r.carMoreArrow,source:t
+}
+)]
+}
+)]
+}
+),C?(0,I.jsx)(u.View,{
+style:r.btnContainer,children:h
+}
+):null]
+}
+)
+}
+
+}
+)
+}
+
+}
+])
+}
+)(s.PureComponent);
+_e.default=(0,f.monitor)(p.default)((0,f.itemExposeHoc)(j))
+}
+),"f94af9650f47e9743147d57dd1fe8b03408bd2f621fa73923ebee61f49c55f20",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","25df5bb73c6b1ac367a5b86d82f775787304452dec3c057384eb0263debcf303","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","9bfd144928ccebff4fd23996b4bd645e54d9e0887ae5edb01b7767c18d0d19b2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]);
+e.default=function(n){
+return t.StyleSheet.create({
+selectedInfoContainer:{
+height:100,display:'flex',flexDirection:'row',alignItems:'center',width:1200,maxWidth:1200,margin:'auto',marginTop:0
+}
+,selectedInfoCarImg:{
+height:100,width:154,marginRight:60
+}
+,selectedInfoArea:{
+flex:1
+}
+,totalCostRow:{
+display:'flex',flexDirection:'row',alignItems:'center'
+}
+,originalPrice:Object.assign({
+textDecorationLine:'line-through'
+}
+,n.T5,n.C13,{
+marginLeft:7
+}
+),greyText:Object.assign({
+
+}
+,n.T9,n.C13),totalCostValue:Object.assign({
+
+}
+,n.T14,n.C11),resettingWrapper:{
+width:'auto',height:'auto',marginLeft:'auto',display:'flex',flexDirection:'row',alignItems:'center'
+}
+,resettingText:{
+marginLeft:8
+}
+,resettingIcon:{
+width:16,height:16
+}
+,carMoreArrow:{
+width:12,height:24,marginLeft:'auto'
+}
+,btnContainer:{
+marginLeft:20
+}
+
+}
+)
+}
+
+}
+),"25df5bb73c6b1ac367a5b86d82f775787304452dec3c057384eb0263debcf303",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+e.default={
+exposeItem:function(){
+
+}
+,clickItem:function(){
+
+}
+
+}
+
+}
+),"9bfd144928ccebff4fd23996b4bd645e54d9e0887ae5edb01b7767c18d0d19b2",[]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),o=e(_r(d[2])),i=e(_r(d[3])),a=e(_r(d[4])),n=e(_r(d[5])),r=e(_r(d[6])),l=e(_r(d[7])),s=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = I(t);
+if(o&&o.has(e))return o.get(e);
+var i={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var r: any = a?Object.getOwnPropertyDescriptor(e,n):null;
+r&&(r.get||r.set)?Object.defineProperty(i,n,r):i[n]=e[n]
+}
+return i.default=e,o&&o.set(e,i),i
+}
+)(_r(d[8])),c=_r(d[9]),u=e(_r(d[10])),f=_r(d[11]),p=_r(d[12]),h=e(_r(d[13])),C=_r(d[14]),P=e(_r(d[15])),v=e(_r(d[16])),b=_r(d[17]),S=e(_r(d[18])),y=_r(d[19]),w=_r(d[20]),_=_r(d[21]),x=_r(d[22]);
+// 函数
+function I(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(I=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function j(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(j=function(){
+return!!e
+}
+)()
+}
+var T=(0,s.memo)((function(e){
+// 变量
+var t: any = e.reloadConfigFun;
+return(0,x.jsxs)(c.View,{
+style:[P.default.flexContent,P.default.carContentTop],children:[(0,x.jsx)(c.Text,{
+style:P.default.title,children:(0,f.t)('my_configurations')
+}
+),(0,x.jsxs)(c.TouchableOpacity,{
+activeOpacity:1,onPress:t,style:P.default.flexContent,children:[(0,x.jsx)(c.Text,{
+style:P.default.reloadOpt,children:(0,f.t)('reconfigure')
+}
+),(0,x.jsx)(c.View,{
+style:{
+marginLeft:8
+}
+,children:(0,x.jsx)(p.SvgIcon,{
+iconName:"ic_public_rotate",width:16,height:16,normalCol:'#000',opacity:1
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+)),k=(0,s.memo)((function(e){
+// 变量
+var t: any = e.buyNowFun;
+return(0,x.jsx)(c.View,{
+style:P.default.bugNowWrap,children:(0,x.jsx)(c.TouchableOpacity,{
+onPress:t,activeOpacity:1,style:P.default.bugNow,children:(0,x.jsx)(c.Text,{
+style:P.default.bugNowText,children:(0,f.t)('buy_now_button')
+}
+)
+}
+)
+}
+)
+}
+)),U=(0,s.memo)((function(e){
+// 变量
+var t: any = e.configPressFun,o=e.selectedConfig;
+return(0,x.jsxs)(c.View,{
+style:P.default.flexContent,children:[(0,x.jsx)(c.Text,{
+style:P.default.contentTitle,children:(0,f.t)('selected_configurations')
+}
+),(0,x.jsxs)(c.TouchableOpacity,{
+onPress:t,activeOpacity:1,style:[P.default.flexContent,P.default.optMsg],children:[(0,x.jsx)(c.Text,{
+style:P.default.optMsgFont,numberOfLines:1,children:o
+}
+),(0,x.jsx)(c.View,{
+style:P.default.optIcon,children:(0,x.jsx)(p.SvgIcon,{
+normalCol:'#000',opacity:.2,iconName:'ic_public_arrow_right_rec',width:24,height:24
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+)),L=(function(e){
+// 函数
+function s(e: any): any {
+var a,l,c,u,p,P;
+return(0,i.default)(this,s),u=this,p=s,P=[e],p=(0,r.default)(p),(c=(0,n.default)(u,j()?Reflect.construct(p,P||[],(0,r.default)(u).constructor):p.apply(u,P))).headerTop=0,c.flag=!0,c.goflag=!0,c.getLocCode=function(){
+// 变量
+var e: any = c.props,t=e.defaultSkuCode,o=e.initSkuCode,i=t;
+return e.servicesRender&&o&&(i=o),i
+}
+,c.refreshData=function(e){
+var t,o;
+c.props.uniqueId===(null==e||null==(t=e.param)?void 0:t.uniqueId)&&null!=e&&null!=(o=e.param)&&o.isLeave&&c.getStorageSbom()
+}
+,c.getStorageSbom=function(){
+// 变量
+var e: any = c.props.disPrdId;
+f.StorageUtil.getStorage("sbom_"+e+"_"+c.getLocCode()).then((function(e){
+var t;
+(c.defaultSbomCode=e||c.props.sbomCode,f.PlatformUtils.isIOS())?(null==(t=c.state.sbomList[0])?void 0:t.sbomCode)!==c.defaultSbomCode?c.getPrdDDetail():c.getStorage():c.setState({
+totalPrice:-1
+}
+,(function(){
+c.getPrdDDetail()
+}
+))
+}
+))
+}
+,c.getStorage=S.default.debounce((function(){
+// 变量
+var e: any = c.props,t=e.disPrdId,o=e.defaultSkuCode;
+f.StorageUtil.getStorage("sbom_"+t+"_"+c.getLocCode()).then((function(e){
+if(!e)return c.setState({
+selectedConfig:''
+}
+),void c.props.isShow(!0);
+c.defaultSbomCode=e,(0,C.queryCarSbomInfoByCode)(e).then((function(i){
+if(null!=i&&i.success){
+var a=i.sbomInfo,n=void 0===a?{
+
+}
+:a,r=[n],l=(0,C.getAttrDataBySbomCodeNew)(n);
+if(l){
+// 变量
+var s: Function = '';
+null==l||l.forEach((function(e,t){
+t===l.length-1?s+=e.attrValue:s+=e.attrValue+'/'
+}
+)),f.StorageUtil.getStorage("chosePackageCode_"+t+"_"+o).then((function(t){
+var o;
+t&&(null==(o=(0,C.getPackageByCode)(e,r,t))||o.forEach((function(e){
+s+='/'+e.sbomAbbr
+}
+)));
+c.setState({
+selectedConfig:s,sbomList:r
+}
+,(function(){
+s&&c.getSbomInfo()
+}
+)),c.checkBtnShow()
+}
+))
+}
+else c.setState({
+selectedConfig:''
+}
+),c.props.isShow(!0)
+}
+else c.setState({
+selectedConfig:''
+}
+),c.props.isShow(!0)
+}
+))
+}
+))
+}
+),200,{
+leading:!0,trailing:!1
+}
+),c.checkBtnShow=function(){
+setTimeout((function(){
+// 变量
+var e: any = !1,t=c.props,o=t.windowScrollHeight,i=void 0===o?-56:o,a=t.selectedInfoHeight,n=t.statusBarHeight,r=c.props.showheader?a-56:a;
+f.PlatformUtils.isApp()&&(r-=n),(!c.state.selectedConfig||i&&a&&i>r)&&(e=!0),c.props.isShow(e)
+}
+),500)
+}
+,c.getSbomInfo=function(){
+// 变量
+var e: any = c.props.disPrdId;
+f.StorageUtil.getStorage("sbom_"+e+"_"+c.getLocCode()).then((function(e){
+c.defaultSbomCode=e||c.props.sbomCode,c.setState({
+benefitSbomCode:e
+}
+,(function(){
+c.getBanner(c.state.sbomList)
+}
+))
+}
+))
+}
+,c.isPadHorizontal=function(e){
+// 变量
+var t: any = (0,_.getInnerHeight)();
+return f.ScreenUtils.isPadHorizontal(e,t)
+}
+,c.getPriceObj=(0,o.default)((function*(){
+// 变量
+var e: any = yield c.commonJs.getGroupFlag(c);
+if(e){
+// 变量
+var t: any = e.totalPrice,o=e.flag,i=e.originalPrice,a=e.detailList;
+c.priceObj={
+totalPrice:t,flag:o,cheapPrice:c.commonJs.minus(i,t),originalPrice:i,detailList:a
+}
+;
+// 变量
+var n: any = c.props,r=n.disPrdId,l=n.defaultSkuCode;
+f.StorageUtil.getStorage("chosePackageCode_"+r+"_"+l).then((function(e){
+// 变量
+var t: any = [];
+e&&(t=(0,C.getPackageByCode)(c.defaultSbomCode,c.state.sbomList,e)),c.getAllPriceData(t)
+}
+))
+}
+
+}
+)),c.getAllPriceData=function(){
+var e,o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],i=c.priceObj||{
+
+}
+,a=i.totalPrice,n=i.flag,r=i.originalPrice,l=i.detailList,s=void 0===l?[]:l,u=i.cheapPrice,f=0,p=0,h=0,C=0;
+'hasPrice'===n?(null==o?void 0:o.length)>0?(o.forEach((function(e){
+f=c.commonJs.plus(f,e.unitPrice),p=c.commonJs.plus(p,e.originalPrice)
+}
+)),C=c.commonJs.plus(a,f),h=c.commonJs.minus(c.commonJs.plus(r,p),C)):(C=a,h=u):'noPrice'===n&&(C=a),e=[].concat((0,t.default)(s),(0,t.default)(o)),c.props.getCarDetailData&&c.props.getCarDetailData({
+totalPrice:C,flag:n,cheapPrice:h,detailList:e,sbomCode:c.defaultSbomCode
+}
+),c.setState({
+flag:n,detailList:e,originalPrice:c.commonJs.plus(r,p),totalPrice:C,cheapPrice:h
+}
+,(function(){
+var e;
+null==(e=c.props)||e.setPriceInfo({
+totalPrice:c.state.totalPrice,originalPrice:c.state.originalPrice,sbomList:c.state.sbomList
+}
+)
+}
+))
+}
+,c.getBanner=function(e){
+var t,o,i,a=c.state.benefitSbomCode,n=[],r=function(){
+if(Object.prototype.hasOwnProperty.call(e,l)&&e[l].sbomCode===a){
+var t;
+o=e[l];
+// 变量
+var i: any = c.commonJs.isLarge()?'1:1':'360:202';
+o.photoPath&&o.photoName&&n.push({
+imgProportion:i,imgUri:f.CommonUtils.getCDNpath(1)+o.photoPath+'800_800_'+o.photoName
+}
+),null==(t=o.groupPhotoList)||t.map((function(e){
+var t=e||{
+
+}
+,o=t.photoPath,a=void 0===o?'':o,r=t.photoName,l=void 0===r?'':r;
+n.push({
+imgProportion:i,imgUri:""+f.CommonUtils.getCDNpath(1)+a+"800_800_"+l
+}
+)
+}
+))
+}
+
+}
+;
+for(var l in e)r();
+null!=(t=n[0])&&t.imgUri||!c.flag?(c.setState({
+imgUrl:null==(i=n[0])?void 0:i.imgUri
+}
+),c.getPriceObj()):c.setState({
+totalPrice:-1
+}
+,(function(){
+c.getPrdDDetail(),c.flag=!1
+}
+))
+}
+,c.goToOtherPage=(0,w.clickDebunce)((function(){
+if(c.goflag){
+c.goflag=!1,c.gotoTimer=setTimeout((function(){
+c.goflag=!0
+}
+),2e3);
+// 变量
+var e: any = c.props,t=e.prdId,o=e.choiceSbomCode,i=e.defaultSkuCode,a=e.saleId,n=e.channelId,r=e.servicesRender;
+if(f.PlatformUtils.isWeb())if(r)window.location.href=c.commonJs.getJumpUrl(c,'carpreview');
+else{
+var l,s=(null==(l=c.props)?void 0:l.navigation).navigate;
+s&&s('CarPreview')
+}
+else{
+// 变量
+var u: any = [];
+u.push("sbomCode="+i),u.push("prdId="+t),u.push('targetPage=carpreview'),o&&u.push("choiceSbomCode="+o),c.state.selectedConfig&&u.push('clearCache=false'),n&&u.push("channelId="+n),a&&u.push("saleId="+a),u.push('closePage=off'),u.push("slectCode="+c.state.benefitSbomCode);
+// 变量
+var p: any = c.commonJs.apkLink()+"?"+u.join('&');
+f.RouterUtils.gotoPage(p)
+}
+
+}
+
+}
+)),c.reloadConfig=(0,w.clickDebunce)((function(){
+if(c.goflag){
+c.goflag=!1,c.gotoTimer=setTimeout((function(){
+c.goflag=!0
+}
+),2e3);
+// 变量
+var e: any = c.props,t=e.disPrdId,o=e.defaultSkuCode,i=e.saleId,a=e.channelId,n=e.showheader,r=(e.servicesRender,e.orderCode);
+if((0,y.setSelectStorage)(t,'',r),f.PlatformUtils.isWeb()&&'undefined'!=typeof window)window.localStorage.removeItem("sbom_"+t+"_"+o);
+else{
+c.emptyConfig(!0),f.StorageUtil.setStorage("package_"+t+"_"+o,[],7),f.StorageUtil.setStorage("sbom_"+t+"_"+o,'',7),f.StorageUtil.setStorage("carDetailPkg_"+t+"_"+o,'',7),f.StorageUtil.setStorage("chosePackageCode_"+t+"_"+o,'',7);
+// 变量
+var l: any = [];
+l.push("prdId="+t),l.push("sbomCode="+o),!n&&l.push("showheader="+n),i&&l.push("saleId="+i),a&&l.push("channelId="+a),v.default.clearAttr()
+}
+// 变量
+var s: Function = [];
+if(s.push("prdId="+t),s.push("sbomCode="+o),i&&s.push("saleId="+i),a&&s.push("channelId="+a),!n&&s.push("showheader="+n),s.push("reloadCarSelect=true"),f.PlatformUtils.isApp()){
+s.push('targetPage=carselect');
+// 变量
+var u: any = c.commonJs.apkLink()+"?"+s.join('&');
+f.RouterUtils.gotoPage(u)
+}
+else{
+// 变量
+var p: any = "?"+s.join('&')+"#/CarSelect";
+(0,b.gotoPage)(p)
+}
+
+}
+
+}
+)),c.emptyConfig=function(){
+// 变量
+var e: any = arguments.length>0&&void 0!==arguments[0]&&arguments[0];
+v.default.setDetailList([]),v.default.clearPackageMap(),e&&v.default.setIndex(0)
+}
+,c.reloadConfigFun=function(){
+c.reloadConfig(),c.report({
+actionCode:'900027303',actionName:(0,f.t)('click_reconfigure')
+}
+)
+}
+,c.buyNowFun=function(){
+c.goToOtherPage(),c.report({
+actionCode:'900027305',actionName:(0,f.t)('click_buy_now')
+}
+)
+}
+,c.configPressFun=function(){
+c.goToOtherPage(),c.report({
+actionCode:'900027304',actionName:(0,f.t)('click_selected_configurations')
+}
+)
+}
+,c.commonJs=h.default.call(c),c.state={
+selectedConfig:'',benefitSbomCode:c.props.sbomCode,originalPrice:0,totalPrice:0,cheapPrice:0,sbomList:c.props.sbomList||[],imgUrl:''
+}
+,c.diyPackageInfos=null==(a=c.props)?void 0:a.diyPackageInfos,c.headerTop=null!=(l=c.props)&&l.showheader?56:0,c.reloadConfigFun=c.reloadConfigFun.bind(c),c.buyNowFun=c.buyNowFun.bind(c),c.configPressFun=c.configPressFun.bind(c),c
+}
+return(0,l.default)(s,e),(0,a.default)(s,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this;
+this.props.onRef&&this.props.onRef(this),f.CookieUtils.saveCpsToCookie(),this.setState({
+totalPrice:-1
+}
+,(function(){
+e.getStorage()
+}
+)),f.PlatformUtils.isApp()&&(this.eventListener=c.DeviceEventEmitter.addListener('NativeCallAction',this.refreshData))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e;
+(this.gotoTimer&&clearTimeout(this.gotoTimer),f.PlatformUtils.isApp())&&(null==(e=this.eventListener)||e.remove())
+}
+
+}
+,{
+key:"getPrdDDetail",value:function(){
+this.getStorage()
+}
+
+}
+,{
+key:"report",value:function(e){
+var t,o,i,a,n,r;
+f.Report.eventTracingReportRightNow({
+actionCode:e.actionCode,actionName:e.actionName,eventType:'2',content:{
+comId:'carContent_selected',productId:null==(t=this.props)||null==(o=t.disPrdId)?void 0:o.toString(),SKUCode:null==(i=this.props)?void 0:i.sbomCode,channelId:(null==(a=this.props)?void 0:a.channelId)||'0',saleId:(null==(n=this.props)?void 0:n.saleId)||''
+}
+,pageCatCode:'p_carContent',pageCatName:(0,f.t)('contentPageCat'),resSiteCode:'r_carContent_selected',resSiteName:(0,f.t)('prd_selected'),pageId:'p_carContent_'+(null==(r=this.props)?void 0:r.disPrdId)
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+var e=this.props,t=e.isSSR,o=e.isPC,i=e.pullUpApp,a=e.statusBarHeight,n=this.state,r=n.totalPrice,l=n.cheapPrice,s=n.originalPrice,u=n.sbomList,h=n.selectedConfig,C=n.imgUrl,v={
+width:'100%',display:'flex',marginTop:a?a+this.headerTop:this.headerTop
+}
+;
+f.PlatformUtils.isWeb()&&i&&(v.marginTop=0);
+var b=(0,_.getInnerWidth)();
+t&&(b=o?1903:360);
+// 变量
+var S: Function = this.commonJs.getContentCardPrice(u[0],r,l,s),y=S.priceText,w=S.originalPriceText;
+return h&&(0,x.jsx)(c.View,{
+style:v,children:(0,x.jsxs)(c.View,{
+style:[P.default.carContentWrap,this.isPadHorizontal(b)?P.default.contentPadH:null],children:[(0,x.jsx)(T,{
+reloadConfigFun:this.reloadConfigFun
+}
+),(0,x.jsx)(c.View,{
+style:{
+alignItems:'center'
+}
+,children:(0,x.jsx)(p.FastImageView,{
+showAppSwitchImage:!1,isHighQuality:!0,resizeMode:'cover',imgUri:C,scale:1,imgStyle:{
+width:f.ScreenUtils.isMedium(b)?391.1111111111111:'100%',height:f.ScreenUtils.isMedium(b)?220:.5625*b
+}
+
+}
+)
+}
+),(0,x.jsxs)(c.View,{
+style:P.default.carContentDetail,children:[(0,x.jsx)(U,{
+configPressFun:this.configPressFun,selectedConfig:h
+}
+),(0,x.jsxs)(c.View,{
+style:[P.default.priceWrap,P.default.flexContent],children:[(0,x.jsx)(c.Text,{
+style:P.default.priceTitle,children:(0,f.t)('price')
+}
+),(0,x.jsxs)(c.View,{
+style:[P.default.flexContent,{
+alignItems:'baseline'
+}
+],children:[-1===r?(0,x.jsx)(c.Text,{
+style:P.default.priceCalc,children:(0,f.t)('in_calculation')
+}
+):(0,x.jsx)(c.Text,{
+style:P.default.price,children:y
+}
+),l&&r>0?(0,x.jsx)(c.Text,{
+style:P.default.originalPrice,children:w
+}
+):null]
+}
+)]
+}
+),(0,x.jsx)(k,{
+buyNowFun:this.buyNowFun
+}
+)]
+}
+)]
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(s.PureComponent);
+_e.default=(0,f.monitor)(u.default)((0,f.itemExposeHoc)(L))
+}
+),"91650ec175a6fd07132af8047ce85701dac8d40d6e429a027f945c7750de4444",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","9bfd144928ccebff4fd23996b4bd645e54d9e0887ae5edb01b7767c18d0d19b2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","4313862e8fcb0b588f5fb3ddea7b1a84d395de8477ab770a94bb0a88ad4ca36e","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),n=r(d[1]);
+e.default=(function(){
+// 变量
+var o: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:n.DarkStore.theme;
+return t.StyleSheet.create({
+carContentWrap:{
+marginLeft:16,marginRight:16,marginBottom:12,backgroundColor:o.C33.color,paddingTop:4,paddingBottom:24,borderRadius:16
+}
+,carContentTop:{
+height:48,paddingLeft:12,paddingRight:12
+}
+,carContentDetail:{
+marginTop:8,paddingLeft:12,paddingRight:12
+}
+,flexContent:{
+flexDirection:'row',justifyContent:'space-between',alignItems:'center'
+}
+,title:Object.assign({
+
+}
+,o.C11,o.T10),reloadOpt:Object.assign({
+
+}
+,o.T8,o.C11),contentTitle:Object.assign({
+
+}
+,o.C11,o.T10,{
+height:24,lineHeight:24
+}
+),optMsg:{
+flex:1,marginLeft:32,justifyContent:'flex-end'
+}
+,optMsgFont:Object.assign({
+
+}
+,o.C13,o.T9,{
+height:28,lineHeight:28,width:'100%',textAlign:'right'
+}
+),priceCalc:Object.assign({
+
+}
+,o.C13,o.T9,{
+height:28,lineHeight:28
+}
+),priceWrap:{
+marginTop:4,height:28,lineHeight:28
+}
+,priceTitle:Object.assign({
+
+}
+,o.C11,o.T10),price:Object.assign({
+
+}
+,o.C11,o.T10),originalPrice:Object.assign({
+
+}
+,o.T3,o.C14,{
+textDecorationLine:'line-through',paddingLeft:5
+}
+),bugNowWrap:{
+alignItems:'center'
+}
+,bugNow:{
+width:'50%',textAlign:'center'
+}
+,bugNowPad:{
+width:'33.33%',textAlign:'center'
+}
+,bugNowText:Object.assign({
+
+}
+,o.C17,o.T10,{
+backgroundColor:o.C35.color,marginTop:12,height:40,lineHeight:40,borderRadius:20,textAlign:'center',overflow:'hidden'
+}
+),optIcon:{
+marginLeft:4,width:12
+}
+,contentPadH:{
+width:'66.66%',marginLeft:'auto',marginRight:'auto'
+}
+
+}
+)
+}
+)()
+}
+),"4313862e8fcb0b588f5fb3ddea7b1a84d395de8477ab770a94bb0a88ad4ca36e",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.BoxTip=void 0;
+var t=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = u(t);
+if(n&&n.has(e))return n.get(e);
+var o={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var l: any = r?Object.getOwnPropertyDescriptor(e,i):null;
+l&&(l.get||l.set)?Object.defineProperty(o,i,l):o[i]=e[i]
+}
+return o.default=e,n&&n.set(e,o),o
+}
+)(_r(d[1])),n=_r(d[2]),o=_r(d[3]),r=_r(d[4]),i=e(_r(d[5])),l=e(_r(d[6])),c=_r(d[7]),a=_r(d[8]);
+// 函数
+function u(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(u=function(e){
+return e?n:t
+}
+)(e)
+}
+_e.BoxTip=function(e){
+var u=e.centerShow,s=void 0===u||u,f=e.isPc,p=void 0!==f&&f,y=e.themeColor,x=(0,r.useModal)('BoxTip'),v=x.visible,T=x.boxTipText,b=x.title,h=void 0===b?(0,o.t)('tips'):b,j=x.confirmText,O=void 0===j?(0,o.t)('gotIt'):j,_=x.cancelText,P=void 0===_?'':_,S=x.confirmCallback,k=void 0===S?function(e){
+e()
+}
+:S,w=x.cancelCallback,M=void 0===w?function(e){
+e()
+}
+:w,B=(0,c.getStyle)(s,y),C=(0,t.useCallback)((function(){
+r.Modal.hide('BoxTip')
+}
+),[]),W=s?l.default:i.default;
+return(0,a.jsx)(W,{
+cardStyle:p?B.pcCardStyle:void 0,title:(0,a.jsx)(n.Text,{
+style:B.titleText,children:h
+}
+),titleStyle:h?void 0:B.blankTitleStyle,type:'prompt',animationType:"none",visible:v,content:(0,a.jsx)(n.Text,{
+style:B.contentText,children:T
+}
+),contentStyle:B.contentStyle,footer:(0,a.jsxs)(n.View,{
+style:B.btnWrap,children:[Boolean(P)&&(0,a.jsx)(n.TouchableOpacity,{
+onPress:function(){
+return M(C)
+}
+,style:B.btn,children:(0,a.jsx)(n.Text,{
+style:B.footerText,children:P
+}
+)
+}
+),(0,a.jsx)(n.TouchableOpacity,{
+onPress:function(){
+return k(C)
+}
+,style:p?B.pcBtn:B.btn,children:(0,a.jsx)(n.Text,{
+style:B.footerText,children:O
+}
+)
+}
+)]
+}
+),hideCloseIcon:!0
+}
+)
+}
+
+}
+),"d8cc0ad120d6721e27499f006a886f75435f78b9380e24198288d380e1f27388",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","01b215bea1ae0b01ea5e971aa8cc93ecd902939f35968b2f737c9eb756f3cdd0","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","595ed89252cbf053aef1da0a58c2eb978ef777d6d8a79e2d7df5dc1543eeed41","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.ModalProvider=_e.ModalController=_e.Modal=void 0,_e.useModal=function(e){
+var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],i=(0,c.useState)(t),a=(0,n.default)(i,2),r=a[0],s=a[1],o=(0,c.useReducer)((function(e){
+return!e
+}
+),!0),l=(0,n.default)(o,2)[1];
+return(0,c.useEffect)((function(){
+// 变量
+var t: any = N.getCurPage();
+return N.register(e,s,l),function(){
+return N.deregister(t,e)
+}
+
+}
+),[e]),Object.assign({
+visible:r
+}
+,N.getData(e))
+}
+;
+var t,n=e(_r(d[1])),i=e(_r(d[2])),a=e(_r(d[3])),r=e(_r(d[4])),s=e(_r(d[5])),o=e(_r(d[6])),l=e(_r(d[7])),u=_r(d[8]),c=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = k(t);
+if(n&&n.has(e))return n.get(e);
+var i={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var r in e)if("default"!==r&&{
+
+}
+.hasOwnProperty.call(e,r)){
+// 变量
+var s: Function = a?Object.getOwnPropertyDescriptor(e,r):null;
+s&&(s.get||s.set)?Object.defineProperty(i,r,s):i[r]=e[r]
+}
+return i.default=e,n&&n.set(e,i),i
+}
+)(_r(d[9])),f=_r(d[10]),h=_r(d[11]),p=_r(d[12]),v=_r(d[13]),y=_r(d[14]),b=["id","visible"];
+// 函数
+function k(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(k=function(e){
+return e?n:t
+}
+)(e)
+}
+// 函数
+function S(e: any, t: any, n: any): any {
+return t=(0,o.default)(t),(0,s.default)(e,A()?Reflect.construct(t,n||[],(0,o.default)(e).constructor):t.apply(e,n))
+}
+// 函数
+function A(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(A=function(){
+return!!e
+}
+)()
+}
+var M=(0,c.createContext)({
+updater:null,pageName:''
+}
+),w=u.PlatformUtils.isWx(),C=u.PlatformUtils.isMp(),P=u.PlatformUtils.isApp(),V=_e.ModalProvider=(function(e){
+// 函数
+function t(e: any): any {
+var n;
+return(0,a.default)(this,t),(n=S(this,t,[e])).modalStack=[],n.backListener=null,n.updater=function(e){
+var t=e.id,a=e.visible,r=(0,i.default)(e,b),s=n.modalStack.findIndex((function(e){
+return e.id===t
+}
+)),o=n.modalStack[s];
+(a||o)&&(!a&&o?n.modalStack.splice(s,1):a&&o?Object.assign(n.modalStack[s],Object.assign({
+id:t
+}
+,r)):a&&!o&&n.modalStack.push(Object.assign({
+id:t
+}
+,r)),n.forceUpdate())
+}
+,n.createBackListener=function(){
+P&&!n.backListener&&(n.backListener=null==f.BackHandler.addEventListener?void 0:f.BackHandler.addEventListener('hardwareBackPress',(function(){
+var e;
+return null==(e=n.modalStack[n.modalStack.length-1])||null==e.onRequestClose||e.onRequestClose({
+
+}
+),!0
+}
+)))
+}
+,n.removeBackListener=function(){
+n.backListener&&(n.backListener.remove(),n.backListener=null)
+}
+,n.value={
+pageName:e.pageName||"simulator-"+u.CommonUtils.randomString(),updater:n.updater
+}
+,n
+}
+return(0,l.default)(t,e),(0,r.default)(t,[{
+key:"componentWillUnmount",value:function(){
+this.removeBackListener()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = 0===this.modalStack.length;
+return e?this.removeBackListener():this.createBackListener(),(0,y.jsxs)(M.Provider,{
+value:this.value,children:[this.props.children,!w&&e?null:(0,y.jsx)(f.View,{
+style:[j.simulator,w&&e&&j.noModal],children:this.modalStack.map((function(e){
+return e.children
+}
+))
+}
+)]
+}
+)
+}
+
+}
+])
+}
+)(c.PureComponent),j=(_e.ModalController=function(e){
+var t=e.useSimulator,i=void 0===t||t,a=e.children,r=(0,c.useState)((function(){
+// 变量
+var e: any = "simulator-"+u.CommonUtils.randomString();
+return N.setCurPage(e),e
+}
+)),s=(0,n.default)(r,1)[0];
+return(0,c.useEffect)((function(){
+return function(){
+return N.removePage(s)
+}
+
+}
+),[]),i?(0,y.jsx)(V,{
+pageName:s,children:a
+}
+):(0,y.jsx)(y.Fragment,{
+children:a
+}
+)
+}
+,f.StyleSheet.create({
+noModal:{
+display:'none'
+}
+,simulator:{
+position:u.PlatformUtils.isApp()?'absolute':'fixed',width:'100%',height:'100%',zIndex:999
+}
+,modal:Object.assign({
+
+}
+,f.StyleSheet.absoluteFillObject,{
+width:'100%',height:'100%',overflow:'hidden'
+}
+),stack:Object.assign({
+
+}
+,f.StyleSheet.absoluteFillObject,{
+width:'100%',height:'100%'
+}
+),container:{
+width:'100%',height:'100%'
+}
+
+}
+));
+var U=function(){
+u.PlatformUtils.isWeb()&&(0,h.isScale)()&&(window.scrollTo({
+top:0
+}
+),document.body.style.overflow='hidden')
+}
+,O=function(){
+u.PlatformUtils.isWeb()&&(document.body.style.overflow='')
+}
+,x=function(e,t){
+return C?{
+
+}
+:e&&'none'!==e&&'fade'!==e?'slide'===e?{
+transform:[{
+translateY:t.interpolate({
+inputRange:[0,1,2],outputRange:[u.ScreenMode.height,0,-u.ScreenMode.height]
+}
+)
+}
+]
+}
+:'harmony-default'===e?{
+opacity:t,transform:[{
+scale:t.interpolate({
+inputRange:[0,1,2],outputRange:[.8,1,1.2]
+}
+)
+}
+]
+}
+:{
+
+}
+:{
+opacity:t
+}
+
+}
+,N=_e.Modal=(function(e){
+// 函数
+function t(): any {
+var e;
+(0,a.default)(this,t);
+for(var n=arguments.length,i=new Array(n),r=0;
+r<n;
+r++)i[r]=arguments[r];
+return(e=S(this,t,[].concat(i))).id="modal-"+u.CommonUtils.getUUID(),e.animValue=new f.Animated.Value(1),e.animWatcher=null,e.state={
+visible:!1
+}
+,e
+}
+return(0,l.default)(t,e),(0,r.default)(t,[{
+key:"useSimulator",get:function(){
+return Boolean(!this.props.useNativeModal&&this.context.updater)
+}
+
+}
+,{
+key:"onUpdate",value:function(e){
+this.fakeRender();
+// 变量
+var t: any = this.props,n=t.visible,i=t.simuAnimType;
+e&&e.simuAnimType!==i&&'none'===i&&this.animValue.setValue(1),e&&n===e.visible||n===this.state.visible||this.setVisible(n)
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+this.onUpdate()
+}
+
+}
+,{
+key:"componentDidUpdate",value:function(e){
+this.onUpdate(e)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e;
+null==(e=this.animWatcher)||e.stop(),this.useSimulator&&this.context.updater({
+id:this.id,visible:!1
+}
+)
+}
+
+}
+,{
+key:"setVisible",value:function(e){
+e?this.showModal():this.hideModal()
+}
+
+}
+,{
+key:"showModal",value:function(){
+// 变量
+var e: any = this;
+U();
+// 变量
+var t: any = this.props,n=t.simuAnimType,i=t.showWaitTime;
+if('none'===n&&i)return this.animValue.setValue(0),void(0,p.layback)().after((function(){
+return e.setState({
+visible:!0
+}
+)
+}
+)).after((function(){
+return e.animValue.setValue(1)
+}
+),v.ANIM_LAYBACK+i);
+this.animValue.setValue(0),(0,p.layback)().after((function(){
+return e.setState({
+visible:!0
+}
+)
+}
+)).after((function(){
+e.animWatcher='harmony-default'===n?f.Animated.spring(e.animValue,{
+toValue:1,useNativeDriver:!0
+}
+):f.Animated.timing(e.animValue,{
+toValue:1,duration:250,useNativeDriver:!0,easing:v.ANIM_EASING.QUAD_OUT
+}
+),e.animWatcher.start()
+}
+),v.ANIM_LAYBACK+i)
+}
+
+}
+,{
+key:"hideModal",value:function(){
+// 变量
+var e: any = this;
+O(),this.animWatcher=f.Animated.timing(this.animValue,{
+toValue:0,duration:250,useNativeDriver:!0,easing:v.ANIM_EASING.QUAD_IN
+}
+),C?(this.animWatcher.start(),setTimeout((function(){
+e.setState({
+visible:!1
+}
+)
+}
+),250+v.ANIM_LAYBACK)):this.animWatcher.start((function(){
+e.setState({
+visible:!1
+}
+)
+}
+))
+}
+
+}
+,{
+key:"renderChildren",value:function(){
+// 变量
+var e: any = this.props,t=e.visible,n=e.onRequestClose,i=e.mask,a=e.maskColor,r=e.maskClosable,s=e.simuAnimType,o=e.transparent,l=e.children,u=e.containerStyle;
+return(0,y.jsxs)(f.View,{
+style:[j.modal,(0,h.isScale)()&&{
+height:(0,h.getInnerHeight)()
+}
+],children:[i&&(0,y.jsx)(f.Animated.View,{
+style:[j.stack,!o&&{
+backgroundColor:a
+}
+,{
+opacity:this.animValue
+}
+]
+}
+),(0,y.jsx)(f.Animated.View,{
+style:[j.stack,x(s,this.animValue)],children:(0,y.jsxs)(f.View,{
+style:[j.container,u],children:[i&&r&&t&&(0,y.jsx)(f.TouchableOpacity,{
+activeOpacity:1,onPress:n,style:j.stack
+}
+),l]
+}
+)
+}
+)]
+}
+,this.id)
+}
+
+}
+,{
+key:"fakeRender",value:function(){
+this.useSimulator&&this.context.updater(Object.assign({
+
+}
+,this.props,{
+id:this.id,visible:this.state.visible,children:this.renderChildren()
+}
+))
+}
+
+}
+,{
+key:"render",value:function(){
+return this.useSimulator?null:(0,y.jsx)(f.Modal,Object.assign({
+statusBarTranslucent:!0
+}
+,this.props,{
+transparent:!0,visible:this.state.visible,children:this.renderChildren()
+}
+))
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(e,t){
+// 变量
+var n: any = e.simuAnimType,i=e.visible,a=e.showWaitTime;
+return!C&&('none'!==n||i===t.visible||i&&a)?{
+
+}
+:(i?U():O(),{
+visible:i
+}
+)
+}
+
+}
+])
+}
+)(c.Component);
+t=N,N.contextType=M,N.defaultProps={
+visible:!0,mask:!0,maskClosable:!1,maskColor:'#00000033',animationType:'none',simuAnimType:'none',showWaitTime:0,transparent:!1
+}
+,N.pageHistory=[],N.setCurPage=function(e){
+t.getCurPage()!==e&&t.pageHistory.push(e)
+}
+,N.getCurPage=function(){
+return t.pageHistory[t.pageHistory.length-1]
+}
+,N.removePage=function(e){
+t.pageHistory.splice(t.pageHistory.findIndex((function(t){
+return t===e
+}
+)),1)
+}
+,N.getName=function(e,n){
+return(n||t.getCurPage())+"-"+e
+}
+,N.registry=new Map,N.register=function(e,n,i){
+t.registry.set(t.getName(e),{
+data:{
+
+}
+,setVisible:n,forceUpdate:i
+}
+)
+}
+,N.deregister=function(e,n){
+t.registry.delete(t.getName(n,e))
+}
+,N.get=function(e){
+return t.registry.get(t.getName(e))
+}
+,N.getData=function(e){
+var n,i;
+return null!=(n=null==(i=t.get(e))?void 0:i.data)?n:{
+
+}
+
+}
+,N.setData=function(e,n){
+// 变量
+var i: any = t.get(e);
+if(i)return Object.assign(i.data,n),i
+}
+,N.show=function(e){
+var n,i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{
+
+}
+;
+null==(n=t.setData(e,i))||n.setVisible(!0)
+}
+,N.update=function(e){
+var n,i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{
+
+}
+;
+null==(n=t.setData(e,i))||null==n.forceUpdate||n.forceUpdate()
+}
+,N.hide=function(e){
+var n;
+e?null==(n=t.get(e))||n.setVisible(!1):t.registry.forEach((function(e,n){
+return n.startsWith(t.getCurPage()+"-")&&e.setVisible(!1)
+}
+))
+}
+
+}
+),"c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","d63d6f49d192d4d685804967b6d1a53e3fc049c3ca120fc482e42266d0545140","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var o=t(r(d[1])),n=r(d[2]),l=r(d[3]),s=(t(r(d[4])),r(d[5])),c=r(d[6]),h=r(d[7]),p=t(r(d[8])),u=r(d[9]),f=["type","width","height","center","onRequestClose","visible","title","titleStyle","cardStyle","content","contentStyle","footer","footerStyle","hideCloseIcon","children","closeIconStyle","hideDragBar"],y=(e.default=function(t){
+var C=t.type,b=void 0===C?'default':C,x=t.width,j=t.height,w=t.center,B=t.onRequestClose,S=t.visible,P=t.title,T=t.titleStyle,I=t.cardStyle,v=t.content,H=t.contentStyle,O=t.footer,k=t.footerStyle,R=t.hideCloseIcon,V=void 0!==R&&R,F=t.children,z=t.closeIconStyle,A=t.hideDragBar,D=void 0!==A&&A,L=(0,o.default)(t,f),M=(0,h.useLayout)(y),_=M.themeStyles,q=M.platform,U='prompt'===b,W='fullscreen'===b,E=!D&&!U&&!1!==P&&!q.isPc,G=z||{
+
+}
+,J=G.bgWidth||18,K=G.bgHeight||18;
+return(0,u.jsxs)(c.Modal,Object.assign({
+visible:S,onRequestClose:B,containerStyle:(function(){
+if(!W)return w?_.centerContainer:U?_.promptContainer:_.cardContainer
+}
+)()
+}
+,L,{
+children:[(0,u.jsxs)(s.View,{
+style:W?_.fullscreen:[U?_.prompt:_.card,I,Boolean(x)&&{
+width:x
+}
+,Boolean(j)&&{
+height:'auto'
+}
+,Boolean(j)&&{
+maxHeight:j
+}
+],children:[E&&(0,u.jsx)(s.View,{
+style:_.dragBar,children:(0,u.jsx)(s.View,{
+style:_.dragBarBox,children:(0,u.jsx)(s.View,{
+style:_.dragBarThumb
+}
+)
+}
+)
+}
+),!1===P?null:(0,u.jsxs)(s.View,{
+style:[_.title,U&&_.promptTitle,!E&&_.noThumb,T],children:['string'!=typeof P?P||(0,u.jsx)(s.View,{
+
+}
+):(0,u.jsx)(s.Text,{
+style:[_.titleText,V&&_.hideCloseIcon],children:q.isPc&&P?"- "+P+" -":P
+}
+),!V&&(0,u.jsx)(p.default,{
+width:q.isPc?14:J,height:q.isPc?14:K,name:"closeBlack",onPress:B,style:[q.isPc&&_.pcCloseIcon,z&&z.style]
+}
+)]
+}
+),(0,u.jsx)(s.View,{
+style:[_.content,U&&_.promptContent,!1!==P&&_.hasTitle,!1!==O&&_.hasFooter,H],children:null!=v?v:F
+}
+),!1===O?null:(0,u.jsx)(s.View,{
+style:[_.footer,U&&_.promptFooter,k],children:O
+}
+)]
+}
+),(0,u.jsx)(l.Toast,{
+pageType:'modal',randomId:n.CommonUtils.randomString()
+}
+)]
+}
+))
+}
+,function(){
+for(var t=arguments.length,o=new Array(t),n=0;
+n<t;
+n++)o[n]=arguments[n];
+// 变量
+var l: any = o[0],c=o[1],h=c.isSmall?16:24,p=c.isPc?28:8;
+return s.StyleSheet.create({
+mask:Object.assign({
+
+}
+,s.StyleSheet.absoluteFillObject,{
+width:'100%',height:'100%'
+}
+),cardContainer:{
+flex:1,alignItems:c.isPc||c.isPadH?'center':'stretch',justifyContent:c.isPc?'center':'flex-end'
+}
+,promptContainer:{
+flex:1,alignItems:c.isPhone?'stretch':'center',justifyContent:c.isPhone?'flex-end':'center'
+}
+,centerContainer:{
+flex:1,alignItems:'center',justifyContent:'center'
+}
+,closeBackground:Object.assign({
+
+}
+,s.StyleSheet.absoluteFillObject,{
+width:'100%',height:'100%',backgroundColor:l.C80.color+l.opacityMap[l.C80.opacity]
+}
+),fullscreen:{
+flex:1,backgroundColor:l.C33.color
+}
+,card:c.isPc?{
+width:600,maxHeight:600,backgroundColor:l.C33.color
+}
+:Object.assign({
+
+}
+,c.isPadH&&{
+width:644
+}
+,{
+height:'80%',backgroundColor:l.C33.color,borderTopLeftRadius:24,borderTopRightRadius:24
+}
+),prompt:c.isPc?{
+width:460,backgroundColor:l.C33.color
+}
+:Object.assign({
+
+}
+,c.isPhone?{
+marginBottom:c.safeAreaBottomHeight+24,marginHorizontal:12
+}
+:{
+width:338
+}
+,{
+borderRadius:24,backgroundColor:l.C33.color
+}
+),dragBar:Object.assign({
+
+}
+,s.StyleSheet.absoluteFillObject,{
+width:'100%',alignItems:'center'
+}
+),dragBarBox:{
+width:96,height:24,justifyContent:'center',alignItems:'center'
+}
+,dragBarThumb:{
+width:32,height:4,borderRadius:2,backgroundColor:l.C80.color+l.opacityMap[l.C80.opacity]
+}
+,title:{
+paddingTop:6,paddingHorizontal:h,height:c.isPc?80:56,flexDirection:'row',alignItems:'center',justifyContent:'space-between'
+}
+,promptTitle:{
+paddingHorizontal:24
+}
+,noThumb:{
+paddingTop:0
+}
+,titleText:Object.assign({
+flex:1
+}
+,l.T12,l.C11,{
+textAlign:c.isPc?'center':'left',paddingLeft:c.isPc?24:0
+}
+),hideCloseIcon:{
+paddingLeft:0
+}
+,pcCloseIcon:{
+width:24,height:24
+}
+,content:{
+flex:1,padding:h
+}
+,promptContent:{
+flex:0,flexBasis:'auto',paddingHorizontal:24
+}
+,hasTitle:{
+paddingTop:0
+}
+,hasFooter:{
+paddingBottom:0
+}
+,footer:{
+flexDirection:'row',alignItems:'center',justifyContent:'center',paddingHorizontal:h,paddingTop:p,paddingBottom:p+c.safeAreaBottomHeight
+}
+,promptFooter:{
+paddingHorizontal:24,paddingBottom:c.isPc?28:16
+}
+
+}
+)
+}
+)
+}
+),"01b215bea1ae0b01ea5e971aa8cc93ecd902939f35968b2f737c9eb756f3cdd0",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","0f8424981ed4e12a14d1f019f5a468b4982f371aa1f59051ae9b866225e0b6be","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var o=t(r(d[1])),c=t(r(d[2])),l=(t(r(d[3])),r(d[4])),n=r(d[5]),h=t(r(d[6])),s=r(d[7]),u=r(d[8]),y=["type","name","width","height","style"],f=(e.default=function(t){
+var v,p=t.type,C=void 0===p?'default':p,b=t.name,j=t.width,k=void 0===j?24:j,S=t.height,w=void 0===S?24:S,I=t.style,_=(0,c.default)(t,y);
+if('svg'===C)v=b;
+else{
+var x=('commonImage'===C?s.ImageArray:h.default)[b];
+v=l.PlatformUtils.isMp()?{
+uri:x
+}
+:x
+}
+return(0,u.jsx)(n.TouchableOpacity,Object.assign({
+style:[f.iconBack].concat((0,o.default)(Array.isArray(I)?I:[I]))
+}
+,_,{
+children:'svg'===C?(0,u.jsx)(s.SvgIcon,{
+iconName:v,opacity:1,width:k,height:w,normalCol:l.DarkStore.theme.C11.color
+}
+):(0,u.jsx)(n.Image,{
+style:{
+width:k,height:w
+}
+,source:v
+}
+)
+}
+))
+}
+,n.StyleSheet.create({
+iconBack:{
+width:40,height:40,borderRadius:20,alignItems:'center',justifyContent:'center',backgroundColor:l.CommonUtils.colorRgba(l.DarkStore.theme.C39.color,l.DarkStore.theme.C39.opacity)
+}
+
+}
+))
+}
+),"0f8424981ed4e12a14d1f019f5a468b4982f371aa1f59051ae9b866225e0b6be",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=t(_r(d[1])),o=t(_r(d[2])),n=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var o: any = p(e);
+if(o&&o.has(t))return o.get(t);
+var n={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in t)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(t,i)){
+// 变量
+var l: any = r?Object.getOwnPropertyDescriptor(t,i):null;
+l&&(l.get||l.set)?Object.defineProperty(n,i,l):n[i]=t[i]
+}
+return n.default=t,o&&o.set(t,n),n
+}
+)(_r(d[3])),r=_r(d[4]),i=_r(d[5]),l=t(_r(d[6])),a=_r(d[7]),c=_r(d[8]),s=_r(d[9]),f=_r(d[10]),u=["onRequestClose","type","showDragBar","showCloseIcon","visible","title","content","children","shouldLiftContent","footer","cover","titleStyle","cardStyle","contentStyle","footerStyle","closeIconProps","closeIconStyle","pageConfig"];
+// 函数
+function p(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,o=new WeakMap;
+return(p=function(t){
+return t?o:e
+}
+)(t)
+}
+var h=function(t){
+return(0,c.merge)([],[{
+type:'link',text:(0,a.t)('common_cancel')
+}
+,{
+type:'default',text:(0,a.t)('common_ok')
+}
+],t).filter(Boolean)
+}
+,y=(_e.default=function(t){
+var c=t.onRequestClose,p=t.type,b=void 0===p?'default':p,x=t.showDragBar,C=t.showCloseIcon,w=t.visible,S=t.title,v=t.content,j=t.children,T=t.shouldLiftContent,k=void 0===T||T,B=t.footer,H=t.cover,O=t.titleStyle,L=t.cardStyle,I=t.contentStyle,P=t.footerStyle,R=t.closeIconProps,_=t.closeIconStyle,M=t.pageConfig,z=void 0===M?{
+
+}
+:M,V=(0,o.default)(t,u),D='prompt'===b,W='fullscreen'===b,A='halfModal'===b||'default'===b&&a.ScreenUtils.isSmall(z.width),F=(0,n.useMemo)((function(){
+return y(A,z)
+}
+),[A,z.width,z.height,z.statusBarHeight,z.safeAreaBottomHeight]),U=void 0===x?A:x,q=void 0===C?!D:C;
+return(0,f.jsxs)(i.Modal,Object.assign({
+visible:w,onRequestClose:c,containerStyle:W?void 0:F.container
+}
+,V,{
+children:[(0,f.jsxs)(r.View,{
+style:W?F.fullscreen:[D?F.prompt:F.card].concat((0,e.default)((0,s.arrayStyle)(L))),children:[U&&(0,f.jsx)(r.View,{
+style:F.dragBar,children:(0,f.jsx)(r.TouchableOpacity,{
+style:F.dragBarBox,children:(0,f.jsx)(r.View,{
+style:F.dragBarThumb
+}
+)
+}
+)
+}
+),!1!==S&&(0,f.jsxs)(r.View,{
+style:[F.title].concat((0,e.default)((0,s.arrayStyle)(O))),children:['string'!=typeof S?S||(0,f.jsx)(r.View,{
+
+}
+):(0,f.jsx)(r.Text,{
+numberOfLines:1,style:[F.titleText,D&&F.promptTitleText],children:S
+}
+),q&&(0,f.jsx)(l.default,Object.assign({
+
+}
+,s.DefaultPlatform.isMp?{
+name:'closeBlack'
+}
+:{
+type:'svg',name:'Small-cancel',width:18,height:18
+}
+,{
+onPress:c,style:[F.closeIcon].concat((0,e.default)((0,s.arrayStyle)(_)))
+}
+,R))]
+}
+),(0,f.jsx)(r.View,{
+style:[F.content,!k&&F.noLiftContent,D&&F.promptContent].concat((0,e.default)((0,s.arrayStyle)(I))),children:null!=v?v:j
+}
+),!1!==B&&k&&(0,f.jsx)(r.View,{
+style:F.liftContentFooter
+}
+),!1!==B&&(0,f.jsx)(r.View,{
+style:[F.footer,D&&F.promptFooter].concat((0,e.default)((0,s.arrayStyle)(P))),children:Array.isArray(B)?h(B).map((function(t,o){
+if(!t)return null;
+// 变量
+var i: any = 'link'===t.type;
+return(0,f.jsxs)(n.Fragment,{
+children:[0!==o&&(0,f.jsx)(r.View,{
+style:[F.btnGap,t.leftSplitLine&&F.btnSplitLine]
+}
+),(0,f.jsx)(r.TouchableOpacity,{
+onPress:t.onPress,style:[F.btn,i&&F.btnLink].concat((0,e.default)((0,s.arrayStyle)(t.btnStyle)),[!i&&Boolean(t.btnColor)&&{
+backgroundColor:t.btnColor
+}
+]),children:(0,f.jsx)(r.Text,{
+style:[F.btnText,i&&F.btnLinkText].concat((0,e.default)((0,s.arrayStyle)(t.textStyle)),[Boolean(t.textColor)&&{
+color:t.textColor
+}
+]),children:t.text
+}
+)
+}
+)]
+}
+,o)
+}
+)):B
+}
+)]
+}
+),H]
+}
+))
+}
+,function(t,e){
+// 变量
+var o: any = e.width,n=void 0===o?a.CommonUtils.getWindowSize().screenWidth:o,i=e.height,l=void 0===i?a.CommonUtils.getWindowSize().screenHeight:i,c=e.statusBarHeight,s=void 0===c?0:c,f=e.safeAreaBottomHeight,u=void 0===f?0:f,p=.9*(l-s-u),h=a.DarkStore.theme;
+return r.StyleSheet.create({
+container:{
+flex:1,alignItems:'center',justifyContent:t?'flex-end':'center'
+}
+,fullscreen:{
+flex:1,backgroundColor:h.C32.color
+}
+,card:t?{
+width:'100%',minHeight:.6*l,maxHeight:l-s-8,borderTopLeftRadius:32,borderTopRightRadius:32,backgroundColor:h.C32.color,paddingTop:8,overflow:'hidden'
+}
+:{
+marginHorizontal:16,width:n-32,maxWidth:480,minHeight:Math.min(p,380),maxHeight:p,borderRadius:32,backgroundColor:h.C32.color,paddingTop:8,overflow:'hidden'
+}
+,prompt:{
+width:n-32,maxWidth:400,maxHeight:p,borderRadius:32,backgroundColor:h.C32.color,overflow:'hidden'
+}
+,dragBar:{
+position:'absolute',top:0,left:0,width:'100%',alignItems:'center'
+}
+,dragBarBox:{
+width:64,height:16,paddingTop:8
+}
+,dragBarThumb:{
+width:64,height:4,borderRadius:2,backgroundColor:h.C80.color+h.opacityMap[h.C80.opacity]
+}
+,title:{
+flexShrink:0,paddingHorizontal:16,paddingVertical:8,minHeight:56,flexDirection:'row',alignItems:'center',justifyContent:'space-between'
+}
+,promptTitleText:{
+textAlign:'center'
+}
+,titleText:Object.assign({
+
+}
+,h.T19,h.C11,{
+flex:1
+}
+),closeIcon:{
+marginLeft:8
+}
+,content:{
+flexShrink:1,paddingHorizontal:16,paddingTop:8
+}
+,noLiftContent:{
+flex:1
+}
+,promptContent:{
+paddingHorizontal:24,paddingTop:0
+}
+,liftContentFooter:{
+flex:1
+}
+,footer:{
+flexShrink:0,flexDirection:'row',alignItems:'center',justifyContent:'center',paddingHorizontal:16,paddingTop:8,paddingBottom:16+(t?u:0)
+}
+,promptFooter:{
+paddingBottom:16
+}
+,btn:{
+flex:1,height:40,borderRadius:20,backgroundColor:a.CommonUtils.colorRgba(h.C12.color,h.C12.opacity),alignItems:'center',justifyContent:'center',paddingHorizontal:8
+}
+,btnLink:{
+backgroundColor:'transparent'
+}
+,btnText:Object.assign({
+
+}
+,h.C42,h.T10),btnLinkText:Object.assign({
+
+}
+,h.C12),btnGap:{
+width:0,marginHorizontal:4
+}
+,btnSplitLine:{
+width:2,height:24,marginHorizontal:3,backgroundColor:a.CommonUtils.colorRgba(h.C39.color,h.C39.opacity)
+}
+
+}
+)
+}
+)
+}
+),"d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","0f8424981ed4e12a14d1f019f5a468b4982f371aa1f59051ae9b866225e0b6be","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.getStyle=void 0;
+// 变量
+var t: any = r(d[0]);
+e.getStyle=function(){
+// 变量
+var n: any = !(arguments.length>0&&void 0!==arguments[0])||arguments[0],o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:'';
+return t.StyleSheet.create({
+titleText:{
+flex:1,paddingVertical:14,textAlign:n?'center':'left',fontSize:20,lineHeight:26,fontWeight:'700'
+}
+,blankTitleStyle:{
+paddingVertical:0,minHeight:0
+}
+,contentText:{
+fontSize:16,lineHeight:20,fontWeight:'500'
+}
+,contentStyle:{
+paddingBottom:16
+}
+,btnWrap:{
+flex:1,flexDirection:'row',justifyContent:'center',alignItems:'center'
+}
+,btn:{
+marginHorizontal:8,paddingHorizontal:26,paddingVertical:9
+}
+,pcBtn:{
+width:180,height:46,alignItems:'center',justifyContent:'center',borderColor:'rgba(0,0,0,0.1)',borderWidth:.5
+}
+,footerText:{
+color:o||'rgb(206,14,45)',fontSize:16,fontWeight:'500',lineHeight:20
+}
+,pcCardStyle:{
+borderRadius:0,backgroundColor:'#fff',maxWidth:460,paddingHorizontal:16,paddingBottom:16
+}
+
+}
+)
+}
+
+}
+),"595ed89252cbf053aef1da0a58c2eb978ef777d6d8a79e2d7df5dc1543eeed41",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.imgRatioRef=_e.default=void 0;
+var t=e(_r(d[1])),i=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var i: any = f(t);
+if(i&&i.has(e))return i.get(e);
+var n={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var l in e)if("default"!==l&&{
+
+}
+.hasOwnProperty.call(e,l)){
+// 变量
+var o: any = r?Object.getOwnPropertyDescriptor(e,l):null;
+o&&(o.get||o.set)?Object.defineProperty(n,l,o):n[l]=e[l]
+}
+return n.default=e,i&&i.set(e,n),n
+}
+)(_r(d[2])),n=_r(d[3]),r=_r(d[4]),l=_r(d[5]),o=e(_r(d[6])),a=_r(d[7]),u=_r(d[8]),c=e(_r(d[9])),s=_r(d[10]),h=_r(d[11]);
+// 函数
+function f(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,i=new WeakMap;
+return(f=function(e){
+return e?i:t
+}
+)(e)
+}
+var v=l.PlatformUtils.isApp(),p=l.PlatformUtils.isMp(),y=v?o.default:n.Image,O=_e.imgRatioRef={
+current:new Map
+}
+,w=(_e.default=function(e){
+var o=(0,r.usePlatform)(),s=(0,i.useRef)(null),f=e.scrollRef,p=void 0===f?s:f,x=e.content,T=void 0===x?'':x,b=e.onScroll,H=e.prefix,I=e.suffix,M=e.onInited,S=e.width,R=void 0===S?o.width:S,W=e.height,E=void 0===W?o.height:W,k=e.placeholderHeight,A=void 0===k?o.height:k,z=(0,i.useMemo)((function(){
+return P(T)
+}
+),[T]),L=(0,i.useRef)({
+contentHeight:0,inited:!1,hasImg:!1,showIndex:a.LAZY_LOAD_STEP,scrollTop:0,lastWidth:R
+}
+).current,C=(0,i.useReducer)((function(e){
+return!e
+}
+),!0),D=(0,t.default)(C,2),N=D[0],U=D[1],V=(0,i.useMemo)((function(){
+return(0,u.throttle)(U,200,{
+leading:!0,trailing:!0
+}
+)
+}
+),[]),F=(0,i.useCallback)((function(){
+L.showIndex<z.length&&(L.showIndex+=a.LAZY_LOAD_STEP,V())
+}
+),[z]),B=(0,i.useCallback)((function(e){
+L.scrollTop=e,V()
+}
+),[]),Y=function e(t,r){
+r&&(L.contentHeight=0,L.hasImg=!1);
+var l=L.scrollTop-E,o=L.scrollTop+2*E,a=t.map((function(t){
+var r;
+if('img'===t.tagName){
+// 变量
+var a: any = L.hasImg?'low':'high';
+L.hasImg=!0;
+// 变量
+var u: any = O.current.get(t.path)||0,s=R,f=s*u,p=L.contentHeight;
+L.contentHeight+=f||A;
+var x=L.contentHeight,P=L.contentHeight?!(x<l||p>o):0===f,T=s,b=f;
+return f>1300&&(T=1300/u,b=1300),(0,h.jsxs)(i.Fragment,{
+children:[0===f&&(0,h.jsx)(c.default,{
+width:s,height:A
+}
+),(0,h.jsx)(n.View,{
+style:[w.imgWrap,{
+height:f
+}
+],children:P&&(0,h.jsx)(y,Object.assign({
+style:w.img,source:{
+uri:t.path,priority:a
+}
+,onLoad:function(e){
+j(t.path,e)?V():L.contentHeight<2*E&&F(),L.inited||(L.inited=!0,null==M||M())
+}
+
+}
+,v&&0===f?{
+resizeMode:'contain',resizeWidth:T
+}
+:{
+resizeMode:'cover',resizeWidth:T,imgStyleHeight:b
+}
+))
+}
+)]
+}
+,t.id+"-"+f)
+}
+if('a'===t.tagName&&(null==(r=t.child)?void 0:r.length)>0)return(0,h.jsx)(n.TouchableOpacity,{
+activeOpacity:1,onPress:_(t),children:e(t.child,!1)
+}
+,t.id)
+}
+));
+return L.hasImg||L.inited||(L.inited=!0,null==M||M()),a
+}
+,Z=(0,i.useMemo)((function(){
+return Y(z.slice(0,L.showIndex),!0)
+}
+),[z,R,E,N]),G=(0,i.useCallback)((function(e){
+var t;
+null==b||b(e);
+var i=null!=(t=e.nativeEvent)?t:{
+
+}
+,n=i.contentSize,r=i.contentOffset;
+(null==n?void 0:n.height)-(null==r?void 0:r.y)<2*E&&F(),B((null==r?void 0:r.y)||0)
+}
+),[b,F,E]),q={
+minHeight:o.height-a.BOTTOM_HEIGHT-o.safeAreaBottomHeight
+}
+;
+return(0,i.useEffect)((function(){
+p.current.scrollTo({
+y:L.scrollTop*R/L.lastWidth,animated:!1
+}
+),L.lastWidth=R
+}
+),[p,L,R]),(0,h.jsx)(n.View,{
+style:w.container,children:(0,h.jsx)(n.ScrollView,{
+ref:p,onScroll:G,removeClippedSubviews:!l.PlatformUtils.isIOS(),scrollEventThrottle:16,children:(0,h.jsxs)(n.View,{
+style:q,children:[H,Z,I]
+}
+)
+}
+)
+}
+)
+}
+,n.StyleSheet.create({
+container:{
+flex:1
+}
+,imgWrap:{
+marginTop:-1
+}
+,img:{
+width:'100%',height:'100%'
+}
+
+}
+)),x=function(e,t,i){
+for(var n=e+1;
+n<t.length;
+n++)if((0,s.isFullPath)(t[n]))return i.push({
+tagName:'img',path:t[n],id:e+"-"+n
+}
+),n;
+return e
+}
+,P=function(e){
+for(var t=e.replace(/<style>.*?<\/style>/g,'').split('"'),i=[],n=0;
+n<t.length;
+n++){
+// 变量
+var r: any = t[n];
+if(r.indexOf('<img ')>-1)n=x(n,t,i);
+else if(r.indexOf('<a ')>-1)for(var l={
+tagName:'a',path:'',child:[],id:n.toString()
+}
+,o=n+1;
+o<t.length;
+o++)if((0,s.isFullPath)(t[o])&&(l.path=t[o]),t[o].indexOf('<img ')>-1&&-1===t[o].indexOf('</a>')&&(o=x(o,t,l.child)),t[o].indexOf('</a>')>-1){
+i.push(l),n=o-1;
+break
+}
+
+}
+return i
+}
+,j=function(e,t){
+// 变量
+var i: any = null;
+return!(!(i=v?t.nativeEvent:p?t.nativeEvent.detail:t.nativeEvent.source)||O.current.has(e))&&(O.current.set(e,i.height/i.width),!0)
+}
+,_=function(e){
+return function(){
+// 变量
+var t: any = null==e?void 0:e.path;
+if(t){
+var i;
+if(p&&t.includes('/portal/activity'))t='/RnActivity/index?'+(null==(i=t.split('?')[1])?void 0:i.replace(/&amp;
+/g,'&'));
+l.RouterUtils.gotoPage(t)
+}
+
+}
+
+}
+
+}
+),"ed6d8b3a5d1589dac3d19ae9d1ed0d1c5c059aa99ca997a15e0bd63430588881",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","80700f21fec9f5c717262de471ee3dce00f502afaf2d6fbb55dd39a0a3737502","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","a7dde1741b051ddf4050db4f201ba14ad9bec941798a206cea119e72a4ea4d13","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+t(r(d[1]));
+var o=r(d[2]),n=r(d[3]),l=r(d[4]),c=r(d[5]),h=(e.default=function(t){
+var s=t.width,v=void 0===s?0:s,u=t.height,y=void 0===u?0:u,f=t.style,x={
+width:v,height:y
+}
+,S=Math.min(v,y);
+return o.PlatformUtils.isMp()?(0,c.jsx)(l.Image,{
+mode:"aspectFit",resizeMode:"contain",style:[h.imgBox,x,f],source:{
+uri:n.ImageArray.vmallLogoSvg
+}
+
+}
+):(0,c.jsx)(l.View,{
+style:[h.imgBox,x,f],children:(0,c.jsx)(n.SvgIcon,{
+normalCol:o.DarkStore.theme.C39.color,viewBox:"100 -1000 3000 3000",opacity:o.DarkStore.theme.C39.opacity,iconName:"VMALLLOGO",width:S,height:S
+}
+)
+}
+)
+}
+,l.StyleSheet.create({
+imgBox:{
+justifyContent:'center',alignItems:'center'
+}
+
+}
+))
+}
+),"a7dde1741b051ddf4050db4f201ba14ad9bec941798a206cea119e72a4ea4d13",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),n=e(_r(d[2])),r=e(_r(d[3])),o=e(_r(d[4])),a=e(_r(d[5])),i=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = P(t);
+if(n&&n.has(e))return n.get(e);
+var r={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var i: any = o?Object.getOwnPropertyDescriptor(e,a):null;
+i&&(i.get||i.set)?Object.defineProperty(r,a,i):r[a]=e[a]
+}
+return r.default=e,n&&n.set(e,r),r
+}
+)(_r(d[6])),l=_r(d[7]),s=_r(d[8]),u=_r(d[9]),c=_r(d[10]),f=e(_r(d[11])),p=e(_r(d[12])),h=e(_r(d[13])),v=_r(d[14]),y=_r(d[15]);
+// 函数
+function P(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(P=function(e){
+return e?n:t
+}
+)(e)
+}
+// 函数
+function S(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(S=function(){
+return!!e
+}
+)()
+}
+var _=(function(e){
+// 函数
+function P(e: any): any {
+var n,a,c,f;
+return(0,t.default)(this,P),a=this,c=P,f=[e],c=(0,o.default)(c),(n=(0,r.default)(a,S()?Reflect.construct(c,f||[],(0,o.default)(a).constructor):c.apply(a,f))).videoPlayerRef=(0,i.createRef)(),n.showVideo=function(e){
+var t;
+e&&(n.props.clickItem({
+actionCode:'900027307',actionName:(0,s.t)('click_play_btn'),eventType:'2',comId:'carContent_detail',pageCatCode:'p_carContent',pageCatName:(0,s.t)('contentPageCat'),resSiteCode:'r_carContent_detail',resSiteName:(0,s.t)('contentResSite'),pageId:'p_carContent_'+(null==(t=n.props)?void 0:t.disPrdId),playButton:(0,s.t)('logout')
+}
+),s.EventTracking.execReportData('',!0));
+n.setState({
+showVideo:e,isFullScreen:!1
+}
+)
+}
+,n.setFullScreenFlag=function(e){
+n.setState({
+isFullScreen:e
+}
+)
+}
+,n.renderCloseIcon=function(){
+return s.PlatformUtils.isMp()?(0,y.jsx)(l.Image,{
+source:{
+uri:h.default.closeIcon
+}
+,style:{
+width:24,height:24
+}
+
+}
+):(0,y.jsx)(u.SvgIcon,{
+iconName:"video-close",width:"24",height:"24",normalCol:s.DarkStore.darkBool||n.state.isFullScreen?'#fff':'#000'
+}
+)
+}
+,n.state={
+showVideo:!1,isFullScreen:!1
+}
+,n
+}
+return(0,a.default)(P,e),(0,n.default)(P,[{
+key:"componentDidMount",value:function(){
+
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+
+}
+
+}
+,{
+key:"loadContent",value:function(e,t){
+// 变量
+var n: any = this,r=this.props,o=r.url,a=r.screenHeight,i=r.isPadHorizontal,u=r.statusBarHeight,f=this.state.isFullScreen,h=a&&t>a?a:t,P=s.ScreenUtils.isMedium(t),S=u+8;
+return(0,y.jsxs)(v.Modal,{
+visible:!0,transparent:!0,presentationStyle:"overFullScreen",statusBarTranslucent:!0,children:[(0,y.jsxs)(l.View,{
+style:e.videoAppWrap,children:[(0,y.jsx)(p.default,{
+ref:this.videoPlayerRef,sourceUrl:o,width:h,height:h,autoPlay:!0,paused:!1,screenWidth:t,screenHeight:a,isPadHorizontal:i,isPad:P,setFullScreenFlag:this.setFullScreenFlag,statusBarHeight:u,clickItem:this.props.clickItem,disPrdId:this.props.disPrdId
+}
+),(0,y.jsx)(l.TouchableOpacity,{
+style:[e.closeBtn,{
+top:S
+}
+,f?e.closeBtnBg:{
+left:P?20:12
+}
+],onPress:function(){
+var e;
+s.PlatformUtils.isHarmony()?(null==(e=n.videoPlayerRef.current)||e.pause(),setTimeout((function(){
+n.showVideo(!1)
+}
+),200)):n.showVideo(!1)
+}
+,children:this.renderCloseIcon()
+}
+)]
+}
+),(0,y.jsx)(c.ApkWatermarkView,{
+width:t
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.state.showVideo;
+return(0,y.jsx)(s.WithTheme,{
+themeStyles:f.default,children:function(n,r,o){
+return t?e.loadContent(n,o):null
+}
+
+}
+)
+}
+
+}
+])
+}
+)(i.PureComponent);
+_e.default=_
+}
+),"17a3923ce9d1cf79cad93fae0629a82f735c280c7039a5ad8a6cb136bdea7cc7",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","da28eb4b9fe618afbafba6291e7d4433ac0237bc78b497fe8e176d2b5c43e316","fe36f65c253bbf5d01a1e2cb10945a3e4bebca8f8b042fd4a303e3519ab87579","f9586fcf328d40e43ea33903aa06c3ca0663550d6d6189cf6beb041cc23728ec","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var o: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var t=o(r(d[1])),n=r(d[2]),l=r(d[3]),c={
+
+}
+;
+l.PlatformUtils.isApp()||(c=(0,t.default)({
+
+}
+,'position'.split('-').join(''),'fixed'));
+e.default=function(o){
+return n.StyleSheet.create({
+videoWrap:Object.assign({
+
+}
+,c,{
+top:0,left:0,right:0,bottom:0,zIndex:11,justifyContent:'center',alignItems:'center',backgroundColor:l.CommonUtils.colorRgba(o.C33.color,1)
+}
+),videoAppWrap:{
+width:'100%',height:'100%',justifyContent:'center',alignItems:'center',backgroundColor:l.CommonUtils.colorRgba(o.C33.color,1)
+}
+,closeBtn:{
+position:'absolute',width:32,height:32,borderRadius:16,justifyContent:'center',alignItems:'center',backgroundColor:l.CommonUtils.colorRgba(o.C33.color,.4)
+}
+,closeBtnPos:{
+left:12
+}
+,closeBtnBg:{
+right:24,backgroundColor:'rgba(0, 0, 0, 0.4)'
+}
+,closeBtnBgWhite:{
+backgroundColor:'rgba(255, 255, 255, 0.4)'
+}
+
+}
+)
+}
+
+}
+),"fe36f65c253bbf5d01a1e2cb10945a3e4bebca8f8b042fd4a303e3519ab87579",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","598dd5411f5356eab137e972eb6cee59f0eaeb909657cad20b7b3811ffae9612","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),o=e(_r(d[2])),r=e(_r(d[3])),i=e(_r(d[4])),n=e(_r(d[5])),a=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = w(t);
+if(o&&o.has(e))return o.get(e);
+var r={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var a: any = i?Object.getOwnPropertyDescriptor(e,n):null;
+a&&(a.get||a.set)?Object.defineProperty(r,n,a):r[n]=e[n]
+}
+return r.default=e,o&&o.set(e,r),r
+}
+)(_r(d[6])),s=_r(d[7]),l=e(_r(d[8])),u=_r(d[9]),c=e(_r(d[10])),h=_r(d[11]),p=e(_r(d[12])),f=_r(d[13]),y=e(_r(d[14])),v=_r(d[15]),P=_r(d[16]);
+// 函数
+function w(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(w=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function S(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(S=function(){
+return!!e
+}
+)()
+}
+var C=(function(e){
+// 函数
+function a(e: any): any {
+var o,n,l,c;
+return(0,t.default)(this,a),n=this,l=a,c=[e],l=(0,i.default)(l),(o=(0,r.default)(n,S()?Reflect.construct(l,c||[],(0,i.default)(n).constructor):l.apply(n,c))).player=null,o.paused=!1,o.isLoaded=!1,o.loading=!1,o.reachEnd=!1,o.progressBarWidth=0,o.isDragProgress=!1,o.currentTime=0,o.playReport=function(e){
+o.props.clickItem({
+eventType:'2',actionName:(0,u.t)('click_play_btn'),actionCode:'900027307',comId:'carContent_detail',resSiteCode:'r_carContent_detail',resSiteName:(0,u.t)('contentResSite'),pageCatCode:'p_carContent',pageCatName:(0,u.t)('contentPageCat'),pageId:'p_carContent_'+o.props.disPrdId,playButton:e
+}
+),u.EventTracking.execReportData('',!0)
+}
+,o.play=function(){
+o.playReport((0,u.t)('common_play'));
+var e,t,r=o.state,i=r.durationMin,n=r.durationSec,a=r.currentTimeMin;
+r.currentTimeSec===n&&a===i&&('function'==typeof(null==(e=o.player)?void 0:e.seek)&&(null==(t=o.player)||t.seek(0)));
+o.setState({
+loadVideo:!0,isPaused:!1,showCover:!1,showPlay:!0
+}
+),o.startProgressInfoTimer()
+}
+,o.playStart=function(){
+var e,t;
+o.playReport((0,u.t)('common_play')),'function'==typeof(null==(e=o.player)?void 0:e.seek)&&(null==(t=o.player)||t.seek(0)),o.setState({
+showCover:!1,loadVideo:!0,isPaused:!1,showProgressInfo:!1
+}
+)
+}
+,o.pauseStart=function(){
+var e,t;
+'function'==typeof(null==(e=o.player)?void 0:e.seek)&&(null==(t=o.player)||t.seek(0)),o.setState({
+isPaused:!0,loadVideo:!1,isLoaded:!1,showCover:!0
+}
+)
+}
+,o.pause=function(){
+o.setState({
+isPaused:!0
+}
+)
+}
+,o.pressPause=function(){
+o.timer&&clearTimeout(o.timer),o.playReport((0,u.t)('common_pause')),o.setState({
+isPause:!0,showPlay:!1
+}
+),setTimeout((function(){
+o.pause()
+}
+),u.PlatformUtils.isHarmony()?0:300)
+}
+,o.onEnd=function(){
+o.setState({
+isPaused:!0,showCover:!0,videoProgress:'0.01%',showPlay:!1
+}
+)
+}
+,o.setVideoHorizontal=function(e){
+// 变量
+var t: any = o.props,r=t.screenWidth,i=t.screenHeight,n=t.width,a=t.height,l=t.setFullScreenFlag;
+e&&(o.props.clickItem({
+eventType:'2',actionName:(0,u.t)('click_full_screen_btn'),actionCode:'900027308',comId:'carContent_detail',resSiteCode:'r_carContent_detail',resSiteName:(0,u.t)('contentResSite'),pageCatCode:'p_carContent',pageCatName:(0,u.t)('contentPageCat'),pageId:'p_carContent_'+o.props.disPrdId
+}
+),u.EventTracking.execReportData('',!0)),s.Animated.timing(o.state.rotate,{
+duration:100,toValue:e?90:0,useNativeDriver:!0
+}
+).start((function(){
+l&&l(e)
+}
+)),o.setState({
+videoWidth:e?i:n,videoHeight:e?r:a,horizontalPlay:e
+}
+)
+}
+,o.progressChange=function(e){
+// 变量
+var t: any = o.props,r=t.isPadHorizontal,i=t.isPad?70:60;
+r&&(i=0);
+// 变量
+var n: any = (e.progress-i)/o.progressBarWidth*100,a=n>100?100:n;
+a=a<=0?.01:a;
+var s,l=(60*Number(o.state.durationMin)+Number(o.state.durationSec))*(a/100);
+(u.PlatformUtils.isAndroid()||e.isPanGrant)&&(null==(s=o.player)||s.seek(l));
+o.currentTime=l,o.setState({
+currentTimeMin:Math.floor(l/60)>=10?String(Math.floor(l/60)):'0'+Math.floor(l/60),currentTimeSec:Math.floor(l%60)>=10?String(Math.floor(l%60)):'0'+Math.floor(l%60),isPaused:!0,videoProgress:a+'%'
+}
+)
+}
+,o.setProgress=function(e){
+o.progressBarWidth=e
+}
+,o.setDragState=function(e){
+if(o.isDragProgress=e,e)o.timer&&clearTimeout(o.timer);
+else{
+var t;
+o.startProgressInfoTimer(),null==(t=o.player)||t.seek(o.currentTime);
+// 变量
+var r: any = o.state,i=r.videoProgress,n=r.showPlay;
+'100%'!==i&&n&&o.setState({
+isPaused:!1
+}
+)
+}
+
+}
+,o.onBuffer=function(e){
+o.setState({
+showIndicator:!(null==e||!e.isBuffering)
+}
+)
+}
+,o.state={
+loadVideo:!1,isMuted:!1,isPaused:o.paused,isLoading:o.loading,isLoaded:o.isLoaded,showPlay:!1,fullScreen:!1,showCover:!0,currentTime:0,currentTimeMin:'00',currentTimeSec:'00',videoProgress:'0%',durationMin:'00',durationSec:'00',rotate:new s.Animated.Value(0),videoWidth:e.width,videoHeight:e.height,horizontalPlay:!1,showProgressInfo:!1,showIndicator:!1
+}
+,o
+}
+return(0,n.default)(a,e),(0,o.default)(a,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this;
+u.StorageUtil.getStorage('videoMuted').then((function(t){
+t&&e.setState({
+isMuted:!0
+}
+)
+}
+)),0!==this.props.currentTime&&(this.setState({
+showCover:!1
+}
+),setTimeout((function(){
+e.setState({
+loadVideo:!0,isPaused:!1,showCover:!1
+}
+)
+}
+),u.PlatformUtils.isHarmony()?0:1e3))
+}
+
+}
+,{
+key:"componentDidUpdate",value:function(e){
+// 变量
+var t: any = this.props,o=t.width,r=t.height;
+o!==e.width&&this.setState({
+videoWidth:o,videoHeight:r
+}
+)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.timer&&clearTimeout(this.timer)
+}
+
+}
+,{
+key:"setMutedReport",value:function(e){
+this.props.clickItem({
+eventType:'2',actionName:(0,u.t)('click_sound_btn'),actionCode:'900027306',comId:'carContent_detail',resSiteCode:'r_carContent_detail',resSiteName:(0,u.t)('contentResSite'),pageCatCode:'p_carContent',pageCatName:(0,u.t)('contentPageCat'),pageId:'p_carContent_'+this.props.disPrdId,soundButton:e
+}
+),u.EventTracking.execReportData('',!0)
+}
+
+}
+,{
+key:"startProgressInfoTimer",value:function(){
+// 变量
+var e: any = this;
+this.timer&&clearTimeout(this.timer),this.timer=setTimeout((function(){
+e.setState({
+showPlay:!1,showProgressInfo:!1
+}
+),e.timer&&clearTimeout(e.timer)
+}
+),2e3)
+}
+
+}
+,{
+key:"setMuted",value:function(e){
+e?this.setMutedReport((0,u.t)('close_voice')):this.setMutedReport((0,u.t)('open_voice')),this.setState({
+isMuted:e
+}
+),u.StorageUtil.setStorage('videoMuted',e,30)
+}
+
+}
+,{
+key:"startTimer",value:function(){
+// 变量
+var e: any = this;
+this.timer&&clearTimeout(this.timer),this.timer=setTimeout((function(){
+e.setState({
+showPlay:!1,showProgressInfo:!1
+}
+),e.timer&&clearTimeout(e.timer)
+}
+),2e3)
+}
+
+}
+,{
+key:"onShowPlay",value:function(e){
+e||(this.setState({
+showPlay:!0,showProgressInfo:!0
+}
+),this.startTimer())
+}
+
+}
+,{
+key:"render",value:function(){
+var e=this,t=this.props,o=t.sourceUrl,r=t.poster,i=t.width,n=t.colorMode,a=t.currentTime,w=t.isPad,S=t.isPadHorizontal,C=t.screenWidth,M=h.theme.hwc,T=h.theme.opacity16,I=this.state,_=I.horizontalPlay,k=I.showCover,x=I.isPaused,j=I.videoProgress,b=I.showPlayIcon,R=I.showPlay,D=I.isLoaded,N=I.currentTimeMin,V=I.currentTimeSec,W=I.durationMin,z=I.durationSec,O=I.loadVideo,H=I.rotate,B=I.videoWidth,U=I.videoHeight,L=I.showProgressInfo,E=I.showIndicator,A=I.isMuted,F=H.interpolate({
+inputRange:[0,360],outputRange:['0deg','360deg']
+}
+);
+return(0,P.jsx)(u.WithTheme,{
+themeStyles:function(){
+return(0,c.default)(n)
+}
+,children:function(t){
+var u;
+return(0,P.jsxs)(s.Animated.View,{
+style:[{
+justifyContent:'center',alignItems:'center',overflow:'hidden',width:B,height:U
+}
+,{
+transform:[{
+rotate:F
+}
+]
+}
+],children:[(0,P.jsx)(s.View,{
+style:[t.videoBlock,{
+backgroundColor:k?'':'#000'
+}
+],children:O?(0,P.jsx)(l.default,{
+ref:function(t){
+var o;
+(e.player=t,a&&0!==a&&'0%'===j)&&(null==(o=e.player)||o.seek(a))
+}
+,source:{
+uri:o
+}
+,onEnd:e.onEnd,onProgress:function(t){
+// 变量
+var o: any = t.currentTime,r=t.seekableDuration;
+e.isDragProgress||(e.currentTime=o),o>.01&&!e.isDragProgress&&e.setState({
+videoProgress:o/r*100+'%',isLoaded:!0,currentTimeMin:Math.floor(o/60)>=10?String(Math.floor(o/60)):'0'+Math.floor(o/60),currentTimeSec:Math.floor(o%60)>=10?String(Math.floor(o%60)):'0'+Math.floor(o%60),durationMin:Math.floor(r/60)>=10?String(Math.floor(r/60)):'0'+Math.floor(r/60),durationSec:Math.floor(r%60)>=10?String(Math.floor(r%60)):'0'+Math.floor(r%60)
+}
+)
+}
+,paused:x,muted:A,repeat:!1,resizeMode:'contain',onBuffer:e.onBuffer,style:{
+width:B,height:U,backgroundColor:k?'':'black'
+}
+
+}
+):null
+}
+),(0,P.jsx)(s.TouchableOpacity,{
+style:{
+position:'absolute',width:B,height:U
+}
+,activeOpacity:1,onPress:function(){
+return e.onShowPlay(x)
+}
+
+}
+),k&&r?(0,P.jsx)(s.View,{
+style:{
+position:'absolute',width:B,height:U,backgroundColor:(0,v.classInitColor)(n,M.C33)
+}
+,children:(0,P.jsx)(f.FastImageView,{
+placeholderWidth:168,placeholderHeight:52,resizeMode:'contain',imgStyle:{
+width:B,height:U
+}
+,imgUri:r
+}
+)
+}
+):null,x&&!R&&(b||'0%'!==j&&x)?(0,P.jsx)(s.TouchableOpacity,{
+onPress:k?e.playStart:e.play,style:[{
+zIndex:1
+}
+,t.video_play],children:(0,P.jsx)(f.SvgIcon,{
+normalCol:'#fff',width:"18",height:"18",iconName:"pause-product"
+}
+)
+}
+):null,R?(0,P.jsx)(s.TouchableOpacity,{
+onPress:e.pressPause,style:[{
+zIndex:1
+}
+,t.video_play],children:(0,P.jsx)(f.SvgIcon,{
+normalCol:'#fff',width:"18",height:"18",iconName:"play-product"
+}
+)
+}
+):null,!D||x||L?null:(0,P.jsx)(p.default,{
+showPoint:!1,disPrdId:e.props.disPrdId,progress:j,width:null!=i?i:360
+}
+),L&&j&&'0%'!==j&&!k?(0,P.jsxs)(y.default,{
+start:{
+x:0,y:0
+}
+,end:{
+x:0,y:1
+}
+,colors:[M.C82['light'===n?'0':'1'].color+T[0],M.C82['light'===n?'0':'1'].color],style:{
+position:'absolute',bottom:0,left:0,width:'100%',height:56,flexDirection:'row',justifyContent:'flex-start',alignItems:'center',paddingLeft:w?24:16,paddingRight:w?48:40,overflow:'visible'
+}
+,children:[(0,P.jsx)(s.Text,{
+style:[t.time,{
+marginRight:w?12:8
+}
+],children:N+':'+V
+}
+),(0,P.jsx)(p.default,{
+showPoint:!0,disPrdId:e.props.disPrdId,isPadHorizontal:S,horizontalPlay:_,progress:j,width:null!=(u=i-140)?u:360,screenWidth:C,progressChange:e.progressChange,setProgress:e.setProgress,setDragState:e.setDragState,clickItem:e.props.clickItem
+}
+),(0,P.jsx)(s.Text,{
+style:[t.time,{
+marginHorizontal:w?12:8
+}
+],children:W+':'+z
+}
+),(0,P.jsx)(s.TouchableOpacity,{
+style:[t.videoVoice,{
+right:w?20:12
+}
+],onPress:function(){
+e.setMuted(!A)
+}
+,children:A?(0,P.jsx)(f.SvgIcon,{
+normalCol:'#fff',width:"24",height:"24",iconName:"muted-product"
+}
+):(0,P.jsx)(f.SvgIcon,{
+normalCol:'#fff',width:"24",height:"24",iconName:"voice-product"
+}
+)
+}
+)]
+}
+):null,E?(0,P.jsx)(s.View,{
+style:t.actIndicator,children:(0,P.jsx)(s.ActivityIndicator,{
+size:52,color:"#ddd"
+}
+)
+}
+):null]
+}
+)
+}
+
+}
+)
+}
+
+}
+])
+}
+)(a.PureComponent);
+C.defaultProps={
+sourceUrl:'',poster:'',width:'100%',height:'100%',isVoice:'true'
+}
+;
+_e.default=C
+}
+),"f9586fcf328d40e43ea33903aa06c3ca0663550d6d6189cf6beb041cc23728ec",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","47f4475fd8b7e7ae4cc30987cfec68cfc9a9c8a47cac41847672d982f8641b02","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","224a518d73efceadf7983b62c115891d17fc2d80135d9d26a0be4bc1ac8b3cf0","f1b970fe0695ad8c661cc4ef89b414467028759885433333c31361d0245c32e3","c37c9e2e96067d066c7ddeec1a565624cddbfdeb7fed126bc652e0583182e75b","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","308db9fda5947677caf7385dee19fd8b9a6ddca11aa9991a5a7e49e1c9081028","9de31f2e0dbe8a3cf35a473ba4da7394a7ba18719e64efa6911ac45bed64cbf5","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]),n=r(d[2]),s=r(d[3]);
+e.default=function(l){
+return t.StyleSheet.create({
+video_play:Object.assign({
+position:'absolute',backgroundColor:(0,s.classInitColor)(l,n.theme.hwc.C23)
+}
+,n.theme.hws.S2['light'===l?0:1],{
+width:56,height:56,borderRadius:28,justifyContent:'center',alignItems:'center'
+}
+),video_play_mini:{
+position:'absolute',width:32,height:32,right:8,top:8
+}
+,video_play_little:{
+position:'absolute',top:8,right:8,zIndex:1,height:20,width:20
+}
+,video_play_circle:{
+position:'absolute',backgroundColor:'#000',opacity:.38,width:52,height:52,borderRadius:26,borderColor:'#fff',borderWidth:2
+}
+,video_voice_circle:{
+backgroundColor:'#000',opacity:.38,width:32,height:32,borderRadius:16
+}
+,absolute_position:{
+position:'absolute',top:0,left:0,bottom:0,right:0,justifyContent:'center',alignItems:'center'
+}
+,toast:Object.assign({
+fontFamily:o.PublicFont.fontFamilyMedium
+}
+,n.theme.hwt.T4,{
+color:'#FFFFFF',position:'absolute',top:6,left:8
+}
+),time:Object.assign({
+
+}
+,(0,s.classInitFont)(l,n.theme.hwc.C17,n.theme.hwt.T1)),videoVoice:{
+position:'absolute',right:12,bottom:12,backgroundColor:'rgba(0, 0, 0, 0.4)',width:32,height:32,borderRadius:16,justifyContent:'center',alignItems:'center'
+}
+,directionBtn:{
+position:'absolute',right:16,bottom:16
+}
+,actIndicator:{
+position:'absolute',backgroundColor:'transparent'
+}
+,videoBlock:{
+width:'100%',height:'100%',justifyContent:'center',alignItems:'center',overflow:'hidden'
+}
+,panProgress:{
+position:'absolute',bottom:0,left:54,zIndex:1,height:50
+}
+
+}
+)
+}
+
+}
+),"224a518d73efceadf7983b62c115891d17fc2d80135d9d26a0be4bc1ac8b3cf0",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","f1b970fe0695ad8c661cc4ef89b414467028759885433333c31361d0245c32e3","9de31f2e0dbe8a3cf35a473ba4da7394a7ba18719e64efa6911ac45bed64cbf5"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.classInitFont=e.classInitColor=void 0;
+// 变量
+var o: any = r(d[0]);
+e.classInitFont=function(c,t,n){
+// 变量
+var l: any = o.theme.opacity16;
+return Object.assign({
+color:'dark'!==c?t[0].color+l[t[0].opacity]:t[1].color+l[t[1].opacity]
+}
+,n)
+}
+,e.classInitColor=function(c,t){
+// 变量
+var n: any = o.theme.opacity16;
+return t[0].color instanceof Array?t['dark'!==c?'0':'1'].color:'dark'!==c?t[0].color+n[t[0].opacity]:t[1].color+n[t[1].opacity]
+}
+
+}
+),"9de31f2e0dbe8a3cf35a473ba4da7394a7ba18719e64efa6911ac45bed64cbf5",["f1b970fe0695ad8c661cc4ef89b414467028759885433333c31361d0245c32e3"]);
+
+__d((function(g,r,i,a,m,_e2,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e2,"__esModule",{
+value:!0
+}
+),_e2.default=void 0;
+// 变量
+var t: any = e(r(d[1])),n=e(r(d[2])),o=e(r(d[3])),s=e(r(d[4])),l=e(r(d[5])),u=e(r(d[6])),p=r(d[7]),c=r(d[8]),h=r(d[9]);
+// 函数
+function f(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(f=function(){
+return!!e
+}
+)()
+}
+var P=(function(e){
+// 函数
+function u(e: any): any {
+var n,l,h,P;
+return(0,t.default)(this,u),l=this,h=u,P=[e],h=(0,s.default)(h),(n=(0,o.default)(l,f()?Reflect.construct(h,P||[],(0,s.default)(l).constructor):h.apply(l,P)))._handleGetPanResponderCallbacks=function(e){
+// 变量
+var t: any = n.props,o=t.isPadHorizontal,s=t.screenWidth,l=t.width,u=t.progressChange,p=t.setDragState;
+return{
+onStartShouldSetPanResponder:function(){
+return!0
+}
+,onStartShouldSetPanResponderCapture:function(){
+return!0
+}
+,onMoveShouldSetPanResponder:function(){
+return!0
+}
+,onMoveShouldSetPanResponderCapture:function(){
+return!0
+}
+,onPanResponderGrant:function(t,h){
+var f;
+p(!0);
+// 变量
+var P: any = n.props.horizontalPlay,v=o?h.x0-(s-l)/2:h.x0;
+P&&(v=h.y0),u(e?{
+progress:v,isPanGrant:!0
+}
+:{
+progress:v
+}
+),n.props.clickItem({
+actionCode:'900027309',actionName:(0,c.t)('drag_progress_bar'),eventType:'9',comId:'carContent_detail',pageCatCode:'p_carContent',pageCatName:(0,c.t)('contentPageCat'),resSiteCode:'r_carContent_detail',resSiteName:(0,c.t)('contentResSite'),pageId:'p_carContent_'+(null==(f=n.props)?void 0:f.disPrdId)
+}
+),c.EventTracking.execReportData('',!0)
+}
+,onPanResponderMove:function(e,t){
+// 变量
+var c: any = n.props.horizontalPlay;
+p(!0);
+var h=(o?t.x0-(s-l)/2:t.x0)+t.dx;
+c&&(h=t.y0+t.dy),u({
+progress:h
+}
+)
+}
+,onPanResponderRelease:function(){
+n.timer&&clearTimeout(n.timer),n.timer=setTimeout((function(){
+p(!1)
+}
+),200)
+}
+
+}
+
+}
+,n._onLayout=function(e){
+// 变量
+var t: any = e.nativeEvent.layout.width;
+n.props.setProgress&&n.props.setProgress(t)
+}
+,n.state={
+isShow:!1
+}
+,n._panResponder=p.PanResponder.create(n._getPanResponderCallbacks()),n._panResponderApk=p.PanResponder.create(n._getPanResponderApkCallbacks()),n
+}
+return(0,l.default)(u,e),(0,n.default)(u,[{
+key:"componentDidMount",value:function(){
+
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.timer&&clearTimeout(this.timer)
+}
+
+}
+,{
+key:"_getPanResponderCallbacks",value:function(){
+return this._handleGetPanResponderCallbacks()
+}
+
+}
+,{
+key:"_getPanResponderApkCallbacks",value:function(){
+return this._handleGetPanResponderCallbacks(!0)
+}
+
+}
+,{
+key:"render",value:function(){
+var e,t,n=this.props,o=n.showPoint,s=n.progress;
+return(0,h.jsxs)(p.View,{
+style:[v.container,o?{
+flex:1
+}
+:{
+width:'100%'
+}
+],onLayout:this._onLayout,children:[o?(0,h.jsxs)(h.Fragment,{
+children:[(0,h.jsx)(p.View,{
+style:[v.dot,{
+left:s
+}
+]
+}
+),(0,h.jsx)(p.View,Object.assign({
+style:v.panProgress
+}
+,c.PlatformUtils.isWeb()?null==(e=this._panResponder)?void 0:e.panHandlers:null==(t=this._panResponderApk)?void 0:t.panHandlers))]
+}
+):null,(0,h.jsx)(p.View,{
+style:[v.curPct,{
+width:s
+}
+]
+}
+)]
+}
+)
+}
+
+}
+])
+}
+)(u.default.PureComponent);
+P.defaultProps={
+
+}
+;
+var v=p.StyleSheet.create({
+container:{
+height:2,left:0,bottom:2,borderRadius:1,backgroundColor:'#FFFFFF66',width:'100%'
+}
+,dot:{
+width:8,height:8,borderRadius:16,backgroundColor:'#FFFFFF',position:'absolute',top:-3
+}
+,curPct:{
+position:'absolute',top:0,left:0,height:2,backgroundColor:'#CF0A2C'
+}
+,panProgress:{
+position:'absolute',bottom:-28,left:0,zIndex:1,height:50,width:'105%'
+}
+
+}
+);
+_e2.default=P
+}
+),"c37c9e2e96067d066c7ddeec1a565624cddbfdeb7fed126bc652e0583182e75b",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]);
+e.default=function(o){
+return t.StyleSheet.create({
+grayBg:{
+backgroundColor:o.C32.color
+}
+,container:{
+backgroundColor:o.C33.color,flex:1
+}
+,lodingTitle:{
+fontSize:o.T7.fontSize,color:o.C13.color,opacity:o.C13.opacity
+}
+,apkContainer:{
+backgroundColor:o.C33.color
+}
+,apkBox:{
+height:'100%'
+}
+,pcBottomBenefitsText:{
+marginBottom:-12,paddingHorizontal:16,paddingBottom:8,paddingTop:8,justifyContent:'space-between',flexDirection:'row',alignItems:'center'
+}
+,benefits:{
+fontSize:12,lineHeight:16,fontWeight:'400',width:'100%'
+}
+,benefitsCancel:{
+marginRight:32,marginLeft:16,width:24,height:24,justifyContent:'center'
+}
+,arrowUpIcon:{
+position:'absolute',right:22,bottom:8
+}
+,gradual:{
+width:48,height:18,position:'absolute',right:20,bottom:8,flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'
+}
+,ellips:Object.assign({
+
+}
+,o.T7,o.C15,{
+fontWeight:'400',lineHeight:18,marginLeft:20
+}
+),onlineServiceWrapper:Object.assign({
+width:80,height:80,position:'fixed',bottom:132,right:16,alignItems:'center',justifyContent:'center',borderRadius:16,backgroundColor:'#fff'
+}
+,o.S43,{
+cursor:'pointer',zIndex:300
+}
+),serviceTxt:{
+marginTop:8
+}
+,text:Object.assign({
+
+}
+,o.T3,o.C15),textHover:Object.assign({
+
+}
+,o.T3,o.C18),benefitText:Object.assign({
+
+}
+,o.C15,o.T4,{
+lineHeight:18,width:'100%',flex:1,position:'relative'
+}
+)
+}
+)
+}
+
+}
+),"46c910c2bb1897d81e33435b0e4da7eadabca8da9f7fc966d4306c0e1db4aa3a",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o=e(r(d[1])),n=e(r(d[2])),s=e(r(d[3])),l=e(r(d[4])),c=e(r(d[5])),u=e(r(d[6])),p=e(r(d[7])),f=r(d[8]),b=r(d[9]),h=e(r(d[10])),C=r(d[11]),v=r(d[12]),S=e(r(d[13])),I=e(r(d[14])),P=r(d[15]),L=e(r(d[16])),y=r(d[17]),T=r(d[18]),k=r(d[19]),A=r(d[20]),R=r(d[21]);
+// 函数
+function E(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(E=function(){
+return!!e
+}
+)()
+}
+var D=(0,I.default)(f.DarkStore.theme),O=(0,C.observer)(t=(function(e){
+// 函数
+function t(e: any): any {
+var l,p,h,C;
+return(0,s.default)(this,t),p=this,h=t,C=[e],h=(0,u.default)(h),(l=(0,c.default)(p,E()?Reflect.construct(h,C||[],(0,u.default)(p).constructor):h.apply(p,C))).hasSubtabSet=!1,l.otherParams={
+
+}
+,l.isFristLoad=!1,l.isPageHide=!1,l.listeners={
+tabsNavTop:null,change:null
+}
+,l.onPrdIdChange=(function(){
+var e=(0,n.default)((function*(e){
+l.prdId=e,l.sbomCode='',L.default.init(),L.default.initSelectedAttrList(),(0,y.getDisplayPrdInfo)(Object.assign({
+
+}
+,l.props,{
+prdId:e,sbomCode:''
+}
+),l.setState.bind(l),l.initData.bind(l),'carSelect')
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),l.initData=function(e){
+// 变量
+var t: any = l.props,s=t.orderCode,c=t.contentConfig,u=t.relationSbomCode,p=t.uniqueId,b=l,h=b.prdId,C=b.sbomCode,S=void 0===C?'':C;
+if(h||S){
+var I=h||e,A=[],R=(0,k.getSelectStorage)(I,'',s);
+(0,k.setSelectStorage)(h,'',s);
+var E,D,O=Boolean(R);
+if(O)if(S=R.sbomInfo.sbomCode,A=R.sbomInfo?(0,y.filterAttrCode)(R.sbomInfo.sbomAttrList):[],(null==(E=l.state.sbomList)||null==(D=E[0])?void 0:D.sbomCode)===S)return;
+var _=(0,y.getOptionalReqParams)({
+prdId:I,attrList:A,sbomCode:S
+}
+,Object.assign({
+
+}
+,l.props,{
+prdId:h,sbomCode:S
+}
+));
+L.default.checkDisPrdRes(I),Promise.all([!L.default.disPrdRes&&(0,T.getSeriesCombDisPrd)(I),(0,P.queryCarOptionalProductInfo)(_)]).then((function(){
+var e=(0,n.default)((function*(e){
+// 变量
+var t: any = (0,o.default)(e,2),n=t[0],b=t[1];
+if(!(0,y.handleExceptionCode)(b,l))if(n&&L.default.setDisPrdRes(n),null!=b&&b.success){
+// 变量
+var C: any = null;
+if(!O){
+var T=b.sbomInfo,k=(T=void 0===T?{
+sbomAttrList:[],sbomCode:S
+}
+:T).sbomAttrList,R=void 0===k?[]:k,E=T.sbomCode;
+A=(0,y.initFirstAttr)(R,c),l.defaultSbomCode||(l.defaultSbomCode=u||S||E);
+var D=(0,y.getOptionalReqParams)({
+prdId:I,attrList:A,sbomCode:E
+}
+,Object.assign({
+
+}
+,l.props,{
+prdId:h,sbomCode:S
+}
+));
+C=(0,P.queryCarOptionalProductInfo)(D)
+}
+Promise.all([(0,P.getAllPromotionItemInfo)(I,b.sbomInfo.sbomCode,s),C]).then((function(e){
+// 变量
+var t: any = (0,o.default)(e,2),n=t[0],s=t[1];
+if(!(0,y.handleExceptionCode)(s,l)){
+// 变量
+var c: any = null;
+null!=s&&s.success?c=s:O&&(c=b),c?l.setState(Object.assign({
+
+}
+,f.PlatformUtils.isHarmony()?(0,y.handleHarmonyReq2CommonLogic)(c):(0,y.handleReq2CommonLogic)(c,n),{
+checkSbomCode:l.checkSbomCode,checkCarSbomlist:l.checkCarSbomlist
+}
+),(function(){
+f.PlatformUtils.isHarmony()&&(l.carPromotionInfo=n,v.DeviceEventEmitter.emit("changePrice-"+p,n))
+}
+)):l.setState({
+error:!0,loadState:2
+}
+)
+}
+
+}
+)).catch((function(e){
+return(0,y.errorHandle)(e,l.setState.bind(l))
+}
+))
+}
+else l.setState({
+error:!0,loadState:2
+}
+)
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)()).catch((function(e){
+return(0,y.errorHandle)(e,l.setState.bind(l))
+}
+)).finally((function(){
+l.setState({
+loading:!1
+}
+)
+}
+))
+}
+
+}
+,l.handleAddListeners=function(){
+l.props.pageType!==f.PAGE_TYPE.subTabSetPage&&v.BackHandler.addEventListener('hardwareBackPress',l.handleApkBack),l.listeners.tabsNavTop=v.DeviceEventEmitter.addListener('TabsNavTop',l.compareFixed),l.listeners.change=v.AppState.addEventListener('change',l.handleAppStateChange)
+}
+,l.handleAppStateChange=function(e){
+f.RecordUtils.immediateOutputLog(e)
+}
+,l.eventTracingReportByLoad=function(e){
+var t,o,n;
+f.Report.eventTracingReport({
+actionCode:'900027100',actionName:(0,f.t)('optional_page_loading'),eventType:'1',content:{
+load:'1',productId:null==e?void 0:e.toString(),channelId:(null==(t=l.props)?void 0:t.channelId)||'0',saleId:(null==(o=l.props)?void 0:o.saleId)||''
+}
+,pageCatCode:'p_carDetail',pageCatName:(0,f.t)('car_prd_detail'),resSiteCode:'',resSiteName:'',pageId:'p_carDetail_'+(null==(n=l.props)?void 0:n.disPrdId)
+}
+)
+}
+,l.handleApkBack=function(){
+return f.RnBridge.invokeVmallNative('page','finished'),!0
+}
+,l.onBackTop=function(){
+l.scroller&&l.scroller.scrollTo({
+y:0,animated:!0
+}
+)
+}
+,l.updateSbomCodeAttr=(function(){
+var e=(0,n.default)((function*(e){
+var t=l.state,n=t.sbomCode,s=(0,o.default)(t.sbomList,1)[0],c=yield(f.PlatformUtils.isHarmony()?A.updateHarmonyCurAttrSbom:A.updateCurAttrSbom)(n,s,e,Object.assign({
+
+}
+,l.props,{
+prdId:l.prdId,sbomCode:l.sbomCode
+}
+),!1,l);
+if('late'!==c)if(c){
+// 变量
+var u: any = c.attrViewList,p=c.sbomInfo,b=p.sbomCode,h=p.sbomAttrList,C=void 0===h?[]:h,S=c.sbomInfo,I=c.carPromotionInfo;
+(0,y.filterSelectedAttrList)(u,C),l.setState({
+sbomList:[Object.assign({
+
+}
+,S,f.PlatformUtils.isHarmony()?{
+
+}
+:{
+carPromotionInfo:I
+}
+)],attrViewList:u,sbomCode:b
+}
+)
+}
+else v.DeviceEventEmitter.emit('showToast',{
+text:(0,f.t)('common_load_error'),pageType:'cardetail'
+}
+)
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),l._loadPage=function(){
+// 变量
+var e: any = l.props,t=e.showheader,o=e.navigation,n='false'!==t,s=l.prdId,c=l.state,u=c.displayPrdInfo,p=c.sbomList,h=c.attrViewList,C=c.sbomCode,I=c.checkCarSbomlist,P=c.checkSbomCode,L=c.contentConfig;
+!l.isFristLoad&&l.eventTracingReportByLoad(s),l.isFristLoad=!0;
+var T=(0,y.getValidPrdId)(s,u);
+return(0,R.jsxs)(v.View,{
+style:[D.apkBox,D.apkContainer],children:[(0,R.jsx)(S.default,Object.assign({
+
+}
+,l.props,u,{
+contentConfig:L,showheader:n,prdId:T,sbomCode:C,defaultSkuCode:l.defaultSbomCode,navigation:o,attrViewList:h,sbomList:p,checkCarSbomlist:I,checkSbomCode:P,updateSbomCodeAttr:l.updateSbomCodeAttr,onPrdIdChange:l.onPrdIdChange
+}
+)),(0,R.jsx)(b.Toast,{
+pageType:'cardetail',randomId:f.CommonUtils.randomString()
+}
+)]
+}
+)
+}
+,l.prdId=e.prdId||'',l.sbomCode=e.sbomCode||'',l.state={
+scrollY:new v.Animated.Value(0),pageId:e.pageId,loading:!0,isRefreshing:!1,error:!1,currentTabIndex:0,isClickTab:!1,errorType:f.ERROR_TYPE.OTHER_ERROR,loadState:1,displayPrdInfo:{
+
+}
+,sbomList:[],checkCarSbomlist:[],checkSbomCode:l.sbomCode,contentConfig:{
+
+}
+
+}
+,l.showListener=v.DeviceEventEmitter.addListener("onShow-"+l.props.uniqueId,(function(){
+l.isPageHide&&(l.isPageHide=!1,(0,y.getDisplayPrdInfo)(Object.assign({
+
+}
+,l.props,{
+prdId:l.prdId,sbomCode:l.sbomCode
+}
+),l.setState.bind(l),l.initData.bind(l),'carSelect'))
+}
+)),l.hideListener=v.DeviceEventEmitter.addListener("onHide-"+l.props.uniqueId,(function(){
+return l.isPageHide=!0
+}
+)),l
+}
+return(0,p.default)(t,e),(0,l.default)(t,[{
+key:"componentDidMount",value:function(){
+f.RecordUtils.logger("CarDetail",'componentDidMount'),f.TimeUtils.updateSystemTime(),this.portal=f.MCP_PORTAL.APP,(0,y.getDisplayPrdInfo)(Object.assign({
+
+}
+,this.props,{
+prdId:this.prdId,sbomCode:this.sbomCode
+}
+),this.setState.bind(this),this.initData.bind(this),'carSelect'),this.handleAddListeners()
+}
+
+}
+,{
+key:"compareFixed",value:function(){
+this.hasSubtabSet=f.TabsTopStore.tabsNavTop
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e,t;
+L.default.initSelectedAttrList(),this.props.pageType!==f.PAGE_TYPE.subTabSetPage&&v.BackHandler.removeEventListener('hardwareBackPress',this.handleApkBack),f.PlatformUtils.isIOS()&&this.refreshTimer&&clearTimeout(this.refreshTimer),this.state.scrollY&&this.state.scrollY.removeAllListeners(),null==(e=this.listeners.tabsNavTop)||e.remove(),null==(t=this.listeners.change)||t.remove(),this.showListener.remove(),this.hideListener.remove()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.state,t=e.loading,o=e.errorType,n=e.error;
+return t?(0,R.jsx)(b.PlaceHolder,{
+
+}
+):!n&&this._loadPage()||(0,R.jsx)(b.CommonErrorPage,{
+errorType:o
+}
+)
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(e){
+return{
+contentConfig:e.contentConfig
+}
+
+}
+
+}
+])
+}
+)(h.default.Component))||t;
+_e.default=O
+}
+),"847af1df3f37f23ef40b9ae14701fa439f1a1a0f2fcdda4ee449f3562b755688",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","30c5cbeba929d690bf5d948f63dd12b5393e59cf15c816e9a2fed6548a80cd7c","46c910c2bb1897d81e33435b0e4da7eadabca8da9f7fc966d4306c0e1db4aa3a","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","c36812d3bf2c60b7e2b5687de6948dc0b638821b3980bdb333f4128b6827d9d2","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r2,_i,_a,m,_e,d){
+// 变量
+var e: any = _r2(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o=e(_r2(d[1])),i=e(_r2(d[2])),r=e(_r2(d[3])),a=e(_r2(d[4])),n=e(_r2(d[5])),s=e(_r2(d[6])),l=e(_r2(d[7])),c=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = j(t);
+if(o&&o.has(e))return o.get(e);
+var i={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var n: any = r?Object.getOwnPropertyDescriptor(e,a):null;
+n&&(n.get||n.set)?Object.defineProperty(i,a,n):i[a]=e[a]
+}
+return i.default=e,o&&o.set(e,i),i
+}
+)(_r2(d[8])),p=_r2(d[9]),u=_r2(d[10]),h=_r2(d[11]),f=e(_r2(d[12])),v=e(_r2(d[13])),C=e(_r2(d[14])),S=e(_r2(d[15])),b=e(_r2(d[16])),P=e(_r2(d[17])),_=e(_r2(d[18])),y=_r2(d[19]),I=_r2(d[20]),T=_r2(d[21]),L=e(_r2(d[22])),D=e(_r2(d[23])),w=e(_r2(d[24])),x=_r2(d[25]),R=_r2(d[26]),k=_r2(d[27]),A=_r2(d[28]),E=_r2(d[29]);
+// 函数
+function j(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(j=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function O(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(O=function(){
+return!!e
+}
+)()
+}
+var N=(0,u.observer)(t=(function(e){
+// 函数
+function t(e: any): any {
+var a,l,u,b;
+return(0,r.default)(this,t),l=this,u=t,b=[e],u=(0,s.default)(u),(a=(0,n.default)(l,O()?Reflect.construct(u,b||[],(0,s.default)(l).constructor):u.apply(l,b))).originWidth=0,a.originHeight=0,a.haderRef=c.default.createRef(),a.minHeight=560,a.tabHeight=[],a.isChangeCode=!1,a.pcScrollRef=c.default.createRef(),a.listeners={
+emptyConfig:null,onCarSelectImgLoaded:null,changePrice:null
+}
+,a.openShareDialog=function(){
+var e=a.props,t=e.prdId,o=e.sbomList,i=void 0===o?[]:o,r=a.state.sbomCode,n=i[0]||{
+
+}
+,s=a.commonJs.getSharePriceInfo(a.priceObj,n),l=Object.assign({
+prdId:t,sbomCode:r,comId:'carDetail_top',buttonId:null==n?void 0:n.buttonMode,shareProfitDesc:(0,h.t)('vehicle_purchase_business'),mainPicture:h.CommonUtils.getCDNpath()+n.photoPath+'800_800_'+n.photoName,prdName:n.name,microPromWord:n.microPromWord,sbomPromWord:n.sbomPromWord,clickReportKey:I.PAGE_TYPE.car+I.CAR_TYPE.detail+I.DATA_TYPE[12],pageType:'carselect'
+}
+,s);
+a.commonJs.openShareModal(l),a.commonJs.clickShareReport({
+actionCode:I.PAGE_TYPE.car+I.CAR_TYPE.detail+I.DATA_TYPE[11],actionName:(0,h.t)('car_optional_share'),comId:'carDetail_top',pageCatCode:'p_carDetail',pageCatName:(0,h.t)('optional_for_vehicle_purchase'),resSiteCode:'r_carDetail_top',resSiteName:(0,h.t)('top_nav'),pageId:'p_carDetail_'+t,prdId:t,sbomCode:r
+}
+)
+}
+,a.refreshBottomPrice=function(){
+// 变量
+var e: any = v.default.detailList,t=0;
+(null==e?void 0:e.length)&&(null==e||e.forEach((function(e){
+t+=e.unitPrice
+}
+))),a.setState({
+totalPrice:a.commonJs.priceSwitch(t)
+}
+)
+}
+,a.cancelLoading=function(){
+a.setState({
+showLoading:!1
+}
+)
+}
+,a.getPrice=(0,i.default)((function*(){
+// 变量
+var e: any = yield a.commonJs.getGroupFlag(a),t=e.totalPrice,o=e.flag,i=e.originalPrice,r=e.detailList;
+h.PlatformUtils.isHarmony()&&!a.carPromotionInfo||(a.priceObj={
+totalPrice:t,flag:o,cheapPrice:a.commonJs.minus(i,t),originalPrice:i,detailList:r
+}
+,p.DeviceEventEmitter.emit('changeSbomCode',!1),a.isChangeCode=!1,a.getAllPriceData())
+}
+)),a.getAllPriceData=function(){
+var e,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],i=a.priceObj||{
+
+}
+,r=i.totalPrice,n=i.flag,s=i.originalPrice,l=i.detailList,c=void 0===l?[]:l,p=i.cheapPrice,u=0,h=0,f=0,v=0;
+'noPrice'===n?v=r:'hasPrice'===n&&((null==t?void 0:t.length)>0?(t.forEach((function(e){
+// 变量
+var t: any = e.unitPrice;
+u=a.commonJs.plus(u,t),h=a.commonJs.plus(h,e.originalPrice)
+}
+)),v=a.commonJs.plus(r,u),f=a.commonJs.minus(a.commonJs.plus(s,h),v)):(v=r,f=p)),e=[].concat((0,o.default)(c),(0,o.default)(t));
+// 变量
+var C: any = a.state.sbomCode;
+a.props.getCarDetailData&&a.props.getCarDetailData({
+totalPrice:v,flag:n,cheapPrice:f,detailList:e,sbomCode:C
+}
+),a.setState({
+flag:n,totalPrice:v,cheapPrice:f,detailList:e
+}
+)
+}
+,a.changeSbomCode=(0,i.default)((function*(){
+// 变量
+var e: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:0,t=arguments.length>1?arguments[1]:void 0,o=arguments.length>2?arguments[2]:void 0,i=arguments.length>3?arguments[3]:void 0,r=a.props,n=r.prdId,s=r.defaultSkuCode,l=r.updateSbomCodeAttr,c=r.platform,p=r.attrViewList;
+if(c.isPc){
+var u=a.state.routes.findIndex((function(t){
+return t.key===e
+}
+));
+a.setState({
+index:u
+}
+)
+}
+o||(a.isChangeCode=!0,i&&v.default.initSelectedAttrList(),v.default.setSelectedAttrList(t,p),l(Object.assign({
+
+}
+,t)),a.timer&&clearTimeout(a.timer),a.timer=setTimeout((function(){
+a.setState({
+showLoading:!1
+}
+)
+}
+),1500),h.StorageUtil.setStorage('package_'+n+'_'+s,[],7),v.default.clearPackageMap())
+}
+)),a.setChoosePrice=function(e){
+a.setState({
+choosePrice:e
+}
+)
+}
+,a._setPreviewFlag=function(e){
+a.setState({
+previewFlag:e
+}
+)
+}
+,a.onRef=function(e){
+a.carOptionalObj=e
+}
+,a.getPkgData=function(){
+var e;
+return null==(e=a.carOptionalObj)?void 0:e.getChooseCode()
+}
+,a._renderScene=function(e,t){
+var o,i=e.route;
+if(!i)return null;
+if(!(t||[void 0,1].includes(i.display)&&(null==i?void 0:i.title)===(null==(o=a.state.routes[a.state.index])?void 0:o.title)))return null;
+// 变量
+var r: any = a.props,n=r.showheader,s=r.pullUpApp,l=r.sbomList,p=a.state,u=p.isTop,h=p.sbomCode,f=i.type,v=+Number(i.key),b=JSON.parse(JSON.stringify(l));
+return'package'===f?(0,c.createElement)(S.default,Object.assign({
+
+}
+,a.props,{
+key:i.key,customWidth:t,diyPackageInfos:a.diyPackageInfos,sbomCode:h,isTop:u,showheader:n,setChoosePrice:a.setChoosePrice,route:i,index:v,routerType:"CarDetail",changeDiyChoose:a.getAllPriceData,onRef:a.onRef
+}
+)):(0,c.createElement)(C.default,Object.assign({
+
+}
+,a.props,{
+key:i.key,customWidth:t,setSbomCode:a.changeSbomCode,index:v,routerType:"CarDetail",sbomCode:h,isTop:u,showheader:n,route:i,sbomList:b,tabIndex:v,pullUpApp:s
+}
+))
+}
+,a.initVersionTabReq=function(e){
+var t;
+1===(null==(t=a.state.routes[e])?void 0:t.display)&&v.default.initSelectedAttrList()
+}
+,a._handleIndexChange=function(e,t,o){
+var i,r,n=a.state,s=n.routes,l=n.sbomCode,c=a.props,u=c.prdId,f=c.channelId,C=c.saleId,S=c.sbomList,b=void 0===S?[]:S,P=c.updateSbomCodeAttr,_=c.attrViewList;
+if(p.DeviceEventEmitter.emit('switchSubTabView',{
+index:e,sbomCode:l
+}
+),'attr'===s[e].type&&!o){
+var y,T,L=null==(y=b[0])||null==(T=y.sbomAttrList)?void 0:T.find((function(t){
+return t.attrCode===s[e].attrCode
+}
+));
+L&&(L.tabIndex=L.tabIndex||String(e),a.initVersionTabReq(e),v.default.setSelectedAttrList(L,_),P(L))
+}
+a.setState({
+index:e
+}
+),'carBottom'!==t&&(h.Report.eventTracingReport({
+actionCode:I.PAGE_TYPE.car+I.CAR_TYPE.detail+I.DATA_TYPE[2],actionName:(0,h.t)('car_main_page')+"-"+(null==(i=s[e])?void 0:i.title),eventType:'2',content:{
+comId:'carDetail_top',productId:null==u?void 0:u.toString(),SKUCode:l,index_name:null==(r=s[e])?void 0:r.title,index:(Number(e)+1).toString(),channelId:f||'0',saleId:C||''
+}
+,pageCatCode:'p_carDetail',pageCatName:(0,h.t)('car_prd_detail'),resSiteCode:'r_carDetail_top',resSiteName:(0,h.t)('top_nav'),pageId:"p_carDetail_"+u
+}
+),h.Report.execReportData('',!0))
+}
+,a.jumpTo=function(e){
+// 变量
+var t: any = arguments.length>1&&void 0!==arguments[1]?arguments[1]:'top',o=arguments.length>2?arguments[2]:void 0;
+a._handleIndexChange(e,t,o)
+}
+,a.gotIndex=function(){
+h.RouterUtils.gotoPage('/',!0)
+}
+,a._back=_.default.debounce((function(){
+var e,t,o=a.state.sbomCode,i=a.props.prdId;
+h.Report.eventTracingReport({
+actionCode:I.PAGE_TYPE.car+I.CAR_TYPE.detail+I.DATA_TYPE[1],actionName:(0,h.t)('car_index_back'),eventType:'2',content:{
+comId:'carDetail_top',productId:null==i?void 0:i.toString(),SKUCode:o,channelId:(null==(e=a.props)?void 0:e.channelId)||'0',saleId:(null==(t=a.props)?void 0:t.saleId)||''
+}
+,pageCatCode:'p_carDetail',pageCatName:(0,h.t)('car_prd_detail'),resSiteCode:'r_carDetail_top',resSiteName:(0,h.t)('top_nav'),pageId:'p_carDetail_'+i
+}
+),h.Report.execReportData('',!0),h.PlatformUtils.isWeb()?setTimeout((function(){
+window.history.go(-1)
+}
+),300):h.RnBridge.invokeVmallNative('page','finished'),v.default.setIndex(0)
+}
+),200),a.gotoService=function(){
+// 变量
+var e: any = a.props,t=e.prdId,o=e.channelId,i=e.saleId,r=e.shopInfo,n=e.brandCode,s=a.state.sbomCode;
+h.Report.eventTracingReport({
+actionCode:I.PAGE_TYPE.car+I.CAR_TYPE.detail+I.DATA_TYPE[10],actionName:(0,h.t)('click_service_btn'),eventType:'2',content:{
+comId:'carDetail_top',productId:null==t?void 0:t.toString(),SKUCode:s,channelId:o||'0',saleId:i||''
+}
+,pageCatCode:'p_carDetail',pageCatName:(0,h.t)('car_prd_detail'),resSiteCode:'r_carDetail_top',resSiteName:(0,h.t)('top_nav'),pageId:'p_carDetail_'+t
+}
+),h.Report.execReportData('',!0);
+var l=Object.assign({
+currentSbomCode:s
+}
+,a.targetSbomData,{
+brandCode:n,shopCode:null==r?void 0:r.shopCode,shopName:null==r?void 0:r.shopName,shopType:null==r?void 0:r.shopType,prdId:t,webHost:h.Service.webDomain,wapHost:h.Service.wapDomain
+}
+);
+a.goServiceRobotTime&&clearTimeout(a.goServiceRobotTime),a.goServiceRobotTime=setTimeout((function(){
+h.CommonUtils.goServiceRobot(a.isLogin,r.serviceProvider,r.serviceUrl,l)
+}
+),500)
+}
+,a.routeRefList=[],a.routeTopList=[],a.scrollBoxRef=c.default.createRef(),a.scrollBoxHeight=a.props.platform.height-190,a.onPcScroll=_.default.debounce((function(e){
+if(0!==a.routeRefList.length)if(a.routeRefList.length>0&&0===a.routeTopList.length)a.routeRefList.forEach((function(e,t){
+e.measure((function(e,o){
+a.routeTopList[t]=(0,x.recoverShrinkValue)(o)
+}
+))
+}
+));
+else{
+// 变量
+var t: any = e.nativeEvent.contentOffset.y,o=e.nativeEvent.contentSize.height,i=-1;
+-1===(i=t<20?1:t>o-a.scrollBoxHeight-20?a.routeTopList.length:a.routeTopList.findIndex((function(e){
+return e-.5*a.scrollBoxHeight-20>t
+}
+)))&&(i=a.routeTopList.length);
+// 变量
+var r: any = i-1;
+a.setState((function(e){
+if(e.index!==r)return{
+index:r
+}
+
+}
+))
+}
+
+}
+),200,{
+trailing:!0
+}
+),a.commonJs=f.default.call(a),a.state={
+index:0,routes:[],sbomCode:'',originalPrice:0,totalPrice:0,cheapPrice:0,isTop:!a.props.showheader,previewFlag:!1,skuPriceInfo:[],detailList:[],showLoading:!1,sbomList:[],isQuerySbomFalse:!1,priceLoading:''
+}
+,a
+}
+return(0,l.default)(t,e),(0,a.default)(t,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this;
+this.listeners.emptyConfig=p.DeviceEventEmitter.addListener('emptyConfig',this.refreshBottomPrice),this.listeners.onCarSelectImgLoaded=p.DeviceEventEmitter.addListener('onCarSelectImgLoaded',this.cancelLoading),h.PlatformUtils.isHarmony()?this.listeners.changePrice=p.DeviceEventEmitter.addListener("changePrice-"+this.props.uniqueId,(function(t){
+e.carPromotionInfo=t,e.getPrice()
+}
+)):this.getPrice()
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e,t,o;
+v.default.setInItSbomCode(),v.default.clearAttr(),v.default.clearPackageMap(),this.timer&&clearTimeout(this.timer),this.goServiceRobotTime&&clearTimeout(this.goServiceRobotTime),this.listenPos&&this.listenPos.remove(),null==(e=this.listeners.emptyConfig)||e.remove(),null==(t=this.listeners.onCarSelectImgLoaded)||t.remove(),null==(o=this.listeners.changePrice)||o.remove()
+}
+
+}
+,{
+key:"UNSAFE_componentWillReceiveProps",value:function(e){
+// 变量
+var t: any = this;
+if('web'===p.Platform.OS&&e.isSSR!==this.props.isSSR&&this.getPrice(),e.sbomList!==this.props.sbomList||e.contentConfig!==this.props.contentConfig){
+var o,i=e.defaultSkuCode,r=e.sbomList,a=e.attrViewList,n=e.contentConfig,s=e.sbomCode,l=e.platform,c=e.orderCode,u=e.prdId,f=v.default.disPrdRes;
+this.defaultSbomCode=i;
+// 变量
+var C: any = (0,y.initRoutes)(r,a,n),S=C.routes,b=C.targetSbomData,P=C.diyPackageInfos;
+this.targetSbomData=b,this.diyPackageInfos=P,!l.isPc&&!c&&(null==f||null==(o=f.disPrdList)?void 0:o.length)>1&&S.unshift({
+key:-1,title:f.copywriting||(0,h.t)('car_type')
+}
+),v.default.setRoute(S),h.PlatformUtils.isHarmony()||this.getPrice(),this.setState({
+routes:S,sbomCode:s
+}
+,(function(){
+if(l.isWeb){
+// 变量
+var e: any = (0,R.getSelectStorage)(u,'',c);
+(0,R.setSelectStorage)(u,'',c),e&&p.DeviceEventEmitter.emit('onNext',{
+index:S.length-1,disableRequest:!0,uniqueId:t.props.uniqueId
+}
+)
+}
+
+}
+))
+}
+
+}
+
+}
+,{
+key:"renderNotPc",value:function(){
+var e,t,o,i=this.state,r=i.index,a=i.routes,n=i.sbomCode,s=i.previewFlag,l=i.totalPrice,c=i.flag,u=i.cheapPrice,h=i.detailList,f=i.isTop,v=i.isQuerySbomFalse,C=i.priceLoading,S=this.props,b=S.showheader,_=S.prdId,y=S.navigation,I=S.defaultSkuCode,T=S.gbomAttrMappings,w=S.choiceSbomCode,x=S.saleId,R=S.channelId,j=S.shopInfo,O=S.orderCode,N=S.isHisData,U=S.checkCarSbomlist,V=S.checkSbomCode,B=S.isReloadConfig,W=S.isSSR,H=S.isPC,F=S.vrFrom,M=S.isSources,Y=S.relationSbomCode,J=S.pullUpApp,q=S.contentConfig,G=S.platform,K=S.themeStyles,Q=S.sbomList,z=S.activityCode,X={
+
+}
+;
+return'5'===String(R)&&(X={
+checkCarSbomlist:U,checkSbomCode:V,isHisData:N,isReloadConfig:B,orderCode:O,activityCode:z
+}
+),this.originWidth=G.width,this.originHeight=G.height,(0,E.jsxs)(E.Fragment,{
+children:[!s&&b?(0,E.jsx)(k.TitleBar,{
+disabledMarginTop:!0,onPress:this._back,titleBarStyle:G.isApp?K.titleBar:K.titleSticky,isService:!A.previewScene.isPreview&&Boolean(null==j?void 0:j.serviceUrl),onPressService:this.gotoService,isShare:!A.previewScene.isPreview&&G.isApp,onPressShare:this.openShareDialog
+}
+):(0,E.jsx)(p.View,{
+style:{
+paddingTop:G.statusBarHeight
+}
+
+}
+),(0,E.jsx)(L.default,{
+tabGap:G.pageMargin,jumpTo:this.jumpTo,navigationState:this.state,uniqueId:this.props.uniqueId,hiddenHeader:!b&&!J
+}
+),(0,E.jsx)(D.default,Object.assign({
+
+}
+,this.props,{
+width:G.width,setSbomCode:this.changeSbomCode,index:r,routes:a,routerType:"CarDetail",sbomCode:n,isTop:f,showheader:b,channelId:null==(e=this.props)?void 0:e.channelId,saleId:null==(t=this.props)?void 0:t.saleId,pullUpApp:J,onIndexChange:this._handleIndexChange,renderScene:this._renderScene,disPrdId:_
+}
+)),(0,E.jsx)(P.default,Object.assign({
+contentConfig:q,routes:a,index:r,sbomList:Q,sbomCode:n,totalPrice:l,flag:c,prdId:_,cheapPrice:u,previewFlag:s,routerType:"CarDetail",setPreviewFlag:this._setPreviewFlag,navigation:y,detailList:h,gbomAttrMappings:T,defaultSkuCode:I,showheader:b,choiceSbomCode:w,channelId:R,saleId:x,isQuerySbomFalse:v,priceLoading:C
+}
+,X,{
+filterSbomList:this.changeSbomCode,attrViewList:null==(o=this.props)?void 0:o.attrViewList,isPC:H,isSSR:W,vrFrom:F,getPkg:this.getPkgData,isSources:M,relationSbomCode:Y,mSafeAreaLayoutGuideBottom:this.props.mSafeAreaLayoutGuideBottom,width:G.width,uniqueId:this.props.uniqueId
+}
+))]
+}
+)
+}
+
+}
+,{
+key:"renderPc",value:function(){
+// 变量
+var e: any = this,t=this.props,o=t.platform,i=t.briefName,r=t.themeStyles,a=this.state,n=a.index,s=a.routes;
+return this.routeRefList=[],this.routeTopList=[],(0,E.jsxs)(p.View,{
+style:r.pcContaiiner,children:[(0,E.jsx)(p.View,{
+style:r.flex1,children:(0,E.jsx)(w.default,Object.assign({
+
+}
+,this.props,{
+customWidth:Math.min(o.width-416),showSelect:!1,index:n,routes:s,routerType:"CarDetail",sbomCode:this.state.sbomCode,isTop:this.state.isTop
+}
+))
+}
+),(0,E.jsxs)(p.View,{
+style:r.rightSelectBox,children:[(0,E.jsx)(p.View,{
+style:r.flex1,children:(0,E.jsxs)(p.ScrollView,{
+ref:this.pcScrollRef,showsVerticalScrollIndicator:!1,onScroll:this.onPcScroll,style:r.scroll,children:[(0,E.jsx)(p.Text,{
+numberOfLines:2,style:r.pcTitle,children:i
+}
+),s.map((function(t,o){
+return(0,E.jsxs)(p.View,{
+ref:function(t){
+return e.routeRefList[o]=t
+}
+,children:[(0,E.jsx)(p.Text,{
+style:[r.pcSubTitle,[2,3,4].includes(t.display)&&r.colorTitle],children:t.title
+}
+),[2,3,4].includes(t.display)?(0,c.createElement)(w.default,Object.assign({
+
+}
+,e.props,{
+key:t.key,showImage:!1,customWidth:352,setSbomCode:e.changeSbomCode,index:t.key,route:t,routerType:'CarDetail',sbomCode:e.state.sbomCode
+}
+)):e._renderScene({
+route:t
+}
+,352)]
+}
+)
+}
+))]
+}
+)
+}
+),(0,E.jsx)(p.View,{
+style:r.bottomWrapper,children:this.props.bottomComp
+}
+)]
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+return this.props.platform.isPc?this.renderPc():this.renderNotPc()
+}
+
+}
+])
+}
+)(c.PureComponent))||t;
+_e.default=(0,T.injectLayout)(b.default)(N)
+}
+),"30c5cbeba929d690bf5d948f63dd12b5393e59cf15c816e9a2fed6548a80cd7c",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","b2ae47424abc369a0ad226d1a2f01fdbbfe229616f82d3946b6b5b144b2a433c","660b8a42fbcc719b1ab67976848cf23483d74550e967426bfe05293675afe4c3","120160170ab46be408b0add3cda3c20eef12c9b6a21ee3a81f6d7f5d2a4c1a91","dd29f0dbb8f0d80aa86aa36bf54069084dc48cab90e3aa2a6b1e2a5aa6c502a6","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","75cbd8c9f766736c5d144c424bba697fbc3f8090a8ed1fbbb038f8dc187a0bcd","fd9ddb717a9f453d0e7f9422620a049f84d913e89002ef62fcb7b8c8f38c53df","c93ae4614155cfba20a1c44e70542bdff08e4a9c10dac559a66c469d9d2d9cf3","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=t(_r(d[1])),r=t(_r(d[2])),o=t(_r(d[3])),i=t(_r(d[4])),n=t(_r(d[5])),a=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var r: any = _(e);
+if(r&&r.has(t))return r.get(t);
+var o={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in t)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(t,n)){
+// 变量
+var a: any = i?Object.getOwnPropertyDescriptor(t,n):null;
+a&&(a.get||a.set)?Object.defineProperty(o,n,a):o[n]=t[n]
+}
+return o.default=t,r&&r.set(t,o),o
+}
+)(_r(d[6])),l=_r(d[7]),s=_r(d[8]),u=_r(d[9]),c=t(_r(d[10])),p=t(_r(d[11])),f=t(_r(d[12])),h=t(_r(d[13])),v=t(_r(d[14])),P=t(_r(d[15])),b=t(_r(d[16])),S=_r(d[17]),C=_r(d[18]),y=_r(d[19]),I=_r(d[20]),w=_r(d[21]);
+// 函数
+function _(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,r=new WeakMap;
+return(_=function(t){
+return t?r:e
+}
+)(t)
+}
+// 函数
+function L(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(L=function(){
+return!!t
+}
+)()
+}
+var A=(function(t){
+// 函数
+function a(t: any): any {
+var r,n,s,P;
+return(0,e.default)(this,a),n=this,s=a,P=[t],s=(0,i.default)(s),(r=(0,o.default)(n,L()?Reflect.construct(s,P||[],(0,i.default)(n).constructor):s.apply(n,P))).curIndex=0,r.swiperList=0,r.tabViewIndex=0,r.ccDomain='',r.currentImgHeight=0,r.getAllImage=function(t){
+// 变量
+var e: any = [];
+return t.map((function(t){
+// 变量
+var o: any = r.getBanner(t.sbomCode);
+o&&o.length>0&&o.map((function(t){
+e.push({
+uri:t.imgUri
+}
+)
+}
+))
+}
+)),e
+}
+,r.swiperScrollEnd=function(t){
+var e,o;
+if(!(r.curIndex<0)){
+var i,n=r.props,a=n.disPrdId,l=n.sbomCode,s=n.route,c=n.routerType,p=n.attrViewList,f=Number(r.props.index||0),h=t>r.swiperList?1:t,v=h>=r.curIndex?'3':'4',P='900027204',b=(0,u.t)('car_preview'),S='car_preview_mainPhoto',C=(0,u.t)('car_options_preview'),y='p_carPreview',I=(0,u.t)('item_master_picture'),w='r_carPreview_mainPhoto';
+if(f=p.length,p.map((function(t,e){
+(null==t?void 0:t.attrName)===s.title&&(f=e)
+}
+)),'CarDetail'===c)b=(0,u.t)('car_main_page'),P='900027103',S='carDetail_mainPhoto',y='p_carDetail',w='r_carDetail_mainPhoto',C=(0,u.t)('optional_for_vehicle_purchase'),I=(0,u.t)('item_master_picture'),f=Number(null==(i=r.props)?void 0:i.index);
+u.Report.eventTracingReport({
+actionCode:P,actionName:b+'-'+s.title+"-"+(0,u.t)('slide_main_img'),eventType:v,content:{
+comId:S+"-"+(f+1)+"-"+h,productId:null==a?void 0:a.toString(),SKUCode:l,type:'1',tabName:s.title,tabIndex:(f+1).toString(),index:null==h?void 0:h.toString(),index_name:(0,u.t)('number_of_slide').replace('%1$d',String(h)),saleId:(null==(e=r.props)?void 0:e.saleId)||'',channelId:(null==(o=r.props)?void 0:o.channelId)||'0'
+}
+,resSiteCode:w,resSiteName:I,pageId:'CarDetail'===c?'p_carDetail_'+a:'p_carPreview_'+a,pageCatCode:y,pageCatName:C
+}
+),u.Report.execReportData('',!0),r.curIndex=-1,r.scorllTime=setTimeout((function(){
+r.curIndex=h
+}
+),300)
+}
+
+}
+,r.getPrice=function(t){
+// 变量
+var e: any = r.props.sbomList;
+for(var o in e)if(Object.prototype.hasOwnProperty.call(e,o)&&e[o].sbomCode===t)return e[o]
+}
+,r.getIncludeArrayCode=function(){
+var t,e=r.props,o=e.sbomCode,i=e.attrViewList,n=0,a=[],l=i.filter((function(t){
+return(null==t?void 0:t.attrName)!==r.props.route.title
+}
+));
+return null==l||l.forEach((function(t){
+var e;
+null==t||null==(e=t.attrValueList)||e.forEach((function(e){
+var i;
+null==e||null==(i=e.sbomList)||i.forEach((function(i){
+i.sbomCode===o&&r.props.route.title!==t.attrName&&(a[n++]=r.getIncludeSbomCode(e,e.attrValueCode))
+}
+))
+}
+))
+}
+)),(t=r.commonJs).intersection.apply(t,a)
+}
+,r.chooseSbomCode=function(t,e,o,i){
+r.tabViewIndex=t,u.PlatformUtils.isHarmony()&&r.setState({
+attrValueCode:e.attrValueCode
+}
+),null==r.props.setSbomCode||r.props.setSbomCode(t,e,o,i);
+// 变量
+var n: any = r.getBanner(),a=n&&n[0]&&n[0].imgUri;
+u.GlobalProps.carSelectImg=a
+}
+,r.getGbomAttr=function(t){
+var e=r.props,o=e.route,i=e.attrViewList,n=t||o.title,a=v.default.filter(i,(function(t){
+return n===(null==t?void 0:t.attrName)
+}
+));
+return a
+}
+,r.getAttrMapItem=function(t){
+var e=[],o=function(){
+if(Object.prototype.hasOwnProperty.call(r.currentAttrMap,i)){
+var o,n=r.currentAttrMap[i];
+null==n||null==(o=n.attrValueList)||o.map((function(r){
+r.attrValueCode===t&&(r.attrName=null==n?void 0:n.attrName,r.attrCode=null==n?void 0:n.attrCode,e.push(JSON.parse(JSON.stringify(r))))
+}
+))
+}
+
+}
+;
+for(var i in r.currentAttrMap)o();
+return JSON.parse(JSON.stringify(e[0]))
+}
+,r.getDefaultSbomCode=function(t,e){
+for(var r=0;
+r<t.length;
+r++)for(var o=0;
+o<e.length;
+o++)if(e[o]===t[r])return t[r]
+}
+,r.getSbomCodeAttrItem=function(t){
+var e,o,i=r.props.sbomList,n={
+
+}
+;
+return null==i||null==(e=i[0])||null==(o=e.sbomAttrList)||o.forEach((function(e){
+var r,o;
+t===e.attrName&&(n=null!=(r=null==(o=e.attrValueList)?void 0:o[0])?r:{
+
+}
+)
+}
+)),n
+}
+,r.renderContent=function(t){
+var e,o,i,n=r.props,a=n.route,l=n.index,s=n.disPrdId,p=n.routerType,h=n.defaultSkuCode,v=n.attrViewList,P=n.isSSR,b=n.isPC,S=n.isSources,C=n.platform,y=n.themeProps,I=r.getAttrArray();
+I.map((function(t){
+t.title=a.title,t.imgUrl=u.CommonUtils.getCDNpath(1)+t.path+t.name;
+t.disable=!1
+}
+)),I.map((function(t){
+t.isActive&&'CarDetail'===p&&c.default.setSbomCode({
+attr:a.title,sbomCode:t.includeSbomCode
+}
+)
+}
+));
+var _=r.handleAttrArrayActive(I);
+if((''!==r.state.attrValueCode&&I.forEach((function(t){
+t.attrValueCode===r.state.attrValueCode?t.isLocaleActive=!0:t.isLocaleActive=!1
+}
+)),C.isWeb&&'undefined'!=typeof window)&&!window.localStorage.getItem("carImg_"+s+"_"+h+"_"+l)){
+var L=r.getAllImage(I);
+r.commonJs.preload(L),window.localStorage.setItem("carImg_"+s+"_"+h+"_"+l,'yes')
+}
+c.default.setChooseAttr(_);
+var A=null==v?void 0:v.length;
+return null==v||v.map((function(t,e){
+(null==t?void 0:t.attrName)===a.title&&(A=e)
+}
+)),(0,w.jsx)(f.default,{
+themeProps:y,routerType:p,changeSbomCode:r.chooseSbomCode,tabIndex:A,data:I,route:a,attrViewList:v,channelId:null==(e=r.props)?void 0:e.channelId,saleId:null==(o=r.props)?void 0:o.saleId,isFixScreen:null==(i=r.props)?void 0:i.isFixScreen,isSSR:P,isPC:b,disPrdId:s,isSources:S,platform:C,showBigImg:t
+}
+)
+}
+,r.getAttrArray=function(){
+// 变量
+var t: any = [],e=[];
+for(var o in r.currentAttrMap=r.getGbomAttr(),r.currentAttrMap.map((function(e){
+null==e||e.attrValueList.map((function(e){
+t.push(null==e?void 0:e.attrValueCode)
+}
+))
+}
+)),t)if(Object.prototype.hasOwnProperty.call(t,o)){
+// 变量
+var i: any = JSON.parse(JSON.stringify(r.getAttrMapItem(t[o])));
+e.push(i)
+}
+return e
+}
+,r.handleAttrArrayActive=function(t){
+var e,o=r.props,i=o.route,n=o.disPrdId;
+return t.map((function(t){
+if(t.isActive){
+var o,a=r.getSbomCodeAttrItem(i.title);
+t.relateSbom=a.relateSbom,t.relateInfo=(null==(o=a.relateInfo)?void 0:o.length)>0?a.relateInfo:null==t?void 0:t.relateInfo,t.attrPriceDesc=a.attrPriceDesc||(null==t?void 0:t.attrPriceDesc)||'',t.relateSbomPkgUnitPrice=a.relateSbomPkgUnitPrice||(null==t?void 0:t.relateSbomPkgUnitPrice)||'',e={
+imgUrl:t.imgUrl,path:t.path,relateSbom:t.relateSbom||'',attrName:t.attrName,attrValue:t.attrValue,price:t.relateSbomPkgUnitPrice?t.relateSbomPkgUnitPrice:'',relateSbomPkgUnitPrice:t.relateSbomPkgUnitPrice?t.relateSbomPkgUnitPrice:'',priceMode:t.priceMode||'',attrPriceDesc:null!=t&&t.attrPriceDesc?null==t?void 0:t.attrPriceDesc:''
+}
+;
+// 变量
+var l: any = r.getSbomPkgUnitPrice(i.title);
+t.relateSbomPkgUnitPrice=l.price,t.attrPriceDesc=l.attrPriceDesc
+}
+t.tabName=i.title,t.tabIndex=(Number(i.key)+1).toString(),t.productId=n
+}
+)),e
+}
+,r.getBanner=function(t,e){
+var o,i=r.props,n=i.sbomCodeList,a=i.platform,l=i.customWidth,s=n||r.props.sbomList,c=[],p=r.getGbomAttr(e);
+r.currentImgHeight=r.getImgHeight();
+// 变量
+var f: any = (l||a.width).toFixed(0)+":"+r.currentImgHeight.toFixed(0);
+if(p.map((function(t){
+r.handleAttrValueList({
+item:t,sbomList:s,imgListSource:c,imgProportion:f
+}
+)
+}
+)),c.length<=0)for(var h in s)if(Object.prototype.hasOwnProperty.call(s,h)){
+(o=s[h]).photoPath&&o.photoName&&c.push({
+imgProportion:f,imgUri:u.CommonUtils.getCDNpath(1)+o.photoPath+'800_800_'+o.photoName
+}
+),o.groupPhotoList&&o.groupPhotoList.map((function(t){
+c.push({
+imgProportion:f,imgUri:u.CommonUtils.getCDNpath(1)+t.photoPath+'800_800_'+t.photoName
+}
+)
+}
+));
+break
+}
+return c
+}
+,r.getImgHeight=function(){
+// 变量
+var t: any = r.props,e=t.platform,o=t.routerType,i=t.customWidth,n=t.themeProps,a=(null==n?void 0:n.isPadV)||e.isPadV,l=i||e.width,s=e.isPc?80:64,u=l/16*9;
+'CarPreview'!==o||e.isPhone?e.isFixScreen||e.isPadH?u=e.height-e.statusBarHeight-I.TITLE_HEIGHT-I.TAB_HEIGHT-196-s-e.safeAreaBottomHeight-I.SWIPE_TOP_GAP:a&&(u=l/4*3):u=e.isPc?332:250;
+// 变量
+var c: any = e.isPhone?l/16*9:u;
+return e.isPc&&'CarDetail'===o?180:c
+}
+,r.handleAttrValueList=function(t){
+var e,o=t.item,i=t.sbomList,n=t.imgListSource,a=t.imgProportion;
+null==o||null==(e=o.attrValueList)||e.map((function(t){
+var e,l,s=null!=(e=null==i||null==(l=i[0])?void 0:l.sbomAttrList)?e:[];
+if((0,y.findSbomSubAttr)(Object.assign({
+
+}
+,t,{
+attrCode:o.attrCode
+}
+),s)){
+// 变量
+var u: any = (0,y.findSbomRelateInfo)(t,s);
+(null==u?void 0:u.length)>0?r.handleImgListSource({
+list:u,imgListSource:n,imgProportion:a
+}
+):r.handleImgListSource({
+list:null==t?void 0:t.relateInfo,imgListSource:n,imgProportion:a
+}
+)
+}
+
+}
+))
+}
+,r.handleImgListSource=function(t){
+// 变量
+var e: any = t.list,r=t.imgListSource,o=t.imgProportion;
+null==e||e.map((function(t){
+1===t.type&&r.push({
+imgProportion:o,imgUri:u.CommonUtils.getCDNpath(1)+t.path+t.name
+}
+)
+}
+))
+}
+,r.getIncludeSbomCode=function(t,e){
+var r,o=[];
+(null==t?void 0:t.attrValueCode)===e&&(o=null==t||null==(r=t.sbomList)?void 0:r.map((function(t){
+return t.sbomCode
+}
+)));
+return o
+}
+,r.getSbomPkgUnitPrice=function(t){
+// 变量
+var e: any = '',o='',i=r.props.sbomList;
+if(i&&i.length>0){
+// 变量
+var n: any = i[0],a=n.sbomAttrList;
+(void 0===a?[]:a).forEach((function(r){
+var i;
+r.attrName===t&&(null==r||null==(i=r.attrValueList)||i.forEach((function(t){
+e=n.relateSbomPkgUnitPrice?n.relateSbomPkgUnitPrice:(null==t?void 0:t.relateSbomPkgUnitPrice)||'',o=n.attrPriceDesc?n.attrPriceDesc:(null==t?void 0:t.attrPriceDesc)||''
+}
+)))
+}
+))
+}
+return{
+price:e,attrPriceDesc:o
+}
+
+}
+,r.goValet=function(){
+r.commonJs.goVRPage(r.props,r.props.platform)
+}
+,r.renderValet=function(){
+// 变量
+var t: any = r.props,e=t.themeStyles,o=t.platform;
+return r.commonJs.showValetBtn(r.props,o)?(0,w.jsx)(l.TouchableOpacity,{
+onPress:r.goValet,style:e.vrBox,activeOpacity:1,children:(0,w.jsx)(l.Image,{
+style:e.vrImg,source:h.default.vr
+}
+)
+}
+):(0,w.jsx)(w.Fragment,{
+
+}
+)
+}
+,r.commonJs=p.default.call(r),r.currentAttrMap=r.getGbomAttr(),r.state={
+attrValueCode:'',key:''
+}
+,r
+}
+return(0,n.default)(a,t),(0,r.default)(a,[{
+key:"componentDidMount",value:function(){
+this.props.onRef&&this.props.onRef(this)
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.scorllTime&&clearTimeout(this.scorllTime)
+}
+
+}
+,{
+key:"shouldComponentUpdate",value:function(t,e){
+// 变量
+var r: any = (0,y.checkComponentUpdate)(t,e),o=r.checkProp,i=r.checkState,n=r.updateFlag;
+return this.props.platform.isWeb&&o(this.props,['pullUpApp']),o(this.props,['platform','sbomCode','vrType','sbomList','attrViewList']),i(this.state,['attrValueCode']),n.current
+}
+
+}
+,{
+key:"componentDidUpdate",value:function(t){
+if(u.PlatformUtils.isHarmony()&&JSON.stringify(t.attrViewList)!==JSON.stringify(this.props.attrViewList)){
+var e,r=this.getSbomCodeAttrItem(null==(e=this.props.route)?void 0:e.title);
+r&&this.setState({
+attrValueCode:r.attrValueCode
+}
+)
+}
+
+}
+
+}
+,{
+key:"preloadAllImg",value:function(){
+// 变量
+var t: any = this;
+if(u.PlatformUtils.isApp()){
+// 变量
+var e: any = this.props.attrViewList,r=[];
+e.map((function(e){
+r.push(t.getBanner(void 0,e.attrName))
+}
+));
+// 变量
+var o: any = [];
+r.map((function(t){
+t.map((function(t){
+o.push({
+uri:t.imgUri
+}
+)
+}
+))
+}
+)),b.default.preload(o)
+}
+
+}
+
+}
+,{
+key:"getIntersection",value:function(t,e,r){
+var o,i,n=this.props.tabIndex,a=(0,s.toJS)(c.default.defaultSbomCode),l=[],u=0,p=[];
+(a.map((function(t,e){
+e!==n&&e<=r&&(p[u++]=t.sbomCode)
+}
+)),p.length<=1)?l=p[0]:l=(i=this.commonJs).intersection.apply(i,p);
+return o=this.commonJs.intersection(l,e),p.length<=1?0===o.length?[t]:o:0===r?[t]:o.length>0?o:this.getIntersection(t,e,r-1)
+}
+
+}
+,{
+key:"render",value:function(){
+var t,e,r=this.props,o=r.routerType,i=r.themeStyles,n=r.platform,a=r.route,s=r.index,u=r.customWidth,c=r.sbomCode,p=u||n.width,f=this.getBanner();
+this.swiperList=null==(t=f)?void 0:t.length;
+var h='CarPreview'===o,v='CarDetail'===o&&n.isPc;
+(v||h)&&(f=f[0]?[f[0]]:[]);
+// 变量
+var P: any = !(1===(null==a?void 0:a.display))&&f.length>0;
+return this.setState({
+key:c+" - "+s
+}
+),(0,w.jsx)(l.ScrollView,{
+style:i.scroll,showsVerticalScrollIndicator:!1,children:(0,w.jsxs)(l.View,{
+style:[!h&&i.container,!h&&i.containerDetail,(null==(e=this.props)?void 0:e.pcCarPreview)&&i.containerPcPreview],children:[P&&(0,w.jsxs)(l.View,{
+style:[i.carAttrSwiper,v&&i.pcPreImage,!n.isPc&&h&&i.previewSwiper],children:[(0,w.jsx)(C.AppSwiper,{
+mixedSwiper:!0,imgList:f,width:v?320:p,swiperOnscroll:this.swiperScrollEnd
+}
+,this.state.key),v?null:this.renderValet()]
+}
+),(0,w.jsx)(l.View,{
+style:i.contentBox,children:this.renderContent(P)
+}
+)]
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(a.Component);
+_e.default=(0,S.injectLayout)(P.default)(A)
+}
+),"b2ae47424abc369a0ad226d1a2f01fdbbfe229616f82d3946b6b5b144b2a433c",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","ee55f4d0c2caa1300b89f4ccc76c3df3bdda145307ebba1119f7d3f403a05be4","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","120160170ab46be408b0add3cda3c20eef12c9b6a21ee3a81f6d7f5d2a4c1a91","80700f21fec9f5c717262de471ee3dce00f502afaf2d6fbb55dd39a0a3737502","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),n=e(_r(d[3])),o=e(_r(d[4])),a=e(_r(d[5])),i=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = f(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var i: any = o?Object.getOwnPropertyDescriptor(e,a):null;
+i&&(i.get||i.set)?Object.defineProperty(n,a,i):n[a]=e[a]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[6])),u=_r(d[7]),l=e(_r(d[8])),s=_r(d[9]),c=_r(d[10]);
+// 函数
+function f(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(f=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function p(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(p=function(){
+return!!e
+}
+)()
+}
+var v=u.StyleSheet.create({
+extraBottom:{
+marginBottom:2
+}
+,padHCon:{
+display:'flex',flexDirection:'row',flexWrap:'wrap',alignItems:'stretch',alignContent:'stretch',justifyContent:'space-between'
+}
+
+}
+),y=(function(e){
+// 函数
+function i(e: any): any {
+var r,a,u,l;
+return(0,t.default)(this,i),a=this,u=i,l=[e],u=(0,o.default)(u),(r=(0,n.default)(a,p()?Reflect.construct(u,l||[],(0,o.default)(a).constructor):u.apply(a,l))).setActive=function(e,t){
+// 变量
+var n: any = r.props,o=n.data,a=n.tabIndex,i=o[e];
+r.props.changeSbomCode(a,i,i.isActive,t)
+}
+,r
+}
+return(0,a.default)(i,e),(0,r.default)(i,[{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,r=t.data,n=t.routerType,o=t.route,a=t.attrViewList,i=void 0===a?[]:a,f=t.isSSR,p=t.isPC,y=t.isSources,h=t.disPrdId,P=t.tabIndex,x=t.themeProps,b=t.platform,w=t.showBigImg,I=Number(o.key)+1;
+'CarPreview'===n&&i.map((function(e,t){
+(null==e?void 0:e.attrName)===o.title&&(I=t+1)
+}
+));
+// 变量
+var S: Function = r.length>=2&&w;
+return(0,c.jsx)(u.View,{
+style:[s.PlatformUtils.isApp()&&v.extraBottom,b.isPadH&&w&&'CarDetail'===n&&v.padHCon],children:r.map((function(t,r){
+var a,i,u;
+return(0,c.jsx)(l.default,Object.assign({
+route:o,routerType:n,onSetActive:e.setActive,idx:r
+}
+,t,{
+reportIndex:I,channelId:null==(a=e.props)?void 0:a.channelId,saleId:null==(i=e.props)?void 0:i.saleId,isFixScreen:null==(u=e.props)?void 0:u.isFixScreen,isSSR:f,isPC:p,isSources:y,disPrdId:h,tabIndex:P,themeProps:x,showBigImg:S
+}
+),r)
+}
+))
+}
+)
+}
+
+}
+])
+}
+)(i.Component);
+_e.default=y
+}
+),"ee55f4d0c2caa1300b89f4ccc76c3df3bdda145307ebba1119f7d3f403a05be4",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","b1e07120b8e4bd16178e93b24499ed01effd514a0d2450b9de4613b5b236364b","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,r=e(_r(d[1])),i=e(_r(d[2])),o=e(_r(d[3])),n=e(_r(d[4])),a=e(_r(d[5])),l=I(_r(d[6])),s=_r(d[7]),c=_r(d[8]),u=_r(d[9]),p=_r(d[10]),v=I(_r(d[11])),f=_r(d[12]),h=_r(d[13]),_=_r(d[14]);
+// 函数
+function y(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(y=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function I(e: any, t: any): any {
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = y(t);
+if(r&&r.has(e))return r.get(e);
+var i={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var a: any = o?Object.getOwnPropertyDescriptor(e,n):null;
+a&&(a.get||a.set)?Object.defineProperty(i,n,a):i[n]=e[n]
+}
+return i.default=e,r&&r.set(e,i),i
+}
+// 函数
+function P(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(P=function(){
+return!!e
+}
+)()
+}
+var w=(0,v.renderWordItemStyles)(),x=function(e){
+// 变量
+var r: any = e.showMore,i=e.lookMoreContent,o=e.open;
+return r?(0,_.jsx)(s.View,{
+style:w.openDesc,children:(0,_.jsxs)(s.TouchableOpacity,{
+activeOpacity:1,onPress:i,style:w.lookMore,children:[(0,_.jsx)(s.Text,{
+style:w.moreTxt,children:(0,c.t)('common_detailing')
+}
+),(0,_.jsx)(u.FastImageView,{
+imgStyle:w.moreImg,resizeMode:'contain',localSource:o?t.conditionClose:t.conditionOpen
+}
+)]
+}
+)
+}
+):null
+}
+,C=(function(e){
+// 函数
+function v(e: any): any {
+var i,a,f,y;
+return(0,r.default)(this,v),a=this,f=v,y=[e],f=(0,n.default)(f),(i=(0,o.default)(a,P()?Reflect.construct(f,y||[],(0,n.default)(a).constructor):f.apply(a,y))).contentRef=l.default.createRef(),i.lookInfo=!1,i._onLayout=function(){
+var e;
+null==(e=i.contentRef.current)||e.measure((function(e,t,r,o){
+o!==i.state.height&&i.setState({
+showMore:o>77,height:o
+}
+)
+}
+))
+}
+,i.renderHtml=function(){
+var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:'',t=arguments.length>1?arguments[1]:void 0,r=i.props,o=r.themeStyles,n=r.platform,a=(0,p.translateDescHtml)(e).map((function(e,r){
+return(0,_.jsx)(s.Text,{
+numberOfLines:t?1:void 0,style:[o.modelTxt,n.isPc&&o.modelTxtPc],children:e
+}
+,r)
+}
+));
+return t&&a.splice(3),a
+}
+,i.chooseItem=(0,h.clickDebunce)((function(){
+// 变量
+var e: any = i.props,t=e.idx,r=e.disable,o=e.productId,n=e.tabName,a=e.sbomCode,l=e.attrValue,s=e.routerType,u=e.reportIndex,p=e.isActive,v=e.platform,f=e.route;
+if(!(r||!v.isPc&&p)){
+i.props.onSetActive(t,1===(null==f?void 0:f.display));
+var h,_,y='900027205',I=(0,c.t)('car_preview'),P='car_preview_attribute',w=(0,c.t)('car_options_preview'),x='p_carPreview',C=(0,c.t)('config_info'),b='r_carPreview_attribute',S=Number(t)+1;
+if('CarDetail'===s&&(y='900027104',I=(0,c.t)('car_main_page'),P='carDetail_attribute',w=(0,c.t)('car_prd_detail'),x='p_carDetail',C=(0,c.t)('product_select'),b='r_carDetail_select'),!i.lookInfo)c.Report.eventTracingReport({
+actionCode:y,actionName:I+"-"+n+"-"+l,eventType:'2',content:{
+comId:P+"-"+u+"-"+S,productId:null==o?void 0:o.toString(),SKUCode:a,tabName:n,tabIndex:Number(u).toString(),index:null==S?void 0:S.toString(),index_name:l,channelId:(null==(h=i.props)?void 0:h.channelId)||'0',saleId:(null==(_=i.props)?void 0:_.saleId)||''
+}
+,pageCatCode:x,pageCatName:w,resSiteName:C,resSiteCode:b,pageId:'CarDetail'===s?"p_carDetail_"+o:"p_carPreview_"+o
+}
+),c.Report.execReportData('',!0)
+}
+
+}
+),200),i.lookMoreContent=function(){
+// 变量
+var e: any = i.props,t=e.idx,r=e.disable,o=e.tabName,n=e.productId,a=e.sbomCode,l=e.routerType,s=e.attrValue,u=e.reportIndex;
+r?i.setState({
+open:!i.state.open
+}
+):i.setState({
+open:!i.state.open,isActive:!0
+}
+),i.lookInfo=!0,i.timer=setTimeout((function(){
+var e,r,p=i.state.open?(0,c.t)('common_expand'):(0,c.t)('pack_up'),v=i.state.open?'1':'2',f='900027206',h=(0,c.t)('car_preview'),_='car_preview_attribute',y=(0,c.t)('car_options_preview'),I='p_carPreview',P=(0,c.t)('config_info'),w='r_carPreview_attribute',x=Number(t)+1;
+'CarDetail'===l&&(f='900027105',h=(0,c.t)('car_main_page'),_='carDetail_attribute',y=(0,c.t)('car_prd_detail'),I='p_carDetail',P=(0,c.t)('product_select'),w='r_carDetail_select'),c.Report.eventTracingReport({
+actionCode:f,actionName:h+'-'+o+'-'+p+(0,c.t)('attr_desp'),eventType:'2',content:{
+channelId:(null==(e=i.props)?void 0:e.channelId)||'0',comId:_+"-"+u+"-"+x,productId:null==n?void 0:n.toString(),index:null==x?void 0:x.toString(),index_name:s,saleId:(null==(r=i.props)?void 0:r.saleId)||'',SKUCode:a,type:v,tabName:o,tabIndex:null==u?void 0:u.toString()
+}
+,pageCatCode:I,pageCatName:y,resSiteCode:w,resSiteName:P,pageId:'CarDetail'===l?"p_carDetail_"+n:"p_carPreview_"+n
+}
+),c.Report.execReportData('',!0),i.lookInfo=!1
+}
+),200)
+}
+,i.renderPrice=function(e,t){
+return e?'\xa5'+(0,p.priceSwitch)(e):t||''
+}
+,t=(0,u.getBussImgArray)(),i.state={
+showMore:!1,open:!1,height:0,isActive:i.props.isActive,isHover:!1
+}
+,i
+}
+return(0,a.default)(v,e),(0,i.default)(v,[{
+key:"componentWillUnmount",value:function(){
+this.timer&&clearInterval(this.timer)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.props,t=e.attrValue,r=e.desc,i=void 0===r?'':r,o=e.disable,n=e.isActive,a=e.relateSbomPkgUnitPrice,l=e.attrPriceDesc,p=e.path,v=e.isHide,f=e.themeStyles,h=e.platform,y=e.routerType,I=e.route,P=e.imgUrl,w=e.relateInfo,C=e.themeProps,b=e.theme,S=e.showBigImg,D=e.isLocaleActive,j=this.state,T=j.open,M=j.showMore,O=1===(null==I?void 0:I.display),k=null==w?void 0:w[0],N=p?P:k&&c.CommonUtils.getCDNpath(1)+k.path+k.name,V=O?'':this.renderPrice(a,l),R=this.renderHtml(i,O),A=(null==R?void 0:R.length)>0,H=h.isPc&&'CarDetail'===y,U=!H&&O&&N,L=!H&&O&&!V,W=!O&&A,B=H&&O||W,z=U?h.isFixScreen?478:null!=C&&C.isPadV||h.isPadV?408:h.isPadH?608:h.width-64:0,F=!!U&&c.CommonUtils.getStrPixelWidth(t,b.T10.fontSize)/z>.6,K=c.PlatformUtils.isHarmony()&&void 0!==D?D:n;
+return v?null:(0,_.jsx)(s.TouchableOpacity,{
+activeOpacity:1,onPress:this.chooseItem,style:h.isPadH&&S&&'CarDetail'===y?f.padH2CStyle:f.padH1CStyle,children:(0,_.jsxs)(s.View,{
+style:[f.wordItem,K&&f.wordActive,o&&f.disable,O&&!H&&f.versionItem,O&&H&&f.versionPcDetailItem,!h.isWeb&&K&&O&&f.versionItemActive,L&&f.versionNoPriceItem,!h.isWeb&&L&&K&&f.versionNoPriceItemActive],children:[!O&&p?(0,_.jsx)(u.FastImageView,{
+imgStyle:f.attrImg,resizeMode:'contain',imgUri:P
+}
+):null,(0,_.jsxs)(s.View,{
+style:[f.wordContent,(A||O)&&f.hasDescContent],children:[(0,_.jsxs)(s.View,{
+style:h.isPc&&O&&'CarDetail'===y&&f.versionPcLayout,children:[(0,_.jsx)(s.Text,{
+numberOfLines:W?void 0:1,style:[f.typeTitle,H&&O&&f.versionPcTitle,Boolean(z)&&{
+minWidth:z
+}
+],children:t
+}
+),V?(0,_.jsx)(s.Text,{
+numberOfLines:B?void 0:1,style:[f.attrPrice,O&&f.versionPrice,H&&O&&f.versionPcDetailPrice],children:V
+}
+):null]
+}
+),A?(0,_.jsx)(s.View,{
+style:[f.htmlContent,O&&f.versionContent,(!V||H&&O)&&f.noPriceContent,L&&f.versionNoPriceContent,T&&f.autoHeight,h.isApp&&T&&{
+height:this.state.height
+}
+],children:(0,_.jsx)(s.View,{
+onLayout:O?void 0:this._onLayout,ref:this.contentRef,children:R
+}
+)
+}
+):null]
+}
+),U?(0,_.jsxs)(s.View,{
+children:[(0,_.jsx)(s.View,{
+style:F&&f.versionImageDown
+}
+),(0,_.jsx)(s.View,{
+style:f.versionOpenDesc,children:(0,_.jsx)(u.FastImageView,{
+imgStyle:f.versionImage,resizeMode:'cover',imgUri:N
+}
+)
+}
+)]
+}
+):null,(0,_.jsx)(x,{
+showMore:M,open:T,lookMoreContent:this.lookMoreContent
+}
+)]
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(l.PureComponent);
+_e.default=(0,f.injectLayout)(v.default)(C)
+}
+),"b1e07120b8e4bd16178e93b24499ed01effd514a0d2450b9de4613b5b236364b",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","ab8caeac259f9b41f4943b58c9bb6038d9ebde8d37a0fdc16a1b3c39f70030f3","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.renderWordItemStyles=e.default=void 0;
+var o=t(r(d[1])),n=r(d[2]),l=r(d[3]),s={
+
+}
+;
+'web'===n.Platform.OS&&(s=(0,o.default)({
+
+}
+,'cursor'.split('-').join(''),'default'));
+e.default=function(t,o,c){
+var h=o.isFixScreen||o.isPadH?256:o.isPhone?.5*(o.width-32):196,p=h/16*9,C=(((null==c?void 0:c.customWidth)||o.width)-240)/12;
+return n.StyleSheet.create({
+show:{
+display:'flex',opacity:1
+}
+,hide:{
+display:'none',opacity:0
+}
+,swiperBox:{
+marginTop:12,position:'relative'
+}
+,wordItem:{
+minHeight:72,flexDirection:'row',overflow:'hidden',position:'relative',marginTop:12,paddingHorizontal:16,paddingVertical:12,borderRadius:o.isPc?8:16,borderWidth:o.isWeb?1:.5,borderColor:l.CommonUtils.colorRgba(t.C12.color,.15),borderStyle:'solid'
+}
+,wordActive:{
+paddingHorizontal:o.isWeb?16:15.5,paddingVertical:o.isWeb?12:11.5,borderColor:l.CommonUtils.colorRgba(t.C12.color,.9),borderWidth:1
+}
+,versionItem:{
+height:152,paddingVertical:16
+}
+,versionItemActive:{
+paddingVertical:15.5
+}
+,versionNoPriceItem:{
+height:132,paddingVertical:20
+}
+,versionNoPriceItemActive:{
+paddingVertical:19.5
+}
+,versionPcDetailItem:{
+height:118,paddingHorizontal:12
+}
+,wordItemPad:{
+marginLeft:24,marginRight:24
+}
+,wordItemPadHorizontal:{
+marginLeft:0,marginRight:0
+}
+,wordContentPreview:{
+backgroundColor:t.C17.color
+}
+,padH1CStyle:{
+width:'100%'
+}
+,padH2CStyle:{
+width:4*(C+16)-16
+}
+,typeTitle:Object.assign({
+
+}
+,t.T10,t.C11),versionPcTitle:{
+flex:1
+}
+,lookMore:{
+alignSelf:'flex-end',alignContent:'center',flexDirection:'row',bottom:-6,right:-12
+}
+,moreTxt:Object.assign({
+
+}
+,t.T7,t.C13,{
+lineHeight:30
+}
+),moreImg:{
+width:30,height:30
+}
+,htmlContent:{
+marginTop:10,maxHeight:66,overflow:'hidden'
+}
+,versionContent:{
+flex:1,justifyContent:'center'
+}
+,noPriceContent:{
+marginTop:4
+}
+,versionNoPriceContent:{
+marginTop:9
+}
+,noTop:{
+marginTop:0
+}
+,openDesc:{
+justifyContent:'flex-end'
+}
+,versionOpenDesc:{
+justifyContent:'center',flex:1
+}
+,autoHeight:{
+height:'auto',maxHeight:'auto',overflow:'visible'
+}
+,html:Object.assign({
+
+}
+,t.T3,t.C14),htmlOpen:Object.assign({
+
+}
+,t.T3,t.C22),imgContentBox:{
+marginTop:4,paddingLeft:16,paddingRight:16
+}
+,imgContentBoxPad:{
+paddingLeft:24,paddingRight:24
+}
+,picItem:{
+borderRadius:16,height:72,marginTop:8,flexDirection:'row',alignItems:'center',overflow:'hidden',borderColor:l.CommonUtils.colorRgba(t.C12.color,.15),borderWidth:o.isPc?1:.5,borderStyle:'solid'
+}
+,picAndWordItem:{
+marginLeft:-12
+}
+,wordContent:{
+flex:1,justifyContent:'center',zIndex:3
+}
+,hasDescContent:{
+justifyContent:'flex-start'
+}
+,versionPcLayout:{
+flexDirection:'row',justifyContent:'space-between',alignItems:'center'
+}
+,versionImage:{
+width:h,height:p,marginRight:-16
+}
+,versionImageDown:{
+height:28
+}
+,picBox:{
+marginRight:12
+}
+,attrImg:{
+width:48,height:48,marginRight:12
+}
+,attrName:Object.assign({
+
+}
+,t.T9,t.C13),attrPrice:Object.assign({
+marginTop:4
+}
+,t.T7,t.C13),versionPrice:Object.assign({
+
+}
+,t.C12),versionPcDetailPrice:{
+marginTop:0
+}
+,transparent:{
+backgroundColor:'transparent',width:'110%'
+}
+,disable:Object.assign({
+opacity:.4
+}
+,s),displayNone:{
+display:'none'
+}
+,noImgBox:{
+paddingLeft:16
+}
+,modelTxt:Object.assign({
+
+}
+,t.T3,t.C13,{
+lineHeight:22
+}
+),modelTxtPc:{
+fontSize:14
+}
+,pcSwiperContainer:{
+width:560,height:560,position:'absolute',backgroundColor:t.C32.color
+}
+,pcPreviewSwiperContainer:{
+width:240,height:240,position:'absolute',backgroundColor:t.C17.color
+}
+
+}
+)
+}
+,e.renderWordItemStyles=function(){
+// 变量
+var t: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:l.DarkStore.theme;
+return n.StyleSheet.create({
+openDesc:{
+justifyContent:'flex-end'
+}
+,lookMore:{
+alignSelf:'flex-end',alignContent:'center',flexDirection:'row',bottom:-6,right:-12
+}
+,moreTxt:Object.assign({
+
+}
+,t.T7,t.C13,{
+lineHeight:30
+}
+),moreImg:{
+width:30,height:30
+}
+
+}
+)
+}
+
+}
+),"ab8caeac259f9b41f4943b58c9bb6038d9ebde8d37a0fdc16a1b3c39f70030f3",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","598dd5411f5356eab137e972eb6cee59f0eaeb909657cad20b7b3811ffae9612","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]),n=r(d[2]);
+e.default=function(l,c,p){
+// 变量
+var s: Function = c.isPadV&&!c.isFixScreen?44:4;
+return t.StyleSheet.create({
+scroll:{
+overscrollBehavior:'contain'
+}
+,tabBarWrapper:{
+backgroundColor:l.C33.color,height:56,paddingHorizontal:c.pageMargin,alignItems:'center',flexDirection:'row',position:c.isWap?'sticky':'relative',top:c.isWap?56:0,zIndex:999
+}
+,hiddenHeaderTab:{
+top:0
+}
+,placeholder:{
+position:c.isApp?'absolute':'fixed',top:0,left:0,right:0,bottom:0,backgroundColor:o.CommonUtils.colorRgba(l.C11.color,.01),zIndex:1e3
+}
+,container:{
+marginTop:c.isPhone?4:-4
+}
+,containerDetail:{
+paddingBottom:c.isPc?80:12
+}
+,containerPcPreview:{
+paddingHorizontal:48
+}
+,pcPreImage:{
+marginHorizontal:16,overflow:'hidden',borderRadius:8
+}
+,carAttrSwiper:{
+marginTop:12,marginBottom:s
+}
+,previewSwiper:{
+marginBottom:4,marginTop:0
+}
+,contentBox:{
+width:(0,n.getAttrContentBoxWidth)(c,p),alignSelf:'center'
+}
+,header:{
+position:'relative',justifyContent:'center',zIndex:4
+}
+,title:Object.assign({
+
+}
+,l.T13,l.C11,{
+position:'absolute',left:0,top:16,width:606,height:48,backgroundColor:l.C32.color
+}
+),location:{
+display:'flex',flexDirection:'row',alignItems:'center',paddingTop:24,paddingBottom:24,width:1200
+}
+,home:Object.assign({
+
+}
+,l.T3,l.C12),space:Object.assign({
+
+}
+,l.T3,l.C12,{
+marginLeft:2
+}
+),keyword:Object.assign({
+
+}
+,l.T4,l.C11),vrBox:{
+position:'absolute',width:34,height:34,top:c.isPhone?12:20,left:c.isPadH?32:16
+}
+,vrImg:{
+width:34,height:34
+}
+,vrTxt:Object.assign({
+
+}
+,l.T3,l.C12,{
+marginLeft:4
+}
+),vrTxtPc:Object.assign({
+
+}
+,l.T7),onlineService:{
+width:24,height:24
+}
+,onlineServiceWrapper:{
+position:'absolute',top:0,marginTop:'auto',marginBottom:'auto',bottom:0,right:16,width:24,height:24
+}
+,titleBar:{
+backgroundColor:'transparent',marginTop:c.statusBarHeight
+}
+,titleSticky:{
+marginTop:c.statusBarHeight,top:0,backgroundColor:l.C33.color,zIndex:13,position:'sticky'
+}
+,contentMarginTop:{
+marginTop:56
+}
+,pcContaiiner:{
+width:'100%',flex:1,flexDirection:'row'
+}
+,flex1:{
+flex:1
+}
+,rightSelectBox:{
+width:416,paddingHorizontal:32
+}
+,bottomWrapper:Object.assign({
+
+}
+,l.S2,{
+borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,zIndex:13,borderTopWidth:.5
+}
+),pcTitle:Object.assign({
+
+}
+,l.T14,l.C11,{
+fontSize:32,paddingHorizontal:16,marginBottom:32,marginTop:16
+}
+),pcSubTitle:Object.assign({
+
+}
+,l.T12,l.C12,{
+paddingHorizontal:16,marginBottom:16
+}
+),colorTitle:{
+marginBottom:6
+}
+
+}
+)
+}
+
+}
+),"120160170ab46be408b0add3cda3c20eef12c9b6a21ee3a81f6d7f5d2a4c1a91",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o=e(_r(d[1])),i=e(_r(d[2])),r=e(_r(d[3])),n=e(_r(d[4])),a=e(_r(d[5])),s=e(_r(d[6])),l=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = S(t);
+if(o&&o.has(e))return o.get(e);
+var i={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var a: any = r?Object.getOwnPropertyDescriptor(e,n):null;
+a&&(a.get||a.set)?Object.defineProperty(i,n,a):i[n]=e[n]
+}
+return i.default=e,o&&o.set(e,i),i
+}
+)(_r(d[7])),u=_r(d[8]),c=_r(d[9]),p=e(_r(d[10])),f=e(_r(d[11])),v=e(_r(d[12])),h=e(_r(d[13])),k=e(_r(d[14])),C=e(_r(d[15])),P=_r(d[16]),b=_r(d[17]),y=_r(d[18]),I=_r(d[19]),_=_r(d[20]),L=_r(d[21]);
+// 函数
+function S(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(S=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function D(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(D=function(){
+return!!e
+}
+)()
+}
+var O=(function(e){
+// 函数
+function l(e: any): any {
+var o,r,s,f,C,b,y;
+(0,i.default)(this,l),C=this,b=l,y=[e],b=(0,a.default)(b),(f=(0,n.default)(C,D()?Reflect.construct(b,y||[],(0,a.default)(C).constructor):b.apply(C,y))).curIndex=0,f.extraTimer={
+init:null,scroll:null
+}
+,f.getChooseCode=function(){
+// 变量
+var e: any = f.state.groupList,t=[];
+return null==e||e.forEach((function(e){
+var o;
+(null==e?void 0:e.packagePrdList)&&(null==e||null==(o=e.packagePrdList)||o.forEach((function(e){
+e.sbomDIYPackageInfos.forEach((function(e){
+!0===e.isClicked&&t.push(e.sbomCode)
+}
+))
+}
+)))
+}
+)),t
+}
+,f.hanlePkgData=function(e){
+var t;
+if(null==e||null==(t=e.param)||!t.isLeave){
+// 变量
+var o: any = f.props,i=o.prdId,r=o.defaultSkuCode;
+(0,I.getStorage)('carDetailPkg_'+i+'_'+r).then((function(e){
+e&&(f.extraTimer.init=setTimeout((function(){
+f.initPkgStore(e)
+}
+),500))
+}
+))
+}
+
+}
+,f.initPkgStore=function(e){
+// 变量
+var t: any = f.state.groupList,o=e.split(','),i=[];
+null==t||t.map((function(e){
+null==e||e.packagePrdList.forEach((function(e){
+null==e||e.sbomDIYPackageInfos.map((function(e){
+o.map((function(t){
+if(e.sbomCode===t){
+// 变量
+var o: any = JSON.parse(JSON.stringify(e));
+i.push(Object.assign({
+
+}
+,o))
+}
+
+}
+))
+}
+))
+}
+))
+}
+)),h.default.setPackageMap(i)
+}
+,f.confirmSave=function(e){
+f.setAboutPrice(f.groupList,e,'isPreview')
+}
+,f.setAboutPrice=function(e,t,o){
+f.setGroupMapStroe(e,null==t?void 0:t.getAllPriceData,o)
+}
+,f.handleGroupList=function(e){
+// 变量
+var t: any = f.props,o=t.prdId,i=t.defaultSkuCode,r=t.routerType,n=t.initSkuCode,a=t.servicesRender,s=f.state.groupList,l=0,u=0,c=[],p=[],v=h.default.detailList;
+(null==v?void 0:v.length)&&(null==v||v.forEach((function(t){
+e&&void 0!==t.isClicked&&t.sbomCode===e.sbomCode&&(t.isClicked=!t.isClicked)
+}
+))),h.default.setDetailList(v),null==s||s.forEach((function(t){
+null==t||t.packagePrdList.forEach((function(t){
+var o;
+null==t||null==(o=t.sbomDIYPackageInfos)||o.forEach((function(t){
+e&&e.key===t.key&&(t.isClicked=!t.isClicked),!0===t.isClicked&&(l=f.commonJs.plus(l,null==t?void 0:t.unitPrice),u=f.commonJs.plus(u,null==t?void 0:t.originalPrice),c.push(t),p.push(t.sbomCode))
+}
+))
+}
+))
+}
+));
+var k=i;
+a&&n&&n!==i&&(k=n),c.length<=0&&'CarDetail'===r&&(0,I.setStorage)('package_'+o+'_'+k,[],7),(0,I.setStorage)('chosePackageCode_'+o+'_'+k,p.join(','),7),f.chooseList=c,f.choosePrice=l,f.chooseOriginalPrice=u,f.groupList=s,f.setState({
+groupList:s,isPress:!f.state.isPress
+}
+)
+}
+,f.setPackageByCode=function(e){
+// 变量
+var t: any = f.props,o=t.routerType,i=t.diyPackageInfos,r=f.state.groupList;
+if('CarPreview'===o)return!1;
+// 变量
+var n: any = e?e.split(','):[];
+null==r||r.forEach((function(e,t){
+null==e||e.packagePrdList.forEach((function(o){
+var i;
+null==o||null==(i=o.sbomDIYPackageInfos)||i.forEach((function(o){
+n.forEach((function(i){
+o.sbomCode===i&&(o.isClicked=!1,f.onPress(o,e,t))
+}
+))
+}
+))
+}
+))
+}
+));
+// 变量
+var a: any = [];
+null==r||r.map((function(e){
+null==e||e.packagePrdList.forEach((function(t){
+null==t||t.sbomDIYPackageInfos.map((function(t){
+if(t.isClicked){
+// 变量
+var o: any = JSON.parse(JSON.stringify(t));
+o.groupId=e.groupId,o.attrName=e.groupName,o.packageCode=null==i?void 0:i[0].packageCode,a.push(Object.assign({
+
+}
+,o))
+}
+
+}
+))
+}
+))
+}
+)),h.default.setPackageMap(a),f.setState({
+groupList:r,isPress:!0
+}
+)
+}
+,f.setGroupMapStroe=function(e,t,o){
+// 变量
+var i: any = f.props,r=i.diyPackageInfos,n=(i.disPrdId,i.defaultSkuCode,i.routerType),a=h.default.detailList,s=[];
+(null==a?void 0:a.length)&&(null==a||a.forEach((function(e){
+(void 0===e.isClicked||e.isClicked)&&s.push(e)
+}
+))),h.default.setDetailList(s);
+// 变量
+var l: any = [];
+null==e||e.map((function(e){
+null==e||e.packagePrdList.forEach((function(t){
+null==t||t.sbomDIYPackageInfos.map((function(t){
+if(t.isClicked){
+// 变量
+var o: any = JSON.parse(JSON.stringify(t));
+o.attrName=e.groupName,o.groupId=e.groupId,o.packageCode=null==r?void 0:r[0].packageCode,l.push(Object.assign({
+
+}
+,o))
+}
+
+}
+))
+}
+))
+}
+)),'CarDetail'===n?f.props.changeDiyChoose&&f.props.changeDiyChoose(l):t&&t(l),h.default.setPackageMap(l)
+}
+,f.renderDom=function(e,o){
+var i,r=f.props,n=r.DarkStyle,a=r.themeStyles,s=function(e){
+return e.isClicked?t.conditionCheckboxSelected:n?p.default.darkCarCheckBox:p.default.carCheckBox
+}
+;
+return null==(i=Object.keys(f.objectOrder(null==e?void 0:e.packagePrdList)))?void 0:i.map((function(t){
+var i;
+return null==e||null==(i=e.packagePrdList[t].sbomDIYPackageInfos)?void 0:i.map((function(t,i){
+var r;
+return(0,L.jsxs)(u.View,{
+style:[a.containerCommon,t.isClicked&&a.containerCenClick,{
+marginBottom:(null==(r=e.packageMap)?void 0:r.length)-1===i?0:12
+}
+],children:[(0,L.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+f.onPress(t,e,o)
+}
+,style:a.checkWrapper,children:(0,L.jsx)(u.Image,{
+style:a.checkbox,source:s(t)
+}
+)
+}
+),(0,L.jsxs)(u.TouchableOpacity,{
+onPress:function(){
+f.goProductDetail(t,e,o)
+}
+,activeOpacity:1,style:a.rightWrapper,onPressIn:function(e){
+f.pressInLocationX=e.nativeEvent.pageX,f.pressInLocationY=e.nativeEvent.pageY
+}
+,onPressOut:function(e){
+f.pressOutLocationX=e.nativeEvent.pageX,f.pressOutLocationY=e.nativeEvent.pageY
+}
+,children:[(0,L.jsx)(k.default,{
+imgStyle:a.imgCls,imgUri:c.CommonUtils.getCDNpath(1)+t.photoPath+'428_428_'+t.photoName
+}
+),(0,L.jsxs)(u.View,{
+style:[a.sbomAbbrWrapper],children:[(0,L.jsx)(u.Text,{
+style:[t.isClicked?a.sbomAbbrClick:a.sbomAbbr],ellipsizeMode:'tail',numberOfLines:1,children:t.sbomName
+}
+),t.unitPrice?(0,L.jsx)(u.Text,{
+style:[t.isClicked?a.unitPriceClick:a.unitPrice],children:'\xa5'+f.commonJs.priceSwitch(t.unitPrice)
+}
+):null]
+}
+)]
+}
+)]
+}
+,t.sbomAbbr+(null==i?void 0:i.toString()))
+}
+))
+}
+))
+}
+,f.imgProportion=function(){
+// 变量
+var e: any = 1.78;
+return f.commonJs.isMedium()?e=3.168:f.commonJs.isLarge()&&(e=1),e
+}
+,f.renderWebFlatlist=function(){
+// 变量
+var e: any = f.props,t=e.routerType,o=e.themeStyles,i=f.state.groupList;
+return'CarPreview'===t?(0,L.jsx)(u.FlatList,{
+ref:function(e){
+return f._flatlist=e
+}
+,showsVerticalScrollIndicator:!1,data:i,renderItem:function(e){
+// 变量
+var t: any = e.item,o=e.index;
+return f.renderItem(t,o)
+}
+,keyExtractor:function(e,t){
+return(null==t?void 0:t.toString())+t
+}
+
+}
+):null==i?void 0:i.map((function(e,t){
+return'relatesbom'!==e.groupName?(0,L.jsxs)(u.View,{
+style:[(null==i?void 0:i.length)-1!==t&&{
+marginBottom:8
+}
+],children:[(0,L.jsx)(u.View,{
+style:[o.containerTitleCom,o.containerTitle],children:(0,L.jsx)(u.Text,{
+ellipsizeMode:'tail',numberOfLines:1,style:o.groupName,children:e.groupName
+}
+)
+}
+),f.renderDom(e,t)]
+}
+):(0,L.jsx)(L.Fragment,{
+
+}
+)
+}
+))
+}
+,f.renderApkFlatlist=function(){
+// 变量
+var e: any = f.state.groupList;
+return(0,L.jsx)(u.FlatList,{
+ref:function(e){
+return f._flatlist=e
+}
+,showsVerticalScrollIndicator:!1,data:e,renderItem:function(e){
+// 变量
+var t: any = e.item,o=e.index;
+return f.renderItem(t,o)
+}
+,keyExtractor:function(e,t){
+return(null==t?void 0:t.toString())+t
+}
+
+}
+)
+}
+,t=(0,_.getBussImgArray)(),f.commonJs=v.default.call(f);
+// 变量
+var S: Function = f.props.diyPackageInfos,O=(0,P.toJS)(h.default.packageMap);
+return null==S||null==(o=S[0])||null==(r=o.groupList)||r.forEach((function(e){
+var t;
+(null==e?void 0:e.packagePrdList)&&(null==e||null==(t=e.packagePrdList)||t.forEach((function(e){
+e.sbomDIYPackageInfos.forEach((function(e){
+var t,o,i,r;
+e.isClicked=!1,e.key=e.sbomCode+e.sbomAbbr,'CarPreview'===(null==(t=f.props)?void 0:t.routerType)&&(null==(o=f.props)||null==(i=o.carPreviewList)||i.forEach((function(t){
+(null==e?void 0:e.key)===(null==t?void 0:t.key)&&(e.isClicked=!0)
+}
+))),'CarDetail'===(null==(r=f.props)?void 0:r.routerType)&&O.forEach((function(t){
+e.sbomCode===(null==t?void 0:t.sbomCode)&&(e.isClicked=!0)
+}
+))
+}
+))
+}
+)))
+}
+)),f.state={
+groupList:null==S||null==(s=S[0])?void 0:s.groupList,isPress:!1
+}
+,f
+}
+return(0,s.default)(l,e),(0,r.default)(l,[{
+key:"componentDidMount",value:function(){
+var e,t=this;
+if(this.props.onRef&&this.props.onRef(this),'CarPreview'===this.props.routerType){
+var o,i,r={
+
+}
+,n=this.commonJs.isLarge()?56:48,a=this.commonJs.isLarge()?112:72,s=this.commonJs.isLarge()?16:12,l=this.commonJs.isLarge()?24:8,c=[],p=0,f=C.default.filter(null==(o=this.state)?void 0:o.groupList,(function(e){
+return'relatesbom'!==e.groupName
+}
+))||[],v=!0;
+null==f||f.forEach((function(e){
+if(v){
+// 变量
+var o: any = t.objectOrder(null==e?void 0:e.packagePrdList),n=[];
+for(var a in o){
+var s;
+if(Object.prototype.hasOwnProperty.call(o,a))null==(s=o[a].sbomDIYPackageInfos)||s.map((function(e){
+n.push(e)
+}
+))
+}
+i=C.default.findIndex(n,(function(e){
+var o,i;
+return e.key===(null==(o=t.props)||null==(i=o.choosedConfig)?void 0:i.key)
+}
+))+1,c.push(n.length),r=e,v=0===i
+}
+
+}
+));
+var h=C.default.findIndex(f,(function(e){
+var t;
+return(null==e?void 0:e.groupId)===(null==(t=r)?void 0:t.groupId)
+}
+))+1;
+c.forEach((function(e,t){
+h-1>t?p+=n+(a+s)*e+l:h-1===t&&(p+=n+(a+s)*(i-1))
+}
+)),this.extraTimer.scroll=setTimeout((function(){
+var e,o;
+(null==(e=t.props)||null==(o=e.choosedConfig)?void 0:o.key)&&t._flatlist.scrollToOffset({
+animated:!0,offset:p
+}
+)
+}
+),100),this.handleGroupList(),this.saveOptPriceListener=u.DeviceEventEmitter.addListener('saveOptPrice',this.confirmSave)
+}
+else'web'!==u.Platform.OS&&'CarDetail'===this.props.routerType&&(this.eventListener=u.DeviceEventEmitter.addListener('NativeCallAction',this.hanlePkgData));
+null!=(e=this.props)&&e.choiceSbomCode&&(this.timer=setTimeout((function(){
+var e;
+t.setPackageByCode(null==(e=t.props)?void 0:e.choiceSbomCode)
+}
+),1e3))
+}
+
+}
+,{
+key:"UNSAFE_componentWillMount",value:function(){
+this.props.platform.isMp||(this._panResponder=u.PanResponder.create({
+onMoveShouldSetPanResponderCapture:function(){
+return!0
+}
+
+}
+),this._panResponderApk=u.PanResponder.create({
+onMoveShouldSetPanResponderCapture:function(){
+return!1
+}
+
+}
+))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e,t,o=this;
+null==(e=this.saveOptPriceListener)||e.remove(),null==(t=this.eventListener)||t.remove(),this.timer&&clearTimeout(this.timer),Object.keys(this.extraTimer).forEach((function(e){
+o.extraTimer[e]&&clearTimeout(o.extraTimer[e])
+}
+))
+}
+
+}
+,{
+key:"shouldComponentUpdate",value:function(e,t){
+return this.props.sbomCode!==e.sbomCode||(this.state.isPress!==t.isPress||this.props.platform.width!==e.platform.width)
+}
+
+}
+,{
+key:"UNSAFE_componentWillReceiveProps",value:function(e){
+var t,o,i,r,n,a,s=this;
+JSON.stringify(null==e?void 0:e.diyPackageInfos)!==JSON.stringify(null==(t=this.props)?void 0:t.diyPackageInfos)&&(null==e||null==(o=e.diyPackageInfos)||null==(i=o[0])||null==(r=i.groupList)||r.forEach((function(e){
+var t;
+(null==e?void 0:e.packagePrdList)&&(null==e||null==(t=e.packagePrdList)||t.forEach((function(e){
+e.sbomDIYPackageInfos.forEach((function(e){
+var t,o,i;
+e.key=e.sbomCode+e.sbomAbbr,e.isClicked=!1,'CarPreview'===(null==(t=s.props)?void 0:t.routerType)&&(null==(o=s.props)||null==(i=o.carPreviewList)||i.forEach((function(t){
+(null==e?void 0:e.key)===(null==t?void 0:t.key)&&(e.isClicked=!0)
+}
+)))
+}
+))
+}
+)))
+}
+)),this.setState({
+groupList:null==e||null==(n=e.diyPackageInfos)||null==(a=n[0])?void 0:a.groupList
+}
+))
+}
+
+}
+,{
+key:"onPress",value:function(e,t,o){
+// 变量
+var i: any = this,r=this.props,n=r.diyPackageInfos,a=r.disPrdId,s=r.defaultSkuCode,l=r.routerType,u=r.initSkuCode,p=r.servicesRender,f=r.sbomList,v=r.attrViewList,h=r.contentConfig,k=this.props,C=k.route,P=k.sbomCode;
+this.handleGroupList(e),'CarDetail'===this.props.routerType&&this.setAboutPrice(this.groupList);
+var y=s;
+p&&u&&u!==s&&(y=u),(0,I.getStorage)("sbom_"+a+"_"+y).then((function(r){
+var s,u,p,k,y,I,_='900027207',L=(0,c.t)('car_preview'),S='car_preview_package',D=(0,c.t)('car_options_preview'),O='p_carPreview',x=(0,c.t)('config_info'),w='r_carPreview_attribute';
+if('CarDetail'===l)_='900027106',L=(0,c.t)('car_main_page'),S='car_package',D=(0,c.t)('car_prd_detail'),O='p_carDetail',x=(0,c.t)('product_select'),w='r_carDetail_select';
+else{
+var T=(0,b.initRoutes)(f,v,h).routes;
+C=T[T.length-1],P=r
+}
+c.Report.eventTracingReport({
+actionCode:_,actionName:L+'-'+(null==(s=C)?void 0:s.title)+"-"+(0,c.t)('choose_option_prd'),eventType:'2',content:{
+comId:S,productId:null==a?void 0:a.toString(),SKUCode:P,DPCode:null==n?void 0:n[0].packageCode,GPCode:null==t||null==(u=t.groupId)?void 0:u.toString(),DPSKUCode:e.sbomCode,tabName:null==(p=C)?void 0:p.title,tabIndex:(Number(null==(k=C)?void 0:k.key)+1).toString(),subTabName:null==t?void 0:t.groupName,subTabIndex:o.toString(),type:e.isClicked?'1':'2',channelId:(null==(y=i.props)?void 0:y.channelId)||'0',saleId:(null==(I=i.props)?void 0:I.saleId)||''
+}
+,pageCatCode:O,pageCatName:D,resSiteCode:w,resSiteName:x,pageId:'CarDetail'===l?'p_carDetail_'+a:'p_carPreview_'+a
+}
+),c.Report.execReportData('',!0)
+}
+))
+}
+
+}
+,{
+key:"goProductDetail",value:(f=(0,o.default)((function*(e,t,o){
+// 变量
+var i: any = this;
+if(this.pressInLocationX&&this.pressInLocationY&&this.pressOutLocationX&&this.pressOutLocationY&&Math.abs(this.pressOutLocationX-this.pressInLocationX)<3&&Math.abs(this.pressOutLocationY-this.pressInLocationY)<3){
+// 变量
+var r: any = yield c.RouterUtils.getProductDetailUrlAllByType('0',null==e?void 0:e.disPrdId,null==e?void 0:e.sbomCode),n=this.props,a=n.disPrdId,s=n.routerType,l=n.diyPackageInfos,u=n.defaultSkuCode,p=n.sbomList,f=n.attrViewList,v=n.contentConfig,h=this.props,k=h.route,C=h.sbomCode;
+(0,I.getStorage)("sbom_"+a+"_"+u).then((function(n){
+var u,h,P,y,I,_,L='900027207',S=(0,c.t)('car_preview'),D='car_preview_package',O=(0,c.t)('car_options_preview'),x='p_carPreview',w=(0,c.t)('config_info'),T='r_carPreview_attribute';
+if('CarDetail'===s)L='900027109',S=(0,c.t)('car_main_page'),D='car_package',O=(0,c.t)('car_prd_detail'),x='p_carDetail',w=(0,c.t)('product_select'),T='r_carDetail_select';
+else{
+// 变量
+var E: any = (0,b.initRoutes)(p,f,v).routes;
+k=E[E.length-1],C=n
+}
+if(c.Report.eventTracingReport({
+actionCode:L,actionName:S+"-"+(null==(u=k)?void 0:u.title)+"-"+(0,c.t)('view_option_page'),eventType:'2',content:{
+comId:D,productId:null==a?void 0:a.toString(),SKUCode:C,DPCode:null==l?void 0:l[0].packageCode,GPCode:null==t||null==(h=t.groupId)?void 0:h.toString(),DPSKUCode:e.sbomCode,tabName:null==(P=k)?void 0:P.title,tabIndex:(Number(null==(y=k)?void 0:y.key)+1).toString(),subTabName:t.groupName,subTabIndex:null==o?void 0:o.toString(),channelId:(null==(I=i.props)?void 0:I.channelId)||'0',saleId:(null==(_=i.props)?void 0:_.saleId)||''
+}
+,pageCatCode:x,pageCatName:O,resSiteCode:T,resSiteName:w,pageId:'CarDetail'===s?'p_carDetail_'+a:'p_carPreview_'+a
+}
+),c.Report.execReportData('',!0),'CarPreview'===s)return!1;
+c.RouterUtils.gotoPage(r)
+}
+))
+}
+
+}
+)),function(e,t,o){
+return f.apply(this,arguments)
+}
+)
+}
+,{
+key:"objectOrder",value:function(e){
+for(var t=e?Object.keys(e).sort():[],o={
+
+}
+,i=0;
+i<t.length;
+i++)o[t[i]]=e[t[i]];
+return o
+}
+
+}
+,{
+key:"renderItem",value:function(e,t){
+var o,i=this.props.themeStyles;
+return'relatesbom'!==e.groupName?(0,L.jsxs)(u.View,{
+style:[(null==(o=this.state.groupList)?void 0:o.length)-1!==t&&i.itemMarginBottom],children:[(0,L.jsx)(u.View,{
+style:[i.containerTitleCom,i.containerTitle],children:(0,L.jsx)(u.Text,{
+style:i.groupName,ellipsizeMode:'tail',numberOfLines:1,children:e.groupName
+}
+)
+}
+),this.renderDom(e,t)]
+}
+):(0,L.jsx)(L.Fragment,{
+
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.props,t=e.platform,o=e.themeStyles;
+return(0,L.jsx)(u.View,Object.assign({
+style:o.contentBox
+}
+,t.isWeb?this._panResponder.panHandlers:this._panResponderApk.panHandlers,{
+children:t.isWeb?this.renderWebFlatlist():this.renderApkFlatlist()
+}
+))
+}
+
+}
+]);
+var f
+}
+)(l.Component);
+_e.default=(0,y.injectLayout)(f.default)(O)
+}
+),"660b8a42fbcc719b1ab67976848cf23483d74550e967426bfe05293675afe4c3",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","97ac834c878a891933a83fc39bafc6f29342697f52eff7d75da1c14920e5bb2a","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","eb8cb06cadaf313bd9efcc9077a4388a41fbc0dd4fe9037bdd48be20e105b037","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]),n=r(d[2]);
+e.default=function(c,l,s){
+return t.StyleSheet.create({
+contentBox:{
+flex:1,width:(0,n.getAttrContentBoxWidth)(l,s),alignSelf:'center'
+}
+,containerTitle:{
+justifyContent:'flex-start'
+}
+,checkWrapper:{
+display:'flex',justifyContent:'center',paddingLeft:12
+}
+,rightWrapper:{
+flex:1,display:'flex',flexDirection:'row',padding:12,paddingLeft:0
+}
+,containerTitleCom:{
+height:48,paddingBottom:8,paddingTop:18
+}
+,groupName:Object.assign({
+
+}
+,c.T10,c.C12),sbomAbbrWrapper:{
+marginLeft:16,flex:1,justifyContent:'center'
+}
+,sbomAbbr:Object.assign({
+
+}
+,c.T9,c.C13,{
+marginBottom:2
+}
+),sbomAbbrClick:Object.assign({
+
+}
+,c.T10,c.C11,{
+marginBottom:2
+}
+),unitPrice:Object.assign({
+
+}
+,c.T7,c.C15),unitPriceClick:Object.assign({
+
+}
+,c.T7,c.C13),containerCommon:{
+flexDirection:'row',borderRadius:l.isPc?8:16,borderColor:o.CommonUtils.colorRgba(c.C12.color,.15),borderWidth:.5,borderStyle:'solid'
+}
+,containerCenClick:{
+borderWidth:1,borderColor:o.CommonUtils.colorRgba(c.C12.color,.9)
+}
+,checkbox:{
+width:24,height:24,marginRight:12
+}
+,itemMarginBottom:{
+marginBottom:8
+}
+,imgCls:{
+width:48,height:48,borderRadius:8
+}
+
+}
+)
+}
+
+}
+),"97ac834c878a891933a83fc39bafc6f29342697f52eff7d75da1c14920e5bb2a",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),n=e(_r(d[3])),u=e(_r(d[4])),o=e(_r(d[5])),a=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = l(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,u=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var a: any = u?Object.getOwnPropertyDescriptor(e,o):null;
+a&&(a.get||a.set)?Object.defineProperty(n,o,a):n[o]=e[o]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[6])),f=_r(d[7]),i=_r(d[8]);
+// 函数
+function l(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(l=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function c(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(c=function(){
+return!!e
+}
+)()
+}
+var p=(function(e){
+// 函数
+function a(e: any): any {
+return(0,t.default)(this,a),r=this,o=a,f=[e],o=(0,u.default)(o),(0,n.default)(r,c()?Reflect.construct(o,f||[],(0,u.default)(r).constructor):o.apply(r,f));
+var r,o,f
+}
+return(0,o.default)(a,e),(0,r.default)(a,[{
+key:"shouldComponentUpdate",value:function(){
+return!1
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.props,t=e.imgStyle,r=e.imgUri;
+return(0,i.jsx)(f.FastImageView,{
+imgStyle:t,imgUri:r,resizeMode:'contain'
+}
+)
+}
+
+}
+])
+}
+)(a.Component);
+_e.default=p
+}
+),"eb8cb06cadaf313bd9efcc9077a4388a41fbc0dd4fe9037bdd48be20e105b037",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o=e(_r(d[1])),i=e(_r(d[2])),r=e(_r(d[3])),n=e(_r(d[4])),a=e(_r(d[5])),l=e(_r(d[6])),s=e(_r(d[7])),c=U(_r(d[8])),p=_r(d[9]),u=_r(d[10]),h=_r(d[11]),f=_r(d[12]),v=_r(d[13]),P=e(_r(d[14])),y=U(_r(d[15])),b=e(_r(d[16])),C=_r(d[17]),w=_r(d[18]),S=_r(d[19]),x=_r(d[20]),I=_r(d[21]),_=_r(d[22]),L=e(_r(d[23])),k=_r(d[24]),j=_r(d[25]),T=_r(d[26]),D=_r(d[27]),O=e(_r(d[28])),R=_r(d[29]),N=_r(d[30]),E=_r(d[31]),A=_r(d[32]),V=_r(d[33]);
+// 函数
+function B(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(B=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function U(e: any, t: any): any {
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = B(t);
+if(o&&o.has(e))return o.get(e);
+var i={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var a: any = r?Object.getOwnPropertyDescriptor(e,n):null;
+a&&(a.get||a.set)?Object.defineProperty(i,n,a):i[n]=e[n]
+}
+return i.default=e,o&&o.set(e,i),i
+}
+// 函数
+function M(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(M=function(){
+return!!e
+}
+)()
+}
+var W=p.DarkStore.theme,F=(0,h.modelStyles)(W),H=(0,c.memo)((function(e){
+var t,o,i=e.sbomList,r=void 0===i?[]:i,n=e.detailList,a=e.totalPrice,l=e.commonJs,h=e.benefitsText,f=e.innerTotal,v=(0,c.useState)(!0),P=(0,s.default)(v,2),w=P[0],S=P[1],x=(0,c.useState)(0),I=(0,s.default)(x,2),k=I[0],j=I[1],T=b.default.uniqWith(n,b.default.isEqual),D=null!=(t=null==(o=r[0])?void 0:o.sbomAttrList)?t:[],O=function(e){
+return e.productType===_.DETAIL_PRODUCT_TYPES.mainEnjoyedPromo?(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsx)(u.Text,{
+style:F.detailName,numberOfLines:1,ellipsizeMode:"tail",children:(0,p.t)('bookingPromotion')
+}
+),(0,V.jsx)(u.Text,{
+style:F.detailPrice,children:null!=e&&e.enjoyedPromotionPrice?"- \xa5 "+l.priceSwitch(e.enjoyedPromotionPrice):(0,p.t)('without_price')
+}
+)]
+}
+):e.productType===_.DETAIL_PRODUCT_TYPES.mainPrePromo?(0,V.jsxs)(V.Fragment,{
+children:[(null==(t=e.prePromoComDiscountList)?void 0:t.length)>0&&e.prePromoComDiscountList.map((function(e){
+return(0,V.jsxs)(u.View,{
+style:F.prePromoItem,children:[(0,V.jsxs)(u.View,{
+style:F.detailListItem,children:[(0,V.jsx)(u.Text,{
+style:[F.detailName,F.preCommercialPromotion],numberOfLines:1,ellipsizeMode:"tail",children:(0,p.t)('prePromotion')
+}
+),(0,V.jsx)(u.Text,{
+style:F.detailPrice,children:null!=e&&e.promotionDiscount?"- \xa5 "+l.priceSwitch(e.promotionDiscount):(0,p.t)('without_price')
+}
+)]
+}
+),e.promotionInfoDesc?(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsx)(u.Text,{
+style:[F.promotionInfoDesc,F.subDetailListItem],children:(0,p.t)('preCondition')
+}
+),(0,V.jsx)(u.Text,{
+style:F.promotionInfoDesc,children:e.promotionInfoDesc
+}
+)]
+}
+):null]
+}
+)
+}
+)),l.hasPackagePrds(T)?(0,V.jsx)(u.View,{
+style:F.line
+}
+):null]
+}
+):'main'!==e.productType&&l.diaplyRemainDetailItem(e)?(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsx)(u.Text,{
+style:F.detailName,numberOfLines:1,ellipsizeMode:"tail",children:null==e?void 0:e.sbomName
+}
+),(0,V.jsx)(u.Text,{
+style:F.detailPrice,children:null!=e&&e.withoutPrice?(0,p.t)('without_price'):"\xa5 "+l.priceSwitch(null==e?void 0:e.unitPrice)
+}
+)]
+}
+):null;
+var t
+}
+,R=function(e){
+// 变量
+var t: any = e.nativeEvent.layout.height;
+j(t/18-.5)
+}
+,N=function(){
+S(!w)
+}
+,E=(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsxs)(u.View,{
+style:F.subTotalPriceBar,children:[(0,V.jsxs)(u.View,{
+style:F.detailListItem,children:[(0,V.jsx)(u.Text,{
+style:[F.detailName,F.preCommercialPromotion],numberOfLines:1,ellipsizeMode:"tail",children:(0,p.t)('estTotalPrice')+" *"
+}
+),(0,V.jsx)(u.Text,{
+style:[F.detailPrice,F.totalPrice],children:(0,y.formatPrice)(a,T)
+}
+)]
+}
+),(0,V.jsx)(u.Text,{
+style:F.finalPriceTip,children:"* "+(0,p.t)('finalPriceTip')
+}
+)]
+}
+),(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsx)(u.View,{
+style:F.bottomBenefits,onLayout:R,children:(0,V.jsx)(u.Text,{
+style:F.benefits,children:h
+}
+)
+}
+),(0,V.jsxs)(u.TouchableOpacity,{
+style:[F.bottomBenefitsShow,k>2&&!w&&{
+paddingBottom:20,marginBottom:3
+}
+],activeOpacity:1,onPress:N,children:[(0,V.jsx)(u.Text,{
+style:[F.benefits,{
+width:'100%'
+}
+],numberOfLines:w?2:void 0,children:h
+}
+),k<2?null:w&&(0,V.jsxs)(L.default,{
+start:{
+x:0,y:0
+}
+,end:{
+x:1,y:0
+}
+,locations:[0,.4,1],colors:[p.CommonUtils.colorRgba(W.C37.color,0),W.C37.color,W.C37.color],style:F.gradual,children:[(0,V.jsx)(u.Text,{
+style:F.ellips,children:"..."
+}
+),(0,V.jsx)(u.View,{
+style:F.arrowUpIcon,children:(0,V.jsx)(C.SvgIcon,{
+iconName:'ic_public_arrow_up_0',viewBox:'300 -200 1340 1340',width:p.PlatformUtils.isHarmony()?'14':'12',height:"12",normalCol:W.C24.color,opacity:W.C24.opacity
+}
+)
+}
+)]
+}
+)||(0,V.jsx)(u.View,{
+style:[F.arrowUpIcon,{
+bottom:3
+}
+],children:(0,V.jsx)(C.SvgIcon,{
+iconName:'ic_public_arrow_down_0',viewBox:'300 -200 1340 1340',width:p.PlatformUtils.isHarmony()?'14':'12',height:"12",normalCol:W.C24.color,opacity:W.C24.opacity
+}
+)
+}
+)]
+}
+)]
+}
+)]
+}
+);
+return(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsxs)(u.ScrollView,{
+showsVerticalScrollIndicator:!1,children:[(0,V.jsxs)(u.View,{
+style:F.modalScroll,children:[D.map((function(e,t){
+// 变量
+var o: any = e.attrPriceDesc||e.attrValueList[0].attrPriceDesc;
+return Boolean(o)&&(0,V.jsxs)(u.View,{
+style:F.detailListItem,children:[(0,V.jsx)(u.Text,{
+style:F.detailName,numberOfLines:1,ellipsizeMode:"tail",children:e.attrName+" | "+e.attrValueList[0].attrValue
+}
+),(0,V.jsx)(u.Text,{
+style:F.detailPrice,children:o
+}
+)]
+}
+,t)
+}
+)),null==T?void 0:T.map((function(e,t){
+// 变量
+var o: any = O(e);
+return o&&(0,V.jsx)(u.View,{
+style:[F.detailListItem,e.productType===_.DETAIL_PRODUCT_TYPES.mainPrePromo&&F.prePromoDetailRow],children:o
+}
+,t)
+}
+))]
+}
+),f&&E]
+}
+),!f&&E]
+}
+)
+}
+),(function(e,t){
+return JSON.stringify(e)===JSON.stringify(t)
+}
+)),q=(0,c.memo)((function(e){
+var t,o=e.isPc,i=e.isQuerySbomFalse,r=e.priceLoading,n=e.reloadQueryFalse,a=e.sbomList,l=void 0===a?[]:a,s=e.detailList,c=void 0===s?[]:s,h=e.open,f=void 0!==h&&h,v=e.chooseItem,P=e.totalPrice,b=e.cheapPrice,w=e.flag,S=e.totalPriceStr,x=p.DarkStore.darkBool,I=function(e){
+return x?W.C13.color:e?W.C18.color:W.C13.color
+}
+,_=function(){
+return o?(0,V.jsx)(u.Text,{
+style:Object.assign({
+
+}
+,W.T3,W.C18),children:(0,p.t)('priceDetail')
+}
+):(0,V.jsx)(p.Hoverable,{
+children:function(e){
+return(0,V.jsx)(u.View,{
+children:(0,V.jsx)(C.SvgIcon,{
+iconName:f?'ic_public_arrow_up_0':'ic_public_arrow_down_0',viewBox:'300 -200 1340 1340',width:p.PlatformUtils.isHarmony()?'22':'16',height:"16",isActive:e,normalCol:e?W.C21.color:W.C24.color,opacity:e?W.C21.opacity:W.C24.opacity
+}
+)
+}
+)
+}
+
+}
+)
+}
+,L=null;
+return r?L=(0,V.jsx)(u.View,{
+style:F.wholePrice,children:(0,V.jsx)(u.Text,{
+style:F.unitPriceDec,children:(0,p.t)('is_calculating')
+}
+)
+}
+):i?L=(0,V.jsx)(p.Hoverable,{
+children:function(e){
+return(0,V.jsxs)(u.View,{
+style:F.wholePrice,children:[(0,V.jsx)(u.Text,{
+style:F.unitPriceDec,children:(0,p.t)('loading_failed')
+}
+),(0,V.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onPress:n,children:(0,V.jsx)(u.View,{
+children:(0,V.jsx)(C.SvgIcon,{
+iconName:"ic_public_rotate",width:16,height:16,normalCol:I(e),opacity:1
+}
+)
+}
+)
+}
+)]
+}
+)
+}
+
+}
+):'noPrice'!==w&&'hasPrice'!==w||0!==P||0!==b?L=0!==P||j.previewScene.isPreview?(0,V.jsx)(u.TouchableOpacity,{
+activeOpacity:1,style:F.wholePrice,onPress:function(){
+return v()
+}
+,children:(0,V.jsx)(u.View,{
+children:null!=P?(0,V.jsxs)(u.View,{
+style:F.wholePrice,children:[!o&&(0,V.jsxs)(u.Text,{
+style:F.unitPriceDec,children:[(0,p.t)('estTotalPrice'),":"]
+}
+),(0,V.jsxs)(u.View,{
+style:F.totalWholePrice,children:[(0,V.jsx)(u.Text,{
+style:F.unitPriceWod,children:S
+}
+),(0,V.jsx)(u.View,{
+style:F.svgStyle,children:_()
+}
+)]
+}
+)]
+}
+):null
+}
+)
+}
+):null:(t=(0,y.isPriceNotConsistent)(c,l)?'\uffe5----':(0,p.t)('without_price'),L=(0,V.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return v()
+}
+,children:(0,V.jsxs)(u.View,{
+style:F.withoutPriceWrapper,children:[(0,V.jsx)(u.Text,{
+style:F.withoutPrice,children:t
+}
+),_()]
+}
+)
+}
+)),(0,V.jsx)(u.View,{
+style:F.priceContent,children:L
+}
+)
+}
+)),Q=(0,f.observer)(t=(function(e){
+// 函数
+function t(e: any): any {
+var r,l,c,h;
+return(0,i.default)(this,t),l=this,c=t,h=[e],c=(0,a.default)(c),(r=(0,n.default)(l,M()?Reflect.construct(c,h||[],(0,a.default)(l).constructor):c.apply(l,h))).btnText='',r.linkFinished=!0,r.apkGotourl='',r.getLocCode=function(){
+// 变量
+var e: any = r.props,t=e.defaultSkuCode,o=e.initSkuCode,i=t;
+return e.servicesRender&&o&&(i=o),i
+}
+,r.buyNow=(0,o.default)((function*(){
+// 变量
+var e: any = r.props.platform,t=yield r.getOrderConfirmedUrl();
+if(r.buyReport(t),r.state.isLogin)p.RouterUtils.gotoPage(t);
+else if(e.isWeb)r.loginWeb();
+else{
+e.isApp&&(r.apkGotourl=t);
+p.RouterUtils.gotoPage('vmall://com.vmall.client/home/login')
+}
+
+}
+)),r.replaceOrder=(0,o.default)((function*(){
+var e,t,o=r.props,i=o.orderCode,n=o.isHisData,a=o.agreementList,l=o.sbomList[0].sbomCode,s=[],c=r.state.detailList;
+c=(null==(e=c)?void 0:e.length)>0?c:r.props.detailList;
+// 变量
+var p: any = [],u=[];
+if(null==(t=c)||t.forEach((function(e){
+var t,o,i,n,a;
+if('main'===(null==(t=e)?void 0:t.productType)&&null!=(o=e)&&o.isRelateProduct)u.push(Object.assign({
+
+}
+,e,r._getRelatesbomInfo(l,null==(a=e)?void 0:a.sbomCode)));
+else if(!(_.NOT_PACKAGE_PRODUCT_TYPES.includes(null==(i=e)?void 0:i.productType)||null!=(n=e)&&n.isRelateProduct)){
+var s;
+e=Object.assign({
+
+}
+,e,r._getDiysbomInfo(l,null==(s=e)?void 0:s.disPrdId)),p.push(e)
+}
+
+}
+)),0===u.length&&0===p.length)s=[{
+itemId:l,itemType:'S0',qty:1
+}
+];
+else if(p.length>0||u.length>0){
+var h,f=b.default.size(u)>0?u[0].packageCode:null==(h=p[0])?void 0:h.packageCode,v=[];
+b.default.forEach(p,(function(e){
+var t;
+v.push({
+itemId:e.sbomCode,itemProp:{
+dp_group:null==e||null==(t=e.groupId)?void 0:t.toString()
+}
+,itemType:'DP',qty:'1'
+}
+)
+}
+)),u.length>0&&u.forEach((function(e){
+var t;
+v.push({
+itemId:null==e?void 0:e.sbomCode,itemProp:{
+dp_group:null==e||null==(t=e.groupId)?void 0:t.toString()
+}
+,itemType:'DP',qty:'1'
+}
+)
+}
+)),s=[{
+itemId:l,itemProp:{
+dp_package_code:f
+}
+,itemType:'DP',qty:'1',subOrderItemReqArgs:v
+}
+]
+}
+var P={
+refOrderCode:i,orderReqList:s
+}
+;
+if(null!=a&&a.length){
+var y=!0,C=[];
+if(a.forEach((function(e){
+C.push({
+protocol:e.placeholder,version:e.version
+}
+),y=!!e.version
+}
+)),C.length&&y)P.purchaseAgreement=JSON.stringify(C);
+else{
+var w=yield r.getCarVersion(),I=r.getAgreeParam(w);
+I&&(P.purchaseAgreement=I)
+}
+
+}
+(0,x.replaceCarProduct)(P).then((function(e){
+if('0'!==e.code)return Promise.reject(e);
+r.clearPackLocData(),r.goToOrderDetail(i,n)
+}
+)).catch((function(e){
+// 变量
+var t: any = (0,k.getResCode)(e);
+t===S.CAR_ERR.UPDATE_DEPOSIT&&(0,N.updateDepositBalance)(i).catch((function(){
+return null
+}
+)),(0,k.showErrorToast)('carpreview',(0,S.getCarErrTip)(t))
+}
+))
+}
+)),r.getAgreeParam=function(e){
+// 变量
+var t: any = [];
+return e.forEach((function(e){
+t.push({
+protocol:e.placeholder,version:e.version
+}
+)
+}
+)),t.length?JSON.stringify(t):''
+}
+,r.getCarVersion=(0,o.default)((function*(){
+// 变量
+var e: any = r.props.prdId,t=[];
+try{
+var o,i=yield(0,x.queryCarProductBySbomCode)(e,'');
+t=null==i||null==(o=i.displayPrdVo)?void 0:o.agreementList
+}
+catch(e){
+t=[]
+}
+return t
+}
+)),r.removePageBuyNow=function(){
+// 变量
+var e: any = r.props.platform;
+e.isApp&&(p.PlatformUtils.isHarmony()||p.RnBridge.invokeVmallNative('page','finished',{
+isBackAnimated:0
+}
+),e.isIOS||p.RnBridge.invokeVmallNative('page','finishedRnCarDetailActivity',{
+isBackAnimated:0
+}
+))
+}
+,r.clearPackLocData=function(){
+// 变量
+var e: any = r.props,t=e.prdId,o=e.defaultSkuCode;
+e.platform.isIOS&&u.NativeModules.VmallNative.invokeNative({
+service:'page',action:'finished',params:{
+isBackAnimated:0
+}
+
+}
+),(0,k.setStorage)("chosePackageCode_"+t+"_"+o,'',7),(0,k.setStorage)("sbom_"+t+"_"+o,'',7),(0,k.setStorage)("carDetailPkg_"+t+"_"+o,'',7),(0,k.setStorage)("package_"+t+"_"+o,[],7)
+}
+,r.goToOrderDetail=function(e,t){
+// 变量
+var o: any = r.props.platform;
+P.default.setIndex(0),P.default.setRoute([]),P.default.setInItSbomCode(),P.default.clearAttr(),P.default.clearPackageMap(),r.removePageBuyNow();
+// 变量
+var i: any = (o.isPc?p.Service.webDomain:p.Service.wapDomain)+"car/orderdetail/index.html?&orderCode="+e+"&isLive="+t;
+p.PlatformUtils.isApp()&&(i="vmall://com.vmall.client/commonh5/singlepage?url="+encodeURIComponent(i)),p.PlatformUtils.isHarmony()?p.RnBridge.invokeVmallNative('router','navigation',{
+url:i,navType:'replace'
+}
+):p.RouterUtils.gotoPage(i)
+}
+,r.isReplaceSbom=function(){
+// 变量
+var e: any = r.props,t=e.sbomList,o=e.relationSbomCode,i=e.defaultSkuCode;
+return t[0].sbomCode!==(o||i)
+}
+,r.buyReport=(function(){
+var e=(0,o.default)((function*(e){
+var t,o,i,n,a,l=r.props,s=l.prdId,c=l.flag,u=l.channelId,h=l.platform,f=l.sbomList[0].sbomCode,v='noPrice'===c?'':h.isPc&&r.props.isCarPreview?null==(i=r.state)||null==(n=i.pcSonObj)?void 0:n.totalPrice:null==(a=r.props)?void 0:a.totalPrice,P='1'===String(u)||'3'===String(u)?(0,p.t)('bottom_send_btn'):(0,p.t)('bottom_buy_now');
+p.Report.eventTracingReport({
+actionCode:'900027210',actionName:P,eventType:'2',content:{
+comId:'carPreview_bottom',productId:null==s?void 0:s.toString(),SKUCode:f,name:'1'===String(u)||'3'===String(u)?(0,p.t)('send_config'):'5'===String(u)?(0,p.t)('confirm_to_modify'):(0,p.t)('buy_now_button'),URL:e,channelId:(null==(t=r.props)?void 0:t.channelId)||'0',saleId:(null==(o=r.props)?void 0:o.saleId)||'',price:null==v?void 0:v.toString()
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_bottom',resSiteName:(0,p.t)('bottom_nav'),pageId:'p_carPreview_'+s
+}
+),p.Report.execReportData('',!0)
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),r.loginWeb=(0,o.default)((function*(){
+// 变量
+var e: any = window.location.href,t=r.props.platform.isPc;
+e=t?encodeURIComponent(window.location.href):encodeURIComponent(yield r.getOrderConfirmedUrl());
+// 变量
+var o: any = t?p.Service.webDomain+"account/login?url="+e:p.Service.wapDomain+"account/applogin?url="+e;
+(0,w.gotoPage)(o,!1)
+}
+)),r.onClose=function(){
+r.setState({
+showLoginWindow:!1
+}
+)
+}
+,r._getDiysbomInfo=function(e,t){
+var o,i,n=b.default.find(r.props.sbomList,(function(t){
+return t.sbomCode===e
+}
+))||void 0,a=[],l='';
+n&&(a=(null==(o=n.diyPackageInfos)?void 0:o.length)>0?n.diyPackageInfos[0].groupList:[],l=(null==(i=n.diyPackageInfos)?void 0:i.length)>0?n.diyPackageInfos[0].packageCode:[]);
+var s,c=!1,p=0;
+for(p=0;
+p<a.length;
+p++){
+// 变量
+var u: any = a[p];
+if(b.default.size(null==u?void 0:u.disPrdList)>0&&null!=u&&u.disPrdList.includes(t)){
+c=!0;
+break
+}
+
+}
+return c?{
+packageCode:l,groupId:null==(s=a[p])?void 0:s.groupId
+}
+:{
+
+}
+
+}
+,r._getRelatesbomInfo=function(e,t){
+var o,i,n=b.default.find(r.props.sbomList,(function(t){
+return t.sbomCode===e
+}
+))||void 0,a=[],l='';
+n&&(a=(null==(o=n.diyPackageInfos)?void 0:o.length)>0?n.diyPackageInfos[0].groupList:[],l=(null==(i=n.diyPackageInfos)?void 0:i.length)>0?n.diyPackageInfos[0].packageCode:[]);
+var s=b.default.find(a,(function(e){
+return'relatesbom'===e.groupName
+}
+)),c=!1;
+if(!b.default.isEmpty(null==s?void 0:s.packageMap))for(var p in null==s?void 0:s.packageMap)if(Object.prototype.hasOwnProperty.call(s.packageMap,p)){
+var u=b.default.findIndex(null==s?void 0:s.packageMap[p],(function(e){
+return e.sbomCode===t
+}
+));
+if(-1!==u){
+c=!0;
+break
+}
+
+}
+return c?{
+packageCode:l,groupId:null==s?void 0:s.groupId
+}
+:{
+
+}
+
+}
+,r.getSbomList=function(e,t){
+// 变量
+var o: any = [],i=[];
+return null==e||e.forEach((function(e){
+var n,a,l,s,c;
+if(null!=(n=e)&&n.isRelateProduct&&'main'===(null==(a=e)?void 0:a.productType))o.push(Object.assign({
+
+}
+,e,r._getRelatesbomInfo(t,null==(c=e)?void 0:c.sbomCode)));
+else if(!(null!=(l=e)&&l.isRelateProduct||_.NOT_PACKAGE_PRODUCT_TYPES.includes(null==(s=e)?void 0:s.productType))){
+var p;
+e=Object.assign({
+
+}
+,e,r._getDiysbomInfo(t,null==(p=e)?void 0:p.disPrdId)),i.push(e)
+}
+
+}
+)),{
+relateSbomList:o,diySbomList:i
+}
+
+}
+,r.getDiyPackagePrd=function(e,t,o){
+var i,r=b.default.size(e)>0?e[0].packageCode:null==(i=t[0])?void 0:i.packageCode,n={
+
+}
+,a=[];
+for(var l in b.default.forEach(t,(function(e){
+n[null==e?void 0:e.groupId]&&n[null==e?void 0:e.groupId].length>0?n[null==e?void 0:e.groupId].push((null==e?void 0:e.sbomCode)+";
+1"):n[null==e?void 0:e.groupId]=[(null==e?void 0:e.sbomCode)+";
+1"]
+}
+)),e.length>0&&(n[e[0].groupId]=[],null==e||e.forEach((function(e){
+n[null==e?void 0:e.groupId].push((null==e?void 0:e.sbomCode)+";
+1")
+}
+))),n)Object.prototype.hasOwnProperty.call(n,l)&&a.push(l+","+n[l].join(','));
+return r+":1:"+o+":::::::,-"+a.join(':')
+}
+,r.getOrderConfirmedUrl=(0,o.default)((function*(){
+var e=r.props.platform,t={
+isHuabiProductFlag:0,isVisitorFlag:0,isCashProductFlag:0,isOpenTest:0,state:0,types:0,enableAutoCoupon:!0,teamBuyId:'',skuCodeAndQtys:'',extWarrantyId:'',selectExtWarrantyId:'',selectExtWarrantySbomCode:'',accWarrantyId:'',selectAccWarrantyId:'',selectAccWarrantySbomCode:'',shoppingConfigId:'',careUWarrantyId:'',selectcareUWarrantyId:'',selectcareUSbomCode:'',skuIdAndQtys:'',mainSkuIds:'',giftSkuIds:'',count:'',shopAddressId:'',packagePrd:'',diyPackagePrd:'',giftSelectIndex:'',installmentType:'',installmentNum:'',isDirectional:'',o2oInfo:'',carReqInfoParam:''
+}
+;
+e.isWeb&&(t.backUri=r._getUrlRelativePath());
+// 变量
+var o: any = r.props.sbomList[0].sbomCode,i=r.state.detailList;
+i=i.length>0?i:r.props.detailList;
+// 变量
+var n: any = r.getSbomList(i,o),a=n.relateSbomList,l=n.diySbomList;
+0===l.length&&0===a.length?t.skuCodeAndQtys=o+":1":(l.length>0||a.length>0)&&(t.diyPackagePrd=r.getDiyPackagePrd(a,l,o));
+// 变量
+var s: Function = [];
+for(var c in t)Object.prototype.hasOwnProperty.call(t,c)&&s.push(c+"="+encodeURIComponent(t[c]));
+// 变量
+var u: any = (e.isPc?p.Service.webDomain:p.Service.wapDomain)+"car/orderconfirm/index.html?"+s.join('&');
+return e.isApp?"vmall://com.vmall.client/commonh5/singlepage?url="+encodeURIComponent(u):u
+}
+)),r._getUrlRelativePath=function(){
+// 变量
+var e: any = window.location.href.toString().split('//'),t=e[1].indexOf('/');
+return e[1].substring(t)
+}
+,r._isLogin=(0,o.default)((function*(){
+// 变量
+var e: any = yield p.LoginUtils.getLoginStatus(r.props.platform.width);
+r.setState({
+isLogin:e
+}
+)
+}
+)),r.chooseItem=function(){
+r.props.platform.isPc?r.props.setModalVisible(!0):r.setState({
+isshowModal:!r.state.isshowModal
+}
+),r.btmReport(r.state.open),r.setState({
+open:!r.state.open
+}
+)
+}
+,r.closeModal=function(e){
+r.state.isshowModal?(r.btmReport(!1),r.setState({
+isshowModal:!1,open:!r.state.open
+}
+,(function(){
+return null==e?void 0:e()
+}
+))):null==e||e()
+}
+,r.closeModalClick=(0,k.clickDebunce)((function(){
+return r.closeModal()
+}
+)),r.btmReport=function(e){
+var t,o,i=r.props,n=i.prdId,a=i.sbomCode,l=i.routerType,s=e?(0,p.t)('common_expand'):(0,p.t)('pack_up'),c='900027211',u='carPreview_bottom',h=(0,p.t)('car_options_preview'),f='p_carPreview',v=(0,p.t)('bottom_nav'),P='r_carPreview_bottom';
+'CarDetail'===l&&(c='900027108',u='car_price_window',h=(0,p.t)('optional_for_vehicle_purchase'),f='p_carDetail',v=(0,p.t)('bottom_nav'),P='r_carDetail_bottom'),p.Report.eventTracingReport({
+actionCode:c,actionName:s+(0,p.t)('price_detail_modal'),eventType:'2',content:{
+comId:u,productId:null==n?void 0:n.toString(),SKUCode:a,type:e?'1':'2',channelId:(null==(t=r.props)?void 0:t.channelId)||'0',saleId:(null==(o=r.props)?void 0:o.saleId)||''
+}
+,pageCatCode:f,pageCatName:h,resSiteCode:P,resSiteName:v,pageId:'CarDetail'===l?'p_carDetail_'+n:'p_carPreview_'+n
+}
+),p.Report.execReportData('',!0)
+}
+,r.getAttrDataBySbomCode=function(){
+// 变量
+var e: any = r.props.sbomCode;
+return(0,x.getAttrDataBySbomCode)(e,r.props)
+}
+,r.getChoiceSbomCode=function(e){
+return(b.default.map(e,(function(e){
+return null==e?void 0:e.sbomCode
+}
+))||[]).join(',')
+}
+,r.reloadQueryFalse=function(){
+r.props.filterSbomList&&r.props.filterSbomList(r.props.sbomCode)
+}
+,r.checkRights=function(e){
+u.DeviceEventEmitter.emit("changeAttrItem-"+r.props.uniqueId,{
+sbomCode:r.props.sbomCode
+}
+,!0,e)
+}
+,r.onPreviewClick=function(){
+r.checkRights((function(e){
+e.length>0?r.gotoRights():r.props.platform.isStoreApp?(A.Modal.show('BoxTip',{
+boxTipText:(0,p.t)('storeAppNotSupportOrder')
+}
+),r.gotoIsrp()):'5'===String(r.props.channelId)?r.replaceOrder():r.buyNow()
+}
+))
+}
+,r.onBuyNow=(function(){
+var e=(0,o.default)((function*(e){
+// 变量
+var t: any = r.props,o=t.channelId,i=t.prdId,n=t.loadingRights,a=t.sbomList;
+if('1'===String(o)){
+r.buyReport('');
+// 变量
+var l: any = a[0].sbomCode,s=r.getChoiceSbomCode(e);
+p.RnBridge.invokeVmallNative('onlinecar','sendconfig',{
+prdId:String(i),sbomCode:String(l),choiceSbomCode:String(s),targetPage:'carpreview',channelId:'2'
+}
+)
+}
+else if('3'===String(o)){
+var c;
+r.buyReport('');
+var h=(null==(c=window.NATIVE)?void 0:c.requireCarLeadsId())||p.Cookies.get('carLeadsId');
+u.DeviceEventEmitter.emit('sendConfig',{
+showQrCodeDialog:!0,carLeadsId:h
+}
+)
+}
+else'5'!==String(o)||r.isReplaceSbom()?n?(0,k.showToast)('carpreview',(0,p.t)('system_loading')):r.onPreviewClick():(0,k.showToast)('carpreview',(0,p.t)('plz_modify_sbom'))
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),r.gotoRights=function(){
+r.props.navigation.navigate('CarRights')
+}
+,r.onNextReport=function(e){
+var t,o,i=r.props,n=i.channelId,a=i.prdId,l=i.isCarPreview,s=i.sbomCode,c=r.state.isPcCarDetail,u=P.default.route,h='1'!==String(n)&&'3'!==String(n)||!l?c||u.length-1===e?(0,p.t)('preview_config'):(0,p.t)('common_choose')+(u[e+1].title||''):(0,p.t)('send_config');
+p.Report.eventTracingReport({
+actionCode:'900027107',actionName:(0,p.t)('bottom_click_btn'),eventType:'2',content:{
+comId:'carDetail_bottom',productId:null==a?void 0:a.toString(),SKUCode:s,name:h,URL:'',channelId:(null==(t=r.props)?void 0:t.channelId)||'0',saleId:(null==(o=r.props)?void 0:o.saleId)||''
+}
+,pageCatCode:'p_carDetail',pageCatName:(0,p.t)('car_prd_detail'),resSiteCode:'r_carDetail_bottom',resSiteName:(0,p.t)('bottom_nav'),pageId:'p_carDetail_'+a
+}
+),p.Report.execReportData('',!0)
+}
+,r.emitOnNext=function(e){
+// 变量
+var t: any = r.props.uniqueId,o=void 0===t?'':t;
+u.DeviceEventEmitter.emit('onNext',{
+index:e+1,uniqueId:o
+}
+)
+}
+,r.onNext=(function(){
+var e=(0,o.default)((function*(e){
+// 变量
+var t: any = r.props,o=t.prdId,i=t.sbomCode,n=t.isCarPreview,a=t.defaultSkuCode,l=t.routes,c=t.attrViewList,u=t.routerType,h=t.platform,f=r.state.isPcCarDetail,y=P.default.route,b=P.default.packageMap,C=(0,v.toJS)(b),w=[];
+if('CarDetail'===u&&h.isApp?w=(w=r.props.getPkg())&&w.length>=0?w:[]:C.forEach((function(e){
+w.push(null==e?void 0:e.sbomCode)
+}
+)),!n||!j.previewScene.isPreview)if(n)r.onBuyNow(C);
+else if(r.onNextReport(e),(null==l?void 0:l.length)>(null==c?void 0:c.length)&&C.map((function(e){
+e.packageName=l[c.length].title
+}
+)),!f&&y&&y.length>e+1)r.emitOnNext(e);
+else{
+if(h.isApp&&C.length<=0){
+// 变量
+var S: Function = yield(0,k.getStorage)("package_"+o+"_"+a);
+S&&S.length>0&&(C=S)
+}
+var x={
+chosePackageCode:w.join(','),package:C,sbom:i,carDetailPkg:w.join(',')
+}
+;
+if(h.isHarmony){
+var I=(new Date).getTime()+6048e5;
+Promise.all(Object.entries(x).map((function(e){
+// 变量
+var t: any = (0,s.default)(e,2),i=t[0],r=t[1],n=[i,o,a].join('_');
+return p.RnBridge.invokeVmallNative('common','setSpValueAll',{
+key:n,value:JSON.stringify({
+name:n,value:r,expires:I
+}
+),valueType:'String'
+}
+)
+}
+))).then((function(){
+r.goToOtherPage()
+}
+))
+}
+else Object.entries(x).forEach((function(e){
+// 变量
+var t: any = (0,s.default)(e,2),i=t[0],r=t[1],n=[i,o,a].join('_');
+(0,k.setStorage)(n,r,7)
+}
+)),h.isIOS?setTimeout((function(){
+r.goToOtherPage()
+}
+),50):r.goToOtherPage()
+}
+
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),r.sortStorageRes=function(e){
+var t=r.props.routes,o=e.attr,i={
+attr:[],packageMap:e.packageMap,resetCofing:e.resetCofing
+}
+;
+return null==t||t.forEach((function(e){
+o.forEach((function(t){
+e.title===t.attrName&&i.attr.push(t)
+}
+))
+}
+)),i
+}
+,r.goToOtherPage=function(){
+// 变量
+var e: any = r.props,t=e.prdId,o=e.choiceSbomCode,i=e.defaultSkuCode,n=e.saleId,a=e.channelId,l=e.showheader,s=e.orderCode,c=e.isHisData,h=e.isReloadConfig,f=e.servicesRender,v=e.sbomCode,P=e.vrFrom,y=e.isSources,b=e.relationSbomCode,C=e.platform,w=e.sbomList,S=e.uniqueId,x=e.activityCode;
+if((0,D.setSelectStorage)(t,'',s,w[0]),u.DeviceEventEmitter.emit("onHide-"+S),C.isWeb){
+var I=p.UrlUtils.getQueryStr('prdId');
+if(f||!I)window.location.href=r.commonJs.getJumpUrl(r,'carpreview');
+else{
+var _,L=(null==(_=r.props)?void 0:_.navigation).navigate;
+L&&L('CarPreview')
+}
+
+}
+else{
+var k=[];
+k.push("prdId="+t),k.push("sbomCode="+i),o&&k.push("choiceSbomCode="+o),!l&&k.push("showheader="+l),k.push('targetPage=carpreview'),k.push('slectCode='+v),k.push('clearCache=false'),a&&k.push("channelId="+a),n&&k.push("saleId="+n),P&&k.push("from="+P),p.PlatformUtils.isHarmony()&&k.push('fromPage=carSelect'),'5'===String(a)&&(x&&k.push("activityCode="+x),k.push("orderCode="+s),k.push("isHisData="+c),k.push("isReloadConfig="+h),k.push("isSources="+y),b&&k.push("relationSbomCode="+b));
+var j=r.commonJs.apkLink()+"?"+k.join('&');
+p.RouterUtils.gotoPage(j)
+}
+
+}
+,r.getBarInfo=function(){
+var e,t,o=r.props,i=o.isCarPreview,n=o.channelId,a=o.platform,l=o.routerType,s=o.routes,c=o.index,u=o.rightsActivityList,h=o.loadingRights,f=P.default.route,v='CarDetail'===l&&a.isPc;
+return r.btnText=h?r.btnText:i?j.previewScene.isPreview?(0,p.t)('onlyPreview'):'1'===n||'3'===n?(0,p.t)('send_config'):(null==u?void 0:u.length)>0?(0,p.t)('select_rights'):'5'===n?(0,p.t)('confirm_to_modify'):(0,p.t)('buy_now_button'):v||(null==f?void 0:f.length)-1===c?(0,p.t)('preview_config'):(0,p.t)('common_next_step'),{
+isNoPrice:!v&&!i&&s&&(1===(null==(e=s[c])?void 0:e.display)||-1===(null==(t=s[c])?void 0:t.key)),btnText:r.btnText
+}
+
+}
+,r.onBtnClick=(0,k.clickDebunce)((function(){
+// 变量
+var e: any = P.default.index,t=r.props,o=t.isCarPreview,i=t.isPcPreview,n=t.channelId;
+!o||'5'!==String(n)||r.state.agreementIsChecked?r.closeModal((function(){
+return r.onNext(e)
+}
+)):i?(0,k.showToast)('carpreview',(0,p.t)('plz_read_and_select')):u.DeviceEventEmitter.emit('AgreementValidate')
+}
+)),r.renderPriceBar=function(){
+var e,t,o=arguments.length>0&&void 0!==arguments[0]&&arguments[0],i=r.state,n=i.isshowModal,a=i.open,l=i.detailList,s=i.priceLoading,c=P.default.route,p=r.props,h=p.isCarPreview,f=p.isQuerySbomFalse,v=p.platform,b=p.themeStyles,C=p.theme,w=p.sbomList,S=void 0===w?[]:w,x=p.detailList,I=r.getBarInfo(),_=I.isNoPrice,L=I.btnText,k=v.isPc&&h?null!=(e=null==(t=r.state)?void 0:t.pcSonObj)?e:{
+
+}
+:r.props;
+isNaN(Number(k.totalPrice))&&j.previewScene.isPreview&&(k.totalPrice=j.previewScene.previewPrice);
+var T=(null==l?void 0:l.length)>0?l:x,D={
+isPc:v.isPc,isQuerySbomFalse:f,priceLoading:s,sbomList:S,open:a,reloadQueryFalse:r.reloadQueryFalse,detailList:x,chooseItem:r.chooseItem,totalPrice:k.totalPrice,cheapPrice:k.cheapPrice,flag:k.flag,totalPriceStr:(0,y.formatPrice)(k.totalPrice,T)
+}
+;
+return c&&(0,V.jsx)(u.View,{
+style:[b.bottomWrapperCom,{
+backgroundColor:(function(){
+if(!o||!n)return C.C17.color
+}
+)()
+}
+,o&&{
+paddingBottom:v.safeAreaBottomHeight||0
+}
+],children:(0,V.jsx)(u.View,{
+style:[b.bottomWrapper,b.bottomPriceWrapper,{
+height:o?64:v.isPc?80:64+v.safeAreaBottomHeight,paddingHorizontal:v.isPc?16:v.pageMargin,paddingVertical:v.isPc?20:12
+}
+],children:(0,V.jsxs)(u.View,{
+style:b.bottomPosition,children:[_?(0,V.jsx)(u.View,{
+style:b.flex1
+}
+):(0,V.jsx)(q,Object.assign({
+
+}
+,D)),(0,V.jsx)(u.TouchableOpacity,{
+activeOpacity:1,onPress:r.onBtnClick,children:r.renderBtn(L,o)
+}
+)]
+}
+)
+}
+)
+}
+)
+}
+,r.renderBtn=function(e,t){
+// 变量
+var o: any = r.props,i=o.isCarPreview,n=o.channelId,a=o.themeStyles,l=i&&(j.previewScene.isPreview||'5'===String(n)&&(!r.state.agreementIsChecked||!r.isReplaceSbom()));
+return(0,V.jsxs)(V.Fragment,{
+children:[(0,V.jsx)(u.View,{
+style:[a.GoNextWrapper,a.GoNextWrapperFen,t&&a.GoNextWrapperModal,l&&a.GoNextWrapperChannel5]
+}
+),(0,V.jsx)(u.Text,{
+style:[a.GoNext,i&&j.previewScene.isPreview&&a.previewSceneBtnText],numberOfLines:1,children:e
+}
+)]
+}
+)
+}
+,r.renderModal=function(){
+var e,t,o,i=r.state.isshowModal,n=r.props,a=n.isCarPreview,l=n.platform,s=n.themeStyles,c=n.sbomList,u=void 0===c?[]:c,h=n.detailList,f=l.isPc&&a?null==(e=r.state)||null==(t=e.pcSonObj)?void 0:t.totalPrice:null==(o=r.props)?void 0:o.totalPrice;
+j.previewScene.isPreview&&isNaN(Number(f))&&(f=j.previewScene.previewPrice);
+var v=r.commonJs.getBenefitsText(r);
+return(0,V.jsx)(O.default,{
+showDragBar:!1,pageConfig:l,visible:i,onRequestClose:r.closeModalClick,title:(0,p.t)('priceDetail'),cardStyle:s.priceCardStyle,content:(0,V.jsx)(H,{
+sbomList:u,detailList:h,totalPrice:f,commonJs:r.commonJs,benefitsText:v,innerTotal:l.height<480
+}
+),footerStyle:l.isPhone&&s.phoneFooterStyle,footer:l.isPhone?r.renderPriceBar(!0):[!1,{
+text:(0,p.t)('confirm'),onPress:r.chooseItem,btnColor:k.ThemeInfo.themeColor
+}
+],cover:(0,V.jsx)(T.ApkWatermarkView,{
+width:l.width,height:l.height
+}
+)
+}
+)
+}
+,r.props.a,r.commonJs=y.default.call(r),r.state={
+open:!0,nowTime:'',isshowModal:!1,previewFlag:r.props.previewFlag,detailList:[],priceWidth:'',priceHeight:'',isLogin:!1,showLoginWindow:!1,pcSonObj:{
+
+}
+,priceLoading:!1,agreementIsChecked:r.props.agreementIsChecked
+}
+,r
+}
+return(0,l.default)(t,e),(0,r.default)(t,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this,t=this.props.platform;
+if(t.isApp){
+// 变量
+var o: any = this.props,i=o.index,r=o.channelId;
+i>=0&&P.default.setIndex(0),this.eventListener=u.DeviceEventEmitter.addListener('NativeCallAction',(function(t){
+'login'===t.service&&'isLogin'===t.action&&(t&&'boolean'==typeof t.param.isLogin&&!1===t.param.isLogin&&!1===e.linkFinished?e.setState({
+isLogin:!1
+}
+,(function(){
+e.linkFinished=!0,e.apkGotourl=''
+}
+)):t&&'boolean'==typeof t.param.isLogin&&!0===Boolean(t.param.isLogin)&&!0===e.linkFinished&&e.setState({
+isLogin:!0
+}
+,(function(){
+e.linkFinished=!1,'5'!==r&&p.RouterUtils.gotoPage(e.apkGotourl)
+}
+)))
+}
+))
+}
+this._isLogin(),t.isWeb&&(this.props.onRef&&this.props.onRef(this),this.loginListener=u.DeviceEventEmitter.addListener('popupLoginSuccess',(function(){
+e._isLogin()
+}
+))),this.listenOpen=u.DeviceEventEmitter.addListener('changeOpen',(function(){
+e.setState({
+open:!e.state.open
+}
+),e.btmReport(!1)
+}
+)),this.listenChangeSbomCode=u.DeviceEventEmitter.addListener('changeSbomCode',(function(t){
+e.setState({
+priceLoading:t
+}
+)
+}
+)),this.checkedListener=u.DeviceEventEmitter.addListener('changeCheckedStatus',(function(t){
+e.setState({
+agreementIsChecked:t
+}
+)
+}
+))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e;
+this.listenOpen&&this.listenOpen.remove(),this.loginListener&&this.loginListener.remove(),this.listenChangeSbomCode&&this.listenChangeSbomCode.remove(),null==(e=this.eventListener)||e.remove(),this.checkedListener&&this.checkedListener.remove()
+}
+
+}
+,{
+key:"gotoIsrp",value:(c=(0,o.default)((function*(){
+if(!this.state.debounceTag)try{
+this.setState({
+debounceTag:!0
+}
+);
+var e=this.props.sbomList[0],t=yield(0,R.saveIsrpQuotation)({
+prdId:e.disPrdId,sbomCode:e.sbomCode,sbomAttrList:e.sbomAttrList,carRightsInfoList:[]
+}
+);
+if(null==t||!t.isrpQuotationQueryKey)throw t
+}
+catch(e){
+(0,k.showErrorToast)('carpreview',e)
+}
+finally{
+this.setState({
+debounceTag:!1
+}
+)
+}
+
+}
+)),function(){
+return c.apply(this,arguments)
+}
+)
+}
+,{
+key:"postForm",value:function(e,t){
+// 变量
+var o: any = document.createElement('form');
+for(var i in o.action=e,o.method='post',o.target='_self',o.style.display='none',t)if(Object.prototype.hasOwnProperty.call(t,i)){
+// 变量
+var r: any = document.createElement('textarea');
+r.name=i,r.value=t[i],o.appendChild(r)
+}
+document.body.appendChild(o),o.submit(),document.body.removeChild(o)
+}
+
+}
+,{
+key:"render",value:function(){
+var e=this,t=this.state,o=t.isshowModal,i=t.showLoginWindow,r=(this.props||{
+
+}
+).platform;
+return(0,V.jsxs)(V.Fragment,{
+children:[this.renderPriceBar(),o&&this.renderModal(),i&&r.isPc?(0,V.jsx)(C.LoginWindow,{
+targetLink:window.location.href,onClose:function(){
+return e.onClose()
+}
+
+}
+):null,(0,V.jsx)(E.BoxTip,{
+
+}
+)]
+}
+)
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(e){
+return{
+pcSonObj:e.pcSonObj,detailList:e.detailList,cheapPrice:e.cheapPrice?e.cheapPrice:'',totalPrice:e.totalPrice,flag:e.flag,isPcCarDetail:'CarDetail'===e.routerType&&e.platform.isPc
+}
+
+}
+
+}
+]);
+var c
+}
+)(c.PureComponent))||t;
+_e.default=(0,I.injectLayout)((function(e,t){
+return(t.isPc?h.largeScreenCls:t.isPadH?h.padHorizontalScreenCls:t.isPadV?h.padVerticalScreenCls:t.isFixScreen&&!t.isPhone?h.fixScreenCls:h.smallScreenCls)(e)
+}
+))(Q)
+}
+),"dd29f0dbb8f0d80aa86aa36bf54069084dc48cab90e3aa2a6b1e2a5aa6c502a6",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","b099caa6db4d2c44efdc83867ca5362e3be2fe803a0563b38ad1bc62855e9969","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","9500b24c16bfc1f7487a92364c936822f13e89774fe7c30dcb1642f52c515069","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","308db9fda5947677caf7385dee19fd8b9a6ddca11aa9991a5a7e49e1c9081028","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","da28eb4b9fe618afbafba6291e7d4433ac0237bc78b497fe8e176d2b5c43e316","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","4d5c25d100750b2796817febeb2b3a5bcac48590c98814a15296066221f852c0","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5","d8cc0ad120d6721e27499f006a886f75435f78b9380e24198288d380e1f27388","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.smallScreenCls=e.padVerticalScreenCls=e.padHorizontalScreenCls=e.modelStyles=e.largeScreenCls=e.fixScreenCls=void 0;
+var t=r(d[0]),o=r(d[1]),n=r(d[2]),l=o.PlatformUtils.isApp()?'absolute':'fixed',s=function(t){
+return{
+priceCardStyle:{
+minHeight:0
+}
+,modalScroll:{
+paddingBottom:8
+}
+,subTotalPriceBar:Object.assign({
+
+}
+,t.S2,{
+borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,borderTopWidth:.5,paddingTop:8
+}
+),flex1:{
+flex:1
+}
+,GoNextWrapperFen:{
+borderRadius:20,height:40,width:120
+}
+,discountWrapper:{
+display:'flex',flexDirection:'row'
+}
+,withoutPriceWrapper:{
+display:'flex',flexDirection:'row',alignItems:'center'
+}
+,GoNextWrapper:{
+backgroundColor:n.ThemeInfo.themeColor,display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center'
+}
+,GoNextWrapperModal:{
+width:120
+}
+,GoNextWrapperChannel5:{
+opacity:.4
+}
+,previewSceneBtnText:{
+fontSize:12
+}
+,pcPreviewBottomBenefits:{
+fontSize:14,color:t.C94.color,fontWeight:'400',width:'100%'
+}
+,priceBox:{
+flexShrink:0
+}
+,marginTop:{
+marginTop:3
+}
+,discountTop:{
+marginTop:5
+}
+,pressBtn:{
+height:40,width:150,zIndex:3
+}
+,prePromoDetailRow:{
+flexDirection:'column',alignItems:'stretch',height:'auto'
+}
+,promotionInfoDesc:Object.assign({
+
+}
+,t.C13,t.T3,{
+marginTop:1,paddingLeft:8
+}
+),subDetailListItem:{
+marginTop:-4
+}
+,finalPriceTip:Object.assign({
+
+}
+,t.C13,t.T3,{
+backgroundColor:'#0001',borderRadius:8,paddingHorizontal:8,paddingVertical:6
+}
+),phoneFooterStyle:{
+paddingHorizontal:0,paddingTop:0,paddingBottom:0
+}
+,line:Object.assign({
+height:.5
+}
+,t.S13,{
+marginTop:12.5,width:'100%'
+}
+),prePromoItem:{
+marginBottom:4
+}
+,bottomPosition:{
+display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center'
+}
+,discountPrice:Object.assign({
+
+}
+,t.T3,t.C13),moreImg:{
+width:16,height:16
+}
+,GoNext:Object.assign({
+
+}
+,t.T10,t.C17,{
+width:'100%',height:'100%',position:'absolute',textAlign:'center',lineHeight:40
+}
+),rightArrow:{
+marginLeft:4,width:12,height:21
+}
+,outBox:{
+display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center',position:o.PlatformUtils.isApp()?'relative':'fixed',top:0,left:0,right:0,backgroundColor:t.C80.color+t.opacityMap[t.C80.opacity],zIndex:11
+}
+,clickModal:{
+position:l,top:0,left:0,right:0,width:'100%',zIndex:12
+}
+,bgBox:{
+position:l,backgroundColor:t.C37.color,zIndex:15,width:480,borderRadius:24,flexDirection:'column'
+}
+,bottomWrapperCom:{
+width:'100%'
+}
+,bottomWrapper:{
+height:64,paddingHorizontal:16,paddingVertical:12
+}
+,bottomPriceWrapper:Object.assign({
+
+}
+,t.S2,{
+borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,borderTopWidth:.5
+}
+),gradual:{
+width:48,height:18,position:'absolute',right:0,bottom:3
+}
+
+}
+
+}
+,c=function(t){
+return{
+tips:{
+width:32,height:4,backgroundColor:o.CommonUtils.colorRgba(t.C11.color,.2),marginTop:-7,marginBottom:10,borderRadius:2,marginLeft:'auto',marginRight:'auto'
+}
+,detailListDescItem:{
+display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:22
+}
+,preDetailName:{
+lineHeight:48
+}
+,detailSubListItem:{
+display:'flex',flexDirection:'row',position:'relative',flex:1
+}
+,detailSubNameTips:Object.assign({
+
+}
+,t.C13,t.T7,{
+position:'absolute'
+}
+),detailSubName:Object.assign({
+
+}
+,t.C13,t.T3),detailSubPrice:Object.assign({
+
+}
+,t.C13,t.T3,{
+marginLeft:8,flex:1,textAlign:'right'
+}
+)
+}
+
+}
+;
+e.padHorizontalScreenCls=function(o){
+// 变量
+var n: any = s(o),l=c(o);
+return t.StyleSheet.create(Object.assign({
+
+}
+,n,l,{
+GoNextWrapperFen:Object.assign({
+
+}
+,n.GoNextWrapperFen,{
+width:292
+}
+)
+}
+))
+}
+,e.padVerticalScreenCls=function(o){
+// 变量
+var n: any = s(o),l=c(o);
+return t.StyleSheet.create(Object.assign({
+
+}
+,n,l,{
+GoNextWrapperFen:Object.assign({
+
+}
+,n.GoNextWrapperFen,{
+width:179
+}
+)
+}
+))
+}
+,e.smallScreenCls=function(o){
+// 变量
+var n: any = s(o),l=c(o);
+return t.StyleSheet.create(Object.assign({
+
+}
+,n,l,{
+outBox:Object.assign({
+
+}
+,n.outBox,{
+position:'relative',height:'100%'
+}
+),bgBox:Object.assign({
+
+}
+,n.bgBox,{
+position:'absolute',width:'100%',bottom:0,borderBottomLeftRadius:0,borderBottomRightRadius:0
+}
+)
+}
+))
+}
+,e.largeScreenCls=function(o){
+// 变量
+var n: any = s(o);
+return t.StyleSheet.create(Object.assign({
+
+}
+,n,{
+line:Object.assign({
+height:.5
+}
+,o.S13,{
+marginTop:16.5,width:'100%'
+}
+),gradual:Object.assign({
+
+}
+,n.gradual,{
+bottom:10
+}
+),bottomPriceWrapper:Object.assign({
+
+}
+,n.bottomPriceWrapper,{
+borderTopWidth:0
+}
+)
+}
+))
+}
+,e.fixScreenCls=function(o){
+// 变量
+var n: any = s(o);
+return t.StyleSheet.create(Object.assign({
+
+}
+,n,{
+GoNextWrapperFen:Object.assign({
+
+}
+,n.GoNextWrapperFen,{
+width:164
+}
+)
+}
+))
+}
+,e.modelStyles=function(n){
+return t.StyleSheet.create({
+outBox:{
+display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center',position:o.PlatformUtils.isApp()?'relative':'fixed',top:0,left:0,right:0,backgroundColor:n.C80.color+n.opacityMap[n.C80.opacity],zIndex:11,height:'100%'
+}
+,clickModal:{
+position:l,top:0,left:0,right:0,width:'100%',zIndex:12,height:'100%'
+}
+,bgBox:{
+position:l,backgroundColor:n.C37.color,zIndex:15,width:480,borderRadius:24,flexDirection:'column'
+}
+,modal:{
+padding:16,paddingTop:8
+}
+,detail:{
+display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:56
+}
+,priceDetail:Object.assign({
+
+}
+,n.T12,n.C11,{
+fontWeight:'600'
+}
+),modalScroll:{
+paddingBottom:8
+}
+,prePromoItem:{
+marginBottom:4
+}
+,subTotalPriceBar:Object.assign({
+
+}
+,n.S2,{
+borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,borderTopWidth:.5,paddingTop:8
+}
+),detailListItem:{
+display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:36
+}
+,prePromoDetailRow:{
+flexDirection:'column',alignItems:'stretch',height:'auto'
+}
+,line:Object.assign({
+height:.5
+}
+,n.S13,{
+marginTop:o.PlatformUtils.isPc()?16.5:12.5,width:'100%'
+}
+),detailName:Object.assign({
+
+}
+,n.C11,n.T8,{
+lineHeight:32,flex:1
+}
+),preCommercialPromotion:{
+lineHeight:19
+}
+,promotionInfoDesc:Object.assign({
+
+}
+,n.C13,n.T3,{
+marginTop:1,paddingLeft:8
+}
+),subDetailListItem:{
+marginTop:-4
+}
+,detailPrice:Object.assign({
+
+}
+,n.C13,n.T7,{
+marginLeft:12
+}
+),totalPrice:Object.assign({
+
+}
+,n.C11,n.T8),finalPriceTip:Object.assign({
+
+}
+,n.C13,n.T3,{
+backgroundColor:'#0001',borderRadius:8,paddingHorizontal:8,paddingVertical:6
+}
+),confirmBtn:{
+backgroundColor:'#000000E6',margin:16,marginTop:12,borderRadius:20,height:40,justifyContent:'center',alignItems:'center'
+}
+,confirmText:Object.assign({
+
+}
+,n.T9,n.C17),phoneFooterStyle:{
+paddingHorizontal:0,paddingTop:0,paddingBottom:0
+}
+,bottomBenefits:{
+opacity:0,position:'absolute',top:-1e3
+}
+,benefits:Object.assign({
+
+}
+,n.T3,n.C13,{
+lineHeight:18
+}
+),bottomBenefitsShow:{
+marginTop:16,marginBottom:8
+}
+,gradual:{
+width:48,height:18,position:'absolute',right:0,bottom:3
+}
+,ellips:Object.assign({
+
+}
+,n.T3,n.C15,{
+lineHeight:18,marginLeft:20
+}
+),arrowUpIcon:{
+position:'absolute',right:0,bottom:0
+}
+,wholePrice:{
+flexDirection:'row',alignItems:'center',flexWrap:'wrap'
+}
+,totalWholePrice:{
+flexDirection:'row',alignItems:'center'
+}
+,priceContent:{
+flex:1
+}
+,unitPriceDec:Object.assign({
+
+}
+,n.T3,n.C13,{
+marginRight:8
+}
+),withoutPriceWrapper:{
+display:'flex',flexDirection:'row',alignItems:'center'
+}
+,withoutPrice:Object.assign({
+marginRight:4
+}
+,n.T11,n.C11),unitPriceWod:Object.assign({
+
+}
+,n.T11,n.C11),svgStyle:{
+marginLeft:6
+}
+
+}
+)
+}
+
+}
+),"b099caa6db4d2c44efdc83867ca5362e3be2fe803a0563b38ad1bc62855e9969",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=_e.TabBarStyles=void 0;
+var e=t(_r(d[1])),i=t(_r(d[2])),n=t(_r(d[3])),o=t(_r(d[4])),a=t(_r(d[5])),r=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var i: any = v(e);
+if(i&&i.has(t))return i.get(t);
+var n={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in t)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(t,a)){
+// 变量
+var r: any = o?Object.getOwnPropertyDescriptor(t,a):null;
+r&&(r.get||r.set)?Object.defineProperty(n,a,r):n[a]=t[a]
+}
+return n.default=t,i&&i.set(t,n),n
+}
+)(_r(d[6])),l=_r(d[7]),s=t(_r(d[8])),u=t(_r(d[9])),c=_r(d[10]),h=_r(d[11]),f=_r(d[12]),p=_r(d[13]);
+// 函数
+function v(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,i=new WeakMap;
+return(v=function(t){
+return t?i:e
+}
+)(t)
+}
+// 函数
+function b(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(b=function(){
+return!!t
+}
+)()
+}
+var y=_e.TabBarStyles=function(t,e){
+return l.StyleSheet.create({
+tabBarWrapper:{
+backgroundColor:t.C33.color,height:56,alignItems:'center',flexDirection:'row',position:e.isWap?'sticky':'relative',top:e.isWap?56:0,zIndex:999
+}
+,hiddenHeaderTab:{
+top:0
+}
+,tabBar:{
+height:33,flexDirection:'row',paddingHorizontal:e.pageMargin
+}
+,titleShadow:{
+height:0,overflow:'hidden'
+}
+,titleView:{
+position:'absolute',bottom:0
+}
+,title:Object.assign({
+
+}
+,t['T11-1'],{
+color:t.C13.color,fontWeight:'500'
+}
+),titleBold:Object.assign({
+
+}
+,t.T13),titleActive:Object.assign({
+
+}
+,t.T11,{
+fontWeight:'700'
+}
+),titleBoldWeight:{
+fontWeight:t.T13.fontWeight
+}
+,itemBox:{
+alignItems:'center'
+}
+,lastItem:{
+marginRight:0,overflow:e.isWeb?'hidden':'visible'
+}
+
+}
+)
+}
+,W=(function(t){
+// 函数
+function h(t: any): any {
+var i,a,u,f;
+return(0,e.default)(this,h),a=this,u=h,f=[t],u=(0,o.default)(u),(i=(0,n.default)(a,b()?Reflect.construct(u,f||[],(0,o.default)(a).constructor):u.apply(a,f))).tabWidthList=[],i.scrollViewRef=r.default.createRef(),i.handleTabClick=function(t,e,n){
+i.setState({
+goIndex:t
+}
+),i.props.jumpTo(t,e,n),s.default.setIndex(t)
+}
+,i.handleBottomClick=(0,c.debounce)((function(t){
+// 变量
+var e: any = t.index,n=t.disableRequest,o=t.uniqueId;
+i.props.uniqueId===o&&(i.props.platform.isIOS?i.handleTabClick(e,void 0,n):i.handleTabClick(e,'carBottom',n))
+}
+),300,{
+leading:!0
+}
+),i.state={
+goIndex:0,width:0
+}
+,i.listenNext=l.DeviceEventEmitter.addListener('onNext',i.handleBottomClick),i
+}
+return(0,a.default)(h,t),(0,i.default)(h,[{
+key:"componentDidUpdate",value:function(t,e){
+var i,n,o=null==(i=this.props.navigationState)?void 0:i.routes;
+if(o){
+o!==(null==(n=t.navigationState)?void 0:n.routes)&&this.getTabWidthList();
+// 变量
+var a: any = e.goIndex,r=this.state.goIndex,l=this.props.tabGap,s=t.platform.width,u=this.props.platform.width;
+if(a!==r||s!==u){
+for(var c,h=u-2*l,f=24*this.tabWidthList[r]/18,p=r,v=r;
+++p<o.length&&--v>=0&&!((f+=this.tabWidthList[p]+l)>h)&&!((f+=this.tabWidthList[v]+l)>h);
+);
+for(var b=0,y=v;
+y>=0;
+--y)b+=this.tabWidthList[y]+l;
+null==(c=this.scrollViewRef.current)||c.scrollTo({
+x:b,animated:!0
+}
+)
+}
+
+}
+
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+this.getTabWidthList()
+}
+
+}
+,{
+key:"getTabWidthList",value:function(){
+var t,e=this.props,i=e.theme,n=e.navigationState,o=null!=(t=null==n?void 0:n.routes)?t:[];
+this.tabWidthList=o.map((function(t){
+return t.title?f.CommonUtils.getStrPixelWidth(t.title,i['T11-1'].fontSize):0
+}
+))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var t;
+null==(t=this.listenNext)||t.remove()
+}
+
+}
+,{
+key:"render",value:function(){
+var t,e=this,i=this.props||{
+
+}
+,n=i.themeStyles,o=i.theme,a=i.tabGap,r=i.hiddenHeader,s=i.navigationState,c=null!=(t=null==s?void 0:s.routes)?t:[];
+return(0,p.jsx)(l.View,{
+style:[n.tabBarWrapper,r&&n.hiddenHeaderTab],children:(0,p.jsx)(l.ScrollView,{
+ref:this.scrollViewRef,horizontal:!0,showsHorizontalScrollIndicator:!1,children:(0,p.jsx)(l.View,{
+style:n.tabBar,children:c.map((function(t,i){
+return(0,p.jsx)(u.default,{
+active:e.state.goIndex===i,isLast:i===c.length-1,onClick:function(){
+return e.handleTabClick(i)
+}
+,themeStyles:n,theme:o,tabGap:a,children:t.title
+}
+,t.key)
+}
+))
+}
+)
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(r.PureComponent);
+_e.default=(0,h.injectLayout)(y)(W)
+}
+),"75cbd8c9f766736c5d144c424bba697fbc3f8090a8ed1fbbb038f8dc187a0bcd",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","d499d4617f463d256f9835432169977f8a61ee56b6dfe5817193f089b1b6f6ce","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = i(t);
+if(n&&n.has(e))return n.get(e);
+var r={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var u: any = a?Object.getOwnPropertyDescriptor(e,o):null;
+u&&(u.get||u.set)?Object.defineProperty(r,o,u):r[o]=e[o]
+}
+return r.default=e,n&&n.set(e,r),r
+}
+)(_r(d[0])),t=_r(d[1]),n=_r(d[2]);
+// 函数
+function i(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(i=function(e){
+return e?n:t
+}
+)(e)
+}
+var r=(0,e.memo)((function(i){
+var r=i.themeStyles,a=i.theme,o=i.children,u=i.active,l=i.isLast,s=i.tabGap,f=i.onClick,c=(0,e.useRef)(new t.Animated.Value(u?1:0)).current,p=(0,e.useRef)({
+transform:[{
+translateY:c.interpolate({
+inputRange:[0,1],outputRange:[0,(a['T11-1'].fontSize-a.T13.fontSize)/2]
+}
+)
+}
+,{
+scale:c.interpolate({
+inputRange:[0,1],outputRange:[1,a.T13.fontSize/a['T11-1'].fontSize]
+}
+)
+}
+],opacity:c.interpolate({
+inputRange:[0,1],outputRange:[a.C13.opacity,a.C12.opacity]
+}
+)
+}
+).current;
+return(0,e.useEffect)((function(){
+t.Animated.timing(c,{
+useNativeDriver:!0,duration:500,toValue:u?1:0,easing:t.Easing.out(t.Easing.exp)
+}
+).start()
+}
+),[c,u]),(0,n.jsxs)(t.View,{
+style:[r.itemBox,{
+marginRight:s
+}
+,l&&r.lastItem],children:[(0,n.jsx)(t.Text,{
+style:[r.titleShadow,u?r.titleBold:r.title],children:o
+}
+),(0,n.jsx)(t.Animated.Text,{
+onPress:f,suppressHighlighting:!0,style:[r.titleView,r.title,p,u&&r.titleActive],children:o
+}
+)]
+}
+)
+}
+));
+_e.default=r
+}
+),"d499d4617f463d256f9835432169977f8a61ee56b6dfe5817193f089b1b6f6ce",["6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),n=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = o(t);
+if(n&&n.has(e))return n.get(e);
+var r={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var u: any = a?Object.getOwnPropertyDescriptor(e,i):null;
+u&&(u.get||u.set)?Object.defineProperty(r,i,u):r[i]=e[i]
+}
+return r.default=e,n&&n.set(e,r),r
+}
+)(_r(d[2])),r=_r(d[3]),a=e(_r(d[4])),i=e(_r(d[5])),u=_r(d[6]),s=_r(d[7]);
+// 函数
+function o(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(o=function(e){
+return e?n:t
+}
+)(e)
+}
+var l=r.StyleSheet.create({
+container:{
+overflow:'hidden',flex:1
+}
+
+}
+);
+_e.default=function(e){
+var o=e.index,f=e.routes,c=e.width,p=e.prdId,v=e.onPrdIdChange,w=(0,n.useRef)({
+lastIsAnimTab:!1,lastIndex:o,swipeAnim:new r.Animated.Value(0)
+}
+).current,y=(0,n.useMemo)((function(){
+var e,t=[2,3,4].includes(null==(e=f[o])?void 0:e.display);
+if(!(o===w.lastIndex||t&&w.lastIsAnimTab)){
+// 变量
+var n: any = o>w.lastIndex?1:-1;
+w.swipeAnim.setValue(n*c),r.Animated.timing(w.swipeAnim,{
+toValue:0,duration:500,easing:r.Easing.out(r.Easing.exp),useNativeDriver:!0
+}
+).start()
+}
+return u.PlatformUtils.isHarmony()&&o===w.lastIndex&&r.Animated.timing(w.swipeAnim,{
+toValue:0,duration:500,easing:r.Easing.out(r.Easing.exp),useNativeDriver:!0
+}
+).start(),w.lastIndex=o,w.lastIsAnimTab=t,[f[o],t]
+}
+),[f,o,c]),x=(0,t.default)(y,2),A=x[0],I=x[1],j=(0,n.useMemo)((function(){
+return-1===(null==A?void 0:A.key)?(0,s.jsx)(i.default,{
+prdId:p,onPrdIdChange:v
+}
+):I?(0,s.jsx)(a.default,Object.assign({
+
+}
+,e,{
+route:void 0
+}
+)):e.renderScene({
+route:A
+}
+)
+}
+),[A,p,c]);
+return(0,s.jsx)(r.View,{
+style:l.container,children:(0,s.jsx)(r.Animated.View,{
+style:[l.container,{
+transform:[{
+translateX:w.swipeAnim
+}
+]
+}
+],children:j
+}
+)
+}
+)
+}
+
+}
+),"fd9ddb717a9f453d0e7f9422620a049f84d913e89002ef62fcb7b8c8f38c53df",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","c93ae4614155cfba20a1c44e70542bdff08e4a9c10dac559a66c469d9d2d9cf3","1811fdd17c417abe70447d2797e520cb7083ba4b48312170dd211d747994b0e1","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),i=_r(d[2]),n=_r(d[3]),r=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var i: any = y(t);
+if(i&&i.has(e))return i.get(e);
+var n={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var o: any = r?Object.getOwnPropertyDescriptor(e,a):null;
+o&&(o.get||o.set)?Object.defineProperty(n,a,o):n[a]=e[a]
+}
+return n.default=e,i&&i.set(e,n),n
+}
+)(_r(d[4])),a=_r(d[5]),o=_r(d[6]),l=_r(d[7]),s=e(_r(d[8])),c=e(_r(d[9])),u=e(_r(d[10])),h=e(_r(d[11])),f=e(_r(d[12])),p=_r(d[13]),v=_r(d[14]),P=_r(d[15]),w=_r(d[16]),x=e(_r(d[17])),I=_r(d[18]);
+// 函数
+function y(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,i=new WeakMap;
+return(y=function(e){
+return e?i:t
+}
+)(e)
+}
+var b=function(e,t,i){
+// 变量
+var n: any = (null==i?void 0:i.customWidth)||t.width,r=t.isPadH?32:16;
+return a.StyleSheet.create({
+wrapper:{
+flex:1
+}
+,scroll:{
+overscrollBehavior:'contain'
+}
+,imageContainer:{
+width:n
+}
+,animContainer:{
+width:'100%',opacity:1,alignItems:'center'
+}
+,noSelectImageContainer:{
+width:'100%',height:'100%',justifyContent:'center',alignItems:'center'
+}
+,vrBox:{
+position:'absolute',zIndex:999,top:t.isPc?48:28,left:t.isPc?void 0:r,right:t.isPc?48:void 0,width:34,height:34
+}
+,vrImg:{
+width:34,height:34
+}
+,contentContainer:{
+overflow:'hidden',marginBottom:42-(t.isPadH?10:0)-(t.isPc?24:28)/2,alignItems:'center',justifyContent:'center'
+}
+,contentAnim:{
+alignItems:'center',justifyContent:'center'
+}
+,contentTitle:Object.assign({
+fontFamily:e.fontFamilyMedium
+}
+,e.T9,e.C12,{
+fontWeight:'500',textAlign:'center',paddingBottom:4
+}
+),contentPrice:Object.assign({
+marginTop:4,fontFamily:e.fontFamilyBase
+}
+,e.T3,e.C22),noImageContent:{
+flexDirection:'row',alignItems:'flex-start',paddingHorizontal:16,marginBottom:12
+}
+,noImageTitle:Object.assign({
+
+}
+,e.C13,e.T9,{
+maxWidth:.65*n
+}
+),noImagePriceBox:{
+flex:1,alignItems:'flex-end'
+}
+,priceText:Object.assign({
+
+}
+,e.C13,e.T3,{
+textAlign:'center'
+}
+),noImagePrice:{
+textAlign:'right'
+}
+,selectContainer:{
+width:n,overflow:'hidden'
+}
+,selectBarInner:{
+minWidth:n,flexDirection:'row',alignItems:'center',justifyContent:'center',paddingHorizontal:8
+}
+,onlySelectBar:{
+width:n,flexWrap:'wrap',paddingHorizontal:0,justifyContent:'flex-start',alignItems:'flex-start'
+}
+,swiperBtn:{
+position:'absolute',width:40,height:40,borderRadius:20,top:'50%',bottom:'50%',justifyContent:'center',alignItems:'center',backgroundColor:'#EEEEEE'
+}
+,swiperBtnLeft:{
+left:48
+}
+,swiperBtnRight:{
+right:48
+}
+
+}
+)
+}
+;
+_e.default=(0,w.GestureHandlerWrapper)((function(e){
+var y,S,C=e.customWidth,A=e.sbomCode,_=e.sbomCodeList,T=e.sbomList,j=e.route,B=e.index,N=e.routes,H=e.routerType,V=e.disPrdId,E=e.channelId,L=e.attrViewList,D=void 0===L?[]:L,O=e.saleId,U=e.showImage,k=void 0===U||U,M=e.showSelect,R=void 0===M||M,F=e.showheader,G=void 0===F||F,W=e.pcTopHeight,z=void 0===W?0:W,J='CarPreview'===H,K=_||T,q=(0,o.useLayout)(b,{
+isCarPreview:J,customWidth:C
+}
+),X=q.themeStyles,Y=q.platform,Z=(0,r.useState)([]),$=(0,t.default)(Z,2),Q=$[0],ee=$[1],te=C||Y.width,ie=null!=(y=null!=j?j:N[B])?y:{
+
+}
+,ne=ie.display,re=(0,r.useRef)({
+curIndex:0,scrollTime:0,lastIndex:B,lastIsAnimImage:!0,shiftAnim:new a.Animated.Value(0),shouldAnim:!1,imgList:[],imageType:'',originImageType:'',changeListener:null,timer:null,forkKey:'',finishEasingIn:!1,_attrArray:[]
+}
+).current,ae=(0,r.useRef)(null),oe=(0,r.useRef)(null),le=(0,r.useState)([]),se=(0,t.default)(le,2),ce=se[0],ue=se[1],me=Y.isPc?80:64,de=(0,r.useMemo)((function(){
+var e=!Y.isPc&&J&&R,t=(function(){
+if(e)return 360;
+if(Y.isPhone||J||Y.isPc)return te;
+if(Y.isFixScreen||Y.isPadV||Y.isPadH&&Y.width/Y.height>1.66){
+// 变量
+var t: any = Y.getGridsWidth(7);
+return Math.min(t,te)
+}
+// 变量
+var i: any = Y.getGridsWidth(8);
+return Math.min(i,te)
+}
+)(),i=function(e){
+// 变量
+var t: any = 0,i=0,n=56,r=0,o=P.TITLE_HEIGHT,l=0,s=0;
+Y.isPhone?t=44:Y.isFixScreen?(t=47,i=163):Y.isPadV?t=192:Y.isPadH&&(t=47,i=147),J||(t=0,n=P.BOTTOM_HEIGHT,r=Y.statusBarHeight,l=P.TAB_HEIGHT,Y.isFixScreen&&Y.width>Y.height&&(s=(0,v.wrapperMarginTop)(Y,e)));
+// 变量
+var c: any = Y.height-t-r-o-l-16-i-n-s;
+return Number((c/(2.25/a.PixelRatio.get())).toFixed(2))
+}
+,n=Y.height-(G?z:0),r=(function(){
+if(e)return 225;
+if(Y.isPc&&!R)return n;
+if(Y.isPhone||Y.isFixScreen||Y.isPadH||Y.isPadV){
+// 变量
+var r: any = t/16*9,a=i(r);
+return Math.min(r,a)
+}
+return te?te/16*9:228
+}
+)(),o=Y.isPc&&!R?n:J&&!Y.isPhone?Y.isPc?332:250:Y.isPhone?Y.width/16*9:Y.isFixScreen||Y.isPadH?Y.height-Y.statusBarHeight-Y.safeAreaBottomHeight-P.TITLE_HEIGHT-P.TAB_HEIGHT-me-P.SWIPE_TOP_GAP-196:Y.isPadV?Y.width/4*3:Y.width/16*9,l=(function(){
+if(!J){
+// 变量
+var e: any = 184+(Y.isPadH?16:40);
+return Y.height-Y.safeAreaBottomHeight-Y.statusBarHeight-r-e
+}
+if(Y.isPc){
+return Y.height-r-293
+}
+if(Y.isPhone){
+// 变量
+var t: any = Y.height-Y.statusBarHeight-8,i=136+Y.safeAreaBottomHeight;
+return t-r-i
+}
+return Math.min(640,.9*(Y.height-Y.statusBarHeight-Y.safeAreaBottomHeight))-r-136
+}
+)(),s=Math.max(3*l/5-40-32-10,40),c=J?48:Y.isPhone?40:Y.isFixScreen?22:Y.isPadH?16:80;
+return[t,r,c,s,o]
+}
+),[Y,re.originImageType]),he=(0,t.default)(de,5),ge=he[0],fe=he[1],pe=he[2],ve=he[3],Pe=he[4],we=function(e,t){
+e=e||A;
+var n=[],r=t||ie.title,a=D.filter((function(e){
+return(null==e?void 0:e.attrName)===r
+}
+)),o='swipe'===re.originImageType?te.toFixed(0)+":"+Pe.toFixed(0):ge.toFixed(0)+":"+fe.toFixed(0);
+if(a.map((function(e){
+var t;
+null==e||null==(t=e.attrValueList)||t.map((function(e){
+var t,r,a=null!=(t=null==K||null==(r=K[0])?void 0:r.sbomAttrList)?t:[];
+if((0,p.findSbomSubAttr)(e,a)){
+var l,s=(0,p.findSbomRelateInfo)(e,a);
+if((null==s?void 0:s.length)>0)null==s||s.map((function(e){
+1===e.type&&n.push({
+imgProportion:o,imgUri:i.CommonUtils.getCDNpath(1)+e.path+e.name
+}
+)
+}
+));
+else null==e||null==(l=e.relateInfo)||l.map((function(e){
+1===e.type&&n.push({
+imgProportion:o,imgUri:i.CommonUtils.getCDNpath(1)+e.path+e.name
+}
+)
+}
+))
+}
+
+}
+))
+}
+)),n.length<=0){
+var l,s=K[0];
+null!=s&&s.photoPath&&null!=s&&s.photoName&&n.push({
+imgProportion:o,imgUri:i.CommonUtils.getCDNpath(1)+s.photoPath+s.photoName
+}
+),null==s||null==(l=s.groupPhotoList)||l.forEach((function(e){
+e.photoPath&&e.photoName&&n.push({
+imgProportion:o,imgUri:i.CommonUtils.getCDNpath(1)+e.photoPath+e.photoName
+}
+)
+}
+))
+}
+return n
+}
+,xe=(0,r.useMemo)((function(){
+var t,n=null==D?void 0:D.length,r=D.filter((function(e,t){
+return(null==e?void 0:e.attrName)===ie.title&&(n=t,!0)
+}
+)),a=r.map((function(e){
+return null==e?void 0:e.attrValueList.map((function(e){
+return null==e?void 0:e.attrValueCode
+}
+))
+}
+)).flat().map((function(e){
+var t,i=r.map((function(t){
+return null==t?void 0:t.attrValueList.filter((function(t){
+return t.attrValueCode===e
+}
+)).map((function(e){
+return e.attrName=null==t?void 0:t.attrName,e.attrCode=null==t?void 0:t.attrCode,JSON.parse(JSON.stringify(e))
+}
+))
+}
+)).flat(),n=JSON.parse(JSON.stringify(i[0]));
+return n.relateSbomPkgUnitPrice=(null==n||null==(t=n.sbomList)?void 0:t.sbomCode)===A?n.relateSbomPkgUnitPrice:'',n
+}
+));
+a.forEach((function(e){
+e.title=ie.title,e.imgUrl=i.CommonUtils.getCDNpath(1)+e.path+e.name,e.disable=!1
+}
+)),a.map((function(e){
+e.isActive&&'CarDetail'===H&&(c.default.setSbomCode({
+attr:ie.title,sbomCode:e.includeSbomCode
+}
+),e.isHide=!1)
+}
+));
+var o,s=Number(ie.key)+1;
+J&&D.map((function(e,t){
+(null==e?void 0:e.attrName)===ie.title&&(s=t+1)
+}
+)),a.map((function(e){
+if(e.isActive){
+var t,i=(c=ie.title,f={
+
+}
+,null==K||null==(u=K[0])||null==(h=u.sbomAttrList)||h.forEach((function(e){
+var t,i;
+c===e.attrName&&(f=null!=(t=null==(i=e.attrValueList)?void 0:i[0])?t:{
+
+}
+)
+}
+)),f);
+e.relateInfo=(null==(t=i.relateInfo)?void 0:t.length)>0?i.relateInfo:null==e?void 0:e.relateInfo,e.relateSbom=i.relateSbom,e.relateSbomPkgUnitPrice=i.relateSbomPkgUnitPrice||(null==e?void 0:e.relateSbomPkgUnitPrice)||'',e.attrPriceDesc=i.attrPriceDesc||(null==e?void 0:e.attrPriceDesc)||'',o={
+attrName:e.attrName,attrValue:e.attrValue,imgUrl:e.imgUrl,path:e.path,price:e.relateSbomPkgUnitPrice?e.relateSbomPkgUnitPrice:'',relateSbomPkgUnitPrice:e.relateSbomPkgUnitPrice?e.relateSbomPkgUnitPrice:'',priceMode:e.priceMode||'',relateSbom:e.relateSbom||'',attrPriceDesc:null!=e&&e.attrPriceDesc?null==e?void 0:e.attrPriceDesc:''
+}
+;
+// 变量
+var n: any = '',r='';
+if(K&&K.length>0){
+// 变量
+var a: any = K[0],l=a.sbomAttrList;
+(void 0===l?[]:l).forEach((function(e){
+var t;
+e.attrName===ie.title&&(null==e||null==(t=e.attrValueList)||t.forEach((function(e){
+n=a.relateSbomPkgUnitPrice?a.relateSbomPkgUnitPrice:null!=e&&e.relateSbomPkgUnitPrice?null==e?void 0:e.relateSbomPkgUnitPrice:'',r=a.attrPriceDesc?a.attrPriceDesc:null!=e&&e.attrPriceDesc?null==e?void 0:e.attrPriceDesc:''
+}
+)))
+}
+))
+}
+e.relateSbomPkgUnitPrice=n,e.attrPriceDesc=r
+}
+var c,u,h,f;
+e.tabName=ie.title,e.tabIndex=(Number(ie.key)+1).toString(),e.productId=V,e.routerType=H,e.reportIndex=s,e.channelId=E,e.saleId=O
+}
+)),c.default.setChooseAttr(o);
+var u=null==K?void 0:K.find((function(e){
+return e.sbomCode===A
+}
+)),h=null==u?void 0:u.carGbomRelConfig;
+u&&!h&&e.carGbomRelConfig&&u.gbomCode===e.carGbomRelConfig.gbomCode&&(h=e.carGbomRelConfig);
+var p=Boolean(h),v=null!=(t=h)?t:{
+
+}
+,P=v.rotateImageList,w=v.rotateSwitch,x=v.wheelImageZoomInSwitch,I=p&&(2===ne&&!w&&P||3===ne&&!x),y=!re.lastIsAnimImage||!I;
+re.lastIsAnimImage=I;
+var b=p?2===ne&&!w||3===ne&&!w&&!R?'rotate':3!==ne||x?'swipe':'scale':'swipe';
+re.originImageType=b;
+var S='rotate'===b?J?we().map((function(e){
+return e.imgUri
+}
+)):P:'scale'===b?we().map((function(e){
+return e.imgUri
+}
+)):we();
+return'swipe'===b||S&&0!==S.length||(b='swipe',S=we()),(J||1===ne)&&(S=[S[0]]),re.shouldAnim=!R&&!f.default.isEqual(S,re.imgList)||R&&k,re.imgList=S,re.imageType=b,re.finishEasingIn&&ue(a),re._attrArray=a,[a,n,y,(0,l.showValetBtn)(e,Y)]
+}
+),[D,Y.isPc&&B,te,Y.isFixScreen]),Ie=(0,t.default)(xe,4),ye=Ie[0],be=Ie[1],Se=Ie[2],Ce=Ie[3],Ae=function(t,n,r){
+var a;
+null==e.setSbomCode||e.setSbomCode(t,n,r);
+// 变量
+var o: any = we();
+i.GlobalProps.carSelectImg=null==o||null==(a=o[0])?void 0:a.imgUri
+}
+,Te=(0,r.useReducer)((function(e){
+return!e
+}
+),!1),je=(0,t.default)(Te,2)[1];
+(0,r.useEffect)((function(){
+return function(){
+var e;
+null==(e=re.changeListener)||e.remove(),re.timer&&clearTimeout(re.timer)
+}
+
+}
+),[]);
+var Be=(0,r.useMemo)((function(){
+return function(e){
+var t,i=ye[e],n=null==i?void 0:i.isActive;
+if(Y.isPc||!n){
+var r=ye.find((function(e){
+return e.isActive
+}
+));
+r&&(r.isActive=!1),i&&(i.isActive=!0,je(),null==(t=re.changeListener)||t.remove(),re.changeListener=a.DeviceEventEmitter.addListener('changeSbomCode',(function(e){
+e||(i&&(i.isActive=!1),r&&(r.isActive=!0),je())
+}
+)),Ae(be,i,n))
+}
+
+}
+
+}
+),[ye]);
+(0,r.useEffect)((function(){
+if(re.shouldAnim&&k){
+re.finishEasingIn=!1;
+// 变量
+var e: any = Math.sign(B-re.lastIndex);
+a.Animated.timing(re.shiftAnim,{
+toValue:e,duration:R?500:300,easing:a.Easing.in(a.Easing.quad),useNativeDriver:!0
+}
+).start((function(t){
+var i;
+t.finished&&('swipe'===re.imageType&&ee(re.imgList),null==(i=oe.current)||i.scrollTo({
+x:0
+}
+),re.shiftAnim.setValue(-e),re.finishEasingIn=!0,ue(re._attrArray))
+}
+))
+}
+
+}
+),[B,k,R]),(0,r.useEffect)((function(){
+re.shouldAnim&&k&&re.lastIndex!==B||ue(ye),re.lastIndex!==B&&(re.lastIndex=B)
+}
+),[ye]),(0,r.useEffect)((function(){
+re.shouldAnim&&k&&a.Animated.timing(re.shiftAnim,{
+toValue:0,duration:R?500:300,easing:a.Easing.out(a.Easing.quad),useNativeDriver:!0
+}
+).start()
+}
+),[ce]);
+var Ne=(0,r.useMemo)((function(){
+var e,t=null!=(e=ye.find((function(e){
+return e.isActive
+}
+)))?e:{
+
+}
+,i=t.desc,n=void 0===i?'':i,r=t.attrPriceDesc,o=void 0===r?'':r,s=t.attrValue,c=(0,l.translateDescHtml)(n);
+return 0===c.length&&o&&c.push(o),re.forkKey=re.shouldAnim?A+"-"+B:re.forkKey,[s,c.map((function(e,t){
+return(0,I.jsx)(a.Text,{
+style:[X.priceText,!k&&X.noImagePrice],numberOfLines:2,children:e
+}
+,t)
+}
+)),re.originImageType,re.imageType,re.imgList]
+}
+),[ce]),He=(0,t.default)(Ne,5),Ve=He[0],Ee=He[1],Le=He[2],De=He[3],Oe=He[4],Ue=(0,r.useMemo)((function(){
+if(Y.isPc)return 0;
+// 变量
+var e: any = 8;
+if(Y.isPhone||J&&!Y.isPhone){
+// 变量
+var t: any = Y.isPhone?Y.width:480;
+if(70*ce.length<=t-16)e=0;
+else{
+// 变量
+var i: any = t-8-15-20;
+e=i/Math.floor(i/70)-70
+}
+
+}
+return e
+}
+),[ce,Y.width]),ke=function(e){
+var t,i,n;
+null==(t=ae.current)||null==(i=t.webSwiperObj)||i.goTo((null==(n=ae.current)?void 0:n.webSwiperObj.state.activeIndex)+e)
+}
+,Me=Ee.length>0,Re={
+flex:1,flexBasis:Y.isPc?'auto':480,justifyContent:'space-between',alignItems:'center'
+}
+,Fe=8;
+J||Y.isPc?Fe=0:Y.isPhone&&(Fe=16);
+var Ge='swipe'!==Le?(0,v.wrapperMarginTop)(Y,fe,J):Fe,We='swipe'!==Le?ge:te;
+return(0,r.useMemo)((function(){
+'swipe'===De&&ee(JSON.parse(JSON.stringify(Oe)))
+}
+),[null==(S=Oe[0])?void 0:S.imgProportion]),(0,I.jsxs)(x.default,{
+judge:R,wrapper:a.ScrollView,contentContainerStyle:Re,style:X.scroll,children:[k&&(0,I.jsxs)(I.Fragment,{
+children:[Ce&&(0,I.jsx)(a.TouchableOpacity,{
+style:X.vrBox,onPress:function(){
+(0,l.goVRPage)(e,Y)
+}
+,activeOpacity:1,children:(0,I.jsx)(a.Image,{
+style:X.vrImg,source:h.default.vr
+}
+)
+}
+),(0,I.jsx)(a.View,{
+style:[X.imageContainer,!R&&X.noSelectImageContainer],children:(0,I.jsx)(a.Animated.View,{
+style:[X.animContainer,{
+opacity:re.shiftAnim.interpolate({
+inputRange:[-1,0,1],outputRange:Se?[0,1,0]:[1,1,1]
+}
+)
+}
+],children:'swipe'===De?(0,I.jsxs)(a.View,{
+style:[{
+marginTop:Ge,width:We
+}
+],children:[Oe.length>0&&(0,I.jsx)(w.AppSwiperPreload,{
+initImages:Oe,handleInnerImages:ee,usePreload:Y.isApp,width:We,children:Q.length>0&&(0,I.jsx)(n.AppSwiper,{
+ref:ae,mixedSwiper:!0,width:We,imgList:Y.isApp?Q:Oe,swiperOnscroll:function(e){
+if(!(re.curIndex<0)){
+// 变量
+var t: any = e>Oe.length?1:e,n=t>=re.curIndex?'3':'4',r='900027204',a=(0,i.t)('car_preview'),o='car_preview_mainPhoto',l=(0,i.t)('car_options_preview'),s='p_carPreview',c=(0,i.t)('item_master_picture'),u='r_carPreview_mainPhoto',h=D.length;
+D.map((function(e,t){
+(null==e?void 0:e.attrName)===ie.title&&(h=t)
+}
+)),'CarDetail'===H&&(r='900027103',a=(0,i.t)('car_main_page'),o='carDetail_mainPhoto',s='p_carDetail',l=(0,i.t)('optional_for_vehicle_purchase'),u='r_carDetail_mainPhoto',c=(0,i.t)('item_master_picture'),h=Number(B)),i.Report.eventTracingReport({
+actionCode:r,actionName:a+'-'+ie.title+"-"+(0,i.t)('slide_main_img'),eventType:n,content:{
+comId:o+"-"+(h+1)+"-"+t,productId:null==V?void 0:V.toString(),SKUCode:A,type:'1',tabName:ie.title,tabIndex:(h+1).toString(),index:null==t?void 0:t.toString(),index_name:(0,i.t)('number_of_slide').replace('%1$d',String(t)),channelId:E||'0',saleId:O||''
+}
+,pageCatCode:s,pageCatName:l,resSiteCode:u,resSiteName:c,pageId:'CarDetail'===H?'p_carDetail_'+V:'p_carPreview_'+V
+}
+),i.Report.execReportData('',!0),re.curIndex=-1,re.timer=setTimeout((function(){
+re.curIndex=t
+}
+),300)
+}
+
+}
+,autoPlay:!Y.isPc
+}
+,re.forkKey)
+}
+),!R&&Oe.length>1&&(0,I.jsxs)(I.Fragment,{
+children:[(0,I.jsx)(a.TouchableOpacity,{
+activeOpacity:1,style:[X.swiperBtn,X.swiperBtnLeft],onPress:function(){
+return ke(-1)
+}
+,children:(0,I.jsx)(n.SvgIcon,{
+iconName:"ic_public_arrow_left",viewBox:'-320 -200 1340 1340',width:"32",height:"32"
+}
+)
+}
+),(0,I.jsx)(a.TouchableOpacity,{
+activeOpacity:1,style:[X.swiperBtn,X.swiperBtnRight],onPress:function(){
+return ke(1)
+}
+,children:(0,I.jsx)(n.SvgIcon,{
+iconName:"ic_public_arrow_right",viewBox:'-420 -200 1340 1340',width:"32",height:"32"
+}
+)
+}
+)]
+}
+)]
+}
+):(0,I.jsx)(s.default,{
+limitBySize:!R,animateable:!J,resizeMode:R?'cover':'contain',imgList:Oe,type:De,width:ge,height:fe
+}
+)
+}
+)
+}
+)]
+}
+),(0,I.jsxs)(a.View,{
+children:[k&&R&&(0,I.jsx)(a.View,{
+style:[X.contentContainer,Y.isPc&&{
+minHeight:ve
+}
+],children:(0,I.jsxs)(a.Animated.View,{
+style:[X.contentAnim,{
+opacity:re.shiftAnim.interpolate({
+inputRange:[-1,0,1],outputRange:[0,1,0]
+}
+)
+}
+,{
+transform:[{
+translateY:a.Animated.multiply(re.shiftAnim,-ve/2)
+}
+]
+}
+],children:[(0,I.jsx)(a.Text,{
+style:X.contentTitle,numberOfLines:2,children:Ve
+}
+),Me&&Ee]
+}
+)
+}
+),!k&&(0,I.jsxs)(a.View,{
+style:X.noImageContent,children:[(0,I.jsx)(a.Text,{
+style:X.noImageTitle,numberOfLines:2,children:Ve
+}
+),Me&&(0,I.jsx)(a.View,{
+style:X.noImagePriceBox,children:Ee
+}
+)]
+}
+),R&&(0,I.jsx)(a.View,{
+style:[X.selectContainer,{
+marginBottom:pe
+}
+],children:(0,I.jsx)(a.Animated.ScrollView,{
+ref:oe,style:{
+transform:[{
+translateX:re.shiftAnim.interpolate({
+inputRange:[-1,0,1],outputRange:[te,0,-te]
+}
+)
+}
+]
+}
+,horizontal:!0,showsHorizontalScrollIndicator:!1,children:(0,I.jsx)(a.View,{
+style:[X.selectBarInner,!k&&X.onlySelectBar],children:ce.map((function(e,t){
+return(0,I.jsxs)(r.Fragment,{
+children:[0!==t&&(0,I.jsx)(a.View,{
+style:{
+width:Ue
+}
+
+}
+),(0,I.jsx)(u.default,{
+attr:e,active:e.isActive,index:t,setActive:Be
+}
+)]
+}
+,e.attrValueCode+"-"+t)
+}
+))
+}
+)
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+))
+}
+),"c93ae4614155cfba20a1c44e70542bdff08e4a9c10dac559a66c469d9d2d9cf3",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","13e9060659e8dca8104f6946e943ff230a9ae9c5a2901c1c2f9c1b6e3cf389ac","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","3c8277d35f39252f29216fa820fc4c73698a37919712d0a78cb763e16e90b046","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","ab04419c2c19d6a8dd25cc19d4082f9439c68152b3d3fd537cdd0610bf3d2136","e1e2841e4a5ac9f8afcbcf5d5405be2429497c86f1b6eee4c70aa258071c5ff0","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.loadedImgsLog=_e.default=void 0;
+var t=e(_r(d[1])),n=e(_r(d[2])),r=_r(d[3]),i=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = y(t);
+if(n&&n.has(e))return n.get(e);
+var r={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var o: any = i?Object.getOwnPropertyDescriptor(e,a):null;
+o&&(o.get||o.set)?Object.defineProperty(r,a,o):r[a]=e[a]
+}
+return r.default=e,n&&n.set(e,r),r
+}
+)(_r(d[4])),a=_r(d[5]),o=e(_r(d[6])),u=_r(d[7]),s=_r(d[8]),l=e(_r(d[9])),c=_r(d[10]),p=_r(d[11]),h=e(_r(d[12])),f=_r(d[13]),v=e(_r(d[14])),I=_r(d[15]);
+// 函数
+function y(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(y=function(e){
+return e?n:t
+}
+)(e)
+}
+var w={
+PHONE:{
+x:140,y:-32
+}
+,FIX:{
+x:220,y:14
+}
+,FIXV:{
+x:220,y:14
+}
+,FIXH:{
+x:220,y:0
+}
+,PADV:{
+x:220,y:-32
+}
+,PADH:{
+x:160,y:10
+}
+
+}
+,x=r.PlatformUtils.isApp()?a.Animated.createAnimatedComponent(o.default):a.Animated.Image,A=16.666666666666668,C=_e.loadedImgsLog={
+current:{
+
+}
+
+}
+,S=function(e){
+e&&(C.current[e]=!0)
+}
+,L=function(){
+for(var e=arguments.length,t=new Array(e),n=0;
+n<e;
+n++)t[n]=arguments[n];
+// 变量
+var i: any = t[0],o=t[1],u=0;
+if(o.isPc){
+// 变量
+var s: Function = o.height-110,l=o.width-416;
+u=Math.max(20,.5*s-.2*l-60)
+}
+return a.StyleSheet.create({
+wrapper:{
+position:'relative',alignItems:'center'
+}
+,gestureInnerView:{
+width:'100%',alignItems:'center',cursor:'move'
+}
+,container:{
+width:'100%',alignItems:'center'
+}
+,imgItem:{
+position:'absolute',marginTop:o.isFixScreen&&o.width>=o.height?c.FIXH_MARGIN_TOP:0
+}
+,tipContainer:{
+position:'absolute',bottom:o.isPadH?10:0,width:'100%',alignItems:'center',height:24
+}
+,limitBySize:{
+position:'absolute',bottom:u
+}
+,tipItem:{
+position:'absolute'
+}
+,rotateTipContainer:{
+bottom:0,width:360,height:24
+}
+,scrollTipContainer:{
+bottom:6,width:64,height:2,borderRadius:1,backgroundColor:r.CommonUtils.colorRgba(i.C38.color,i.C38.opacity)
+}
+,loadingTipContainer:{
+width:30,height:6
+}
+,scrollTip:{
+height:2,borderRadius:1,width:32,backgroundColor:r.CommonUtils.colorRgba(i.C21.color,i.C21.opacity)
+}
+
+}
+)
+}
+;
+_e.default=(0,i.memo)((function(e){
+var r=e.imgList,y=void 0===r?[]:r,T=e.width,V=e.height,b=e.backgroundColor,M=e.type,E=void 0===M?'rotate':M,P=e.resizeMode,j=void 0===P?'cover':P,k=e.limitBySize,F=e.animateable,D=(0,p.useLayout)(L),O=D.themeStyles,H=D.platform,R=!H.isPc&&!F,_=(0,i.useMemo)((function(){
+return H.isPhone||R?w.PHONE:H.isFixScreen?H.width>=H.height?w.FIXH:w.FIXV:H.isPadV||H.isPc?w.PADV:w.PADH
+}
+),[H]),N=(0,a.useWindowDimensions)(),z=(0,i.useMemo)((function(){
+if(R)return 1.8;
+if(H.isFixScreen)return N.width>=N.height?1.2:1.4;
+if(H.isPadH){
+// 变量
+var e: any = Math.floor(.45*a.Dimensions.get('window').height);
+return Math.max(1,Number((V/e).toFixed(2)))
+}
+return 1.8
+}
+),[H,N.width]);
+(0,i.useEffect)((function(){
+ee.currentScale>1&&z>1&&(ee.currentScale=z,ee.scaleAnim.setValue(z))
+}
+),[z]);
+var G=(0,i.useState)([]),W=(0,n.default)(G,2),X=W[0],B=W[1],q=(0,i.useState)({
+imgs:[],show:-1
+}
+),U=(0,n.default)(q,2),Y=U[0],J=U[1],K=(0,i.useState)(!1),Q=(0,n.default)(K,2),Z=Q[0],$=Q[1],ee=(0,i.useRef)({
+type:E,lastType:'',imgLength:0,outterImgs:[],innerImgs:[],loadCount:0,loadCoverCount:0,shouldLoadNum:0,preloadStartTime:0,preloadEndTime:0,currentIndex:0,currentScale:1,startStatus:{
+x:0,index:0,scale:1
+}
+,rotateFrameGap:0,scaleFrameGap:0,gestureTimer:0,gestureLock:!1,rotateAnim:new a.Animated.Value(0),rotateTipAnim:new a.Animated.Value(0),scaleAnim:new a.Animated.Value(1),scaleTipAnim:new a.Animated.Value(0),animWatcher:null,timer:null
+}
+).current;
+(0,i.useEffect)((function(){
+if(0===y.length)return ee.rotateTipAnim.setValue(0),ee.scaleTipAnim.setValue(0),B([]),function(){
+
+}
+;
+ee.outterImgs='rotate'===E&&F?(0,t.default)(y):[y[0]],(0,s.isEqual)(ee.innerImgs,ee.outterImgs)&&(ee.innerImgs=ee.outterImgs);
+var e=function(){
+var e=(arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+).finished;
+(void 0===e||e)&&(ee.gestureLock=!1,ee.imgLength=ee.outterImgs.length,'rotate'===ee.type?re():ne())
+}
+;
+if(ee.type===E)e();
+else{
+// 变量
+var n: any = ee.type;
+ee.type=E,ee.gestureLock=!0,se(n,{
+toValue:'rotate'===n?Math.round(ee.currentIndex/ee.imgLength)*ee.imgLength:1
+}
+,e)
+}
+return function(){
+ee.preloadStartTime=0,ee.currentIndex=(ee.currentIndex%ee.imgLength+ee.imgLength)%ee.imgLength,ee.rotateAnim.setValue(ee.currentIndex),ee.timer&&clearTimeout(ee.timer)
+}
+
+}
+),[y,E]),(0,i.useEffect)((function(){
+ee.loadCount=0
+}
+),[X]);
+var te=(0,i.useCallback)((function(e){
+e||(ee.innerImgs.forEach(S),J({
+imgs:[],show:-1
+}
+)),ee.gestureLock=e,$(e);
+var t=[a.Animated.timing(ee.rotateTipAnim,{
+toValue:'scale'===ee.type||e?0:1,duration:300,easing:(e?a.Easing.out:a.Easing.in)(a.Easing.quad),useNativeDriver:!0
+}
+),a.Animated.timing(ee.scaleTipAnim,{
+toValue:'rotate'===ee.type||e?0:1,duration:300,easing:(e?a.Easing.out:a.Easing.in)(a.Easing.quad),useNativeDriver:!0
+}
+)];
+ee.type===ee.lastType||'scale'!==ee.type||e||(ee.gestureLock=!0,se('scale',{
+toValue:z
+}
+,(function(e){
+e.finished&&(ee.gestureLock=!1)
+}
+))),e||(ee.lastType=ee.type),a.Animated.parallel(t).start()
+}
+),[z]),ne=function(){
+// 变量
+var e: any = ee.outterImgs[0];
+te(!C.current[e]),ee.gestureLock=!0,J((function(){
+return ee.loadCoverCount=1,{
+imgs:[e],show:-1
+}
+
+}
+))
+}
+,re=function(){
+ee.preloadStartTime=Date.now();
+var e=0===ee.currentIndex?[ee.outterImgs[0]]:[ee.outterImgs[0],ee.outterImgs[ee.currentIndex]],t=ee.outterImgs.find((function(e){
+return!C.current[e]
+}
+));
+te(Boolean(t)),ee.gestureLock=!0,J((function(){
+return ee.loadCoverCount=2-e.length,{
+imgs:e,show:-1
+}
+
+}
+))
+}
+,ie=function(){
+ee.loadCoverCount>=2||(ee.loadCoverCount++,ee.loadCoverCount>=2&&ae())
+}
+,ae=function(){
+// 变量
+var e: any = Date.now();
+ee.preloadEndTime=e;
+// 变量
+var t: any = e-ee.preloadStartTime;
+Y.imgs.forEach(S);
+var n=function(t){
+e===ee.preloadEndTime&&(J((function(e){
+return Object.assign({
+
+}
+,e,{
+show:t
+}
+)
+}
+)),oe())
+}
+;
+'scale'!==ee.type&&0!==ee.currentIndex?t<c.LOAD_TIME?n(1):se('rotate',{
+toValue:Math.round(ee.currentIndex/ee.imgLength)*ee.imgLength
+}
+,(function(){
+return n(0)
+}
+)):n(0)
+}
+,oe=function(){
+ee.shouldLoadNum=ee.outterImgs.reduce((function(e,t){
+return ee.innerImgs.includes(t)?e:e+1
+}
+),0),ee.outterImgs.every((function(e){
+return C.current[e]
+}
+))&&te(!1),ee.innerImgs!==ee.outterImgs&&(ee.innerImgs=ee.outterImgs,B(ee.outterImgs))
+}
+,ue=function(){
+ee.innerImgs!==ee.outterImgs||ee.loadCount>=ee.shouldLoadNum||(ee.loadCount++,ee.loadCount>=ee.shouldLoadNum&&te(!1))
+}
+,se=function(e,t,n){
+// 变量
+var r: any = 'rotate'===e?'currentIndex':'currentScale',i='rotate'===e?'rotateAnim':'scaleAnim';
+ee[r]!==t.toValue?(ee[r]=t.toValue,ee.animWatcher=a.Animated.timing(ee[i],Object.assign({
+duration:500,easing:a.Easing.out(a.Easing.quad),useNativeDriver:!0
+}
+,t)),ee.animWatcher.start((function(e){
+ee[i].setValue(t.toValue),null==n||n(e)
+}
+))):null==n||n({
+finished:!0
+}
+)
+}
+,le=function(e){
+// 变量
+var t: any = ee.startStatus,n=t.x,r=t.scale,i=H.isPadH?3:1,a=r+(e-n)/T/i,o=Math.max(1,Math.min(z,a));
+ee.scaleFrameGap=o-ee.currentScale||ee.scaleFrameGap,ee.currentScale=o,ee.scaleAnim.setValue(ee.currentScale)
+}
+,ce=function(e){
+// 变量
+var t: any = ee.startStatus,n=t.x,r=t.index+ee.imgLength*(e-n)/T;
+ee.rotateFrameGap=r-ee.currentIndex,r=Math.round(r),ee.currentIndex!==r&&(ee.currentIndex=Math.ceil(r),ee.rotateAnim.setValue(ee.currentIndex))
+}
+,de=(0,i.useCallback)((function(e){
+var t;
+if(!ee.gestureLock){
+var n=null!=(t=e.nativeEvent)?t:{
+
+}
+,r=n.state,i=n.x;
+4===r&&(ee.gestureTimer>Date.now()-A||('rotate'===ee.type?ce(i):le(i),ee.gestureTimer=Date.now()))
+}
+
+}
+),[H.width]),me=function(){
+if(0!==ee.rotateFrameGap){
+// 变量
+var e: any = ee.rotateFrameGap/A,t=Math.sign(e);
+e=t*Math.min(Math.abs(e),.5),se('rotate',{
+toValue:ee.currentIndex+t*Math.round(.5*e**2*500)
+}
+)
+}
+
+}
+,ge=function(e){
+if(ee.imgLength<=2)return 1;
+var n=c.DYNAMIC_BLUR.map((function(e){
+return[e[0],e[1]]
+}
+));
+n.push([1,0]);
+var r=function(e){
+return(0,t.default)(n).reverse().map((function(t){
+return[e-t[0],t[1]]
+}
+))
+}
+,i=function(e){
+return n.map((function(t){
+return[e+t[0],t[1]]
+}
+))
+}
+,o=[];
+return o=0===e?[[0,1]].concat((0,t.default)(i(0)),(0,t.default)(r(ee.imgLength)),[[ee.imgLength,1]]):[].concat((0,t.default)(r(e)),[[e,1]],(0,t.default)(i(e))),a.Animated.modulo(ee.rotateAnim,ee.imgLength).interpolate({
+inputRange:o.map((function(e){
+return e[0]
+}
+)),outputRange:o.map((function(e){
+return e[1]
+}
+)),extrapolate:'clamp'
+}
+)
+}
+,pe=(0,i.useMemo)((function(){
+return X.map((function(e,t){
+return(0,I.jsx)(x,{
+resizeMode:j,resizeWidth:T,imgStyleHeight:V,source:{
+uri:e
+}
+,onLoad:ue,style:[O.imgItem,{
+width:T,height:V
+}
+,{
+opacity:ge(t)
+}
+]
+}
+,e)
+}
+))
+}
+),[X,T,V,O]);
+return(0,I.jsxs)(a.View,{
+style:[O.wrapper,{
+marginTop:(0,f.wrapperMarginTop)(H,V,!F)
+}
+],children:[(0,I.jsx)(v.default,{
+judge:!R,wrapper:u.PanGestureHandler,activeOffsetX:[-20,20],failOffsetY:[-20,20],onGestureEvent:F?de:void 0,onHandlerStateChange:F?function(e){
+var t,n=null!=(t=e.nativeEvent)?t:{
+
+}
+,r=n.state,i=n.x;
+switch(r){
+case 2:ee.startStatus={
+x:i,index:ee.currentIndex,scale:ee.currentScale
+}
+;
+break;
+case 5:'rotate'===E?me():1!==ee.currentScale&&ee.currentScale!==z&&se('scale',{
+toValue:ee.scaleFrameGap<0?1:z
+}
+)
+}
+
+}
+:void 0,children:(0,I.jsx)(a.View,{
+style:[{
+backgroundColor:b
+}
+,O.gestureInnerView],children:(0,I.jsxs)(a.Animated.View,{
+style:[O.container,{
+backgroundColor:b,width:T,height:V
+}
+,{
+transform:[{
+scale:ee.scaleAnim
+}
+,{
+translateX:ee.scaleAnim.interpolate({
+inputRange:[1,z],outputRange:[0,_.x/z]
+}
+)
+}
+,{
+translateY:ee.scaleAnim.interpolate({
+inputRange:[1,z],outputRange:[0,_.y/z]
+}
+)
+}
+]
+}
+],children:[pe,Y.imgs.map((function(e,t){
+return(0,I.jsx)(x,{
+resizeMode:j,resizeWidth:T,imgStyleHeight:V,source:{
+uri:e,priority:null==o.default?void 0:o.default.priority.high
+}
+,style:[O.imgItem,{
+width:T,height:V,opacity:Y.show===t?1:0
+}
+],onLoad:ie
+}
+,e+"-"+t)
+}
+))]
+}
+)
+}
+)
+}
+),F&&(0,I.jsxs)(a.View,{
+style:[O.tipContainer,k&&O.limitBySize],children:[(0,I.jsx)(x,{
+resizeMode:"contain",source:l.default.tip360,resizeWidth:360,imgStyleHeight:24,style:[O.tipItem,O.rotateTipContainer,{
+opacity:ee.rotateTipAnim
+}
+]
+}
+),(0,I.jsx)(a.Animated.View,{
+style:[O.tipItem,O.scrollTipContainer,{
+opacity:ee.scaleTipAnim
+}
+],children:(0,I.jsx)(a.Animated.View,{
+style:[O.scrollTip,{
+transform:[{
+translateX:ee.scaleAnim.interpolate({
+inputRange:[1,z],outputRange:[32,0]
+}
+)
+}
+]
+}
+]
+}
+)
+}
+),!H.isIOS&&(0,I.jsx)(a.View,{
+style:O.tipItem,children:(0,I.jsx)(h.default,{
+visible:Z,children:(0,I.jsx)(a.Image,{
+mode:"aspectFit",resizeMode:"contain",source:l.default.loadingSpot,style:O.loadingTipContainer
+}
+)
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+))
+}
+),"13e9060659e8dca8104f6946e943ff230a9ae9c5a2901c1c2f9c1b6e3cf389ac",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","80700f21fec9f5c717262de471ee3dce00f502afaf2d6fbb55dd39a0a3737502","eb1eec51ea9b0b6fc1c065fa646cc7a3d9846eeeca9feb03f6ec21346b7958d7","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","64fc8bea219e618cb882d250b061be2c8243429e042956831aa41b43bcfba749","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","e1e2841e4a5ac9f8afcbcf5d5405be2429497c86f1b6eee4c70aa258071c5ff0","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = f(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var o: any = i?Object.getOwnPropertyDescriptor(e,a):null;
+o&&(o.get||o.set)?Object.defineProperty(n,a,o):n[a]=e[a]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[2])),n=_r(d[3]),i=_r(d[4]),a=_r(d[5]),o=_r(d[6]),u=_r(d[7]);
+// 函数
+function f(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(f=function(e){
+return e?r:t
+}
+)(e)
+}
+_e.default=function(e){
+var o=e.visible,f=e.style,c=e.children,p=(0,r.useState)((function(){
+return new i.Animated.Value(o?1:0)
+}
+)),s=(0,t.default)(p,1)[0];
+(0,r.useEffect)((function(){
+n.PlatformUtils.isMp()||i.Animated.timing(s,{
+toValue:o?1:0,duration:300,easing:o?a.ANIM_EASING.QUAD_IN:a.ANIM_EASING.QUAD_OUT,useNativeDriver:!0
+}
+).start()
+}
+),[o]);
+var y=(0,r.useMemo)((function(){
+return n.PlatformUtils.isMp()?o?l.mpShow:l.mpHide:{
+opacity:s
+}
+
+}
+),[s,o]);
+return(0,u.jsx)(i.Animated.View,{
+style:[f,y],children:c
+}
+)
+}
+;
+var l={
+mpShow:{
+opacity:1,transition:(0,o.createTransition)(300,'QUAD_IN')(['opacity'])
+}
+,mpHide:{
+opacity:0,transition:(0,o.createTransition)(300,'QUAD_OUT')(['opacity'])
+}
+
+}
+
+}
+),"64fc8bea219e618cb882d250b061be2c8243429e042956831aa41b43bcfba749",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","d63d6f49d192d4d685804967b6d1a53e3fc049c3ca120fc482e42266d0545140","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var u: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = u(r(d[1])),n=(u(r(d[2])),r(d[3])),p=["judge","wrapper"];
+e.default=function(u){
+// 变量
+var f: any = u.judge,l=(u.wrapper,(0,t.default)(u,p));
+return f?(0,n.jsx)(u.wrapper,Object.assign({
+
+}
+,l)):l.children
+}
+
+}
+),"e1e2841e4a5ac9f8afcbcf5d5405be2429497c86f1b6eee4c70aa258071c5ff0",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=_r(d[0]),t=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = n(t);
+if(r&&r.has(e))return r.get(e);
+var i={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var c: any = a?Object.getOwnPropertyDescriptor(e,o):null;
+c&&(c.get||c.set)?Object.defineProperty(i,o,c):i[o]=e[o]
+}
+return i.default=e,r&&r.set(e,i),i
+}
+)(_r(d[1])),r=_r(d[2]),i=_r(d[3]),a=_r(d[4]);
+// 函数
+function n(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(n=function(e){
+return e?r:t
+}
+)(e)
+}
+var o=r.StyleSheet.create({
+selectItemContainer:{
+margin:15
+}
+,selectItem:{
+width:40,height:40
+}
+,selectItemShadow:Object.assign({
+position:'absolute',width:'100%',height:'100%',justifyContent:'center',alignItems:'center'
+}
+,e.PlatformUtils.isHarmony()&&{
+top:-.27,left:-.27
+}
+),selectItemBorder:{
+width:48,height:48,borderRadius:24,borderWidth:1,borderColor:'#000'
+}
+,selectItemBox:{
+width:40,height:40,borderRadius:20,overflow:'hidden'
+}
+
+}
+),c=(0,t.memo)((function(n){
+var c=n.attr,l=n.active,s=n.index,u=n.setActive,p=(0,t.useRef)(new r.Animated.Value(1)).current,f=(0,t.useRef)({
+scale:{
+transform:[{
+scale:p
+}
+]
+}
+,opacity:{
+opacity:p.interpolate({
+inputRange:[1,1.1],outputRange:[0,1]
+}
+)
+}
+
+}
+).current,_=(0,i.clickDebunce)((function(){
+// 变量
+var t: any = c.disable,r=c.productId,i=c.tabName,a=c.sbomCode,n=c.attrValue,o=c.routerType,l=c.reportIndex,p=c.isActive,f=c.channelId,_=void 0===f?'0':f,v=c.saleId,y=void 0===v?'':v;
+if(!t&&!p){
+u(s);
+var h='900027205',b=(0,e.t)('car_preview'),w='car_preview_attribute',I=(0,e.t)('car_options_preview'),j='p_carPreview',x=(0,e.t)('config_info'),C='r_carPreview_attribute';
+'CarDetail'===o&&(h='900027104',b=(0,e.t)('car_main_page'),w='carDetail_attribute',I=(0,e.t)('car_prd_detail'),j='p_carDetail',x=(0,e.t)('product_select'),C='r_carDetail_select'),e.Report.eventTracingReport({
+actionCode:h,actionName:b+'-'+i+'-'+n,eventType:'2',content:{
+comId:w+'-'+l+'-'+(s+1),productId:null==r?void 0:r.toString(),SKUCode:a,tabName:i,tabIndex:Number(l).toString(),index:(s+1).toString(),index_name:n,channelId:_||'0',saleId:y||''
+}
+,resSiteCode:C,resSiteName:x,pageCatCode:j,pageCatName:I,pageId:'CarDetail'===o?"p_carDetail_"+r:"p_carPreview_"+r
+}
+),e.Report.execReportData('',!0)
+}
+
+}
+));
+return(0,t.useEffect)((function(){
+r.Animated.timing(p,{
+toValue:l?1.1:1,duration:200,useNativeDriver:!0
+}
+).start()
+}
+),[l,p]),(0,a.jsx)(r.TouchableOpacity,{
+activeOpacity:1,style:o.selectItemContainer,onPress:_,children:(0,a.jsxs)(r.Animated.View,{
+style:[o.selectItem,f.scale],children:[(0,a.jsx)(r.View,{
+style:o.selectItemShadow,children:(0,a.jsx)(r.Animated.View,{
+style:[o.selectItemBorder,f.opacity]
+}
+)
+}
+),(0,a.jsx)(r.View,{
+style:o.selectItemBox,children:(0,a.jsx)(r.Image,{
+source:{
+uri:c.imgUrl
+}
+,resizeMode:"contain",style:o.selectItem
+}
+)
+}
+)]
+}
+)
+}
+)
+}
+),(function(e,t){
+return JSON.stringify(e)===JSON.stringify(t)
+}
+));
+_e.default=c
+}
+),"3c8277d35f39252f29216fa820fc4c73698a37919712d0a78cb763e16e90b046",["11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.GestureHandlerWrapper=e.AppSwiperPreload=void 0;
+var n=t(r(d[1])),s=r(d[2]),l=r(d[3]),o=r(d[4]),u=(t(r(d[5])),t(r(d[6]))),c=r(d[7]),p=(e.GestureHandlerWrapper=function(t){
+var u=l.StyleSheet.create({
+wrapper:{
+flex:1
+}
+
+}
+);
+return function(l){
+var p=Object.assign({
+
+}
+,((0,n.default)(l),l));
+return s.PlatformUtils.isHarmony()?(0,c.jsx)(o.GestureHandlerRootView,{
+style:u.wrapper,children:(0,c.jsx)(t,Object.assign({
+
+}
+,p))
+}
+):(0,c.jsx)(t,Object.assign({
+
+}
+,p))
+}
+
+}
+,l.StyleSheet.create({
+basic:{
+height:'100%',position:'absolute',opacity:0
+}
+
+}
+));
+e.AppSwiperPreload=function(t){
+var n,s=t.usePreload,l=t.handleInnerImages,o=t.initImages,f=t.children,h=t.width;
+return(0,c.jsxs)(c.Fragment,{
+children:[s&&(0,c.jsx)(u.default,{
+style:[p.basic,{
+width:h
+}
+],source:{
+uri:null==(n=o[0])?void 0:n.imgUri
+}
+,onLoadEnd:function(){
+l(o)
+}
+
+}
+),f]
+}
+)
+}
+
+}
+),"ab04419c2c19d6a8dd25cc19d4082f9439c68152b3d3fd537cdd0610bf3d2136",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","e7578df93b27f32d74b325294290969a5dab8756f9fd78b7910461274d62e029","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","eb1eec51ea9b0b6fc1c065fa646cc7a3d9846eeeca9feb03f6ec21346b7958d7","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","80700f21fec9f5c717262de471ee3dce00f502afaf2d6fbb55dd39a0a3737502","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = u(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var a: any = o?Object.getOwnPropertyDescriptor(e,i):null;
+a&&(a.get||a.set)?Object.defineProperty(n,i,a):n[i]=e[i]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[1])),r=_r(d[2]),n=_r(d[3]),o=_r(d[4]),i=_r(d[5]),a=e(_r(d[6])),l=_r(d[7]),c=_r(d[8]);
+// 函数
+function u(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(u=function(e){
+return e?r:t
+}
+)(e)
+}
+var s=(0,t.memo)((function(e){
+// 变量
+var t: any = e.item,n=e.prdId,o=e.styles,a=e.onPrdIdChange,l=(0,i.useRequestLock)(a,void 0,0),u=t.disPrdId===n;
+return(0,c.jsx)(r.TouchableOpacity,{
+activeOpacity:1,style:[o.option,u&&o.active],onPress:function(){
+return!u&&l(t.disPrdId)
+}
+,children:(0,c.jsx)(r.Text,{
+style:o.name,children:t.customName
+}
+)
+}
+)
+}
+),(function(e,t){
+return JSON.stringify(e)===JSON.stringify(t)
+}
+)),f=(_e.default=function(e){
+var t,i=e.prdId,l=e.onPrdIdChange,u=Number(i),y=(null!=(t=a.default.disPrdRes)?t:{
+
+}
+).disPrdList,h=void 0===y?[]:y,v=(0,n.useLayout)(f),b=v.themeStyles,P=v.platform,O=p(o.DarkStore.theme,P.isPc);
+return(0,c.jsx)(r.ScrollView,{
+children:(0,c.jsx)(r.View,{
+style:b.content,children:h.map((function(e){
+return(0,c.jsx)(s,{
+item:e,prdId:u,styles:O,onPrdIdChange:l
+}
+,e.disPrdId)
+}
+))
+}
+)
+}
+)
+}
+,function(){
+for(var e=arguments.length,t=new Array(e),n=0;
+n<e;
+n++)t[n]=arguments[n];
+t[0];
+// 变量
+var o: any = t[1];
+return r.StyleSheet.create({
+container:{
+flex:1
+}
+,content:{
+width:(0,l.getAttrContentBoxWidth)(o),paddingBottom:80,marginTop:o.isPhone?4:-4,alignSelf:'center'
+}
+
+}
+)
+}
+),p=function(e,t){
+return r.StyleSheet.create({
+option:{
+flexDirection:'row',alignItems:'center',minHeight:72,marginTop:12,paddingHorizontal:16,paddingVertical:12,borderRadius:t?8:16,borderWidth:t?1:.5,borderColor:o.CommonUtils.colorRgba(e.C12.color,.15),borderStyle:'solid'
+}
+,active:{
+paddingHorizontal:15.5,paddingVertical:11.5,borderColor:o.CommonUtils.colorRgba(e.C12.color,.9),borderWidth:t?1.5:1
+}
+,name:Object.assign({
+
+}
+,e.T10,e.C11)
+}
+)
+}
+
+}
+),"1811fdd17c417abe70447d2797e520cb7083ba4b48312170dd211d747994b0e1",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","76731ac08b5aea9da584cd25fe11fda4997ae4f0f9cfd0be0e92f390b2dfe0e9","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.updateHarmonyCurAttrSbom=_e.updateCurAttrSbom=void 0;
+// 变量
+var t: any = e(r(d[1])),o=r(d[2]),n=r(d[3]),c=r(d[4]);
+_e.updateHarmonyCurAttrSbom=(function(){
+var e=(0,t.default)((function*(e,t,u,v){
+// 变量
+var l: any = arguments.length>4&&void 0!==arguments[4]&&arguments[4],s=arguments.length>5?arguments[5]:void 0;
+try{
+var f=v.prdId,b=v.orderCode,C=v.uniqueId,I=(0,n.getFakeAttrListReq)(u,l,t),E=(0,n.getOptionalReqParams)({
+prdId:f,attrList:I,sbomCode:e
+}
+,v,l),h=yield(0,c.queryCarOptionalProductInfoLate)(E);
+if(h.success){
+var p,P;
+if(t&&t.sbomCode===(null==(p=h.sbomInfo)?void 0:p.sbomCode))!l&&o.DeviceEventEmitter.emit("changePrice-"+C,s.carPromotionInfo);
+else o.DeviceEventEmitter.emit('changeSbomCode',!0),!l&&o.DeviceEventEmitter.emit("changePrice-"+C,void 0),(0,c.getAllPromotionItemInfoLate)(f,null==(P=h.sbomInfo)?void 0:P.sbomCode,b).then((function(e){
+s.carPromotionInfo=e||{
+
+}
+,!l&&o.DeviceEventEmitter.emit("changePrice-"+C,s.carPromotionInfo)
+}
+));
+return h
+}
+return o.DeviceEventEmitter.emit('changeSbomCode',!1),!1
+}
+catch(e){
+return'late'===e?e:(o.DeviceEventEmitter.emit('changeSbomCode',!1),!1)
+}
+
+}
+));
+return function(t,o,n,c){
+return e.apply(this,arguments)
+}
+
+}
+)(),_e.updateCurAttrSbom=(function(){
+var e=(0,t.default)((function*(e,t,u,v){
+// 变量
+var l: any = arguments.length>4&&void 0!==arguments[4]&&arguments[4];
+try{
+var s=v.prdId,f=v.orderCode,b=(0,n.getFakeAttrListReq)(u,l,t),C=(0,n.getOptionalReqParams)({
+prdId:s,attrList:b,sbomCode:e
+}
+,v,l),I=yield(0,c.queryCarOptionalProductInfoLate)(C);
+if(I.success){
+var E,h,p;
+if(t&&t.sbomCode===(null==(E=I.sbomInfo)?void 0:E.sbomCode))h=t.carPromotionInfo;
+else o.DeviceEventEmitter.emit('changeSbomCode',!0),h=yield(0,c.getAllPromotionItemInfoLate)(s,null==(p=I.sbomInfo)?void 0:p.sbomCode,f);
+return Object.assign({
+carPromotionInfo:h
+}
+,I)
+}
+return o.DeviceEventEmitter.emit('changeSbomCode',!1),!1
+}
+catch(e){
+return'late'===e?e:(o.DeviceEventEmitter.emit('changeSbomCode',!1),!1)
+}
+
+}
+));
+return function(t,o,n,c){
+return e.apply(this,arguments)
+}
+
+}
+)()
+}
+),"c36812d3bf2c60b7e2b5687de6948dc0b638821b3980bdb333f4128b6827d9d2",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","66003b9fc658653b23854ef6b0da09d51a0a985952964c36d507f275d8f8bbff"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.queryCarOptionalProductInfoLate=e.getAllPromotionItemInfoLate=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]);
+e.getAllPromotionItemInfoLate=(0,o.lateRequest)(t.getAllPromotionItemInfo),e.queryCarOptionalProductInfoLate=(0,o.lateRequest)(t.queryCarOptionalProductInfo)
+}
+),"66003b9fc658653b23854ef6b0da09d51a0a985952964c36d507f275d8f8bbff",["93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","76731ac08b5aea9da584cd25fe11fda4997ae4f0f9cfd0be0e92f390b2dfe0e9"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,r=e(_r(d[1])),a=e(_r(d[2])),n=e(_r(d[3])),o=e(_r(d[4])),i=e(_r(d[5])),s=_r(d[6]),l=_r(d[7]),p=e(_r(d[8])),c=_r(d[9]),u=_r(d[10]),f=e(_r(d[11])),v=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = P(t);
+if(r&&r.has(e))return r.get(e);
+var a={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var i: any = n?Object.getOwnPropertyDescriptor(e,o):null;
+i&&(i.get||i.set)?Object.defineProperty(a,o,i):a[o]=e[o]
+}
+return a.default=e,r&&r.set(e,a),a
+}
+)(_r(d[12])),h=_r(d[13]),b=_r(d[14]);
+// 函数
+function P(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(P=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function y(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(y=function(){
+return!!e
+}
+)()
+}
+var I=(0,c.observer)(t=(function(e){
+// 函数
+function t(e: any): any {
+var a,i,l,p,c,P;
+return(0,r.default)(this,t),p=this,c=t,P=[e],c=(0,o.default)(c),(l=(0,n.default)(p,y()?Reflect.construct(c,P||[],(0,o.default)(p).constructor):c.apply(p,P))).prefixPm='1',l.hasSubtabSet=!1,l.isFirst=!0,l.scrollViewKey=1,l.otherParams={
+
+}
+,l.isFristLoad=!1,l.listeners={
+changeAttrItem:null,tabsNavTop:null,change:null
+}
+,l.queryInitData=function(e){
+// 变量
+var t: any = l.props,r=t.prdId,a=t.relationSbomCode;
+s.StorageUtil.getStorage("sbom_"+r+"_"+(a||e)).then((function(t){
+l.commonJs.initData(t||e,e,l)
+}
+))
+}
+,l.getOptional=function(e){
+var t,r,a=l.state.sbomList,n=null!=(t=null==a?void 0:a[0])?t:{
+
+}
+;
+return r=n.diyPackageInfos?n.diyPackageInfos:[],l.targetSbomData={
+brandName:n.brandName,currentSbomId:n.sbomCode
+}
+,r
+}
+,l.handleAddListeners=function(){
+// 变量
+var e: any = l.props,t=e.pageType,r=e.uniqueId;
+t!==s.PAGE_TYPE.subTabSetPage&&u.BackHandler.addEventListener('hardwareBackPress',l.handleApkBack),l.listeners.changeAttrItem=u.DeviceEventEmitter.addListener("changeAttrItem-"+r,l.updateAttrSbom),l.listeners.tabsNavTop=u.DeviceEventEmitter.addListener('TabsNavTop',l.compareFixed),l.listeners.change=u.AppState.addEventListener('change',l.handleAppStateChange)
+}
+,l.handleAppStateChange=function(e){
+s.RecordUtils.immediateOutputLog(e)
+}
+,l.eventTracingReportByLoad=function(e){
+var t,r,a;
+s.Report.eventTracingReport({
+actionCode:'900027200',actionName:(0,s.t)('preview_page_loading'),eventType:'1',content:{
+load:'1',productId:null==e?void 0:e.toString(),channelId:(null==(t=l.props)?void 0:t.channelId)||'0',saleId:(null==(r=l.props)?void 0:r.saleId)||''
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,s.t)('car_options_preview'),resSiteCode:'',resSiteName:'',pageId:'p_carPreview_'+(null==(a=l.props)?void 0:a.prdId)
+}
+)
+}
+,l.handleApkBack=function(){
+var e,t=l.props.navigation.replace,r=l.props.route;
+if('cardetail'!==(null==r||null==(e=r.params)?void 0:e.source))return s.RnBridge.invokeVmallNative('page','finished'),!0;
+t('CarDetail')
+}
+,l.onBackTop=function(){
+l.scroller&&l.scroller.scrollTo({
+y:0,animated:!0
+}
+)
+}
+,l.updateAttrSbom=v.updateAttrSbom.bind(l),l._loadPage=function(){
+var e,t,r=l.props,a=r.showheader,n=r.prdId,o=l.state,i=o.displayPrdInfo,s=o.sbomList,p=o.attrViewList,c=o.sbomCode,u=o.displayProudct,v=o.contentConfig,P=o.rightsActivityList,y=o.loadingRights,I='false'!==a,S=(0,h.getValidPrdId)(n,i);
+!l.isFristLoad&&l.eventTracingReportByLoad(S),l.isFristLoad=!0;
+var T=l.getOptional(c);
+return(0,b.jsx)(f.default,Object.assign({
+
+}
+,l.props,i,{
+contentConfig:v,sbomList:s,disPrdId:S,prdId:S,attrViewList:p,sbomCode:c,showheader:I,defaultSkuCode:l.defaultSbomCode,diyPackageInfos:T,getOptional:l.getOptional,channelId:null==(e=l.props)?void 0:e.channelId,saleId:null==(t=l.props)?void 0:t.saleId,targetSbomData:l.targetSbomData,displayProudct:u,rightsActivityList:P,loadingRights:y,carPromotionInfo:l.carPromotionInfo
+}
+))
+}
+,l.commonJs=v.default.call(l),l.state={
+loading:!0,isRefreshing:!1,error:!1,freshTab:!0,currentTabIndex:0,isClickTab:!1,errorType:s.ERROR_TYPE.OTHER_ERROR,loadState:1,pageAlias:l.props.pageAlias,assistCode:l.props.assistCode,prdId:'',sbomCode:'',defaultSbomCode:'',displayPrdInfo:{
+
+}
+,sbomList:[],attrViewList:[],checkCarSbomlist:[],checkSbomCode:l.props.sbomCode,displayProudct:null!=(a=null==(i=l.props.relationRes)?void 0:i.displayProudct)?a:[],contentConfig:{
+
+}
+,rightsActivityList:null,loadingRights:!0
+}
+,l
+}
+return(0,i.default)(t,e),(0,a.default)(t,[{
+key:"componentDidMount",value:function(){
+s.TimeUtils.updateSystemTime(),this.portal=s.MCP_PORTAL.APP,(0,h.getDisplayPrdInfo)(this.props,this.setState.bind(this),this.queryInitData,'carPreview'),this.handleAddListeners()
+}
+
+}
+,{
+key:"compareFixed",value:function(){
+this.hasSubtabSet=s.TabsTopStore.tabsNavTop
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e,t,r;
+this.props.pageType!==s.PAGE_TYPE.subTabSetPage&&u.BackHandler.removeEventListener('hardwareBackPress',this.handleApkBack),s.PlatformUtils.isIOS()&&this.refreshTimer&&clearTimeout(this.refreshTimer),null==(e=this.listeners.changeAttrItem)||e.remove(),null==(t=this.listeners.tabsNavTop)||t.remove(),null==(r=this.listeners.change)||r.remove(),this.switchScreenDirLister&&this.switchScreenDirLister.remove()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.state,t=e.loading,r=e.errorType,a=e.error;
+return t?(0,b.jsx)(l.PlaceHolder,{
+
+}
+):!a&&this._loadPage()||(0,b.jsx)(l.CommonErrorPage,{
+errorType:r
+}
+)
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(e){
+return{
+contentConfig:e.contentConfig
+}
+
+}
+
+}
+])
+}
+)(p.default.Component))||t;
+_e.default=I
+}
+),"5e9c62ab1d9150a44e29f84b46ce0e067e113dbccf677baaf381cfd0807d6647",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","831997dc37f91d13a3db7fabcfdef17c74e853b58a81ff3e0e76eec96184194e","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var t: any = e(_r(d[1])),o=e(_r(d[2])),i=e(_r(d[3])),r=e(_r(d[4])),a=e(_r(d[5])),n=e(_r(d[6])),s=e(_r(d[7])),l=U(_r(d[8])),c=_r(d[9]),p=_r(d[10]),u=_r(d[11]),h=e(_r(d[12])),f=U(_r(d[13])),v=e(_r(d[14])),C=e(_r(d[15])),P=e(_r(d[16])),S=_r(d[17]),b=e(_r(d[18])),w=e(_r(d[19])),y=_r(d[20]),I=e(_r(d[21])),_=_r(d[22]),k=_r(d[23]),L=_r(d[24]),x=e(_r(d[25])),T=_r(d[26]),N=_r(d[27]),D=_r(d[28]),j=_r(d[29]),R=e(_r(d[30])),O=_r(d[31]);
+// 函数
+function A(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,o=new WeakMap;
+return(A=function(e){
+return e?o:t
+}
+)(e)
+}
+// 函数
+function U(e: any, t: any): any {
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var o: any = A(t);
+if(o&&o.has(e))return o.get(e);
+var i={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var n: any = r?Object.getOwnPropertyDescriptor(e,a):null;
+n&&(n.get||n.set)?Object.defineProperty(i,a,n):i[a]=e[a]
+}
+return i.default=e,o&&o.set(e,i),i
+}
+// 函数
+function B(e: any, t: any, o: any): any {
+return t=(0,n.default)(t),(0,a.default)(e,V()?Reflect.construct(t,o||[],(0,n.default)(e).constructor):t.apply(e,o))
+}
+// 函数
+function V(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(V=function(){
+return!!e
+}
+)()
+}
+var E=(0,y.configStylesFun)(),W=(0,l.memo)((function(e){
+// 变量
+var t: any = e.reloadConfig,o=e.isPc,i=void 0!==o&&o;
+return(0,O.jsxs)(c.TouchableOpacity,{
+style:E.reloadConfigWrap,activeOpacity:1,onPress:t,children:[(0,O.jsx)(u.SvgIcon,{
+iconName:"ic_public_rotate",width:i?12:16,height:i?12:16,normalCol:"#000",opacity:i?1:.6
+}
+),(0,O.jsx)(c.Text,{
+style:E.switchTextPc,children:(0,p.t)('reconfigure')
+}
+)]
+}
+)
+}
+)),M=(0,l.memo)((function(e){
+// 变量
+var t: any = e.vrFrom;
+return!('vrguide'===(void 0===t?'':t)&&p.PlatformUtils.isAndroid())?(0,O.jsx)(c.View,{
+style:E.resetBtnInner,children:(0,O.jsx)(W,Object.assign({
+
+}
+,e))
+}
+):null
+}
+)),H=(0,l.memo)((function(e){
+var t,o=e.isPc,i=e.isPhone,r=e.item,a=e.cndPath,n=e.showBottomLine,s=r.path?r.imgUrl:r.photoPath&&r.photoName?""+a+r.photoPath+"428_428_"+r.photoName:'';
+return(0,O.jsxs)(c.View,{
+style:[E.carConfigItem,(o||i)&&{
+marginHorizontal:16
+}
+],children:[(0,O.jsx)(c.View,{
+style:E.leftContainerWrap,children:s?(0,O.jsx)(w.default,{
+isHighQuality:!0,resizeMode:'contain',imgWidth:64,imgUri:s,imgProportion:'1',scale:'1',imgStyle:E.imgContainerStyle,showDefaultImage:!1
+}
+):(0,O.jsx)(c.View,{
+style:[E.imgContainer,E.imgContainerStyle],children:(0,O.jsx)(c.Text,{
+style:E.carConfigText,children:(function(e,t){
+for(var o=0,i='',r=/[^\x00-\xff]/g,a='',n=e.replace(r,'**').length,s=0;
+s<n&&(null!=(a=e.charAt(s).toString()).match(r)?o+=2:o++,!(o>t));
+s++)i+=a;
+return i
+}
+)(r.attrName,4)
+}
+)
+}
+)
+}
+),(0,O.jsxs)(c.View,{
+style:[E.rightContainerBox,n&&E.bottomBorder],children:[(0,O.jsxs)(c.View,{
+style:E.colBox,children:[(0,O.jsx)(c.Text,{
+numberOfLines:1,ellipsizeMode:"tail",style:E.leftTitle,children:r.showProductName
+}
+),r.displayPrice||r.attrPriceDesc?(0,O.jsx)(c.Text,{
+style:E.itemPriceWrap,numberOfLines:1,children:r.displayPrice?"\xa5"+(0,f.priceSwitch)(r.displayPrice)+" ":(t=r.attrPriceDesc,t.indexOf('\uffe5')>-1?t.replace('\uffe5','\xa5'):t)
+}
+):null]
+}
+),(0,O.jsx)(c.View,{
+style:o?E.pcRightButton:E.rightButton,children:(0,O.jsx)(c.Text,{
+style:o?E.pcRightTextWrap:E.rightTextWrap,children:(0,p.t)('common_change')
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+),(function(e,t){
+return JSON.stringify(e)===JSON.stringify(t)
+}
+)),J=(function(e){
+// 函数
+function t(e: any): any {
+var o;
+return(0,i.default)(this,t),(o=B(this,t,[e])).cndPath=p.CommonUtils.getCDNpath(1),o.preventOnPress=!1,o.pressInY=0,o
+}
+return(0,s.default)(t,e),(0,r.default)(t,[{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,o=t.isPc,i=t.isPadH,r=t.isPhone,a=t.carPreviewList,n=t.changeCharater,s=h.default.size(a);
+return(0,O.jsx)(c.View,{
+style:i&&E.attrList,children:s>0&&a.map((function(t,l){
+// 变量
+var u: any = i?(s-l-1)/2>=1:s-l-1>0;
+return(0,O.jsx)(c.TouchableOpacity,{
+onPress:function(){
+p.PlatformUtils.isHarmony()&&!0===e.preventOnPress||n(t,l,a)
+}
+,onPressIn:function(t){
+e.preventOnPress=!1,e.pressInY=t.nativeEvent.pageY
+}
+,onPressOut:function(t){
+Math.abs(e.pressInY-t.nativeEvent.pageY)>5&&(e.preventOnPress=!0)
+}
+,style:i&&E.attrListItem,children:(0,O.jsx)(H,{
+isPc:o,isPhone:r,item:t,cndPath:e.cndPath,showBottomLine:u
+}
+)
+}
+,l)
+}
+))
+}
+)
+}
+
+}
+])
+}
+)(l.PureComponent),F=(function(e){
+// 函数
+function a(e: any): any {
+var r,n,s;
+(0,i.default)(this,a),(s=B(this,a,[e])).goflag=!0,s.isHorizontalScreen=!1,s.swiperList=0,s.curIndex=0,s.tabIndex=0,s.isReload=!0,s.newDetailList=[],s.scrollHeight=0,s.dialogTimer=null,s.loadData=function(){
+// 变量
+var e: any = s.props,t=e.disPrdId,o=e.defaultSkuCode,i=e.initSkuCode,r=o;
+e.servicesRender&&i&&(r=i),p.StorageUtil.getStorage("sbom_"+t+"_"+r).then((function(e){
+s.defaultSbomCode=e||s.props.sbomCode,s.getConfigParams(s.defaultSbomCode)
+}
+))
+}
+,s.loginEventListenerApk=(function(){
+var e=(0,o.default)((function*(e){
+var t;
+'isLogin'===(null==e?void 0:e.action)&&'login'===(null==e?void 0:e.service)&&'boolean'==typeof(null==e||null==(t=e.param)?void 0:t.isLogin)&&(0,T.getUserInfo)(p.MCP_PORTAL.APP).then((function(e){
+var t,o,i;
+null!=e&&null!=(t=e.userInfo)&&t.groupId&&(p.StorageUtil.setSpValueAll('groupflag','true','String'),p.StorageUtil.setSpValueAll('user_group_id',null==e||null==(o=e.userInfo)||null==(i=o.groupId)?void 0:i.toString(),'String'),p.StorageUtil.getStorage("sbom_"+s.props.disPrdId+"_"+s.props.defaultSkuCode).then((function(e){
+s.defaultSbomCode=e||s.props.sbomCode,s.getGroupFlag()
+}
+)))
+}
+))
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),s.loginEventListenerWeb=function(){
+(0,T.getUserInfo)(p.MCP_PORTAL.WEB).then((function(e){
+var t;
+null!=e&&null!=(t=e.userInfo)&&t.groupId&&(p.Cookies.set('groupflag','true',{
+path:'/',domain:'.vmall.com'
+}
+),p.StorageUtil.getStorage("sbom_"+s.props.disPrdId+"_"+s.props.defaultSkuCode).then((function(e){
+s.defaultSbomCode=e||s.props.sbomCode,s.getGroupFlag()
+}
+)))
+}
+))
+}
+,s.getSendConfig=function(e){
+e.showQrCodeDialog?(0,N.scrollControl)('disable',!1):(0,N.scrollControl)('allow'),s.dialogTimer=setTimeout((function(){
+s.setState({
+openQrCodeDialog:e
+}
+)
+}
+),1)
+}
+,s.getBanner=function(){
+var e,t=s.state.sbomList,o=s.props.platform,i=[],r=function(){
+if(Object.prototype.hasOwnProperty.call(t,a)){
+// 变量
+var r: any = o.isPhone?'800_800_':'';
+(e=t[a]).photoPath&&e.photoName&&i.push({
+imgProportion:s.commonJs.isLarge()?'1:1':'16:9',imgUri:p.CommonUtils.getCDNpath(1)+e.photoPath+r+e.photoName
+}
+),e.groupPhotoList&&e.groupPhotoList.map((function(e){
+i.push({
+imgProportion:s.commonJs.isLarge()?'1:1':'16:9',imgUri:p.CommonUtils.getCDNpath(1)+e.photoPath+r+e.photoName
+}
+)
+}
+))
+}
+
+}
+;
+for(var a in t)r();
+return s.swiperList=i.length,i
+}
+,s.goBack=function(){
+var e,t;
+s.commonJs.isWeb()&&v.default.setIndex(0);
+// 变量
+var o: any = s.props,i=o.disPrdId,r=o.sbomCode,a=o.route;
+if(p.Report.eventTracingReport({
+actionCode:'900027212',actionName:(0,p.t)('car_preview_left_back'),eventType:'2',content:{
+comId:'carPreview_top',productId:null==i?void 0:i.toString(),SKUCode:r,channelId:(null==(e=s.props)?void 0:e.channelId)||'0',saleId:(null==(t=s.props)?void 0:t.saleId)||''
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_top',resSiteName:(0,p.t)('top_nav'),pageId:'p_carPreview_'+i
+}
+),p.Report.execReportData('',!0),'web'===c.Platform.OS)setTimeout((function(){
+window.history.go(-1)
+}
+),800);
+else{
+var n;
+if('cardetail'!==(null==a||null==(n=a.params)?void 0:n.source))return p.RnBridge.invokeVmallNative('page','finished'),!0;
+(0,s.props.navigation.replace)('CarDetail'),c.DeviceEventEmitter.emit('onSetPos')
+}
+v.default.setInItSbomCode(),v.default.clearAttr()
+}
+,s.setDefaultStore=function(e){
+// 变量
+var t: any = s.props.attrViewList;
+null==t||t.map((function(t){
+var o;
+null==t||null==(o=t.attrValueList)||o.map((function(o){
+var i;
+null==o||null==(i=o.sbomList)||i.map((function(i){
+if(e===(null==i?void 0:i.sbomCode)){
+var r,a=null==o||null==(r=o.sbomList)?void 0:r.map((function(e){
+return null==e?void 0:e.sbomCode
+}
+));
+v.default.setSbomCode({
+attr:null==t?void 0:t.attrName,sbomCode:a
+}
+)
+}
+
+}
+))
+}
+))
+}
+))
+}
+,s.getAtrrData=function(e,t){
+var o,i,r=s.props.attrViewList,a=[];
+for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&r[n].attrName===e&&(i=r[n]);
+return null==(o=i)||o.attrValueList.map((function(e){
+e.attrValueCode===t&&e.sbomList.forEach((function(e){
+a.push(e.sbomCode)
+}
+))
+}
+)),a
+}
+,s.changeCharater=function(e,t,o){
+// 变量
+var i: any = s.props,r=i.disPrdId,a=i.sbomList,n=i.attrViewList,l=i.contentConfig,c=s.getGbomAttrDisplayList();
+for(var u in s.tabIndex=c.length,c)Object.prototype.hasOwnProperty.call(c,u)&&c[u]===e.attrName&&(s.tabIndex=Number(u));
+e.ativeSbomCode=s.ativeSbomCode,s.props.getModalConfig&&s.props.getModalConfig(e),s.scrollToLastPosition(!0);
+// 变量
+var f: any = a[0].sbomCode;
+s.setDefaultStore(f);
+var v=f;
+if(s.setState({
+changeCharaPreview:!0,choosedConfig:e,modalVisibleShow:!0,sbomCode:v,diffSbomCode:v,checkPage:'attr'===e.type,arrowUp:!0
+}
+,(function(){
+null==s.props.setModalShow||s.props.setModalShow(!0,v),null==s.props.checkPage||s.props.checkPage({
+checkPage:s.state.checkPage,diyPackageInfos:s.diyPackageInfos,choosedConfigs:s.state.choosedConfig,sbomCodes:s.props.sbomCode,carPreviewList:h.default.filter(o,(function(e){
+return'package'===e.type
+}
+)),disPrdId:s.props.disPrdId,defaultSkuCode:s.props.defaultSkuCode
+}
+)
+}
+)),'attr'===e.type){
+var C,P;
+p.Report.eventTracingReport({
+actionCode:'900027203',actionName:(0,p.t)('car_preview_change'),eventType:'2',content:{
+comId:'carPreview_attribute_list',productId:null==r?void 0:r.toString(),SKUCode:v,attributeName:e.attrName,index_name:e.attrValue,index:null==t?void 0:t.toString(),channelId:(null==(C=s.props)?void 0:C.channelId)||'0',saleId:(null==(P=s.props)?void 0:P.saleId)||''
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_attribute',resSiteName:(0,p.t)('config_info'),pageId:'p_carPreview_'+r
+}
+)
+}
+else{
+var b,w,y,I,_=(0,S.initRoutes)(a,n,l);
+p.Report.eventTracingReport({
+actionCode:'900027208',actionName:""+(0,p.t)('is_editing')+(null==(b=_.routes[_.routes.length-1])?void 0:b.title)+(0,p.t)('change_prd_in_modal'),eventType:'2',content:{
+comId:'carPreview_attribute',productId:null==r?void 0:r.toString(),SKUCode:v,DPCode:e.packageCode,GPCode:null==e||null==(w=e.groupId)?void 0:w.toString(),DPSKUCode:e.sbomCode,channelId:(null==(y=s.props)?void 0:y.channelId)||'0',saleId:(null==(I=s.props)?void 0:I.saleId)||''
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_attribute',resSiteName:(0,p.t)('config_info'),pageId:'p_carPreview_'+r
+}
+)
+}
+p.Report.execReportData('',!0),s.changeItemData=e
+}
+,s.swiperWidth=function(){
+// 变量
+var e: any = s.props.platform;
+return e.isFixScreen||e.isPadH?e.getGridsWidth(6):e.isSmall?e.width:e.getGridsWidth(7)
+}
+,s.imgProportion=function(){
+// 变量
+var e: any = 1.78;
+return s.commonJs.isLarge()&&(e=1),e
+}
+,s.clearPackageMap=function(e){
+e.packageMap=[]
+}
+,s.changeStoreItem=function(e){
+var t,i,r=s.props,a=r.disPrdId,n=r.defaultSkuCode;
+e.imgUrl=p.CommonUtils.getCDNpath(1)+e.path+e.name,'attr'===e.type?p.StorageUtil.getStorage("sbom_"+a+"_"+n).then((function(){
+var e=(0,o.default)((function*(e){
+if(e){
+// 变量
+var t: any = e;
+s.setState({
+benefitSbomCode:t
+}
+),s.defaultSbomCode=t,e!==s.state.sbomCode&&s.setState({
+benefitsFlag:!0
+}
+),s.setDefaultStore(t)
+}
+
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)()):s.setModalPrice();
+// 变量
+var l: any = 'package'===e.type?(0,p.t)('choose_cloth'):(0,p.t)('prop');
+p.Report.eventTracingReport({
+actionCode:'900027209',actionName:""+(0,p.t)('is_editing')+l+(0,p.t)('click_confirm_in_modal'),eventType:'2',content:{
+comId:'carPreview_attribute',productId:null==a?void 0:a.toString(),SKUCode:s.defaultSbomCode,DPCode:e.packageCode?e.packageCode.toString():'',GPCode:e.groupId?e.groupId:'',DPSKUCode:e.packageCode?e.sbomCode:'',channelId:(null==(t=s.props)?void 0:t.channelId)||'0',saleId:(null==(i=s.props)?void 0:i.saleId)||''
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_attribute',resSiteName:(0,p.t)('config_info'),pageId:'p_carPreview_'+a
+}
+),p.Report.execReportData('',!0)
+}
+,s._changeSbomCode=function(e,t){
+s.defaultSbomCode=e,t&&t.length
+}
+,s._setPreviewShow=function(e){
+s.scrollToLastPosition(e),s.setState({
+changeCharaPreview:e
+}
+)
+}
+,s.scrollToLastPosition=function(e){
+if('web'===c.Platform.OS&&!s.commonJs.isLarge()){
+// 变量
+var t: any = '',o='',i='',r='',a='',n=document.body,l=document.getElementsByTagName('html')[0];
+e?(s.scrollHeight=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop,t='hidden',document.body.addEventListener('touchmove',s.bodyScroll,!1),o='fixed',i='0',r='0',a='0',document.getElementById('preview').style.transform="translate(0,"+-s.scrollHeight+"px)"):(document.body.removeEventListener('touchmove',s.bodyScroll,!1),document.getElementById('preview').style.transform='translate(0,0px)'),n.style.height="",n.style.overflow=t,l.style.height="",l.style.overflow=t,l.style.position=o,l.style.left=i,l.style.right=r,l.style.top=a,window.scrollTo(0,s.scrollHeight)
+}
+
+}
+,s.getChoiceSbomCode=function(e){
+return(h.default.map(e,(function(e){
+return null==e?void 0:e.sbomCode
+}
+))||[]).join(',')
+}
+,s._setPreviewFlag=function(e){
+s.setState({
+previewFlag:e
+}
+)
+}
+,s.renderHeader=function(){
+// 变量
+var e: any = s.props,t=e.channelId,o=e.shopInfo,i=e.platform,r=e.themeStyles;
+return(0,O.jsx)(u.TitleBar,{
+disabledMarginTop:!0,titleName:'5'===String(t)?(0,p.t)('edit_config'):(0,p.t)('config_preview'),onPress:s.goBack,titleBarStyle:r.titleBar,isService:!D.previewScene.isPreview&&Boolean(null==o?void 0:o.serviceUrl),onPressService:s.gotoService,isShare:!D.previewScene.isPreview&&i.isApp,onPressShare:s.openShareDialog
+}
+)
+}
+,s.swiperScrollEnd=function(e){
+var t,o;
+if(s.curIndex<0)return!1;
+// 变量
+var i: any = s.props,r=i.disPrdId,a=i.sbomCode,n=i.route,l=i.attrViewList,c=e>s.swiperList?1:e,u=c>=s.curIndex?'3':'4';
+s.tabIndex=l.length;
+var h=(0,p.t)('car_preview'),f=(0,p.t)('car_options_preview'),v=(0,p.t)('item_master_picture');
+p.Report.eventTracingReport({
+actionCode:'900027202',actionName:h+"--"+(0,p.t)('slide_main_img'),eventType:u,content:{
+comId:'carPreview_mainPhoto',productId:null==r?void 0:r.toString(),SKUCode:a,type:'1',tabName:null==n?void 0:n.title,tabIndex:'0',index:null==c?void 0:c.toString(),index_name:(0,p.t)('number_of_slide').replace('%1$d',String(c)),channelId:(null==(t=s.props)?void 0:t.channelId)||'0',saleId:(null==(o=s.props)?void 0:o.saleId)||''
+}
+,pageCatCode:'p_carPreview',pageCatName:f,resSiteCode:'r_carPreview_mainPhoto',resSiteName:v,pageId:'p_carPreview_'+r
+}
+),p.Report.execReportData('',!0),s.curIndex=-1,s.scorllTime=setTimeout((function(){
+s.curIndex=c
+}
+),300)
+}
+,s.changeCarType=(0,T.clickDebunce)((function(){
+var e,t=s.props,o=t.platform,i=t.relationRes;
+p.Report.eventTracingReport({
+actionCode:'920010012',actionName:(0,p.t)('change_show_car_type'),eventType:'2',content:{
+comId:'carPreview_switch',orderCode:s.props.orderCode,sbomCode:s.props.sbomCode,productName:s.props.name
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_switch',resSiteName:(0,p.t)('change_car_type'),pageId:'p_carPreview_'+s.props.disPrdId
+}
+),p.Report.execReportData('',!0);
+// 变量
+var r: any = null!=(e=null==i?void 0:i.displayProudct)?e:[];
+if(o.isPc&&r.length>1){
+var a;
+null==(a=s.props)||a.openChangeCarType()
+}
+else{
+// 变量
+var n: any = s.props,l='carrelation',c=[];
+if(1===r.length&&(n=(0,j.createNewPrdUrlParams)(Object.assign({
+
+}
+,s.props,{
+sbomCode:'',defaultSkuCode:'',relationSbomCode:s.props.relationSbomCode||s.props.sbomCode,isSources:'carRelation'
+}
+),r[0].disPrdId),l='carselect'),o.isWeb)window.location.href=s.commonJs.getJumpUrl({
+props:n
+}
+,l);
+else{
+// 变量
+var u: any = n,h=u.prdId,f=u.disPrdId,v=u.defaultSkuCode,C=u.saleId,P=u.channelId,S=u.showheader,b=u.isHisData,w=u.orderCode,y=u.relationSbomCode,I=u.isSources,_=u.activityCode;
+c.push("prdId="+(h||f)),c.push("sbomCode="+v),c.push("targetPage="+l),!S&&c.push("showheader="+S),C&&c.push("saleId="+C),P&&c.push("channelId="+P),'5'===P&&(y&&c.push("relationSbomCode="+y),I&&c.push("isSources="+I),_&&c.push("activityCode="+_),c.push("orderCode="+w),c.push("isHisData="+b),c.push("isReloadConfig=true"));
+var k=s.commonJs.apkLink()+"?"+c.join('&');
+p.RouterUtils.gotoPage(k)
+}
+
+}
+
+}
+)),s.removePage=function(){
+// 变量
+var e: any = s.props,t=e.channelId,o=e.isSources,i=e.fromPage;
+if(p.PlatformUtils.isAndroid()||p.PlatformUtils.isHarmony()){
+// 变量
+var r: any = 1;
+'5'===t&&(r=0),(p.PlatformUtils.isAndroid()||'carSelect'===i&&'carRelation'!==o)&&p.RnBridge.invokeVmallNative('page','finishedRnCarDetailActivity',{
+isBackAnimated:0,removeIndex:r
+}
+),'carRelation'===o&&p.RnBridge.invokeVmallNative('page','finishedRnCarDetailActivity',{
+isBackAnimated:0,removeIndex:r
+}
+)
+}
+
+}
+,s.reloadConfig=function(){
+var e,t;
+if(s.goflag){
+s.goflag=!1,s.gotoTimer=setTimeout((function(){
+s.goflag=!0
+}
+),2e3);
+// 变量
+var o: any = s.props,i=o.sbomCode,r=o.defaultSkuCode,a=o.saleId,n=o.channelId,l=o.showheader,u=o.isHisData,h=o.orderCode,f=o.isReloadConfig,C=o.closePage,P=o.isSources,S=o.relationSbomCode,b=o.disPrdId,w=o.activityCode,y=C||'on';
+p.Report.eventTracingReport({
+actionCode:'900027201',actionName:(0,p.t)('car_preview_reconfig'),eventType:'2',content:{
+comId:'carPreview_top',SKUCode:i,productId:null==b?void 0:b.toString(),saleId:(null==(e=s.props)?void 0:e.saleId)||'',channelId:(null==(t=s.props)?void 0:t.channelId)||'0'
+}
+,pageCatCode:'p_carPreview',resSiteCode:'r_carPreview_top',pageCatName:(0,p.t)('car_options_preview'),resSiteName:(0,p.t)('top_nav'),pageId:'p_carPreview_'+b
+}
+),p.Report.execReportData('',!0),s.emptyConfig(!0),v.default.setInItSbomCode(),v.default.clearAttr(),v.default.clearPackageMap(),p.StorageUtil.setStorage("package_"+b+"_"+r,[],7),p.StorageUtil.setStorage("chosePackageCode_"+b+"_"+r,'',7),p.StorageUtil.setStorage("carDetailPkg_"+b+"_"+r,'',7),p.StorageUtil.setStorage("sbom_"+b+"_"+r,'',7);
+var I=[];
+if(I.push("prdId="+b),I.push("sbomCode="+r),!l&&I.push("showheader="+l),a&&I.push("saleId="+a),n&&I.push("channelId="+n),'5'===n&&(w&&I.push("activityCode="+w),I.push("orderCode="+h),I.push("isHisData="+u),I.push("isReloadConfig=true"),P&&I.push("isSources="+P),S&&I.push("relationSbomCode="+S)),p.PlatformUtils.isApp()){
+p.PlatformUtils.isHarmony()||p.RnBridge.invokeVmallNative('page','finished',{
+isBackAnimated:0
+}
+),s.removePage(),'5'===n&&!f||'off'===y||p.PlatformUtils.isIOS()&&(c.NativeModules.VmallNative.invokeNative({
+service:'page',action:'finished',params:{
+isBackAnimated:0
+}
+
+}
+),I.push('isPushAnimated=0')),I.push('targetPage=carselect');
+var k=s.commonJs.apkLink()+"?"+I.join('&');
+p.PlatformUtils.isHarmony()?p.RnBridge.invokeVmallNative('router','navigation',{
+url:k,navType:'replace'
+}
+):p.RouterUtils.gotoPage(k)
+}
+else{
+var L="?"+I.join('&')+"#/CarSelect";
+(0,_.gotoPage)(L,!1)
+}
+(0,j.setSelectStorage)(b,'',h),c.DeviceEventEmitter.emit('onSetPos')
+}
+
+}
+,s.emptyConfig=function(){
+// 变量
+var e: any = arguments.length>0&&void 0!==arguments[0]&&arguments[0];
+v.default.setDetailList([]),v.default.clearPackageMap(),e&&v.default.setIndex(0),s.state.previewAttr.packageMap=[]
+}
+,s.gotoService=function(){
+var e=s.props,t=e.prdId,o=e.channelId,i=e.saleId,r=e.shopInfo,a=e.targetSbomData,n=e.brandCode,l=s.state.benefitSbomCode,c=Object.assign({
+currentSbomCode:l
+}
+,a,{
+brandCode:n,shopType:null==r?void 0:r.shopType,shopCode:null==r?void 0:r.shopCode,shopName:null==r?void 0:r.shopName,wapHost:p.Service.wapDomain,webHost:p.Service.webDomain,prdId:t
+}
+);
+s.goServiceRobotTime&&clearTimeout(s.goServiceRobotTime),s.goServiceRobotTime=setTimeout((function(){
+p.CommonUtils.goServiceRobot(s.isLogin,r.serviceProvider,r.serviceUrl,c)
+}
+),500),p.Report.eventTracingReport({
+actionCode:'900027213',actionName:(0,p.t)('service_entry'),eventType:'2',content:{
+comId:'carPreview_top',productId:null==t?void 0:t.toString(),SKUCode:l,channelId:o||'0',saleId:i||''
+}
+,pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_top',resSiteName:(0,p.t)('top_nav'),pageId:'p_carPreview_'+t
+}
+),p.Report.execReportData('',!0)
+}
+,s.openShareDialog=(0,o.default)((function*(){
+var e=s.props,t=e.prdId,o=e.defaultSkuCode,i=s.state,r=i.sbomCode,a=i.sbomList[0]||{
+
+}
+,n=yield p.StorageUtil.getStorage("chosePackageCode_"+t+"_"+o),l=s.commonJs.getSharePriceInfo(s.priceObj,a),c=Object.assign({
+prdId:t,sbomCode:r,comId:'carPreview_top',shareProfitDesc:(0,p.t)('vehicle_purchase_business'),buttonId:null==a?void 0:a.buttonMode,mainPicture:p.CommonUtils.getCDNpath()+a.photoPath+'800_800_'+a.photoName,microPromWord:a.microPromWord,sbomPromWord:a.sbomPromWord,prdName:a.name,clickReportKey:k.PAGE_TYPE.car+k.CAR_TYPE.preview+k.DATA_TYPE[15],pageType:'carpreview',chosePackageCode:n
+}
+,l);
+s.commonJs.openShareModal(c),s.commonJs.clickShareReport({
+actionCode:k.PAGE_TYPE.car+k.CAR_TYPE.preview+k.DATA_TYPE[14],actionName:(0,p.t)('car_detail_share'),comId:'carPreview_top',pageCatCode:'p_carPreview',pageCatName:(0,p.t)('car_options_preview'),resSiteCode:'r_carPreview_top',resSiteName:(0,p.t)('top_nav'),pageId:'p_carPreview_'+t,prdId:t,sbomCode:r
+}
+)
+}
+)),s.renderChangeCar=function(){
+// 变量
+var e: any = s.props,t=e.displayProudct,o=e.themeStyles,i=e.theme,r=e.platform;
+return(null==t?void 0:t.length)>0?(0,O.jsx)(c.TouchableOpacity,{
+activeOpacity:1,onPress:s.changeCarType,children:(0,O.jsxs)(c.View,{
+style:[o.reloadConfigWrap,r.isPc&&o.changeCarType],children:[(0,O.jsx)(u.SvgIcon,{
+iconName:"ic_switch",viewBox:"0 0 1000 1000",width:r.isPc?16:20,height:r.isPc?16:20,normalCol:i.C11.color,opacity:r.isPc?1:.6
+}
+),(0,O.jsx)(c.Text,{
+style:r.isPc?o.switchTextPc:o.switchText,children:(0,p.t)('change_car_type')
+}
+)]
+}
+)
+}
+):null
+}
+,s.renderCarConfig=function(){
+// 变量
+var e: any = s.props,t=e.channelId,o=e.themeStyles,i=e.platform,r=s.state,a=r.previewAttr,n=r.benefitsFlag,l=r.carModificationNotes,u=r.isShowAgreement,h='5'===String(t)?l:s.commonJs.getBenefitsText(s),f=s.handlePreviewArr(a);
+return(0,O.jsxs)(c.ScrollView,{
+showsVerticalScrollIndicator:!1,children:[i.isPc&&(0,O.jsx)(c.Text,{
+numberOfLines:2,style:o.pcTitle,children:s.props.briefName
+}
+),i.isPc?(0,O.jsxs)(c.View,{
+style:[o.carConfigContainer,o.pcCarConfigContainer],children:[(0,O.jsx)(c.Text,{
+style:o.pcConfigTitleWrap,children:(0,p.t)('car_config')
+}
+),(0,O.jsxs)(c.View,{
+style:o.toolBar,children:[s.renderChangeCar(),(0,O.jsx)(W,{
+reloadConfig:s.reloadConfig,isPc:!0
+}
+)]
+}
+)]
+}
+):(0,O.jsxs)(c.TouchableOpacity,{
+activeOpacity:1,style:o.carConfigContainer,children:[(0,O.jsx)(c.Text,{
+style:o.configTitleWrap,children:(0,p.t)('car_config')
+}
+),s.renderChangeCar()]
+}
+),(0,O.jsxs)(c.View,{
+style:[o.carListWrap,!i.isPc&&{
+minHeight:i.height-i.statusBarHeight-56-202*s.swiperWidth()/360-48-64-i.safeAreaBottomHeight,paddingBottom:(function(){
+if(i.isPc||s.shouldInnerContent)return 0;
+// 变量
+var e: any = 0;
+return h&&n&&(e=18*Math.min(2,s.state.line)+16),u&&(e+=70),e+=i.safeAreaBottomHeight
+}
+)()
+}
+,i.isPc&&o.pcCarListWrap],children:[(0,O.jsx)(J,{
+isPhone:i.isPhone,isPc:i.isPc,isPadH:i.isPadH,carPreviewList:f,changeCharater:s.changeCharater,commonJs:s.commonJs
+}
+),s.renderPackageTips()]
+}
+)]
+}
+)
+}
+,s.choosePackage=function(){
+var e,t=s.state,o=t.previewAttr,i=t.benefitSbomCode,r=s.handlePreviewArr(o),a=(null==(e=s.chooseDiyPackageInfos)?void 0:e.length)>0?s.chooseDiyPackageInfos[0]:{
+
+}
+,n={
+type:'package',groupId:'',sbomCode:'',ativeSbomCode:i,packageCode:a.packageCode,attrName:a.name,packageName:a.name
+}
+;
+s.changeCharater(n,r.length,r)
+}
+,s.getLocCode=function(){
+// 变量
+var e: any = s.props,t=e.defaultSkuCode,o=e.initSkuCode,i=t;
+return e.servicesRender&&o&&(i=o),i
+}
+,s.renderPackageTips=function(){
+var e,t,o=s.props,i=o.prdId,r=o.themeStyles,a=o.theme,n=o.platform,l=s.state,h=l.sbomList,f=l.previewAttr,v=s.state.benefitSbomCode;
+if(n.isPc&&'undefined'!=typeof window){
+// 变量
+var C: any = localStorage.getItem("sbom_"+i+"_"+s.getLocCode());
+v=C&&JSON.parse(C).value
+}
+// 变量
+var P: any = !1,S=[],b='';
+for(var w in h)Object.prototype.hasOwnProperty.call(h,w)&&h[w].sbomCode===v&&(S=h[w].diyPackageInfos?h[w].diyPackageInfos:[]);
+var y,I,_=[];
+S.length>0&&(_=null==(y=S[0])||null==(I=y.groupList)?void 0:I.filter((function(e){
+return'relatesbom'!==e.groupName
+}
+)));
+return S.length>0&&(null==(e=_)?void 0:e.length)>0&&f&&(null==(t=f.packageMap)?void 0:t.length)<=0&&(P=!0,b=S[0].name,s.chooseDiyPackageInfos=S),P?(0,O.jsx)(c.TouchableOpacity,{
+activeOpacity:1,onPress:s.choosePackage,children:(0,O.jsxs)(c.View,{
+style:r.packageTips,children:[(0,O.jsx)(c.Text,{
+numberOfLines:1,ellipsizeMode:"tail",style:r.packageTxt,children:(0,p.t)('choose_the_product').replace('%1$d',String(b))
+}
+),(0,O.jsx)(c.View,{
+children:(0,O.jsx)(u.SvgIcon,{
+normalCol:a.C12.color,opacity:a.C24.opacity,iconName:"ic24-more",width:12,height:24
+}
+)
+}
+)]
+}
+)
+}
+):null
+}
+,s.getGbomAttrDisplayList=function(){
+// 变量
+var e: any = s.props.attrViewList,t=[];
+return(void 0===e?[]:e).forEach((function(e){
+t.push(e.attrName)
+}
+)),t
+}
+,s.getShowPrice=function(e){
+return e.indexOf('\uffe5')>-1?e.replace('\uffe5','\xa5'):e
+}
+,s.cutString=function(e,t){
+for(var o=0,i='',r=/[^\x00-\xff]/g,a='',n=e.replace(r,'**').length,s=0;
+s<n&&(null!=(a=e.charAt(s).toString()).match(r)?o+=2:o++,!(o>t));
+s++)i+=a;
+return i
+}
+,s.getAllPriceData=function(){
+var e,o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],i=arguments.length>1?arguments[1]:void 0,r=s.priceObj,a=r.totalPrice,n=r.flag,l=r.originalPrice,c=r.detailList,p=void 0===c?[]:c,u=r.cheapPrice,h=0,f=0,v=0,C=0;
+'hasPrice'===n?(null==o?void 0:o.length)>0?(o.forEach((function(e){
+h=s.commonJs.plus(h,e.unitPrice),f=s.commonJs.plus(f,e.originalPrice)
+}
+)),C=s.commonJs.plus(a,h),v=s.commonJs.minus(s.commonJs.plus(l,f),C)):(v=u,C=a):'noPrice'===n&&(C=a),e=[].concat((0,t.default)(p),(0,t.default)(o)),null==s.props.getCarDetailData||s.props.getCarDetailData({
+totalPrice:C,flag:n,cheapPrice:v,detailList:e,sbomCode:s.ativeSbomCode
+}
+),s.setState({
+totalPrice:C,flag:n,cheapPrice:v,detailList:e
+}
+),i&&s.getQueryReportCarOptional(e,C,o)
+}
+,s.setModalPrice=(function(){
+var e=(0,o.default)((function*(e){
+// 变量
+var t: any = s.state,o=t.sbomCode,i=t.checkPage,r=s.props,a=r.sbomList,n=r.attrViewList,l=r.contentConfig;
+if(i){
+if(p.PlatformUtils.isApp()){
+var u,h,f=(null==(u=s.props)?void 0:u.getOptional)&&(null==(h=s.props)?void 0:h.getOptional(s.defaultSbomCode));
+s.diyPackageInfos=f
+}
+else{
+var v=(0,S.initRoutes)(a,n,l).diyPackageInfos;
+s.diyPackageInfos=v
+}
+s.defaultSbomCode=s.commonJs.isLarge()?e:o,s.getGroupFlag()
+}
+else{
+// 变量
+var C: any = s.props,P=C.disPrdId,b=C.defaultSkuCode;
+c.DeviceEventEmitter.emit('saveOptPrice',{
+disPrdId:P,defaultSkuCode:b,getAllPriceData:s.getAllPriceData
+}
+)
+}
+
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),s._reloadGetPreviewArr=function(e){
+e&&(s.changeStoreItem(s.changeItemData),s.savePackageInfo())
+}
+,s.savePackageInfo=(0,o.default)((function*(){
+// 变量
+var e: any = s.props.sbomList;
+s.setState({
+sbomCode:s.defaultSbomCode,diffSbomCode:s.defaultSbomCode,sbomList:e
+}
+,(function(){
+s.setModalPrice(s.defaultSbomCode),s.getConfigParams(s.defaultSbomCode)
+}
+))
+}
+)),s.bodyScroll=function(e){
+e.preventDefault()
+}
+,s.renderProductAgreement=function(e){
+// 变量
+var t: any = s.props,o=t.platform,i=t.theme,r=t.agreementList,a=t.themeStyles,n=(e?114:62)+o.safeAreaBottomHeight,l=e?12:20;
+return(0,O.jsx)(x.default,{
+requestType:'mcp',marks:['_COP_'],containerStyle:[a.agreementStyle,{
+bottom:n,paddingBottom:l
+}
+,s.shouldInnerContent&&a.innerCommon],agreementList:r,themeColor:T.ThemeInfo.resColor||i.primaryColor,alwaysUncheckTip:!0,isHarmony:!0,extraParams:{
+version:3
+}
+,collapseTextProps:{
+startByUp:!0,useLinearIcon:!0
+}
+,onCheck:function(e){
+return c.DeviceEventEmitter.emit('changeCheckedStatus',e)
+}
+
+}
+)
+}
+,s.renderRerviewOtherScreenDom=function(){
+var e,t=s.state,o=t.benefitsFlag,i=t.openQrCodeDialog,r=t.carModificationNotes,a=s.props,n=a.themeStyles,l=a.channelId,h=a.platform,f=i.showQrCodeDialog,v=i.carLeadsId,C=!h.isLarge&&o&&Boolean('5'===String(l)?r:s.commonJs.getBenefitsText(s)),P=Boolean(!h.isLarge&&'5'===String(null==(e=s.props)?void 0:e.channelId)&&s.props.agreementList);
+return(0,O.jsxs)(c.View,{
+style:[h.isLarge?n.pcModal:n.modal],children:[h.isWap?(0,O.jsx)(u.PullUpApp,{
+type:6,pageType:p.PAGE_TYPE.cardetail,appRouter:D.previewScene.isPreview?D.previewScene.pullupApkLink:'vmall://com.vmall.client/product/cardetail'
+}
+):null,s.renderScreenHeaderOrSwiper(C,P),s.renderBottomPrice(),s.updateCharaterModal(),f&&s.renderQrCodeDialog(n,v),!s.shouldInnerContent&&C&&s.renderBenefits(),!s.shouldInnerContent&&P&&s.renderProductAgreement(C),(0,O.jsx)(u.Toast,{
+pageType:'carpreview',randomId:p.CommonUtils.randomString()
+}
+)]
+}
+)
+}
+,s.getCarModificationNotes=function(){
+// 变量
+var e: any = s.props.channelId;
+if('5'===String(e)){
+p.HttpService.getTemplate('car_modification_notes').then((function(e){
+if(null!=e&&e.success){
+var t,o,i=null==e?void 0:e.templateMapping,r=null==i||null==(t=i.car_modification_notes)||null==(o=t.content)?void 0:o.replace(/<.*?>/gi,'');
+s.setState({
+carModificationNotes:r
+}
+)
+}
+
+}
+))
+}
+
+}
+,s.renderBenefits=function(){
+var e,t=s.props,o=t.channelId,i=t.themeStyles,r=t.theme,a=t.platform,n=s.state,l=n.carModificationNotes,p=(n.arrowUp,n.line,'5'===String(o)?l:s.commonJs.getBenefitsText(s)),u=!a.isPc&&'5'===String(null==(e=s.props)?void 0:e.channelId)&&s.props.agreementList,h=a.isPc?16:a.pageMargin;
+return(0,O.jsxs)(O.Fragment,{
+children:[(0,O.jsx)(c.View,{
+pointerEvents:"none",style:[i.bottomBenefits,{
+width:'100%',paddingHorizontal:h,opacity:0,bottom:64+a.safeAreaBottomHeight
+}
+],onLayout:function(e){
+s.setState({
+line:(parseInt(String(e.nativeEvent.layout.height),10)-16)/18
+}
+)
+}
+,children:(0,O.jsx)(c.Text,{
+style:[i.benefits],children:p
+}
+)
+}
+),p?(0,O.jsx)(c.View,{
+style:[i.bottomBenefits,{
+width:'100%',minHeight:u?52:0,paddingHorizontal:h,bottom:64+a.safeAreaBottomHeight
+}
+,s.shouldInnerContent&&i.innerCommon],children:(0,O.jsx)(R.default,{
+startByUp:!0,useLinearIcon:!0,textLayout:Object.assign({
+
+}
+,a.isPc?r.T7:r.T3,r.C13),children:p
+}
+)
+}
+):null]
+}
+)
+}
+;
+// 变量
+var l: any = !s.props.platform.isPc&&'5'===String(null==(r=s.props)?void 0:r.channelId)&&s.props.agreementList;
+return s.state={
+previewFlag:s.props.previewFlag,changeCharaPreview:!1,benefitsFlag:!0,benefitSbomCode:s.props.sbomCode,diffSbomCode:'',showLoginWindow:!1,priceShowFlag:!1,previewAttr:[],choosedConfig:{
+
+}
+,sbomCode:s.props.sbomCode,modalVisibleShow:!1,openQrCodeDialog:!1,carModificationNotes:'',arrowUp:!0,line:0,sbomList:s.props.sbomList||[],isQuerySbomFalse:!1,showSsrStyle:!0,agreementIsChecked:!l,isShowAgreement:l
+}
+,s.commonJs=f.default.call(s),s.diyPackageInfos=null==(n=s.props)?void 0:n.diyPackageInfos,s
+}
+return(0,s.default)(a,e),(0,r.default)(a,[{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this,t=this.props.isPC;
+this.commonJs.isLarge()&&'undefined'!=typeof window&&window.scrollTo({
+left:0,top:0
+}
+),this.loginEventListener=c.DeviceEventEmitter.addListener('NativeCallAction',this.loginEventListenerApk),this.popupLoginSuccessListener=c.DeviceEventEmitter.addListener('popupLoginSuccess',(function(){
+e.loginEventListenerWeb()
+}
+)),(this.commonJs.isLarge()&&'web'===c.Platform.OS||t)&&(this.changePcPricePc=c.DeviceEventEmitter.addListener('changePcPrice',this.setModalPrice)),this.listenSendConfig=c.DeviceEventEmitter.addListener('sendConfig',this.getSendConfig),this.getCarModificationNotes(),this.props.onRef&&this.props.onRef(this),this.loadData(),this.checkedListener=c.DeviceEventEmitter.addListener('changeCheckedStatus',(function(t){
+e.setState({
+agreementIsChecked:t
+}
+)
+}
+))
+}
+
+}
+,{
+key:"UNSAFE_componentWillReceiveProps",value:function(e){
+var t;
+this.diyPackageInfos=null==e?void 0:e.diyPackageInfos,'web'===c.Platform.OS&&e.isSSR!==this.props.isSSR&&this.loadData(),e.sbomList!==this.props.sbomList&&(null==(t=e.sbomList)?void 0:t.length)>0&&(this.loadData(),this.setState({
+sbomList:e.sbomList
+}
+))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.commonJs.isLarge()&&this.changePcPricePc&&this.changePcPricePc.remove(),clearTimeout(this.getDataTimer),this.scorllTime&&clearTimeout(this.scorllTime),this.loginEventListener&&this.loginEventListener.remove(),this.popupLoginSuccessListener&&this.popupLoginSuccessListener.remove(),this.listenSendConfig&&this.listenSendConfig.remove(),this.goServiceRobotTime&&clearTimeout(this.goServiceRobotTime),this.commonJs.isWeb()&&!this.commonJs.isLarge()&&v.default.setIndex(0),v.default.clearPackageMap(),this.gotoTimer&&clearTimeout(this.gotoTimer),this.checkedListener&&this.checkedListener.remove(),this.dialogTimer&&clearTimeout(this.dialogTimer)
+}
+
+}
+,{
+key:"getConfigParams",value:function(e){
+// 变量
+var t: any = this,o=this.props,i=o.sbomList,r=o.disPrdId,a=o.defaultSkuCode,n=o.initSkuCode,s=a;
+o.servicesRender&&n&&n!==a&&(s=n),p.StorageUtil.getStorage("chosePackageCode_"+r+"_"+s).then((function(o){
+// 变量
+var r: any = [];
+o&&(r=(0,S.getPackageByCode)(e,i,o));
+var a={
+attr:(0,S.getAttrDataBySbomCodeNew)(i[0]),packageMap:r,resetCofing:!1
+}
+;
+t.setState({
+sbomCode:e,diffSbomCode:e,benefitSbomCode:e,previewAttr:a
+}
+,(function(){
+t.setDefaultStore(e),t.getGroupFlag(!0)
+}
+))
+}
+))
+}
+
+}
+,{
+key:"handlePreviewArr",value:function(e,o){
+var i=[],r=this.getGbomAttrDisplayList(),a=h.default.size(null==e?void 0:e.attr)>0?e.attr:[],n=function(e){
+null==a||a.map((function(t){
+e===(null==t?void 0:t.attrName)&&(t.showProductName=null==t?void 0:t.attrValue,t.type='attr',t.displayPrice=null==t?void 0:t.relateSbomPkgUnitPrice,t.attrPriceDesc=null==t?void 0:t.attrPriceDesc,i.push(t))
+}
+))
+}
+;
+for(var s of r)n(s);
+// 变量
+var l: any = h.default.size(null==e?void 0:e.packageMap)>0?null==e?void 0:e.packageMap:[];
+return null==l||l.map((function(e){
+e.type='package',e.showProductName=null==e?void 0:e.sbomName,e.displayPrice=null==e?void 0:e.unitPrice
+}
+)),o?(0,t.default)(l):[].concat(i,(0,t.default)(l))
+}
+
+}
+,{
+key:"getQueryReportCarOptional",value:(l=(0,o.default)((function*(e,t,o){
+// 变量
+var i: any = this.props.channelId,r=this.state.sbomList,a=p.CommonUtils.getPortal();
+if('4'===String(i)){
+var n,s=(0,S.getAttrDataBySbomCodeNew)(r[0]),l={
+accessoryVos:[],carLeadsId:Number(null==(n=this.props)?void 0:n.carLeadsId),version:'1',country:p.MCP_COUNTRY.CN,lang:p.MCP_LANG.CN,portal:a
+}
+;
+Number(t)&&(l.totalCarPrice=Number(t)),null==s||s.map((function(e){
+l.accessoryVos.push({
+accessoryType:null==e?void 0:e.attrName,accessoryName:null==e?void 0:e.attrValue
+}
+)
+}
+)),null==o||o.map((function(e){
+l.accessoryVos.push({
+accessoryType:null==e?void 0:e.attrName,accessoryName:null==e?void 0:e.sbomName,accessoryPrice:null!=e&&e.unitPrice?Number(null==e?void 0:e.unitPrice):void 0
+}
+)
+}
+)),null==e||e.map((function(e){
+e.isRelateProduct&&l.accessoryVos.push({
+accessoryType:'relatesbom',accessoryName:null==e?void 0:e.sbomName,accessoryPrice:Number(null==e?void 0:e.unitPrice)
+}
+)
+}
+)),(0,S.queryReportCarOptional)(l)
+}
+
+}
+)),function(e,t,o){
+return l.apply(this,arguments)
+}
+)
+}
+,{
+key:"getGroupFlag",value:(n=(0,o.default)((function*(e){
+var t,o,i,r,a=this,n=this.props,s=n.disPrdId,l=n.defaultSkuCode,u=n.sbomList,h=n.initSkuCode,f=n.servicesRender,v=n.channelId;
+if(o=null!=(t=window)&&t.hicareJsInterface?null==(i=window)||null==(r=i.hicareJsInterface)?void 0:r.isLogin():yield(0,T.getAppStoreLoginStatus)(),'4'!==String(v)&&'5'!==String(v)||o){
+var C=(yield this.commonJs.getGroupFlag(this))||{
+
+}
+,P=C.totalPrice,b=C.flag,w=C.originalPrice,y=C.detailList;
+c.DeviceEventEmitter.emit('changeSbomCode',!1),this.priceObj={
+totalPrice:P,flag:b,cheapPrice:this.commonJs.minus(w,P),originalPrice:w,detailList:y
+}
+;
+var I=this.state.sbomCode,_=l;
+f&&h&&h!==l&&(_=h),p.StorageUtil.getStorage("chosePackageCode_"+s+"_"+_).then((function(t){
+// 变量
+var o: any = [];
+t&&(o=(0,S.getPackageByCode)(I,u,t)),a.getAllPriceData(o,e)
+}
+))
+}
+else{
+var k;
+if('web'===c.Platform.OS){
+var L=encodeURIComponent(window.location.href);
+k=this.commonJs.isLarge()?p.Service.webDomain+"account/login?url="+L:p.Service.wapDomain+"account/applogin?url="+L
+}
+else k='vmall://com.vmall.client/home/login';
+p.RouterUtils.gotoPage(k)
+}
+
+}
+)),function(e){
+return n.apply(this,arguments)
+}
+)
+}
+,{
+key:"renderWebHeaderWithSwiper",value:function(){
+// 变量
+var e: any = this.props,t=e.themeStyles,o=e.platform,i=e.pcTopHeight,r=void 0===i?0:i,a=o.width-416,n=o.height-(this.props.showheader?r:0);
+return(0,O.jsxs)(c.View,{
+style:t.pcPreviewContainer,children:[(0,O.jsx)(c.View,{
+style:t.pcSwiperContainer,children:(0,O.jsx)(b.default,Object.assign({
+
+}
+,this.props,{
+styles:t,isPc:!1,swiperOnscroll:this.swiperScrollEnd,imgListSource:this.getBanner(),width:a,imgWidth:a,imgProportion:a/n,sbomList:this.state.sbomList,sbomCode:this.props.sbomCode,benefitSbomCode:this.state.benefitSbomCode,originWidth:this.originWidth
+}
+))
+}
+),(0,O.jsxs)(c.View,{
+style:t.pcRightContainerImg,children:[(0,O.jsx)(c.View,{
+style:t.selectContainer,children:this.renderCarConfig()
+}
+),(0,O.jsx)(c.View,{
+style:t.bottomContainer,children:this.props.bottomComp
+}
+)]
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"renderNotWebHeaderWithSwiper",value:function(e,t){
+var o=this.props,i=o.showheader,r=o.servicesRender,a=o.isSSR,n=o.themeStyles,s=o.platform,l=o.vrFrom,p=o.sbomCode,u=this.state,h=u.sbomList,f=u.benefitSbomCode,v=u.showSsrStyle,C={
+left:a||this.originWidth<640?0:(this.originWidth-360)/2
+}
+;
+return(0,O.jsxs)(c.View,{
+nativeID:"preview",style:{
+flex:1,paddingTop:s.statusBarHeight
+}
+,children:[i?this.renderHeader():(0,O.jsx)(O.Fragment,{
+
+}
+),(0,O.jsx)(c.ScrollView,{
+children:(0,O.jsxs)(c.View,{
+style:n.resetBtnBox,children:[(0,O.jsx)(M,{
+vrFrom:l,reloadConfig:this.reloadConfig,isPc:s.isPc
+}
+),(0,O.jsx)(c.View,{
+style:r&&v&&C,children:(0,O.jsx)(b.default,Object.assign({
+
+}
+,this.props,{
+styles:n,isPc:!1,imgListSource:this.getBanner(),width:this.swiperWidth(),imgWidth:this.swiperWidth(),imgProportion:this.imgProportion(),swiperOnscroll:this.swiperScrollEnd,sbomList:h,sbomCode:p,benefitSbomCode:f,originWidth:this.originWidth
+}
+))
+}
+),this.renderCarConfig(),this.shouldInnerContent&&t&&this.renderProductAgreement(e),this.shouldInnerContent&&e&&this.renderBenefits()]
+}
+)
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"renderBottomPrice",value:function(){
+// 变量
+var e: any = this.props,t=e.previewFlag,o=e.prdId,i=e.channelId,r=e.saleId,a=this.state,n=a.isReload,s=a.sbomCode,l=a.totalPrice,c=a.flag,p=a.cheapPrice,u=a.detailList,h=a.diffSbomCode,f=a.sbomList,v=a.agreementIsChecked;
+return!this.commonJs.isLarge()&&(0,O.jsx)(P.default,Object.assign({
+sbomList:f,sbomCode:s,totalPrice:l,flag:c,prdId:o,cheapPrice:p,previewFlag:t,routerType:"CarPreview",setPreviewFlag:this._setPreviewFlag,detailList:u,isCarPreview:!0
+}
+,this.props,{
+isReload:n,channelId:i,saleId:r,diffSbomCode:h,isQuerySbomFalse:!1,agreementIsChecked:v,width:this.originWidth
+}
+))
+}
+
+}
+,{
+key:"updateCharaterModal",value:function(){
+var e,t,o=this.props,i=o.defaultSkuCode,r=o.disPrdId,a=this.state,n=a.changeCharaPreview,s=a.choosedConfig,l=a.previewAttr,c=a.sbomCode,p=a.checkPage,u=a.isQuerySbomFalse;
+return!this.commonJs.isLarge()&&n&&(0,O.jsx)(C.default,Object.assign({
+
+}
+,this.props,{
+changeCharaPreview:n,setPrevieShow:this._setPreviewShow,changeSbomCode:this._changeSbomCode,choosedConfig:s,sbomCode:c,previewAttr:l,checkPage:p,diyPackageInfos:this.diyPackageInfos,reloadGetPreviewArr:this._reloadGetPreviewArr,tabIndex:this.tabIndex,disPrdId:r,defaultSkuCode:i,carPreviewList:this.handlePreviewArr(l,'opt'),changeDiyChoose:this.getAllPriceData,channelId:null==(e=this.props)?void 0:e.channelId,saleId:null==(t=this.props)?void 0:t.saleId,isQuerySbomFalse:u
+}
+))
+}
+
+}
+,{
+key:"renderQrCodeDialog",value:function(e,t){
+// 变量
+var o: any = this,i=this.props.prdId,r=this.state.previewAttr.packageMap,a=String(this.getChoiceSbomCode(r));
+return(0,O.jsxs)(O.Fragment,{
+children:[(0,O.jsx)(c.TouchableOpacity,{
+activeOpacity:1,onPress:function(){
+return o.getSendConfig(!1)
+}
+,style:e.qrCodeDialogContainer
+}
+),(0,O.jsx)(I.default,{
+prdId:i,sbomCode:this.defaultSbomCode,choiceSbomCode:a,carLeadsId:t
+}
+)]
+}
+)
+}
+
+}
+,{
+key:"renderScreenHeaderOrSwiper",value:function(e,t){
+return this.props.platform.isLarge?this.renderWebHeaderWithSwiper():this.renderNotWebHeaderWithSwiper(e,t)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.props.platform;
+return this.originWidth=e.width,this.isHorizontalScreen=e.isHorizontal,this.isPadVerticalScreen=e.isPadV,this.isPadHorizontalScreen=e.isPadH,this.shouldInnerContent=e.height<480,this.renderRerviewOtherScreenDom()
+}
+
+}
+]);
+var n,l
+}
+)(l.PureComponent);
+_e.default=(0,L.injectLayout)((function(e,t){
+var o;
+return t.isPhone?o=y.smallScreenCls:t.isFixScreen?o=y.fixScreenCls:t.isPadH?o=y.padHorizontalScreenCls:t.isPadV?o=y.padVerticalScreenCls:t.isPc&&(o=y.pcScreenCls),o(e,t)
+}
+))(F)
+}
+),"831997dc37f91d13a3db7fabcfdef17c74e853b58a81ff3e0e76eec96184194e",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","bc4cfab5a25f148a3963998dbcb24c5f0849d48b044325ec3ff0f09f0f3ab5cd","dd29f0dbb8f0d80aa86aa36bf54069084dc48cab90e3aa2a6b1e2a5aa6c502a6","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","6f3234c80824cbd0c6b0b727fa63b0fabd42197774280dcfc706414f28ab36b8","9adc186f6f1fe1d881c0d4417979baa45b5e44dfa2babb12e99a16ed5a72fed7","5150e144b77a76bcc582d24f6c662a117b3232bf4461ae6d6baa3c400c0d0cef","92ffcb8112061138575a8002d04f58f33a3c7187e77b4d2421fe1733e6620a3f","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","acf31e62475ffd15d6d5d9aae492248577cd6896f736f1d5e09f874989c8f40a","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","bab1acf38c11121c735952b87e483ce0e85e4f53edd275fba21fecddf5c468b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","153894306258a1dc23a1a72316620d8662835b1478fa0d491daee326120f6189","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=t(_r(d[1])),o=t(_r(d[2])),r=t(_r(d[3])),i=t(_r(d[4])),a=t(_r(d[5])),s=t(_r(d[6])),n=t(_r(d[7])),l=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var o: any = _(e);
+if(o&&o.has(t))return o.get(t);
+var r={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in t)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(t,a)){
+// 变量
+var s: Function = i?Object.getOwnPropertyDescriptor(t,a):null;
+s&&(s.get||s.set)?Object.defineProperty(r,a,s):r[a]=t[a]
+}
+return r.default=t,o&&o.set(t,r),r
+}
+)(_r(d[8])),c=_r(d[9]),u=_r(d[10]),f=t(_r(d[11])),h=t(_r(d[12])),p=t(_r(d[13])),b=t(_r(d[14])),v=_r(d[15]),C=_r(d[16]),S=t(_r(d[17])),P=_r(d[18]),y=t(_r(d[19])),w=_r(d[20]),L=_r(d[21]),I=_r(d[22]),j=t(_r(d[23])),k=_r(d[24]),A=_r(d[25]),x=_r(d[26]);
+// 函数
+function _(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,o=new WeakMap;
+return(_=function(t){
+return t?o:e
+}
+)(t)
+}
+// 函数
+function O(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(O=function(){
+return!!t
+}
+)()
+}
+var V=(function(t){
+// 函数
+function l(t: any): any {
+var i,n,h,p;
+(0,r.default)(this,l),n=this,h=l,p=[t],h=(0,s.default)(h),(i=(0,a.default)(n,O()?Reflect.construct(h,p||[],(0,s.default)(n).constructor):h.apply(n,p))).minHeight=560,i.shouldCloseLoading=!1,i.onRef=function(t){
+i.attrObj=t
+}
+,i.changeSbomCode=(function(){
+var t=(0,o.default)((function*(t,e,o){
+o||i.updateAttrSbom(Object.assign({
+
+}
+,e,{
+tabIndex:String(t)
+}
+))
+}
+));
+return function(e,o,r){
+return t.apply(this,arguments)
+}
+
+}
+)(),i._getImageSource=function(t){
+i.props.getImageSource(t)
+}
+,i.confirmPreserveCharacter=function(){
+// 变量
+var t: any = i.state,e=t.sbomCode,o=t.sbomList,r=void 0===o?[]:o,a=i.props,s=a.disPrdId,n=a.defaultSkuCode,l=a.choosedConfig,u=a.initSkuCode,f=a.servicesRender,h=n;
+f&&u&&(h=u),'package'===(null==l?void 0:l.type)?i.confirmSubmitCharacter('package'):c.StorageUtil.getStorage("sbom_"+s+"_"+h).then((function(t){
+if(t===e)i.closeModalWithLoading();
+else if(i.isReSelectSbomForUser){
+var o,a,l=[];
+null==(o=r[0])||null==(a=o.sbomAttrList)||a.forEach((function(t){
+var e;
+null==t||null==(e=t.attrValueList)||e.forEach((function(t){
+l.push(t.attrValue)
+}
+))
+}
+)),i.setState({
+showDialog:!0,combinationAttrName:l.join('+')
+}
+)
+}
+else{
+var h=n;
+f&&u&&u!==n&&(h=u),c.StorageUtil.setStorage("chosePackageCode_"+s+"_"+h,'',7),i.confirmSubmitCharacter()
+}
+
+}
+))
+}
+,i.confirmSubmitCharacter=function(){
+var t,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:'attr';
+null==(t=i.attrObj)||t.preloadAllImg();
+// 变量
+var o: any = i.props,r=o.reloadGetPreviewArr,a=o.disPrdId,s=o.defaultSkuCode,n=o.servicesRender,l=o.initSkuCode,f=o.orderCode,h=o.uniqueId,p=s;
+if(n&&l&&(p=l),c.StorageUtil.setStorage("sbom_"+a+"_"+p,i.state.sbomCode,7),'package'!==e){
+var b=i.state,v=b.attrViewList,C=b.sbomCode,S=b.sbomList;
+i.isReadySelectAttr&&y.default.setSelectedAttrList(i.isReadySelectAttr,v),(0,I.setSelectStorage)(a,'',f,S[0]),u.DeviceEventEmitter.emit("changeAttrItem-"+h,{
+sbomList:S,attrViewList:v,sbomCode:C,carPromotionInfo:i.carPromotionInfo
+}
+)
+}
+i.closeModal(),r(!0,e)
+}
+,i.closeModal=function(){
+i.shouldCloseLoading=!0,i.props.setPrevieShow(!1)
+}
+,i.closeModalWithLoading=function(){
+u.DeviceEventEmitter.emit('changeSbomCode',!1),i.closeModal()
+}
+,i.submitChoose=function(){
+// 变量
+var t: any = i.props,e=t.disPrdId,o=t.defaultSkuCode,r=t.initSkuCode,a=o;
+t.servicesRender&&r&&r!==o&&(a=r),c.StorageUtil.setStorage("chosePackageCode_"+e+"_"+a,'',7),i.confirmSubmitCharacter('attr'),i.setState({
+showDialog:!1
+}
+)
+}
+,i.updateAttrSbom=(function(){
+var t=(0,o.default)((function*(t){
+// 变量
+var o: any = i.state,r=o.sbomCode,a=(0,e.default)(o.sbomList,1)[0],s=yield(c.PlatformUtils.isHarmony()?A.updateHarmonyCurAttrSbom:A.updateCurAttrSbom)(r,a,t,i.props,!0,i);
+if('late'!==s)if(i.shouldCloseLoading)u.DeviceEventEmitter.emit('changeSbomCode',!1);
+else if(s){
+// 变量
+var n: any = s.attrViewList,l=void 0===n?[]:n,f=s.sbomInfo,h=f.sbomCode,p=f.sbomAttrList,b=void 0===p?[]:p,v=s.sbomInfo,C=s.carPromotionInfo,S=s.userSelectSbom;
+i.isReSelectSbomForUser=!S,i.isReadySelectAttr=b,(0,P.filterSelectedAttrList)(l,b),i.setState({
+sbomList:[Object.assign({
+
+}
+,v,{
+carPromotionInfo:C
+}
+)],attrViewList:l,sbomCode:h
+}
+)
+}
+else u.DeviceEventEmitter.emit('showToast',{
+text:(0,c.t)('common_load_error'),pageType:'carPreview'
+}
+)
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),i.commonJs=f.default.call(i);
+var b=i.props.sbomList[0].sbomAttrList[i.props.tabIndex];
+return i.state={
+previewFlag:i.props.previewFlag,changeCharaPreview:i.props.changeCharaPreview,sbomCode:i.props.sbomCode,showDialog:!1,combinationAttrName:'',sbomList:i.props.sbomList,attrViewList:i.props.attrViewList,loading:Boolean(b)
+}
+,b&&i.updateAttrSbom(Object.assign({
+
+}
+,b,{
+tabIndex:i.props.tabIndex
+}
+)).finally((function(){
+return i.setState({
+loading:!1
+}
+)
+}
+)),i
+}
+return(0,n.default)(l,t),(0,i.default)(l,[{
+key:"render",value:function(){
+var t,e=this.props,o=e.changeCharaPreview,r=e.choosedConfig,i=e.diyPackageInfos,a=e.tabIndex,s=e.carPreviewList,n=e.disPrdId,l=e.defaultSkuCode,f=e.themeStyles,C=e.platform,P=e.contentConfig,y=this.state,I=y.sbomCode,A=y.showDialog,_=y.combinationAttrName,O=y.attrViewList,V=y.sbomList,R=y.loading,M=(0,v.initRoutes)(V,O,P).routes,W=null==(t=M[(null==M?void 0:M.length)-1])?void 0:t.title,D=JSON.parse(JSON.stringify(r)),E='attr'===(null==r?void 0:r.type)?r.attrName:W,H=M.find((function(t){
+return t.title===r.attrName
+}
+));
+Object.assign(D,H),D.title=r.attrName,D.key=1;
+var B=[2,3,4].includes(D.display),N=C.isPc?805:480;
+C.isPhone&&(N=0);
+var T=C.isPhone?C.height-C.statusBarHeight-8:Math.min(640,.9*(C.height-C.statusBarHeight-C.safeAreaBottomHeight));
+return(0,x.jsx)(j.default,{
+showDragBar:!1,shouldLiftContent:!1,pageConfig:C,visible:o,maskClosable:!0,onRequestClose:this.closeModalWithLoading,cardStyle:{
+height:T
+}
+,title:E,contentStyle:f.contentStyle,content:R&&(0,x.jsx)(u.View,{
+style:f.emptyContent,children:(0,x.jsx)(u.Image,{
+style:f.loadImg,source:k.ImageArray.loading
+}
+)
+}
+)||(B?(0,x.jsx)(S.default,Object.assign({
+
+}
+,this.props,{
+isPadV:C.isPadH,customWidth:N,attrViewList:O,route:D,sbomCode:I,routerType:'CarPreview',index:a,setSbomCode:this.changeSbomCode,sbomList:V,bounces:!1
+}
+)):this.props.checkPage&&(0,x.jsx)(h.default,Object.assign({
+
+}
+,this.props,{
+customWidth:N,themeProps:{
+isPadV:C.isPadH,customWidth:N
+}
+,attrViewList:O,onRef:this.onRef,route:D,sbomCode:I,routerType:'CarPreview',index:a,setSbomCode:this.changeSbomCode,sbomList:V
+}
+))||(0,x.jsx)(p.default,Object.assign({
+
+}
+,this.props,{
+customWidth:N,themeProps:{
+isPadV:C.isPadH,customWidth:N
+}
+,attrViewList:O,routerType:'CarPreview',sbomCode:I,diyPackageInfos:i,choosedConfig:r,carPreviewList:s,disPrdId:n,defaultSkuCode:l,sbomList:V,isFixScreen:C.isFixScreen
+}
+))),footer:[!1,{
+onPress:this.confirmPreserveCharacter,btnColor:w.ThemeInfo.themeColor,text:(0,c.t)('confirm')
+}
+],cover:(0,x.jsxs)(x.Fragment,{
+children:[(0,x.jsx)(b.default,{
+combinationAttrName:_,showDialog:A,cancelBtn:this.closeModalWithLoading,submitBtn:this.submitChoose
+}
+),(0,x.jsx)(L.ApkWatermarkView,{
+width:C.width,height:C.height
+}
+),(0,x.jsx)(k.Toast,{
+pageType:'carPreview',randomId:c.CommonUtils.randomString()
+}
+)]
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(l.PureComponent),R=u.StyleSheet.create({
+contentStyle:{
+paddingHorizontal:0
+}
+,emptyContent:{
+flex:1,justifyContent:'center',alignItems:'center'
+}
+,loadImg:{
+width:72,height:72
+}
+
+}
+);
+_e.default=(0,C.injectLayout)(R)(V)
+}
+),"bc4cfab5a25f148a3963998dbcb24c5f0849d48b044325ec3ff0f09f0f3ab5cd",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","b2ae47424abc369a0ad226d1a2f01fdbbfe229616f82d3946b6b5b144b2a433c","660b8a42fbcc719b1ab67976848cf23483d74550e967426bfe05293675afe4c3","bbf78595ce056262e7045dea2d4358865331daf2e7f53c89207092cbed8410d2","93dee373a3a51c3f2a634d291b2e41e4d3b8cdd61732c437a2d048f2899620db","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","c93ae4614155cfba20a1c44e70542bdff08e4a9c10dac559a66c469d9d2d9cf3","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","da28eb4b9fe618afbafba6291e7d4433ac0237bc78b497fe8e176d2b5c43e316","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","c36812d3bf2c60b7e2b5687de6948dc0b638821b3980bdb333f4128b6827d9d2","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=t(_r(d[1])),n=t(_r(d[2])),i=t(_r(d[3])),r=t(_r(d[4])),o=t(_r(d[5])),c=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var n: any = p(e);
+if(n&&n.has(t))return n.get(t);
+var i={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in t)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(t,o)){
+// 变量
+var c: any = r?Object.getOwnPropertyDescriptor(t,o):null;
+c&&(c.get||c.set)?Object.defineProperty(i,o,c):i[o]=t[o]
+}
+return i.default=t,n&&n.set(t,i),i
+}
+)(_r(d[6])),l=_r(d[7]),s=_r(d[8]),a=t(_r(d[9])),u=_r(d[10]),f=_r(d[11]),h=_r(d[12]);
+// 函数
+function p(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,n=new WeakMap;
+return(p=function(t){
+return t?n:e
+}
+)(t)
+}
+// 函数
+function x(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(x=function(){
+return!!t
+}
+)()
+}
+var y={
+position:'web'===l.Platform.OS?'fixed':'absolute'
+}
+,b=(function(t){
+// 函数
+function c(t: any): any {
+var n,o,a,f;
+return(0,e.default)(this,c),o=this,a=c,f=[t],a=(0,r.default)(a),(n=(0,i.default)(o,x()?Reflect.construct(a,f||[],(0,r.default)(o).constructor):a.apply(o,f))).originWidth=0,n.originHeight=0,n.cancelChoose=function(){
+n.props.cancelBtn()
+}
+,n.submitChoose=function(){
+n.props.submitBtn()
+}
+,n.renderContent=function(t){
+// 变量
+var e: any = n.props,i=e.combinationAttrName,r=e.platform,o=r.isSmall,c=r.isMedium,a=r.isLarge;
+return(0,h.jsx)(l.View,{
+style:[t.dialog,y],children:(0,h.jsxs)(l.View,{
+style:[t.mainBox,{
+width:n.originWidth-32
+}
+,o&&y,a&&t.mainBoxPc],children:[a?(0,h.jsx)(l.TouchableOpacity,{
+activeOpacity:1,onPress:n.cancelChoose,style:t.svgClose,children:(0,h.jsx)(l.View,{
+style:t.closeBtn,children:(0,h.jsx)(u.SvgIcon,{
+iconName:"newClose",width:18,height:18,normalCol:'#1d1d1d'
+}
+)
+}
+)
+}
+):(0,h.jsx)(l.Text,{
+style:t.title,children:(0,s.t)('tips')
+}
+),(0,h.jsx)(l.Text,{
+style:[t.tipsTxt,c&&t.tipsTxtMedium,a&&t.tipsTxtPc],children:(0,s.t)('auto_choose_prd').replace('%1$d',String(i))
+}
+),(0,h.jsxs)(l.View,{
+style:[t.btnBox,a&&t.btnBoxPc],children:[(0,h.jsx)(l.TouchableOpacity,{
+style:[t.btnTxt,t.cancelTxt,a&&t.btnTxtPc,a&&t.cancelTxtPc],activeOpacity:1,onPress:n.cancelChoose,children:(0,h.jsx)(l.Text,{
+style:[t.cancelTextStyle,a&&t.textStylePc],children:(0,s.t)('let_me_see')
+}
+)
+}
+),(0,h.jsx)(l.TouchableOpacity,{
+style:[t.btnTxt,t.submitTxt,a&&t.btnTxtPc,a&&t.submitTxtPc],activeOpacity:1,onPress:n.submitChoose,children:(0,h.jsx)(l.Text,{
+style:[t.submitTextStyle,a&&t.textStylePc],children:(0,s.t)('confirm_to_modify')
+}
+)
+}
+)]
+}
+)]
+}
+)
+}
+)
+}
+,n
+}
+return(0,o.default)(c,t),(0,n.default)(c,[{
+key:"render",value:function(){
+// 变量
+var t: any = this.props,e=t.platform,n=t.themeStyles,i=t.showDialog;
+return this.originWidth=e.width,this.originHeight=e.height,i?this.renderContent(n):(0,h.jsx)(h.Fragment,{
+
+}
+)
+}
+
+}
+])
+}
+)(c.Component);
+_e.default=(0,f.injectLayout)(a.default)(b)
+}
+),"bbf78595ce056262e7045dea2d4358865331daf2e7f53c89207092cbed8410d2",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0944e686b0e60000cdc3d37cb1f11c137bb2912528d90501581be5a012c002eb","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]),o=r(d[1]),n=r(d[2]),l=r(d[3]);
+e.default=function(c,s){
+return t.StyleSheet.create({
+dialog:{
+top:0,bottom:0,left:0,right:0,backgroundColor:o.CommonUtils.colorRgba(c.C11.color,.2),display:'flex',justifyContent:'center',alignItems:'center',zIndex:102,width:'100%',height:(0,l.isScale)()?s.height:'100%'
+}
+,mainBox:{
+backgroundColor:c.C33.color,borderRadius:24,paddingHorizontal:24,paddingVertical:16,maxWidth:400
+}
+,mainBoxPc:{
+width:460,maxWidth:460,paddingTop:68,paddingLeft:40,paddingRight:40,paddingBottom:40,borderRadius:0
+}
+,tipsTxt:Object.assign({
+
+}
+,c.T7,c.C11),tipsTxtMedium:{
+textAlign:'left'
+}
+,tipsTxtPc:Object.assign({
+
+}
+,c['T11-1'],{
+textAlign:'left'
+}
+),btnBox:{
+marginTop:8,flexDirection:'row',justifyContent:'center'
+}
+,btnBoxPc:{
+marginTop:24
+}
+,btnTxt:{
+flex:1,height:40,alignItems:'center',justifyContent:'center',borderRadius:20
+}
+,btnTxtPc:{
+width:184,height:52,borderRadius:26
+}
+,cancelTxt:{
+marginRight:12
+}
+,cancelTxtPc:{
+marginRight:12,borderColor:o.CommonUtils.colorRgba(c.C11.color,.05),borderWidth:1,borderStyle:'solid'
+}
+,submitTxt:{
+marginLeft:12,backgroundColor:n.ThemeInfo.themeColor||o.CommonUtils.colorRgba(c.C12.color,c.C12.opacity)
+}
+,submitTxtPc:{
+marginLeft:12
+}
+,cancelTextStyle:Object.assign({
+
+}
+,c.C12,c.T8),submitTextStyle:Object.assign({
+
+}
+,c.C17,c.T8),textStylePc:Object.assign({
+
+}
+,c.T11),svgClose:{
+backgroundColor:o.CommonUtils.colorRgba(c.C11.color,.1),width:24,height:24,borderRadius:24,position:'absolute',top:24,right:24
+}
+,closeBtn:{
+width:24,height:24,display:'flex',justifyContent:'center',alignItems:'center'
+}
+,title:Object.assign({
+marginTop:2,marginBottom:15
+}
+,c.T11,c.C11,{
+textAlign:'center'
+}
+)
+}
+)
+}
+
+}
+),"0944e686b0e60000cdc3d37cb1f11c137bb2912528d90501581be5a012c002eb",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","fb5fd1e48fa4b301f79b4922930a330beece61dcbd46fc5daff5b6f4960e1b77"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),i=e(_r(d[3])),n=e(_r(d[4])),o=e(_r(d[5])),u=_r(d[6]),a=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = s(t);
+if(r&&r.has(e))return r.get(e);
+var i={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var u: any = n?Object.getOwnPropertyDescriptor(e,o):null;
+u&&(u.get||u.set)?Object.defineProperty(i,o,u):i[o]=e[o]
+}
+return i.default=e,r&&r.set(e,i),i
+}
+)(_r(d[7])),l=_r(d[8]),p=e(_r(d[9])),c=_r(d[10]);
+// 函数
+function s(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(s=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function f(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(f=function(){
+return!!e
+}
+)()
+}
+var h=(function(e){
+// 函数
+function a(e: any): any {
+var r,o,s,h;
+return(0,t.default)(this,a),o=this,s=a,h=[e],s=(0,n.default)(s),(r=(0,i.default)(o,f()?Reflect.construct(s,h||[],(0,n.default)(o).constructor):s.apply(o,h))).originWidth=0,r.receiveSwiperRef=function(e){
+r.swiperObj=e
+}
+,r.renderSwiper=function(){
+var e=r.props||{
+
+}
+,t=e.styles,i=e.width,n=e.imgProportion,o=e.imgListSource,a=e.originWidth,p=e.swiperOnscroll,s=e.platform,f=t;
+return o.length>0?(0,c.jsx)(l.View,{
+style:[f.swiperBox,{
+width:i,marginTop:0
+}
+,s.isMedium&&{
+left:(a-i)/2
+}
+],children:o.length>1?(0,c.jsx)(u.AppSwiper,{
+onRef:function(e){
+r.receiveSwiperRef(e)
+}
+,imgList:o,tabIndex:0,componentName:'Swiper',boxWidth:i,width:i,imgProportion:n,mixedSwiper:!0,swiperOnscroll:p
+}
+):(0,c.jsx)(u.FastImageView,{
+showAppSwitchImage:!1,isHighQuality:!0,resizeMode:'cover',imgWidth:i,imgUri:o[0].imgUri,scale:r.commonJs.isLarge()?'1':'1.78',imgStyle:{
+width:i,height:i/n
+}
+
+}
+)
+}
+):(0,c.jsx)(l.View,{
+style:[r.commonJs.isLarge()&&f.swiperBoxPc],children:(0,c.jsx)(c.Fragment,{
+
+}
+)
+}
+)
+}
+,r.commonJs=p.default.call(r),r.state={
+imgListSource:[]
+}
+,r.originWidth=r.props.originWidth,r
+}
+return(0,o.default)(a,e),(0,r.default)(a,[{
+key:"shouldComponentUpdate",value:function(e){
+var t,r,i,n=null==e||null==(t=e.imgListSource)?void 0:t.map((function(e){
+return e.imgUri
+}
+)),o=null==(r=this.props)||null==(i=r.imgListSource)?void 0:i.map((function(e){
+return e.imgUri
+}
+));
+return n.join('')!==o.join('')&&!this.props.changeCharaPreview||this.props.originWidth!==e.originWidth||this.props.imgProportion!==e.imgProportion
+}
+
+}
+,{
+key:"render",value:function(){
+return this.renderSwiper()
+}
+
+}
+])
+}
+)(a.Component);
+_e.default=h
+}
+),"6f3234c80824cbd0c6b0b727fa63b0fabd42197774280dcfc706414f28ab36b8",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),n=e(_r(d[2])),r=e(_r(d[3])),o=e(_r(d[4])),i=e(_r(d[5])),u=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = c(t);
+if(n&&n.has(e))return n.get(e);
+var r={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var u: any = o?Object.getOwnPropertyDescriptor(e,i):null;
+u&&(u.get||u.set)?Object.defineProperty(r,i,u):r[i]=e[i]
+}
+return r.default=e,n&&n.set(e,r),r
+}
+)(_r(d[6])),a=_r(d[7]),l=_r(d[8]),f=_r(d[9]);
+// 函数
+function c(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(c=function(e){
+return e?n:t
+}
+)(e)
+}
+// 函数
+function p(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(p=function(){
+return!!e
+}
+)()
+}
+var s=(function(e){
+// 函数
+function u(e: any): any {
+return(0,t.default)(this,u),n=this,i=u,a=[e],i=(0,o.default)(i),(0,r.default)(n,p()?Reflect.construct(i,a||[],(0,o.default)(n).constructor):i.apply(n,a));
+var n,i,a
+}
+return(0,i.default)(u,e),(0,n.default)(u,[{
+key:"componentDidMount",value:function(){
+
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+
+}
+
+}
+,{
+key:"shouldComponentUpdate",value:function(e){
+var t;
+return(null==e?void 0:e.imgUri)!==(null==(t=this.props)?void 0:t.imgUri)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.props,t=e.isHighQuality,n=e.resizeMode,r=e.imgWidth,o=e.imgUri,i=e.imgProportion,u=e.scale,c=e.imgStyle;
+return(0,f.jsx)(a.WithTheme,{
+children:function(e){
+return(0,f.jsx)(l.FastImageView,{
+isHighQuality:t,resizeMode:n,imgWidth:r,imgUri:o,imgProportion:i,scale:u,imgStyle:c
+}
+)
+}
+
+}
+)
+}
+
+}
+])
+}
+)(u.Component);
+_e.default=s
+}
+),"9adc186f6f1fe1d881c0d4417979baa45b5e44dfa2babb12e99a16ed5a72fed7",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.smallScreenCls=e.pcScreenCls=e.padVerticalScreenCls=e.padHorizontalScreenCls=e.fixScreenCls=e.configStylesFun=e.commonScreenCls=e.ICON_SIZE=void 0;
+var t=r(d[0]),o=r(d[1]),n=(e.ICON_SIZE=24,e.commonScreenCls=function(n,l){
+// 变量
+var c: any = l.isPc?0:l.pageMargin;
+return{
+innerCommon:{
+position:'relative',bottom:0,paddingTop:0
+}
+,apkContainer:{
+backgroundColor:n.C33.color
+}
+,apkBox:{
+height:'100%'
+}
+,agreementStyle:{
+width:'100%',position:'absolute',paddingHorizontal:l.pageMargin,paddingTop:20,backgroundColor:n.fillBase
+}
+,bottomBenefits:{
+flexDirection:'row',position:l.isWeb?'fixed':'absolute',bottom:64,paddingBottom:8,paddingTop:8,justifyContent:'space-between',fontSize:l.isWeb?14:12,backgroundColor:n.C33.color,alignItems:'center',zIndex:3
+}
+,iosMain:{
+position:'absolute',top:0,left:0,width:'100%',height:'100%',zIndex:20,backgroundColor:n.C32.color
+}
+,comBg:{
+backgroundColor:n.C17.color
+}
+,previewBox:{
+display:'flex',position:'relative',zIndex:10,left:0,right:0,bottom:0,top:0,width:'100%',height:'100%',justifyContent:'center',alignItems:'center'
+}
+,charaterModal:{
+backgroundColor:n.C33.color,position:'absolute',zIndex:13,width:480,height:640,borderRadius:24
+}
+,pcPreviewBox:{
+position:l.isWeb?'fixed':'absolute',width:t.Dimensions.get('window').width,height:690,left:0,top:0,margin:'auto'
+}
+,clickModal:{
+position:l.isWeb?'fixed':'absolute',top:0,left:0,right:0,width:'100%',height:'100%',zIndex:9
+}
+,modal:{
+backgroundColor:n.C32.color,height:'100%',zIndex:13,width:'100%'
+}
+,pcModal:{
+flex:1,backgroundColor:n.C33.color,zIndex:13,width:'100%'
+}
+,pcCharacterModal:{
+backgroundColor:n.C17.color,height:690,zIndex:50,width:690,margin:'auto',top:100
+}
+,tips:{
+width:32,height:4,backgroundColor:o.CommonUtils.colorRgba(n.C11.color,.2),marginTop:10,marginBottom:10,borderRadius:2,marginLeft:'auto',marginRight:'auto'
+}
+,tipsIcon:{
+width:25,height:4,backgroundColor:o.CommonUtils.colorRgba(n.C11.color,.2)
+}
+,carConfigContainer:{
+justifyContent:'space-between',flexDirection:'row',alignItems:'center',marginTop:19,marginBottom:8,marginHorizontal:c
+}
+,reloadConfigWrap:{
+flexDirection:'row',alignItems:'center'
+}
+,changeCarType:{
+marginRight:16
+}
+,reloadConfigText:{
+fontSize:n.T10.fontSize,color:n.C11.color,marginLeft:8
+}
+,switchText:Object.assign({
+
+}
+,n.T8,n.C13,{
+marginLeft:8
+}
+),switchTextPc:Object.assign({
+
+}
+,n.T4,n.C11,{
+marginLeft:8
+}
+),detail:{
+flex:1
+}
+,content:{
+flex:1
+}
+,bottomButtonWrap:Object.assign({
+
+}
+,l.isPhone?{
+flex:1
+}
+:{
+width:448
+}
+,{
+backgroundColor:n.C18.color,height:40,borderRadius:20,alignItems:'center'
+}
+),bottomButtonWrapText:Object.assign({
+
+}
+,n.T10,{
+lineHeight:40,color:n.C17.color
+}
+),bottomWrapper:{
+flexDirection:'row',justifyContent:'center',alignItems:'center',paddingTop:8,paddingBottom:8+(l.isPhone?l.safeAreaBottomHeight:8),paddingHorizontal:16,width:'100%'
+}
+,containerHeader:{
+display:'flex',justifyContent:'space-between',flexDirection:'row',height:56,alignItems:'center',position:'relative'
+}
+,leftContainer:{
+display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',marginLeft:18
+}
+,leftText:Object.assign({
+fontSize:n.T12.fontSize,fontFamily:n.T12.fontFamily
+}
+,n.C11,{
+fontWeight:'500',marginLeft:16
+}
+),rightContainer:{
+display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',height:'100%',marginRight:21
+}
+,rightText:Object.assign({
+
+}
+,n.T8,{
+color:'#1E1E1E',fontWeight:'500',marginRight:16,letterSpacing:0,textAlign:'right',lineHeight:19.5
+}
+),swiper:{
+marginTop:15,height:20,width:'100%'
+}
+,swiperBox:{
+marginTop:12
+}
+,carConfig:{
+marginTop:8
+}
+,configTitleWrap:Object.assign({
+
+}
+,n.T20,n.C11,{
+textAlign:'left'
+}
+),pcConfigTitleWrap:Object.assign({
+flex:1
+}
+,n.T12,{
+color:n.C11.color
+}
+),toolBar:{
+flexDirection:'row',alignItems:'center'
+}
+,carListWrap:{
+borderTopLeftRadius:32,borderTopRightRadius:32,backgroundColor:n.C33.color,width:'100%'
+}
+,attrList:{
+
+}
+,pcCarListWrap:{
+borderRadius:0
+}
+,attrListItem:{
+
+}
+,carConfigItem:{
+flexDirection:'row',justifyContent:'space-between',height:88,alignItems:'center',marginHorizontal:l.isPhone||l.isPc?16:24
+}
+,bottomBorder:{
+borderBottomWidth:.5,borderColor:o.CommonUtils.colorRgba(n.C11.color,.05)
+}
+,rightContainerBox:{
+flexDirection:'row',justifyContent:'space-between',flex:1,height:'100%',alignItems:'center',marginLeft:16
+}
+,rightButton:{
+width:64,height:28,borderRadius:16,backgroundColor:'rgba(0,0,0,0.05)',alignItems:'center',justifyContent:'center'
+}
+,pcRightButton:{
+width:80,height:36,borderRadius:18,backgroundColor:'rgba(0,0,0,0.05)',alignItems:'center',justifyContent:'center'
+}
+,pcBottomWrap:{
+width:'100%',flexDirection:'row',justifyContent:'center',backgroundColor:n.C32.color,height:64,alignItems:'center',position:l.isWeb?'fixed':'absolute',bottom:0
+}
+,rightTextWrap:{
+fontSize:n.T3.fontSize,fontFamily:n.T3.fontFamily,textAlign:'center',fontWeight:'400',color:n.C11.color
+}
+,pcRightTextWrap:{
+fontSize:14,textAlign:'center',fontWeight:'500',color:n.C11.color
+}
+,itemPriceWrap:Object.assign({
+
+}
+,n.C13,n.T7,{
+marginTop:2
+}
+),leftContainerWrap:{
+flexDirection:'row',alignItems:'center',justifyContent:'center'
+}
+,colBox:{
+flexDirection:'column',flex:1,marginRight:12
+}
+,leftTitle:Object.assign({
+
+}
+,n.C12,n.T10),bottomWrap:{
+width:'100%',flexDirection:'row',justifyContent:'space-between',backgroundColor:n.C32.color,height:64,alignItems:'center',position:l.isWeb?'fixed':'absolute',bottom:0
+}
+,leftBottom:{
+marginLeft:16
+}
+,rightBottom:{
+marginRight:16,borderRadius:20,backgroundColor:n.C18.color,width:120,height:40,justifyContent:'center',alignItems:'center'
+}
+,rightBottomText:{
+fontSize:n.T9.fontSize,fontFamily:n.T9.fontFamily,color:n.C17.color
+}
+,totalPriceWrap:{
+flexDirection:'row',alignItems:'center'
+}
+,totalPriceText:Object.assign({
+
+}
+,n.C13,{
+fontSize:n.T3.fontSize,fontFamily:n.T3.fontFamily,fontWeight:'400'
+}
+),totalPriceColor:Object.assign({
+
+}
+,n.C12,{
+lineHeight:24,fontWeight:'500'
+}
+),svgIcon:{
+marginLeft:6
+}
+,pcBottomBenefits:{
+flexDirection:'row',position:l.isWeb?'fixed':'absolute',bottom:64,justifyContent:'flex-end',zIndex:5
+}
+,pcBottomBenefitsText:{
+paddingLeft:16,paddingRight:16,paddingBottom:8,paddingTop:8,backgroundColor:n.C97.color,width:'50%',justifyContent:'space-between',flexDirection:'row'
+}
+,benefits:Object.assign({
+
+}
+,n.T3,n.C13,{
+lineHeight:18,width:'100%',position:'relative'
+}
+),pcPreviewBottomBenefits:{
+fontSize:14,color:n.C94.color,fontWeight:'400',width:'100%'
+}
+,benefitsCancel:{
+paddingRight:10,marginLeft:8,width:24,height:24
+}
+,IEBox:{
+minHeight:770
+}
+,header:{
+position:'relative',justifyContent:'center',zIndex:4
+}
+,titleBar:{
+backgroundColor:'transparent'
+}
+,title:Object.assign({
+
+}
+,n.T13,n.C11,{
+position:'absolute',left:0,top:16,width:606,height:48,backgroundColor:n.C32.color
+}
+),location:{
+display:'flex',flexDirection:'row',alignItems:'center',paddingTop:24,paddingBottom:24,width:1200
+}
+,home:Object.assign({
+
+}
+,n.T3,n.C12),space:Object.assign({
+
+}
+,n.T3,n.C12,{
+marginLeft:2
+}
+),keyword:Object.assign({
+
+}
+,n.T4,n.C11),pcSwiperContainer:{
+flex:1,height:'100%',overflow:'hidden'
+}
+,pcPreviewContainer:{
+flexDirection:'row',height:'100%'
+}
+,pcRightContainerImg:{
+width:416,height:'100%',paddingHorizontal:32
+}
+,selectContainer:{
+flex:1,overflow:'hidden'
+}
+,bottomContainer:Object.assign({
+
+}
+,n.S2,{
+borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,zIndex:13,borderTopWidth:.5
+}
+),pcBenefitsContainer:{
+width:'50%'
+}
+,imgContainer:{
+backgroundColor:n.C34.color,borderRadius:24,justifyContent:'center',alignItems:'center'
+}
+,carConfigText:{
+fontSize:n.T4.fontSize,fontFamily:n.T4.fontFamily,color:'rgba(0,0,0,0.40)',textAlign:'center',fontWeight:'500'
+}
+,pcHoverChangeText:{
+marginRight:12,width:56,height:28,borderRadius:16,backgroundColor:l.isWeb?'rgba(0,0,0,0.0.1)':void 0,alignItems:'center',justifyContent:'center'
+}
+,darkModeText:{
+color:n.C11.color
+}
+,leftModalText:{
+marginLeft:16,fontSize:n.T12.fontSize,fontFamily:n.T12.fontFamily,color:n.C11.color,fontWeight:'500'
+}
+,leftHorizontalModalText:{
+marginLeft:25,fontSize:n.T12.fontSize,fontFamily:n.T12.fontFamily,color:n.C11.color,fontWeight:'500'
+}
+,pcLeftModalText:{
+marginLeft:16,fontSize:18,color:n.C11.color,fontWeight:'400'
+}
+,topModal:{
+height:l.isPc?24:28,flexDirection:'row',justifyContent:'space-between',marginTop:21,marginBottom:16
+}
+,closeSpace:{
+marginRight:20
+}
+,closeBtn:{
+borderRadius:20,padding:11,marginTop:-5,backgroundColor:o.DarkStore.darkBool?'rgba(255, 255, 255, 0.1)':'rgba(0, 0, 0, 0.1)'
+}
+,packageTips:{
+flexDirection:'row',justifyContent:'space-between',alignItems:'center',height:56,paddingHorizontal:l.isPhone||l.isPc?16:24,backgroundColor:n.C33.color,borderTopWidth:.5,borderColor:o.CommonUtils.colorRgba(n.C11.color,.05)
+}
+,packageTxt:Object.assign({
+color:n.C11.color
+}
+,n.T10),resetBtnBox:{
+position:'relative'
+}
+,resetBtnInner:{
+position:'absolute',right:0,top:8,zIndex:4,backgroundColor:o.CommonUtils.colorRgba(n.C33.color,.8),borderTopLeftRadius:16.5,borderTopRightRadius:0,borderBottomLeftRadius:16.5,borderBottomRightRadius:0,width:92,height:28,display:'flex',justifyContent:'center',alignItems:'center'
+}
+,smallTxt:{
+fontSize:12
+}
+,qrCodeDialogContainer:{
+position:l.isWeb?'fixed':'absolute',top:0,left:0,width:'100%',height:'100%',backgroundColor:'rgba(0,0,0,0.2)',zIndex:19
+}
+,headerIcon:{
+marginRight:16,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'row'
+}
+,onlineService:{
+width:24,height:24
+}
+,apkRight:{
+marginRight:16
+}
+,padRight:{
+marginRight:24
+}
+,ellips:Object.assign({
+
+}
+,n.T3,n.C15,{
+fontWeight:'400',lineHeight:18,marginLeft:20
+}
+),onlineShare:{
+width:24,height:24
+}
+,gradual:{
+width:48,height:18,position:'absolute',right:24,bottom:8
+}
+
+}
+
+}
+);
+e.padHorizontalScreenCls=function(o,l){
+// 变量
+var c: any = n(o,l);
+return t.StyleSheet.create(Object.assign({
+
+}
+,c,{
+arrowUpIcon:{
+position:'absolute',right:0,bottom:0
+}
+,attrList:Object.assign({
+
+}
+,c.attrList,{
+display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between',marginHorizontal:8
+}
+),attrListItem:{
+width:'50%'
+}
+,carConfigItem:Object.assign({
+
+}
+,c.carConfigItem)
+}
+))
+}
+,e.padVerticalScreenCls=function(o,l){
+// 变量
+var c: any = n(o,l);
+return t.StyleSheet.create(Object.assign({
+
+}
+,c,{
+arrowUpIcon:{
+position:'absolute',right:0,bottom:0
+}
+
+}
+))
+}
+,e.smallScreenCls=function(o,l){
+// 变量
+var c: any = n(o,l);
+return t.StyleSheet.create(Object.assign({
+
+}
+,c,{
+previewBox:Object.assign({
+
+}
+,c.previewBox,{
+position:'relative'
+}
+),charaterModal:Object.assign({
+
+}
+,c.charaterModal,{
+position:'absolute',bottom:0,width:'100%',height:l.height-44,borderBottomLeftRadius:0,borderBottomRightRadius:0
+}
+),topModal:Object.assign({
+
+}
+,c.topModal,{
+marginTop:0,marginBottom:8
+}
+),arrowUpIcon:{
+position:'absolute',right:0,bottom:0
+}
+,gradual:Object.assign({
+
+}
+,c.gradual,{
+right:18
+}
+)
+}
+))
+}
+,e.pcScreenCls=function(o,l){
+// 变量
+var c: any = n(o,l);
+return t.StyleSheet.create(Object.assign({
+
+}
+,c,{
+bottomBenefits:{
+
+}
+,bottomWrap:{
+width:'100%',flexDirection:'row',justifyContent:'space-between',backgroundColor:o.C32.color,height:64,alignItems:'center',position:l.isWeb?'fixed':'absolute',bottom:0
+}
+,pcTitle:Object.assign({
+
+}
+,o.T14,o.C11,{
+fontSize:32,paddingHorizontal:16,marginBottom:13,marginTop:16
+}
+),pcCarConfigContainer:{
+paddingLeft:16,paddingRight:20
+}
+,charaterModal:Object.assign({
+
+}
+,c.charaterModal,{
+backgroundColor:'rgba(255,255,255,0.80)',backdropFilter:'blur(25px)'
+}
+)
+}
+))
+}
+,e.fixScreenCls=function(o,l){
+// 变量
+var c: any = n(o,l);
+return t.StyleSheet.create(Object.assign({
+
+}
+,c))
+}
+,e.configStylesFun=function(){
+// 变量
+var n: any = arguments.length>0&&void 0!==arguments[0]?arguments[0]:o.DarkStore.theme;
+return t.StyleSheet.create({
+carConfigItem:{
+flexDirection:'row',justifyContent:'space-between',height:88,alignItems:'center',marginHorizontal:24
+}
+,leftContainerWrap:{
+flexDirection:'row',alignItems:'center',justifyContent:'center'
+}
+,imgContainer:{
+backgroundColor:n.C34.color,borderRadius:24,justifyContent:'center',alignItems:'center'
+}
+,carConfigText:{
+fontSize:n.T4.fontSize,fontFamily:n.T4.fontFamily,color:'rgba(0,0,0,0.40)',textAlign:'center',fontWeight:'500'
+}
+,rightContainerBox:{
+flexDirection:'row',justifyContent:'space-between',flex:1,height:'100%',alignItems:'center',marginLeft:16
+}
+,bottomBorder:{
+borderBottomWidth:.5,borderColor:o.CommonUtils.colorRgba(n.C11.color,.05)
+}
+,colBox:{
+flexDirection:'column',flex:1,marginRight:12
+}
+,leftTitle:Object.assign({
+color:n.C11.color
+}
+,n.T9,{
+fontWeight:'500'
+}
+),itemPriceWrap:Object.assign({
+
+}
+,n.C13,n.T7,{
+marginTop:2
+}
+),pcRightButton:{
+width:80,height:36,borderRadius:18,backgroundColor:'rgba(0,0,0,0.05)',alignItems:'center',justifyContent:'center'
+}
+,rightButton:{
+width:64,height:28,borderRadius:16,backgroundColor:'rgba(0,0,0,0.05)',alignItems:'center',justifyContent:'center'
+}
+,pcRightTextWrap:{
+fontSize:14,textAlign:'center',fontWeight:'500',color:n.C11.color
+}
+,rightTextWrap:{
+fontSize:n.T3.fontSize,fontFamily:n.T3.fontFamily,textAlign:'center',fontWeight:'400',color:n.C11.color
+}
+,attrList:{
+display:'flex',flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between',marginHorizontal:8
+}
+,attrListItem:{
+width:'50%'
+}
+,resetBtnInner:{
+position:'absolute',right:0,top:8,zIndex:4,backgroundColor:o.CommonUtils.colorRgba(n.C33.color,.8),borderTopLeftRadius:16.5,borderTopRightRadius:0,borderBottomLeftRadius:16.5,borderBottomRightRadius:0,width:92,height:28,display:'flex',justifyContent:'center',alignItems:'center'
+}
+,reloadConfigWrap:{
+flexDirection:'row',alignItems:'center'
+}
+,switchTextPc:Object.assign({
+
+}
+,n.T4,n.C11,{
+marginLeft:8
+}
+),imgContainerStyle:{
+width:48,height:48
+}
+
+}
+)
+}
+
+}
+),"5150e144b77a76bcc582d24f6c662a117b3232bf4461ae6d6baa3c400c0d0cef",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),u=t(r(d[3])),o=t(r(d[4])),l=t(r(d[5]));
+// 函数
+function c(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(c=function(){
+return!!t
+}
+)()
+}
+var f=(function(t){
+// 函数
+function f(): any {
+return(0,e.default)(this,f),t=this,n=f,l=arguments,n=(0,o.default)(n),(0,u.default)(t,c()?Reflect.construct(n,l||[],(0,o.default)(t).constructor):n.apply(t,l));
+var t,n,l
+}
+return(0,l.default)(f,t),(0,n.default)(f,[{
+key:"render",value:function(){
+return null
+}
+
+}
+])
+}
+)(r(d[6]).Component);
+_e.default=f
+}
+),"92ffcb8112061138575a8002d04f58f33a3c7187e77b4d2421fe1733e6620a3f",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),n=e(_r(d[2])),o=e(_r(d[3])),r=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = C(t);
+if(n&&n.has(e))return n.get(e);
+var o={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var a: any = r?Object.getOwnPropertyDescriptor(e,i):null;
+a&&(a.get||a.set)?Object.defineProperty(o,i,a):o[i]=e[i]
+}
+return o.default=e,n&&n.set(e,o),o
+}
+)(_r(d[4])),i=_r(d[5]),a=_r(d[6]),l=e(_r(d[7])),c=_r(d[8]),s=_r(d[9]),u=_r(d[10]),h=e(_r(d[11])),f=e(_r(d[12])),p=e(_r(d[13])),y=_r(d[14]),v=e(_r(d[15])),x=_r(d[16]),b=_r(d[17]);
+// 函数
+function C(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(C=function(e){
+return e?n:t
+}
+)(e)
+}
+var T={
+bff:u.queryTemplateBP,mcp:u.queryTemplate,local:y.queryTemplateLocal
+}
+,k=(_e.default=(0,r.forwardRef)((function(e,u){
+var C,w,S,P=e.colorTheme,j=void 0===P?'dark':P,A=e.themeColor,_=e.agreementList,B=e.checkBy,O=e.marks,R=void 0===O?[]:O,V=e.onCheck,I=e.requiredRead,L=void 0!==I&&I,D=e.requiredReadTime,H=void 0!==D&&D,M=e.modalType,F=e.modalCardStyle,q=e.collapseTextProps,N=e.alwaysUncheckTip,W=void 0!==N&&N,E=e.extraParams,z=e.containerStyle,U=e.isHarmony,Y=e.requestType,K=e.disabledPopTip,X=void 0!==K&&K,G='bff'===Y,J=function(e){
+return T[Y](e,E)
+}
+,Q='light'===j,Z=(0,r.useState)([]),$=(0,o.default)(Z,2),ee=$[0],te=$[1];
+(0,r.useEffect)((function(){
+// 变量
+var e: any = (0,y.handleAgreementList)(_,R);
+0!==e.length?(0,n.default)((function*(){
+var t;
+for(var n of e){
+var o,r=!1,i=!1,a="is_product_agreement_read_%"+n.placeholder+"%",l="is_product_agreement_select_%"+n.placeholder+"%";
+null!=(o=n.subList)&&o.every((function(e){
+return 1!==e.type
+}
+))?(r=!0,i=!0):'cookie'===B&&re.isWeb?(r='true'===c.Cookies.get(a),i='true'===c.Cookies.get(l)):'storage'===B||'cookie'===B&&!re.isWeb?(r=yield(0,s.getStorage)(a),i=yield(0,s.getStorage)(l)):'cache'===B&&(r=(0,s.getCacheStorage)(a,!1),i=(0,s.getCacheStorage)(l,!1)),n.read=r,n.select=i
+}
+te(e);
+var u=null!=(t=yield(0,s.tryCatch)({
+
+}
+,J(e.map((function(e,t){
+var n,o;
+return G?{
+placeholder:null!=(n=e.placeholder)?n:'',placeholderVersion:e.version,displaySequence:t+1
+}
+:null!=(o=e.placeholder)?o:''
+}
+)))))?t:{
+
+}
+,h=u.templateMapping,f=void 0===h?{
+
+}
+:h;
+Object.keys(f).forEach((function(t){
+var n=e.find((function(e){
+return e.placeholder===t
+}
+));
+n&&Object.assign(n,f[t])
+}
+))
+}
+))():te([])
+}
+),[_,B,R.join(',')]);
+var ne=function(e,t,n){
+if(e[t]=n,B){
+// 变量
+var o: any = "is_product_agreement_"+t+"_%"+e.placeholder+"%";
+'cookie'===B&&re.isWeb?(0,s.setCookie)(o,String(n),re.isHuaweiBrowser?7:3):'storage'===B||'cookie'===B&&!re.isWeb?((0,s.setStorage)(o,n,3),re.isApp&&'select'===t&&c.RnBridge.invokeVmallNative('common','setProductPolicyStatus',{
+policyId:e.placeholder,category:n?'sign':'remove'
+}
+)):(0,s.setCacheStorage)(o,n,!1)
+}
+
+}
+,oe=(0,a.useLayout)(k),re=oe.platform,ie=oe.themeStyles,ae=oe.theme,le=(0,r.useState)(),ce=(0,o.default)(le,2),se=ce[0],ue=ce[1],de=(0,r.useState)(0),he=(0,o.default)(de,2),fe=he[0],me=he[1],pe=(0,r.useState)(!1),ge=(0,o.default)(pe,2),ye=ge[0],ve=ge[1],xe=(0,r.useRef)({
+isInit:!0,checked:!1,action:'check',timer:0,shakeAnim:new i.Animated.ValueXY({
+x:0,y:0
+}
+),validate:function(){
+return xe.checked||i.Animated.sequence([i.Animated.timing(xe.shakeAnim,{
+toValue:{
+x:1,y:3
+}
+,duration:100,useNativeDriver:!0
+}
+),i.Animated.timing(xe.shakeAnim,{
+toValue:{
+x:1,y:0
+}
+,duration:100,useNativeDriver:!0
+}
+),i.Animated.timing(xe.shakeAnim,{
+toValue:{
+x:1,y:3
+}
+,duration:100,useNativeDriver:!0
+}
+),i.Animated.timing(xe.shakeAnim,{
+toValue:{
+x:1,y:0
+}
+,duration:100,useNativeDriver:!0
+}
+)]).start(),xe.checked
+}
+
+}
+).current,be=function(e){
+xe.checked!==e&&(xe.checked=e,null==V||V(e),ve(e))
+}
+;
+(0,r.useEffect)((function(){
+// 变量
+var e: any = i.DeviceEventEmitter.addListener('AgreementValidate',xe.validate);
+return function(){
+e.remove(),clearInterval(xe.timer)
+}
+
+}
+),[xe]),(0,r.useEffect)((function(){
+xe.isInit||be(0===ee.length||ee.every((function(e){
+return e.select
+}
+)))
+}
+),[ee]),(0,r.useEffect)((function(){
+// 变量
+var e: any = xe.isInit;
+if(xe.isInit=!1,!X&&(W||ye)){
+if(!re.isAndroid){
+// 变量
+var t: any = x.ANIM_LAYBACK;
+e&&(t=re.isMp?500:300);
+var n=setTimeout((function(){
+i.Animated.timing(xe.shakeAnim,{
+toValue:{
+x:ye?0:1,y:0
+}
+,duration:100,useNativeDriver:!0
+}
+).start()
+}
+),t);
+return function(){
+clearTimeout(n)
+}
+
+}
+xe.shakeAnim.setValue({
+x:ye?0:1,y:0
+}
+)
+}
+return function(){
+
+}
+
+}
+),[ye,W,X]);
+var Ce=function e(t){
+var n,o;
+if(!t)return ue(t),clearInterval(xe.timer),void me(0);
+if(t.content){
+ue(t);
+// 变量
+var r: any = H;
+if(!1===r||t.read)return;
+if(!0===r&&(r=t.requiredReadTime||0),r<=0)return;
+return clearInterval(xe.timer),me(r),void(xe.timer=setInterval((function(){
+me((function(e){
+return e<=0?(clearInterval(xe.timer),0):(1===e&&(clearInterval(xe.timer),ne(t,'read',!0)),e-1)
+}
+))
+}
+),1e3))
+}
+J([G?{
+placeholder:null!=(n=t.placeholder)?n:'',placeholderVersion:t.version,displaySequence:ee.indexOf(t)+1
+}
+:null!=(o=t.placeholder)?o:'']).then((function(n){
+var o=n.templateMapping,r=void 0===o?{
+
+}
+:o;
+Object.assign(t,r[t.placeholder]),t.content&&e(t)
+}
+)).catch((function(){
+(0,s.showToast)('modal',(0,c.t)('common_get_agreement_failed'))
+}
+))
+}
+,Te=function(e){
+if(L)if(ye&&!0!==e)be(!1);
+else{
+xe.action='check';
+var t=ee.find((function(e){
+return!e.select
+}
+));
+t?Ce(t):(Ce(),be(!0))
+}
+else be(!ye)
+}
+,ke=function(e){
+return function(t){
+t.stopPropagation(),xe.action='show',Ce(e)
+}
+
+}
+;
+(0,r.useImperativeHandle)(u,(function(){
+return{
+validate:xe.validate
+}
+
+}
+),[xe]);
+var we,Se,Pe=0===fe&&Boolean(null==se?void 0:se.content),je=U?ae.T7.lineHeight:null!=(C=null!=(w=null==q?void 0:q.lineHeight)?w:null==q||null==(S=q.textLayout)?void 0:S.lineHeight)?C:ae.T3.lineHeight;
+we=U?ie.harmonyHighlight:A?{
+color:A
+}
+:Q?ie.highlight:ie.highdark,U?Se=ie.harmonyBox:Q&&(Se=ie.checkBoxBox);
+var Ae=U?v.default:l.default;
+return ee.some((function(e){
+return e.desc
+}
+))?(0,b.jsxs)(i.View,{
+style:[ie.container].concat((0,t.default)((0,s.arrayStyle)(z))),children:[(0,b.jsxs)(i.View,{
+style:ie.checkBox,children:[!X&&(0,b.jsxs)(i.Animated.View,{
+style:[ie.tipContainer,U&&ie.harmonyTipContainer,{
+opacity:xe.shakeAnim.x,transform:[{
+translateY:xe.shakeAnim.y
+}
+]
+}
+],children:[(0,b.jsx)(i.View,{
+style:[ie.tipBox,U&&ie.harmonyTipBox],children:(0,b.jsx)(i.Text,{
+style:[ie.tipText,U&&ie.harmonyTipText],children:(0,c.t)('noCheckShortTip')
+}
+)
+}
+),(0,b.jsx)(i.View,{
+style:U?ie.harmonyTipArrow:ie.tipArrow
+}
+)]
+}
+),(0,b.jsx)(f.default,{
+width:je,checked:ye,color:null!=A?A:Q?'#FFFFFF':'#000000E6',boxStyle:Se,onChange:Te
+}
+)]
+}
+),(0,b.jsx)(h.default,Object.assign({
+numberOfLines:re.isPc?0:2,textLayout:U?ae.T7:ae.T3,color:c.CommonUtils.colorRgba(Q?ae.C33.color:ae.C13.color,re.isPc?.5:.6),onTextPress:re.isMp?function(){
+xe.action='showAll',Ce(ee[0])
+}
+:void 0
+}
+,q,{
+children:re.isAli?ee.reduce((function(e,t){
+return e+t.desc
+}
+),''):ee.map((function(e,t){
+var n;
+return null==(n=e.subList)?void 0:n.map((function(n,o){
+// 变量
+var r: any = 1===n.type,a=!re.isMp&&r;
+return(0,b.jsx)(i.Text,{
+onPress:a?ke(e):void 0,style:r&&we,children:n.text
+}
+,t+"-"+o)
+}
+))
+}
+))
+}
+)),Boolean(se)&&(0,b.jsx)(Ae,{
+showWaitTime:re.isApp?250:0,pageConfig:re,type:!M&&U?'modal':M,cardStyle:[F,!U&&'prompt'!==M&&!re.isPc&&ie.agreementNotPcModal],onRequestClose:function(){
+Ce()
+}
+,contentStyle:ie.contentStyle,content:(0,b.jsx)(i.View,{
+style:ie.content,children:(0,b.jsx)(i.ScrollView,{
+style:U?ie.harmonyScroll:ie.scrollView,children:(0,b.jsx)(p.default,{
+nodes:null==se?void 0:se.content,fontSize:re.isPc?12:16
+}
+)
+}
+)
+}
+,null==se?void 0:se.code),footerStyle:ie.footerStyle,footer:(0,b.jsx)(i.TouchableOpacity,{
+activeOpacity:1,style:[ie.btn,!Pe&&ie.btnDisabled],onPress:Pe?function(){
+if(se){
+if(ne(se,'select',!0),'check'===xe.action)Te(!0);
+else if('show'===xe.action)Ce();
+else{
+for(var e=ee.indexOf(se)+1,t=ee[e];
+null!=(n=t)&&null!=(o=n.subList)&&o.every((function(e){
+return 1!==e.type
+}
+));
+){
+var n,o;
+t=ee[++e]
+}
+Ce(t)
+}
+ee.every((function(e){
+return e.select
+}
+))&&be(!0)
+}
+
+}
+:void 0,children:(0,b.jsx)(i.Text,{
+style:[ie.btnText,!Pe&&ie.btnTextDisabled],children:0===fe?(0,c.t)('haveRead'):(0,c.t)('readCountdown').replace('%d',String(fe))
+}
+)
+}
+)
+}
+)]
+}
+):null
+}
+)),function(){
+for(var e=arguments.length,t=new Array(e),n=0;
+n<e;
+n++)t[n]=arguments[n];
+// 变量
+var o: any = t[0],r=t[1];
+return i.StyleSheet.create({
+container:{
+flexDirection:'row',zIndex:2
+}
+,tipContainer:{
+position:'absolute',zIndex:2,left:0,top:r.isPc?-46:-37,width:6*(r.isPc?o.T7:o.T3).fontSize+22
+}
+,tipBox:{
+paddingHorizontal:10,borderRadius:5,backgroundColor:o.C77.color
+}
+,tipText:Object.assign({
+whiteSpace:'nowrap'
+}
+,r.isPc?o.T7:o.T3,{
+lineHeight:r.isPc?36:28
+}
+,o.C33),tipArrow:{
+marginLeft:r.isPc?5.5:5,width:0,height:0,borderStyle:'solid',borderWidth:r.isPc?5:4,borderColor:'transparent',borderTopColor:o.C77.color
+}
+,checkBox:{
+marginRight:r.isPc?14:8
+}
+,checkBoxBox:{
+borderColor:c.CommonUtils.colorRgba('#FFFFFF',.5)
+}
+,highdark:{
+color:o.C11.color
+}
+,highlight:{
+color:o.C33.color
+}
+,agreementNotPcModal:{
+marginHorizontal:12,marginBottom:r.safeAreaBottomHeight?r.safeAreaBottomHeight:16,borderRadius:24
+}
+,contentStyle:{
+paddingRight:0
+}
+,content:{
+flexShrink:1,marginTop:r.isPc?-28:-4
+}
+,scrollView:{
+paddingRight:r.isSmall?16:24
+}
+,harmonyScroll:{
+paddingRight:16
+}
+,footerStyle:{
+paddingBottom:r.isPc?28:16
+}
+,btn:r.isPc?{
+backgroundColor:o.C35.color,width:170,height:48,alignItems:'center',justifyContent:'center'
+}
+:{
+height:40,alignItems:'center',justifyContent:'center'
+}
+,btnDisabled:r.isPc?{
+backgroundColor:c.CommonUtils.colorRgba(o.C11.color,.3)
+}
+:{
+
+}
+,btnText:r.isPc?Object.assign({
+
+}
+,o['T11-1'],o.C33):Object.assign({
+
+}
+,o.T9,o.C35),btnTextDisabled:r.isPc?{
+
+}
+:{
+color:c.CommonUtils.colorRgba(o.C11.color,.3)
+}
+,harmonyBox:{
+borderRadius:10
+}
+,harmonyTipContainer:{
+top:-60
+}
+,harmonyTipBox:{
+borderRadius:16,backgroundColor:o.fillBase,width:109,height:45,alignItems:'center',justifyContent:'center',elevation:8,shadowColor:o.C11.color,shadowOpacity:.2,shadowRadius:60
+}
+,harmonyTipText:Object.assign({
+
+}
+,o.T7,o.C12),harmonyTipArrow:{
+width:10,height:10,transform:[{
+translateY:-5
+}
+,{
+rotate:'45deg'
+}
+],marginLeft:18,backgroundColor:o.fillBase
+}
+,harmonyHighlight:Object.assign({
+textDecorationLine:'underline'
+}
+,o.C11)
+}
+)
+}
+)
+}
+),"bab1acf38c11121c735952b87e483ce0e85e4f53edd275fba21fecddf5c468b3",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","01b215bea1ae0b01ea5e971aa8cc93ecd902939f35968b2f737c9eb756f3cdd0","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5","153894306258a1dc23a1a72316620d8662835b1478fa0d491daee326120f6189","97aa79f35275d3132850e21928b492b139a23fef889e14da4d104e0adf71b543","aab665e726f812dd52f00c505b7d377fec226be04adfb3b53d285a00ee616dd7","d429af90eeb366f29d8d8f4f7d4f347893832c7c02ed441ddd14737c9e1424e1","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","d63d6f49d192d4d685804967b6d1a53e3fc049c3ca120fc482e42266d0545140","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),n=e(_r(d[2])),i=e(_r(d[3])),o=e(_r(d[4])),r=e(_r(d[5])),l=e(_r(d[6])),s=_r(d[7]),a=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var n: any = y(t);
+if(n&&n.has(e))return n.get(e);
+var i={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var r in e)if("default"!==r&&{
+
+}
+.hasOwnProperty.call(e,r)){
+// 变量
+var l: any = o?Object.getOwnPropertyDescriptor(e,r):null;
+l&&(l.get||l.set)?Object.defineProperty(i,r,l):i[r]=e[r]
+}
+return i.default=e,n&&n.set(e,i),i
+}
+)(_r(d[8])),c=_r(d[9]),u=_r(d[10]),h=_r(d[11]),p=_r(d[12]),f=e(_r(d[13])),v=_r(d[14]);
+// 函数
+function y(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,n=new WeakMap;
+return(y=function(e){
+return e?n:t
+}
+)(e)
+}
+// 函数
+function x(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(x=function(){
+return!!e
+}
+)()
+}
+var w={
+isInit:!0,showIcon:!1,collapse:!0,lineHeight:16,maxHeight:0
+}
+,b=(function(e){
+// 函数
+function y(e: any): any {
+var t,i,l,c;
+return(0,n.default)(this,y),i=this,l=y,c=[e],l=(0,r.default)(l),(t=(0,o.default)(i,x()?Reflect.construct(l,c||[],(0,r.default)(i).constructor):l.apply(i,c))).id="collapse-"+s.CommonUtils.getUUID(),t.viewRef=(0,a.createRef)(),t.judgeHeight=function(e){
+// 变量
+var n: any = t.state.lineHeight,i=t.props.numberOfLines;
+t.setState({
+showIcon:e>n*(i+.5)
+}
+)
+}
+,t.toggleCollapse=function(e){
+// 变量
+var n: any = !t.state.collapse;
+return t.setState({
+collapse:n
+}
+),null==t.props.onCollapseChange?void 0:t.props.onCollapseChange(n,e)
+}
+,t.onTextPress=function(e){
+return t.props.onTextPress?t.props.onTextPress(e):t.toggleCollapse(e)
+}
+,t.state=JSON.parse(JSON.stringify(w)),t
+}
+return(0,l.default)(y,e),(0,i.default)(y,[{
+key:"onUpdate",value:function(e,n){
+var i,o=this,r=this.props,l=r.numberOfLines,s=r.children,a=this.state.lineHeight;
+if(s!==(null==e?void 0:e.children)||a!==(null==n?void 0:n.lineHeight)||l!==(null==e?void 0:e.numberOfLines))if(0!==l){
+var p;
+u.DefaultPlatform.isMp&&(p=h.uni.createSelectorQuery().select("#"+this.id).boundingClientRect());
+var f=function(){
+var e;
+p?p.exec((function(e){
+// 变量
+var n: any = (0,t.default)(e,1)[0];
+'number'==typeof(null==n?void 0:n.height)&&o.judgeHeight(n.height)
+}
+)):null==(e=o.viewRef.current)||e.measure((function(e,t,n,i){
+o.judgeHeight(i)
+}
+))
+}
+;
+f(),null==(i=this.resizeListener)||i.remove(),this.resizeListener=c.DeviceEventEmitter.addListener('platform-resize',f)
+}
+else this.setState({
+showIcon:!1
+}
+)
+}
+
+}
+,{
+key:"componentDidMount",value:function(){
+// 变量
+var e: any = this;
+setTimeout((function(){
+e.onUpdate()
+}
+))
+}
+
+}
+,{
+key:"componentDidUpdate",value:function(e,t){
+// 变量
+var n: any = this;
+setTimeout((function(){
+n.onUpdate(e,t)
+}
+))
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e;
+null==(e=this.resizeListener)||e.remove()
+}
+
+}
+,{
+key:"render",value:function(){
+var e=this.props,t=e.children,n=e.childrenUseTextWrap,i=e.textLayout,o=e.color,r=e.numberOfLines,l=e.startByUp,a=e.iconStyle,u=e.iconPrefix,h=e.containerStyle,y=e.useLinearIcon,x=e.linearColor,w=this.state,b=w.showIcon,O=w.collapse,H=w.lineHeight,P=w.maxHeight,_=l&&O||!l&&!O,L=Boolean(P)&&O,U=this.props.iconWidth||Math.max(12,i.fontSize||H),C=b&&(0,v.jsx)(c.TouchableOpacity,{
+style:j.iconRight,onPress:this.toggleCollapse,children:(0,v.jsxs)(c.View,{
+style:[j.iconBtn,a],children:[y&&(0,v.jsx)(c.Text,{
+style:[i,j.linearEllipsis],children:L?'... ':''
+}
+),u,s.PlatformUtils.isMp()?(0,v.jsx)(c.Image,{
+mode:"aspectFit",resizeMode:"contain",source:{
+uri:_?p.ImageArray.arrowUp:p.ImageArray.arrowDown
+}
+,style:{
+width:U,height:H
+}
+
+}
+):(0,v.jsx)(p.SvgIcon,{
+viewBox:"300 -200 1340 1340",width:U,height:H,iconName:_?'ic_public_arrow_up_0':'ic_public_arrow_down_0',normalCol:o,opacity:o?1:.4
+}
+)]
+}
+)
+}
+);
+return(0,v.jsxs)(c.View,{
+style:[j.container,h],children:[0!==P&&(0,v.jsx)(c.View,{
+style:[j.hideBox,s.PlatformUtils.isWeb()&&{
+maxHeight:P
+}
+],pointerEvents:"none",children:(0,v.jsx)(c.View,{
+id:this.id,ref:this.viewRef,collapsable:!1,children:n?(0,v.jsx)(c.Text,{
+style:i,children:t
+}
+):t
+}
+)
+}
+),(0,v.jsxs)(c.View,{
+style:[j.content,L&&{
+maxHeight:P
+}
+,y&&!L&&b&&{
+paddingBottom:U
+}
+],children:[n?(0,v.jsx)(c.Text,{
+suppressHighlighting:!0,onPress:this.onTextPress,numberOfLines:!y&&L?r:void 0,style:[j.childrenWrap,Object.assign({
+
+}
+,i,{
+color:o
+}
+)],children:t
+}
+):(0,v.jsx)(c.TouchableOpacity,{
+style:j.childrenWrap,activeOpacity:1,onPress:this.onTextPress,children:t
+}
+),y?(0,v.jsx)(f.default,{
+colors:[s.CommonUtils.colorRgba(x,0),x,x],start:{
+x:0,y:0
+}
+,end:{
+x:1,y:0
+}
+,locations:[0,24/(2*U+30),1],style:j.linearIcon,children:C
+}
+):C]
+}
+)]
+}
+)
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(e){
+var t,n=w.lineHeight;
+return e.lineHeight?n=e.lineHeight:null!=(t=e.textLayout)&&t.lineHeight&&(n=e.textLayout.lineHeight),{
+lineHeight:n,maxHeight:e.numberOfLines*n
+}
+
+}
+
+}
+])
+}
+)(a.Component);
+b.defaultProps={
+numberOfLines:2,color:'#000000',childrenUseTextWrap:!0,startByUp:!1,linearColor:'#FFFFFF'
+}
+;
+_e.default=b;
+var j=c.StyleSheet.create({
+container:{
+flex:1
+}
+,hideBox:{
+width:'100%',position:'absolute',overflow:'hidden',opacity:0
+}
+,content:{
+width:'100%',flexDirection:'row',overflow:'hidden'
+}
+,childrenWrap:{
+flex:1
+}
+,iconRight:{
+justifyContent:'flex-end',alignItems:'center'
+}
+,iconBtn:{
+flexDirection:'row',alignItems:'center',opacity:.5,marginLeft:1
+}
+,linearIcon:{
+position:'absolute',bottom:0,right:0
+}
+,linearEllipsis:{
+paddingLeft:24
+}
+
+}
+)
+}
+),"153894306258a1dc23a1a72316620d8662835b1478fa0d491daee326120f6189",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","0ea8031004a7001e8b293f69ced6ccd729ba63db477638949eb2145c200d1114","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","308db9fda5947677caf7385dee19fd8b9a6ddca11aa9991a5a7e49e1c9081028","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),o=_r(d[3]),n=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = f(t);
+if(r&&r.has(e))return r.get(e);
+var o={
+__proto__:null
+}
+,n=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var a in e)if("default"!==a&&{
+
+}
+.hasOwnProperty.call(e,a)){
+// 变量
+var l: any = n?Object.getOwnPropertyDescriptor(e,a):null;
+l&&(l.get||l.set)?Object.defineProperty(o,a,l):o[a]=e[a]
+}
+return o.default=e,r&&r.set(e,o),o
+}
+)(_r(d[4])),a=_r(d[5]),l=e(_r(d[6])),i=_r(d[7]),c=_r(d[8]),u=_r(d[9]);
+// 函数
+function f(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(f=function(e){
+return e?r:t
+}
+)(e)
+}
+_e.default=function(e){
+var f=e.checked,p=e.onChange,y=e.hotStyle,v=e.boxStyle,b=e.color,k=void 0===b?'#000000':b,w=e.width,j=e.tickTheme,_=e.disabled,O=void 0!==_&&_,S=v||e.width?w:16,P=Boolean(f),x=(0,n.useMemo)((function(){
+// 变量
+var e: any = (void 0===j?s(k):j)?l.default.checkLight:l.default.checkDark;
+return o.PlatformUtils.isApp()?[void 0,e]:[e,void 0]
+}
+),[k,j]),M=(0,r.default)(x,2),C=M[0],F=M[1];
+return(0,u.jsx)(a.TouchableOpacity,{
+style:y,onPress:function(){
+O||null==p||p(!P)
+}
+,children:(0,u.jsx)(a.View,{
+style:[h.defaultBoxStyle].concat((0,t.default)((0,c.arrayStyle)(v)),[P&&h.checked,P&&{
+backgroundColor:k
+}
+,S&&{
+width:S,height:S
+}
+]),children:P&&(0,u.jsx)(i.FastImageView,{
+mode:"aspectFill",imgUri:C,localSource:F,imgStyle:h.checkedImg
+}
+)
+}
+)
+}
+)
+}
+;
+var h=a.StyleSheet.create({
+defaultBoxStyle:{
+borderRadius:4,borderColor:o.CommonUtils.colorRgba('#000000',.5),borderWidth:1,overflow:'hidden',justifyContent:'center',alignItems:'center'
+}
+,checked:{
+borderWidth:0
+}
+,checkedImg:{
+width:'120%',height:'120%'
+}
+
+}
+),s=function(e){
+if(!e)return!0;
+e=e.replace(/ /g,'').toLowerCase();
+// 变量
+var r: any = [];
+if(/^#([0-9a-f]{
+3
+}
+|[0-9a-f]{
+6
+}
+|[0-9a-f]{
+8
+}
+)$/.test(e)){
+3===(e=e.slice(1)).length?e=e[0]+e[0]+e[1]+e[1]+e[2]+e[2]+'FF':6===e.length&&(e+='FF');
+for(var o=0;
+o<8;
+o+=2)r.push(parseInt('0x'+e.slice(o,o+2),16));
+r[3]/=255
+}
+else{
+if(!/rgb\((\d+),(\d+),(\d+)\)|rgba\((\d+),(\d+),(\d+),(\d+)\)/.test(e))return!0;
+e=e.match(/\((.+)\)/)[1],r.push.apply(r,(0,t.default)(e.split(',').map(Number))),3===r.length&&r.push(1),r[3]=Math.min(r[3],1)
+}
+return(.299*r[0]+.587*r[1]+.114*r[2])/r[3]<192
+}
+
+}
+),"97aa79f35275d3132850e21928b492b139a23fef889e14da4d104e0adf71b543",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var n: any = a(e);
+if(n&&n.has(t))return n.get(t);
+var r={
+__proto__:null
+}
+,i=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in t)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(t,o)){
+// 变量
+var l: any = i?Object.getOwnPropertyDescriptor(t,o):null;
+l&&(l.get||l.set)?Object.defineProperty(r,o,l):r[o]=t[o]
+}
+return r.default=t,n&&n.set(t,r),r
+}
+)(_r(d[1])),n=_r(d[2]),r=t(_r(d[3])),i=_r(d[4]);
+// 函数
+function a(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,n=new WeakMap;
+return(a=function(t){
+return t?n:e
+}
+)(t)
+}
+var o=function(t,e){
+// 变量
+var r: any = "style=\"font-size:"+e+"px;
+\"";
+return n.DarkStore.darkBool&&(r="style=\"font-size:"+e+"px;
+color: #fff;
+\""),"\n<!DOCTYPE html>\n<html lang=\"en\" "+r+">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n    <title>Document</title>\n    <style>\n    * {
+\n      margin:0;
+\n      padding:0;
+\n    
+}
+\n    body {
+\n      word-break:break-all;
+\n    
+}
+\n    img {
+\n      max-width: 100% !important;
+\n      width: 100% !important;
+\n      min-width:100% !important;
+\n      display: block !important;
+\n    
+}
+\n    </style>\n</head>\n<body "+r+">\n  <div "+r+">"+t+"</div>\n</body>\n  <script type=\"text/javascript\">\n  var links = document.querySelectorAll('a')\n  Array.prototype.forEach.call(links, function (link) {
+\n    link.addEventListener('click', function (evt) {
+\n        evt.preventDefault();
+\n        window.ReactNativeWebView.postMessage(JSON.stringify({
+href : this.href
+}
+));
+\n    
+}
+)\n  
+}
+)\n  <\/script>\n</html>\n"
+}
+,l=function(t){
+return'click'!==t.navigationType||!n.PlatformUtils.isIOS()
+}
+,s=function(t){
+// 变量
+var e: any = JSON.parse(t.nativeEvent.data);
+!n.PlatformUtils.isIOS()&&e&&e.href&&n.RouterUtils.gotoPage(e.href)
+}
+,u={
+width:'100%'
+}
+;
+_e.default=function(){
+var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+,n=t.nodes,a=void 0===n?'':n,c=t.fontSize,f=void 0===c?16:c,p=(0,e.useMemo)((function(){
+return{
+html:a?o(a,f):''
+}
+
+}
+),[a,f]);
+return(0,i.jsx)(r.default,{
+style:u,scalesPageToFit:!1,viewportContent:'width=device-width, user-scalable=no',source:p,allowsLinkPreview:!0,javaScriptEnabled:!0,onShouldStartLoadWithRequest:l,onMessage:s
+}
+)
+}
+
+}
+),"aab665e726f812dd52f00c505b7d377fec226be04adfb3b53d285a00ee616dd7",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","795669b2ca0c826df87b24b71c10959ab11fba08fa455aaec131909b2f81a5d0","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,_i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.queryTemplateLocal=e.handleAgreementList=e.filterAgreementList=void 0;
+var n=r(d[1]),l=t(r(d[2])),i=e.filterAgreementList=function(t,n){
+return null!=t&&t.length?t.filter((function(t){
+var l;
+return(null==(l=t.placeholder)?void 0:l.startsWith('Display_'))&&(!(null!=n&&n.length)||n.every((function(n){
+var l;
+return null==(l=t.placeholder)?void 0:l.includes(n)
+}
+)))
+}
+)):[]
+}
+,u=(e.handleAgreementList=function(t,l){
+return t&&Array.isArray(t)?(t=(0,n.cloneDeep)(t),(t=i(t,l)).length>0?((t=(0,n.uniqBy)(t,(function(t){
+return t.placeholder
+}
+))).forEach(u),t):[]):[]
+}
+,function(t){
+var n,l=t.desc,i=[],u=null==(n=l)?void 0:n.match(/\u300a.*?\u300b/);
+!u&&l&&i.push({
+text:l,type:0
+}
+);
+// 变量
+var c: any = 0;
+null==u||u.forEach((function(t){
+var n,s=new RegExp('('+t+')','g');
+''===(l=l.split(s))[0]&&l.splice(0,1);
+var f=l.findIndex((function(n){
+return n===t
+}
+)),p=o(f,t,l);
+i=i.concat(p),l=null==(n=l.slice(f+1))?void 0:n[0],++c===u.length&&''!==l&&i.push({
+text:l,type:0
+}
+)
+}
+)),t.subList=i
+}
+),o=function(t,n,l){
+// 变量
+var i: any = [];
+if(0===t)i.push({
+text:n,type:1
+}
+);
+else if(1===t){
+var u;
+i.push({
+text:null==(u=l.slice(0,1))?void 0:u.join(''),type:0
+}
+,{
+text:n,type:1
+}
+)
+}
+return i
+}
+;
+e.queryTemplateLocal=function(t){
+t=Array.isArray(t)?t:[t];
+var n={
+templateMapping:{
+
+}
+
+}
+;
+return t.forEach((function(t){
+n[t]=l.default[t]
+}
+)),Promise.resolve(n)
+}
+
+}
+),"d429af90eeb366f29d8d8f4f7d4f347893832c7c02ed441ddd14737c9e1424e1",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","017d79520e7737d06c20b84d21c6d6211feaf30f837f8b735d73668f9a66c288"]);
+
+__d((function(n,o,t,_,c,d,e){
+c.exports={
+
+}
+
+}
+),"017d79520e7737d06c20b84d21c6d6211feaf30f837f8b735d73668f9a66c288",[]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t,o=e(r(d[1])),n=e(r(d[2])),s=e(r(d[3])),l=e(r(d[4])),c=e(r(d[5])),u=r(d[6]),p=r(d[7]),h=e(r(d[8])),f=r(d[9]),T=r(d[10]),y=e(r(d[11])),b=r(d[12]),v=r(d[13]);
+// 函数
+function S(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(S=function(){
+return!!e
+}
+)()
+}
+var P=(0,f.observer)(t=(function(e){
+// 函数
+function t(e: any): any {
+var n,c,p,h,f;
+(0,o.default)(this,t),p=this,h=t,f=[e],h=(0,l.default)(h),(c=(0,s.default)(p,S()?Reflect.construct(h,f||[],(0,l.default)(p).constructor):h.apply(p,f))).headStyle={
+
+}
+,c.titleStyle={
+
+}
+,c.tabConfig='',c.cardId='',c.prefixPm='1',c.hasSubtabSet=!1,c.strategyIdList='',c.bgColor='',c.pageType=10,c.isFirst=!0,c.currentTime=(new Date).getTime(),c.scrollViewKey=1,c.otherParams={
+
+}
+,c.listeners={
+switchSubTab:null,homeScrollTo:null,tabsNavTop:null,change:null
+}
+,c.handleAddListeners=function(){
+c.props.pageType!==u.PAGE_TYPE.subTabSetPage&&T.BackHandler.addEventListener('hardwareBackPress',c.handleApkBack),c.listeners.tabsNavTop=T.DeviceEventEmitter.addListener('TabsNavTop',c.compareFixed),c.listeners.switchSubTab=T.DeviceEventEmitter.addListener('switchSubTab',c.getTabInfo),c.listeners.homeScrollTo=T.DeviceEventEmitter.addListener('homeScrollTo',c.onTabChanged),c.listeners.change=T.AppState.addEventListener('change',c.handleAppStateChange)
+}
+,c.handleAppStateChange=function(e){
+u.RecordUtils.immediateOutputLog(e)
+}
+,c.handleApkBack=function(){
+return u.RnBridge.invokeVmallNative('page','finished'),!0
+}
+,c.onTabChanged=function(e){
+e.navTop&&('ios'===T.Platform.OS?setTimeout((function(){
+c.scroller&&c.scroller.scrollTo({
+y:e.stickyLayoutY,animated:!0
+}
+)
+}
+),0):c.scroller&&c.scroller.scrollTo({
+y:e.stickyLayoutY,animated:!0
+}
+))
+}
+,c._getAndroidPageInfo=function(){
+// 变量
+var e: any = c.props,t=e.prdId,o=e.sbomCode,n=e.error,s=e.loadState,l=e.loading,u=e.isRefreshing,p=e.errorType;
+c.setState({
+prdId:t,sbomCode:o,error:n,loadState:s,loading:l,isRefreshing:u,errorType:p
+}
+)
+}
+,c.handleTitleStyle=function(){
+var e,t=c.state.cmsData;
+if(null!=t&&null!=(e=t.pageInfos)&&e.length){
+// 变量
+var o: any = t.pageInfos[0],n=o.pageId,s=o.styleChange,l=o.groupStyleChanges;
+c.titleStyle={
+cardId:n,styleChange:s?JSON.parse(s):'',groupStyleChanges:l?JSON.parse(l):''
+}
+,c.titleStyle.styleChange&&(1===Number(c.titleStyle.styleChange.bgFill)&&c.titleStyle.styleChange.bgColor&&(c.bgColor=c.titleStyle.styleChange.bgColor),u.SubTabsStore.onSubTabsUpdate(c.titleStyle.styleChange))
+}
+
+}
+,c.getPageInfoByTabApk=function(e,t,o){
+void 0===o&&c.onBackTop(),c._getAndroidPageInfo()
+}
+,c.getTabInfo=function(e){
+// 变量
+var t: any = e.id,o=e.index;
+c.setState({
+pageId:t,currentTabIndex:o,isClickTab:!0
+}
+,(function(){
+c.getPageInfoByTabApk(o,t)
+}
+))
+}
+,c.onBackTop=function(){
+c.scroller&&c.scroller.scrollTo({
+y:0,animated:!0
+}
+)
+}
+,c._loadPage=function(){
+// 变量
+var e: any = c.props,t=e.prdId,o=e.sbomCode,n=e.showheader,s=e.navigation,l=c.state,u=l.displayProudct,p=l.displayPrdInfo,h='false'!==n;
+return(0,v.jsx)(y.default,Object.assign({
+
+}
+,c.props,{
+showheader:h,prdId:t,defaultSkuCode:o,navigation:s
+}
+,p,{
+displayProudct:u
+}
+))
+}
+;
+var b=(null!=(n=c.props.relationRes)?n:{
+
+}
+).displayProudct,P=void 0===b?[]:b;
+return c.state={
+scrollY:new T.Animated.Value(0),pageId:e.pageId,reportPageId:e.pageId,strategyIdList:null,cmsData:{
+pageInfos:[]
+}
+,error:0===P.length,freshTab:!0,cartNum:0,messageNum:0,currentTabIndex:0,isClickTab:!1,errorType:u.ERROR_TYPE.OTHER_ERROR,loadState:1,pageAlias:c.props.pageAlias,assistCode:c.props.assistCode,displayProudct:P
+}
+,c
+}
+return(0,c.default)(t,e),(0,n.default)(t,[{
+key:"componentDidMount",value:function(){
+u.RecordUtils.logger("CarRelationPage",'componentDidMount'),u.TimeUtils.updateSystemTime(),this.portal=u.MCP_PORTAL.APP,(0,b.getDisplayPrdInfo)(this.props,this.setState.bind(this)),this.handleAddListeners()
+}
+
+}
+,{
+key:"compareFixed",value:function(){
+this.hasSubtabSet=u.TabsTopStore.tabsNavTop
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+var e,t,o,n;
+this.props.pageType!==u.PAGE_TYPE.subTabSetPage&&T.BackHandler.removeEventListener('hardwareBackPress',this.handleApkBack),u.PlatformUtils.isIOS()&&this.refreshTimer&&clearTimeout(this.refreshTimer),this.state.scrollY&&this.state.scrollY.removeAllListeners(),null==(e=this.listeners.tabsNavTop)||e.remove(),null==(t=this.listeners.switchSubTab)||t.remove(),null==(o=this.listeners.homeScrollTo)||o.remove(),null==(n=this.listeners.change)||n.remove(),this.switchScreenDirLister&&this.switchScreenDirLister.remove()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.state,t=e.errorType;
+return!e.error&&this._loadPage()||(0,v.jsx)(p.CommonErrorPage,{
+errorType:t
+}
+)
+}
+
+}
+])
+}
+)(h.default.Component))||t;
+_e.default=P
+}
+),"b04f80488033ad88f2af4cbc1388553476fc8aaf7272809f483c9e1d6d37cb48",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","918134cecbb379a79ad3ee2da1dae60610e4b8db942c54008d15859683e92451","786a9da236b80639fa985b77ee2cb4e095f3516d7dff1a2146ea1b422133b6bf","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),r=e(_r(d[2])),o=e(_r(d[3])),a=e(_r(d[4])),n=e(_r(d[5])),i=e(_r(d[6])),s=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = x(t);
+if(r&&r.has(e))return r.get(e);
+var o={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in e)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(e,n)){
+// 变量
+var i: any = a?Object.getOwnPropertyDescriptor(e,n):null;
+i&&(i.get||i.set)?Object.defineProperty(o,n,i):o[n]=e[n]
+}
+return o.default=e,r&&r.set(e,o),o
+}
+)(_r(d[7])),c=_r(d[8]),l=_r(d[9]),u=e(_r(d[10])),p=e(_r(d[11])),f=_r(d[12]),h=_r(d[13]),v=_r(d[14]),y=_r(d[15]),b=_r(d[16]);
+// 函数
+function x(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(x=function(e){
+return e?r:t
+}
+)(e)
+}
+// 函数
+function P(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(P=function(){
+return!!e
+}
+)()
+}
+var I=(function(e){
+// 函数
+function s(): any {
+var e,o,i,p;
+(0,r.default)(this,s);
+for(var v=arguments.length,x=new Array(v),I=0;
+I<v;
+I++)x[I]=arguments[I];
+return o=this,i=s,p=[].concat(x),i=(0,n.default)(i),(e=(0,a.default)(o,P()?Reflect.construct(i,p||[],(0,n.default)(o).constructor):i.apply(o,p))).state={
+activeIndex:-1,carInfo:{
+
+}
+
+}
+,e.goback=(0,f.clickDebunce)((function(){
+'web'===c.Platform.OS?window.history.go(-1):l.RnBridge.invokeVmallNative('page','finished')
+}
+)),e.emptyConfig=function(){
+// 变量
+var t: any = e.props,r=t.prdId,o=t.orderCode,a=t.relationSbomCode||e.props.sbomCode;
+(0,y.setSelectStorage)(r,'',o),u.default.setDetailList([]),u.default.clearPackageMap(),u.default.setIndex(0),u.default.setInItSbomCode(),u.default.clearAttr(),(0,f.setStorage)("package_"+r+"_"+a,[],7),(0,f.setStorage)("chosePackageCode_"+r+"_"+a,'',7),(0,f.setStorage)("carDetailPkg_"+r+"_"+a,'',7),(0,f.setStorage)("sbom_"+r+"_"+a,'',7)
+}
+,e.next=(0,f.clickDebunce)((0,t.default)((function*(){
+var t,r=e.props,o=r.saleId,a=r.showheader,n=r.channelId,i=r.prdId,s=r.orderCode,u=r.isHisData,p=r.isReloadConfig,f=r.sbomCode,h=r.relationSbomCode,v=r.activityCode;
+if(-1!==e.state.activeIndex){
+(0,y.setSelectStorage)(i,'',s),e.emptyConfig();
+var b=null==(t=e.state.carInfo)?void 0:t.disPrdId,x=[];
+if(x.push("prdId="+b),x.push("relationSbomCode="+(f||h)),!a&&x.push("showheader="+a),x.push('targetPage=carselect'),x.push('isSources=carRelation'),x.push('clearCache=false'),n&&x.push("channelId="+n),o&&x.push("saleId="+o),v&&x.push("activityCode="+v),x.push("orderCode="+s),x.push("isHisData="+u),x.push("isReloadConfig="+p),'web'!==c.Platform.OS){
+// 变量
+var P: any = "vmall://com.vmall.client/product/cardetail?"+x.join('&');
+l.RouterUtils.gotoPage(P)
+}
+else{
+var I="?"+x.join('&');
+l.RouterUtils.gotoPage(I)
+}
+
+}
+
+}
+))),e.gotoService=(0,f.clickDebunce)((function(){
+var t=e.props,r=t.prdId,o=t.shopInfo,a=t.brandCode,n=t.sbomCode,i=Object.assign({
+currentSbomCode:n
+}
+,e.targetSbomData,{
+brandCode:a,shopType:null==o?void 0:o.shopType,shopCode:null==o?void 0:o.shopCode,shopName:null==o?void 0:o.shopName,prdId:r,wapHost:l.Service.wapDomain,webHost:l.Service.webDomain
+}
+);
+l.CommonUtils.goServiceRobot(!0,o.serviceProvider,o.serviceUrl,i)
+}
+)),e.renderHeader=function(){
+// 变量
+var t: any = e.props,r=t.briefName,o=t.showheader,a=t.shopInfo,n=t.platform,i=t.themeStyles;
+return o&&!n.isLarge?(0,b.jsx)(h.TitleBar,{
+iosStatusBarHeight:n.statusBarHeight,titleName:r,onPress:e.goback,titleBarStyle:i.titleBar,isService:Boolean(null==a?void 0:a.serviceUrl),onPressService:e.gotoService
+}
+):null
+}
+,e.chooseCar=function(t){
+// 变量
+var r: any = e.props.displayProudct,o=void 0===r?[]:r;
+e.setState({
+activeIndex:t,carInfo:o[t]
+}
+),c.DeviceEventEmitter.emit('onChooseCar',Object.assign({
+
+}
+,o[t]))
+}
+,e.renderItem=function(t){
+// 变量
+var r: any = t.item,o=t.index,a=e.props,n=a.platform,i=a.themeStyles,s=e.state.activeIndex,u=l.CommonUtils.getCDNpath()+r.photoPath+'800_800_'+r.photoName,p=n.isLarge||n.isPadH;
+return(0,b.jsxs)(c.TouchableOpacity,{
+onPress:function(){
+e.chooseCar(o)
+}
+,activeOpacity:1,style:[i.carItem,p&&o%2==1&&i.carItemGap,s===o&&i.carItemActive],children:[(0,b.jsx)(c.View,{
+style:i.disPrdBox,children:(0,b.jsx)(c.Text,{
+style:i.disPrdName,numberOfLines:4,children:r.disPrdName
+}
+)
+}
+),(0,b.jsx)(c.View,{
+style:i.disPrdImg,children:(0,b.jsx)(h.FastImageView,{
+resizeMode:'cover',imgUri:u,imgProportion:'1',scale:'1',imgStyle:i.disPrdImg
+}
+)
+}
+)]
+}
+)
+}
+,e.keyExtractor=function(e){
+return e.disPrdId
+}
+,e.renderList=function(){
+// 变量
+var t: any = e.props,r=t.displayProudct,o=void 0===r?[]:r,a=t.platform,n=t.themeStyles,i=a.isLarge||a.isPadH?2:1;
+return(0,b.jsx)(c.FlatList,{
+style:n.disPrdList,data:o,renderItem:e.renderItem,numColumns:i,horizontal:!1,onEndReachedThreshold:.5,keyExtractor:e.keyExtractor,showsVerticalScrollIndicator:a.isLarge,extraData:e.state.activeIndex
+}
+,i)
+}
+,e.renderFooter=function(){
+// 变量
+var t: any = e.props,r=t.platform,o=t.themeStyles,a=!1,n=e.state.activeIndex;
+return r.isPhone||(a=238),r.isLarge?null:(0,b.jsxs)(c.View,{
+style:o.footer,children:[(0,b.jsx)(c.TouchableOpacity,{
+style:[o.btnBox,a&&{
+maxWidth:a
+}
+],activeOpacity:1,onPress:e.goback,children:(0,b.jsx)(c.Text,{
+style:[o.btnTxt,o.backBtn],children:(0,l.t)('goBack')
+}
+)
+}
+),(0,b.jsx)(c.View,{
+style:o.btnGap
+}
+),(0,b.jsx)(c.TouchableOpacity,{
+style:[o.btnBox,a&&{
+maxWidth:a
+}
+],activeOpacity:1,onPress:e.next,children:(0,b.jsx)(c.Text,{
+style:[o.btnTxt,o.nextBtn,-1===n&&o.disBtn],children:(0,l.t)('common_next_step')
+}
+)
+}
+)]
+}
+)
+}
+,e
+}
+return(0,i.default)(s,e),(0,o.default)(s,[{
+key:"componentDidMount",value:function(){
+this.props.onRef&&this.props.onRef(this)
+}
+
+}
+,{
+key:"render",value:function(){
+return(0,b.jsxs)(b.Fragment,{
+children:[this.renderHeader(),this.renderList(),this.renderFooter()]
+}
+)
+}
+
+}
+])
+}
+)(s.PureComponent);
+_e.default=(0,v.injectLayout)(p.default)(I)
+}
+),"918134cecbb379a79ad3ee2da1dae60610e4b8db942c54008d15859683e92451",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","e6e585c04dc2c165e703d0d74a7b8dc954dfb375bb479807df609aff3170dbfc","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var o: any = r(d[0]),t=r(d[1]),n=r(d[2]);
+e.default=function(){
+for(var h=arguments.length,l=new Array(h),c=0;
+c<h;
+c++)l[c]=arguments[c];
+// 变量
+var s: Function = l[0],p=l[1],b=0,f=b=p.isPhone?p.width-2*p.pageMargin:p.isPc?800:p.getGridsWidth(p.isPadH?9:6);
+return(p.isPc||p.isPadH)&&(f=(b-16)/2),o.StyleSheet.create({
+container:{
+position:'relative',height:'100%',backgroundColor:s.fillBase
+}
+,body:{
+marginTop:56,paddingBottom:56
+}
+,bodyWap:{
+marginTop:56,paddingBottom:56
+}
+,onlineServiceWrapper:{
+position:'absolute',top:0,marginTop:'auto',marginBottom:'auto',bottom:0,right:16,width:24,height:24
+}
+,onlineService:{
+width:24,height:24
+}
+,disPrdList:{
+alignSelf:'center',marginHorizontal:16,width:b
+}
+,carItem:{
+width:f,borderRadius:16,borderWidth:p.isWeb?1:.5,padding:p.isWeb?0:.5,borderColor:t.CommonUtils.colorRgba(s.C11.color,.15),marginBottom:12,flexDirection:'row',overflow:'hidden',height:127
+}
+,carItemGap:{
+marginLeft:16
+}
+,autoHeight:{
+height:'auto'
+}
+,carItemActive:{
+padding:0,borderWidth:1,borderColor:s.C11.color
+}
+,imgStyle:{
+position:'absolute',top:0,right:24,width:184,height:184
+}
+,disPrdBox:{
+padding:16,flex:1
+}
+,disPrdName:Object.assign({
+
+}
+,s.T10,s.C12),disPrdImg:{
+width:Math.min(p.width/2-16,224),height:126
+}
+,footer:{
+flexDirection:'row',alignItems:'center',justifyContent:'center',height:56+p.safeAreaBottomHeight,paddingTop:12,paddingBottom:12+p.safeAreaBottomHeight,paddingHorizontal:p.pageMargin
+}
+,btnGap:{
+width:12
+}
+,btnBox:{
+flex:1,borderRadius:20,height:40,overflow:'hidden'
+}
+,btnTxt:Object.assign({
+width:'100%',height:40,textAlign:'center'
+}
+,s.T10,{
+lineHeight:40
+}
+),backBtn:{
+backgroundColor:t.CommonUtils.colorRgba(s.C11.color,.05),color:s.C11.color
+}
+,nextBtn:{
+backgroundColor:n.ThemeInfo.themeColor,color:s.C17.color
+}
+,disBtn:{
+opacity:.4
+}
+,titleBar:{
+backgroundColor:'transparent',marginBottom:8
+}
+
+}
+)
+}
+
+}
+),"e6e585c04dc2c165e703d0d74a7b8dc954dfb375bb479807df609aff3170dbfc",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.CarIndexWrapper=void 0;
+var t=e(_r(d[1])),r=_r(d[2]),n=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var r: any = h(t);
+if(r&&r.has(e))return r.get(e);
+var n={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var o in e)if("default"!==o&&{
+
+}
+.hasOwnProperty.call(e,o)){
+// 变量
+var u: any = a?Object.getOwnPropertyDescriptor(e,o):null;
+u&&(u.get||u.set)?Object.defineProperty(n,o,u):n[o]=e[o]
+}
+return n.default=e,r&&r.set(e,n),n
+}
+)(_r(d[3])),a=_r(d[4]),o=e(_r(d[5])),u=_r(d[6]),i=_r(d[7]),l=_r(d[8]),f=_r(d[9]),s=_r(d[10]),c=_r(d[11]),p=_r(d[12]),y=e(_r(d[13])),v=_r(d[14]);
+// 函数
+function h(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,r=new WeakMap;
+return(h=function(e){
+return e?r:t
+}
+)(e)
+}
+_e.CarIndexWrapper=function(e){
+var h=e.urlParams,_=e.shouldLoading,O=void 0===_||_,j=e.children,I=e.handleCarStore,S=(0,n.useState)(O),w=(0,t.default)(S,2),M=w[0],D=w[1],b=(0,n.useState)((function(){
+// 变量
+var e: any = new o.default(h);
+return null==I||I(e),e
+}
+)),x=(0,t.default)(b,1)[0],C=(0,s.usePlatform)();
+return(0,f.useShare)(h.uniqueId),(0,n.useEffect)((function(){
+return I&&!C.isHarmony&&C.setPageState('LOADING'),Promise.all([u.ThemeInfo.init('carDetail',p.CAR_THEME_COLOR),!x.hasDisplayInfo&&(0,l.getDisPrdData)(x)(),!x.hasRelationInfo&&(0,l.getCarRelation)(x)()]).finally((function(){
+return D(!1)
+}
+)),function(){
+o.default.clearRelayStore()
+}
+
+}
+),[]),M?null:(0,v.jsxs)(i.Provider,{
+store:r.AppStore,carStore:x,children:[j,(0,v.jsx)(y.default,{
+judge:C.isMp,wrapper:a.View,style:P,children:(0,v.jsx)(c.Toast,{
+isHarmony:!0,pageType:h.uniqueId,contentStyle:C.isMp&&{
+marginBottom:C.safeAreaBottomHeight
+}
+
+}
+)
+}
+)]
+}
+)
+}
+;
+var P={
+zIndex:1e3
+}
+
+}
+),"65590640eb9a02c286a7c5155d84cff36785aa18510953de5660e04049a8b663",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","b361810eb51d228d6e3cbc921297b28385e5d8fcaf90a28810689d6835bc9de0","70aea36b65c665f442ff9ea5a10e0e918001801714ebf81aa8b1ceab71f6799a","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","e1e2841e4a5ac9f8afcbcf5d5405be2429497c86f1b6eee4c70aa258071c5ff0","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.useCarStore=_e.default=_e.CarStoreComponent=void 0;
+var e,o,n,l,s,u,c,f,p,h,b,v,y,I,C,P,S,k,R,L,T,w,A,D,O,z,N,V,x,B,E,_,j,J,M,W,Y=t(r(d[1])),U=t(r(d[2])),H=t(r(d[3])),F=t(r(d[4])),K=t(r(d[5])),q=t(r(d[6])),X=t(r(d[7])),G=t(r(d[8])),Q=t(r(d[9])),Z=t(r(d[10])),$=(t(r(d[11])),r(d[12])),tt=r(d[13]),et=r(d[14]),rt=r(d[15]),it=r(d[16]),at=r(d[17]),ot=r(d[18]),nt=r(d[19]),lt=r(d[20]),st=r(d[21]);
+// 函数
+function ut(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(ut=function(){
+return!!t
+}
+)()
+}
+var dt=(e=rt.observable.shallow,o=rt.observable.shallow,n=rt.observable.shallow,l=rt.observable.shallow,W=(function(){
+// 函数
+function t(e: any): any {
+// 变量
+var o: any = this;
+(0,G.default)(this,t),this.basicReportParams={
+pageCatCode:'',pageCatName:''
+}
+,this.selectedAttrList=[],this.displayWhiteList=null,this.lastOptionalRes=null,this.tempOptionalRes=null,this.tempDisplayPrdInfo=null,this.shareSbomInfo=null,this.productRelationRes=null,this.mpBatchReportTimer=null,this.setSelectedAttr=function(t,e,n){
+// 变量
+var l: any = !1;
+if(e){
+if(Array.isArray(e))l=o.selectedAttrList.length!==e.length||o.selectedAttrList.some((function(t){
+var o=e.find((function(e){
+return e.attrCode===t.attrCode
+}
+));
+return!o||!(0,ot.compareValueCode)(t,o)
+}
+)),o.selectedAttrList=e;
+else if(null!=t&&t.isCarPreview){
+var s,u,c=null==(s=o.sbomInfo)||null==(u=s.sbomAttrList)?void 0:u.findIndex((function(t){
+return t.attrCode===e.attrCode
+}
+));
+o.selectedAttrList=c>=0?[].concat((0,X.default)(o.sbomInfo.sbomAttrList.slice(0,c)),[e]):[e],l=!0
+}
+else if(null!=t&&t.isCarSelect){
+var f,p=0===o.selectedAttrList.length,h=o.attrTabs.find((function(t){
+return t.displayType===lt.DISPLAY_TYPE.VERSION
+}
+)),b=e.attrCode===(null==h||null==(f=h.data)?void 0:f.attrCode),v=o.selectedAttrList.findIndex((function(t){
+return t.attrCode===e.attrCode
+}
+));
+if(-1!==v){
+var y=o.selectedAttrList.splice(v,1)[0];
+l=!(0,ot.compareValueCode)(y,e)
+}
+else l=!0;
+b?(l=l||0!==o.selectedAttrList.length,o.selectedAttrList=[]):p&&h&&(o.selectedAttrList=[(0,rt.toJS)((null==h?void 0:h.value)||h.data)]),!n||!p&&b||o.sbomInfo.sbomAttrList.forEach((function(t){
+e.attrCode===t.attrCode||o.selectedAttrList.some((function(e){
+return e.attrCode===t.attrCode
+}
+))||o.selectedAttrList.push((0,rt.toJS)(t))
+}
+)),o.selectedAttrList.push(e)
+}
+
+}
+else o.selectedAttrList=[],l=!0;
+var I=o.filterSelectedAttr();
+return l=l||I
+}
+,this.filterSelectedAttr=function(){
+// 变量
+var t: any = !1;
+return o.selectedAttrList=o.selectedAttrList.filter((function(e){
+var n=o.attrTabs.find((function(t){
+return t.data.attrCode===e.attrCode&&t.data.attrValueList.length>0
+}
+));
+return n&&!t&&(t=!(0,ot.compareValueCode)(e,n.value)),Boolean(n)
+}
+)),t
+}
+,this.resetSelectedAttr=function(){
+o.selectedAttrList.forEach((function(t){
+var e=o.sbomInfo.sbomAttrList.find((function(e){
+return e.attrCode===t.attrCode
+}
+));
+t.attrValueList=(0,rt.toJS)(e.attrValueList)
+}
+))
+}
+,this.setBasicReportParams=function(t){
+o.basicReportParams=t
+}
+,this.report=function(t){
+// 变量
+var e: any = o.urlParams,n=e.channelId,l=e.saleId,s=o.prdId,u=o.sbomCode,c=o.shareSbomInfo;
+t=(0,et.merge)(Object.assign({
+resSiteCode:'',resSiteName:'',eventType:tt.EVENT_TYPE.EVENT_TYPE_CLICK,content:{
+productId:s,SKUCode:u||(null==c?void 0:c.sbomCode),channelId:n||'0',saleId:l||''
+}
+
+}
+,o.basicReportParams,{
+pageId:o.basicReportParams.pageCatCode+"_"+s
+}
+),t),tt.PlatformUtils.isMp()?o.eventTracingReportMp(t):tt.Report.eventTracingReport(t)
+}
+,this.eventTracingReportMp=(function(){
+var t=(0,q.default)((function*(t){
+var e={
+
+}
+;
+try{
+e=tt.BuildParams.buildWebWapPostParams(t),o.execReportDataMp(e)
+}
+catch(t){
+
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),this.execReportDataMp=function(t){
+// 变量
+var e: any = arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:(null==tt.Service?void 0:tt.Service.maxDapReportNum)||50,l=(null==tt.Service?void 0:tt.Service.reportBatchUrl)||'',s=at.StoreSingle.getInstance();
+s.setList(t);
+// 变量
+var u: any = s.getList();
+if(u.length>=n||e&&u.length>0){
+var c=(function(){
+var t=(0,q.default)((function*(){
+// 变量
+var t: any = JSON.parse(JSON.stringify(u));
+for(s.clearList();
+Array.isArray(t)&&t.length>0;
+){
+// 变量
+var e: any = t.splice(0,n);
+yield tt.Http.setType('dap').post(l,e)
+}
+
+}
+));
+return function(){
+return t.apply(this,arguments)
+}
+
+}
+)();
+e?c():(o.mpBatchReportTimer&&clearTimeout(o.mpBatchReportTimer),o.mpBatchReportTimer=setTimeout(c,500))
+}
+
+}
+,this.clickItem=function(t){
+var e=o.urlParams,n=e.channelId,l=e.saleId,s=o.prdId,u=o.sbomCode,c={
+actionCode:null==t?void 0:t.actionCode,actionName:null==t?void 0:t.actionName,eventType:null==t?void 0:t.eventType,content:{
+comId:null==t?void 0:t.comId,productId:null==s?void 0:s.toString(),SKUCode:u,channelId:n||'0',saleId:l||'',playButton:null==t?void 0:t.playButton,soundButton:null==t?void 0:t.soundButton
+}
+,pageCatCode:null==t?void 0:t.pageCatCode,pageCatName:null==t?void 0:t.pageCatName,resSiteCode:null==t?void 0:t.resSiteCode,resSiteName:null==t?void 0:t.resSiteName,pageId:null==t?void 0:t.pageId
+}
+;
+tt.Report.eventTracingReport(c)
+}
+,(0,K.default)(this,"topHeight",u,this),(0,K.default)(this,"prdId",c,this),(0,K.default)(this,"sbomCode",f,this),(0,K.default)(this,"loadingSbom",p,this),(0,K.default)(this,"loadingPrice",h,this),(0,K.default)(this,"loadingRights",b,this),(0,K.default)(this,"sbomInfo",v,this),(0,K.default)(this,"displayPrdInfo",y,this),(0,K.default)(this,"attrTabs",I,this),(0,K.default)(this,"packTab",C,this),(0,K.default)(this,"seriesTab",P,this),(0,K.default)(this,"previewData",S,this),(0,K.default)(this,"skuPromoInfo",k,this),(0,K.default)(this,"skuDisplayInfo",R,this),(0,K.default)(this,"serverTime",L,this),(0,K.default)(this,"tabIndex",T,this),(0,K.default)(this,"rightsActivityList",w,this),(0,K.default)(this,"rightsTabIndex",A,this),(0,K.default)(this,"reloadStore",D,this),(0,K.default)(this,"setStore",O,this),(0,K.default)(this,"setPriceInfo",z,this),(0,K.default)(this,"setFakeAttrValue",N,this),(0,K.default)(this,"setPackageValue",V,this),(0,K.default)(this,"setSeriesValue",x,this),(0,K.default)(this,"setPreviewData",B,this),this.setAttrTab=function(t){
+o.attrTabs=t?t.map((function(t){
+var e,n,l,s,u,c=null==(e=t.attrName)?void 0:e.trim(),f=null==(n=o.displayWhiteList)||null==(l=n.find((function(t){
+return t.contentWhiteList.includes(c)
+}
+)))?void 0:l.type,p=null!=(s=null==(u=o.sbomInfo.sbomAttrList.find((function(e){
+return e.attrCode===t.attrCode
+}
+)))?void 0:u.attrValueList[0])?s:t.attrValueList[0],h={
+attrCode:t.attrCode,attrValueList:p?[p]:[]
+}
+;
+return{
+index:0,type:1,displayType:f,title:c,data:t,value:h
+}
+
+}
+)):[]
+}
+,this.setPackTab=function(t){
+var e,n,l,s,u=null==(e=o.sbomInfo.diyPackageInfos)?void 0:e[0];
+u?(n=t?0===t.length?[]:u.groupList.map((function(e){
+return e.packagePrdList.map((function(e){
+return e.sbomDIYPackageInfos.filter((function(e){
+return t.includes(e.sbomCode)
+}
+))
+}
+))
+}
+)).flat(3):null,o.packTab&&u.packageCode===o.packTab.data.packageCode?n&&(o.packTab.value=n):o.packTab={
+index:0,type:2,title:null==(l=u.name)?void 0:l.trim(),data:u,value:null!=(s=n)?s:[]
+}
+):o.packTab=null
+}
+,this.setSeriesTab=function(t){
+var e;
+t?o.seriesTab={
+index:0,type:3,title:(null==(e=t.copywriting)?void 0:e.trim())||(0,tt.t)('car_type'),data:t.disPrdList||[],value:o.prdId
+}
+:o.seriesTab&&(o.seriesTab.value=o.prdId)
+}
+,this.setTabIndex=function(t){
+if(o.tabs.forEach((function(t,e){
+return t.index=e
+}
+)),void 0!==t&&t>0){
+// 变量
+var e: any = o.tabs.length;
+o.tabIndex=e>0&&t>=e?e-1:t
+}
+
+}
+,(0,K.default)(this,"getPromotionInfo",E,this),(0,K.default)(this,"getRightsInfo",_,this),(0,K.default)(this,"setViewData",j,this),(0,K.default)(this,"onSelectRightsPackage",J,this),(0,K.default)(this,"onSelectRightsDetail",M,this),this.urlParams=e,this.prdId=e.prdId?Number(e.prdId):void 0,this.sbomCode=e.sbomCode,this.isShowHeader='false'!==e.showheader,this.isModifyOrder='5'===e.channelId&&Boolean(e.orderCode),this.isAddRights='1'===e.isAddRights&&Boolean(e.orderCode),this.isModifyOrder||this.isAddRights?tt.AppStore.setIsLogin(!0):null===tt.AppStore.isLogin&&(0,nt.initAppStoreLogin)(),this.cloneRelayStore(),(0,rt.makeObservable)(this)
+}
+return(0,Q.default)(t,[{
+key:"setRelayStore",value:function(){
+t.relayStore=this
+}
+
+}
+,{
+key:"cloneRelayStore",value:function(){
+// 变量
+var e: any = this;
+++t.carStoreNum,t.checkRelayStore(this.urlParams)&&(['displayWhiteList','lastOptionalRes','shareSbomInfo','productRelationRes','prdId','sbomCode','sbomInfo','displayPrdInfo','attrTabs','packTab','seriesTab','skuPromoInfo','skuDisplayInfo','serverTime','rightsActivityList'].forEach((function(o){
+e[o]=(0,rt.toJS)(t.relayStore[o])
+}
+)),t.relayStore=null)
+}
+
+}
+,{
+key:"carRightsInfoList",get:function(){
+// 变量
+var t: any = this,e=(0,rt.toJS)(this.rightsActivityList);
+return e?e.map((function(e){
+return e.rightsPackageList.map((function(o){
+return o.checked?o.carRightsList.map((function(n){
+return n.checked?Object.assign({
+activityCode:e.activityCode,rightsPackageCode:o.rightsPackageCode,rightsCode:n.rightsCode
+}
+,t.isAddRights&&1===n.selectedFlag&&{
+selected:!0
+}
+):null
+}
+)):null
+}
+))
+}
+)).flat(2).filter(Boolean):[]
+}
+
+}
+,{
+key:"hasDisplayInfo",get:function(){
+// 变量
+var t: any = (0,rt.toJS)(this.displayPrdInfo);
+return'object'==typeof t&&Object.keys(t).length>1
+}
+
+}
+,{
+key:"hasRelationInfo",get:function(){
+return Boolean(this.productRelationRes)
+}
+
+}
+,{
+key:"tabs",get:function(){
+var t,e=[].concat((0,X.default)(this.attrTabs),[this.packTab]).filter(Boolean);
+return'5'!==this.urlParams.channelId&&(null==(t=this.seriesTab)?void 0:t.data.length)>1&&e.unshift(this.seriesTab),e
+}
+
+}
+,{
+key:"estTotalPrice",get:function(){
+var t,e,o=null!=(t=null==(e=this.shareSbomInfo)?void 0:e.price)?t:0;
+return(o=(0,ot.getDisplayPrice)(this.sbomInfo,this.skuDisplayInfo,this.serverTime))?((o=(0,ot.getPromoPrice)(o,this.skuPromoInfo))&&this.packTab&&this.packTab.value.forEach((function(t){
+o=(0,nt.plus)(o,t.unitPrice||0)
+}
+)),Math.max(o,0)||0):0
+}
+
+}
+],[{
+key:"clearRelayStore",value:function(){
+0==--t.carStoreNum&&(t.relayStore=null)
+}
+
+}
+,{
+key:"checkRelayStore",value:function(e){
+return!!t.relayStore&&(!!['prdId','sbomCode','orderCode'].every((function(o){
+return t.relayStore.urlParams[o]===e[o]
+}
+))||(t.relayStore=null,!1))
+}
+
+}
+])
+}
+)(),W.carStoreNum=0,W.relayStore=null,s=W,u=(0,Z.default)(s.prototype,"topHeight",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),c=(0,Z.default)(s.prototype,"prdId",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),f=(0,Z.default)(s.prototype,"sbomCode",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return''
+}
+
+}
+),p=(0,Z.default)(s.prototype,"loadingSbom",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),h=(0,Z.default)(s.prototype,"loadingPrice",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),b=(0,Z.default)(s.prototype,"loadingRights",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return!1
+}
+
+}
+),v=(0,Z.default)(s.prototype,"sbomInfo",[e],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),y=(0,Z.default)(s.prototype,"displayPrdInfo",[o],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return{
+
+}
+
+}
+
+}
+),I=(0,Z.default)(s.prototype,"attrTabs",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return[]
+}
+
+}
+),C=(0,Z.default)(s.prototype,"packTab",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),P=(0,Z.default)(s.prototype,"seriesTab",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),S=(0,Z.default)(s.prototype,"previewData",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),k=(0,Z.default)(s.prototype,"skuPromoInfo",[n],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),R=(0,Z.default)(s.prototype,"skuDisplayInfo",[l],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),L=(0,Z.default)(s.prototype,"serverTime",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),T=(0,Z.default)(s.prototype,"tabIndex",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),w=(0,Z.default)(s.prototype,"rightsActivityList",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return null
+}
+
+}
+),A=(0,Z.default)(s.prototype,"rightsTabIndex",[rt.observable],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+return 0
+}
+
+}
+),(0,Z.default)(s.prototype,"carRightsInfoList",[rt.computed],Object.getOwnPropertyDescriptor(s.prototype,"carRightsInfoList"),s.prototype),(0,Z.default)(s.prototype,"hasDisplayInfo",[rt.computed],Object.getOwnPropertyDescriptor(s.prototype,"hasDisplayInfo"),s.prototype),(0,Z.default)(s.prototype,"hasRelationInfo",[rt.computed],Object.getOwnPropertyDescriptor(s.prototype,"hasRelationInfo"),s.prototype),(0,Z.default)(s.prototype,"tabs",[rt.computed],Object.getOwnPropertyDescriptor(s.prototype,"tabs"),s.prototype),(0,Z.default)(s.prototype,"estTotalPrice",[rt.computed],Object.getOwnPropertyDescriptor(s.prototype,"estTotalPrice"),s.prototype),D=(0,Z.default)(s.prototype,"reloadStore",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(){
+(0,at.setCarSelectStorage)(t)(),t.isModifyOrder||(0,at.setStorageCodeList)(t)(!0),tt.PlatformUtils.isWeb()&&(String(t.prdId)===t.urlParams.prdId?t.sbomCode=t.urlParams.sbomCode:t.sbomCode='',t.tabIndex=0,t.lastOptionalRes=null)
+}
+
+}
+
+}
+),O=(0,Z.default)(s.prototype,"setStore",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e){
+Object.entries(e).forEach((function(e){
+// 变量
+var o: any = (0,F.default)(e,2),n=o[0],l=o[1];
+t[n]=l
+}
+))
+}
+
+}
+
+}
+),z=(0,Z.default)(s.prototype,"setPriceInfo",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e,o,n){
+t.skuDisplayInfo=o,t.skuPromoInfo=e,t.serverTime=n,t.loadingPrice=!1
+}
+
+}
+
+}
+),N=(0,Z.default)(s.prototype,"setFakeAttrValue",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e,o){
+Array.isArray(o)||(o=[o]);
+// 变量
+var n: any = e.isCarPreview?[t.previewData.tab]:t.attrTabs;
+o.some((function(o){
+var l=n.find((function(t){
+return t.data.attrCode===o.attrCode
+}
+));
+if(l){
+if(!(0,ot.compareValueCode)(l.value,o)){
+// 变量
+var s: Function = (0,rt.toJS)(l.value).attrValueList[0],u=(0,et.cloneDeep)(o),c=u.attrValueList[0];
+c.name=s.name,c.path=s.path,c.relateInfo=s.relateInfo,l.value=u,e.isCarPreview?t.previewData.loading=!0:t.loadingSbom=!0
+}
+return e.isCarSelect&&(t.tabIndex=l.index),!0
+}
+return!1
+}
+))
+}
+
+}
+
+}
+),V=(0,Z.default)(s.prototype,"setPackageValue",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e,o){
+if(Array.isArray(o))t.packTab.value=o;
+else{
+// 变量
+var n: any = e.isCarPreview?t.previewData.tab:t.packTab;
+if(n){
+var l=(0,rt.toJS)(n.value),s=l.findIndex((function(t){
+return t.sbomCode===o.sbomCode
+}
+));
+-1===s?l.push(o):l.splice(s,1),n.value=l
+}
+
+}
+
+}
+
+}
+
+}
+),x=(0,Z.default)(s.prototype,"setSeriesValue",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e){
+t.seriesTab.value=e
+}
+
+}
+
+}
+),B=(0,Z.default)(s.prototype,"setPreviewData",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e){
+var o;
+if('number'==typeof e)return t.previewData={
+tab:(0,rt.toJS)(t.tabs[e]),sbomInfo:(0,rt.toJS)(t.sbomInfo),loading:!0
+}
+,void(t.tempOptionalRes=null);
+e?t.tempOptionalRes=e:e=t.tempOptionalRes||t.lastOptionalRes,e=(0,et.cloneDeep)(e);
+// 变量
+var n: any = t.previewData.tab.data.attrCode;
+t.previewData.tab.data=e.attrViewList.find((function(t){
+return t.attrCode===n
+}
+)),t.previewData.tab.value=null==(o=e.sbomInfo.sbomAttrList)?void 0:o.find((function(t){
+return t.attrCode===n
+}
+)),t.previewData.sbomInfo=e.sbomInfo,t.previewData.loading=!1
+}
+
+}
+
+}
+),E=(0,Z.default)(s.prototype,"getPromotionInfo",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return(0,q.default)((function*(){
+// 变量
+var e: any = t.sbomCode;
+t.loadingPrice=!0;
+try{
+// 变量
+var o: any = yield Promise.all([(0,st.getSkuPromoInfo)(t.sbomCode,t.prdId,t.urlParams.orderCode),(0,st.getDisplayData)(t.sbomInfo)]),n=(0,F.default)(o,2),l=n[0],s=(0,F.default)(n[1],2),u=s[0],c=s[1];
+if(t.sbomCode!==e)return;
+t.setStore({
+skuPromoInfo:l,skuDisplayInfo:u,serverTime:c,loadingPrice:!1
+}
+)
+}
+catch(e){
+t.setStore({
+loadingPrice:!1
+}
+)
+}
+
+}
+))
+}
+
+}
+),_=(0,Z.default)(s.prototype,"getRightsInfo",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return(function(){
+var e=(0,q.default)((function*(e){
+// 变量
+var o: any = t.sbomCode;
+t.loadingRights=!0,e&&(t.rightsActivityList=null);
+try{
+// 变量
+var n: any = yield(0,st.getRightsActivityLate)(o,t.urlParams.orderCode,t.isAddRights);
+if(t.sbomCode!==o)throw'late';
+return t.setStore({
+rightsActivityList:n,loadingRights:!1
+}
+),Promise.resolve()
+}
+catch(e){
+return'late'!==e&&t.setStore({
+rightsActivityList:null,loadingRights:!1
+}
+),Promise.reject(e)
+}
+
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)()
+}
+
+}
+),j=(0,Z.default)(s.prototype,"setViewData",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e,o,n,l,s){
+var u,c,f;
+o?t.lastOptionalRes=o:o=t.lastOptionalRes;
+// 变量
+var p: any = (0,et.cloneDeep)(o),h=p.attrViewList,b=p.sbomInfo;
+t.tempDisplayPrdInfo&&(t.tempDisplayPrdInfo.disPrdId===b.disPrdId&&(t.displayPrdInfo=t.tempDisplayPrdInfo,(0,at.setTitle)(t)),t.tempDisplayPrdInfo=null);
+var v=t.sbomInfo,y=(null==v?void 0:v.sbomCode)||t.sbomCode;
+t.prdId=b.disPrdId||t.prdId,t.sbomCode=b.sbomCode||y,null==(u=b.diyPackageInfos)||null==(c=u[0])||null==(f=c.groupList)||f.forEach((function(t){
+return t.packagePrdList.forEach((function(e){
+return e.sbomDIYPackageInfos.forEach((function(e){
+return e.groupId=t.groupId
+}
+))
+}
+))
+}
+)),t.sbomInfo=b,t.shareSbomInfo=b,(0,at.setMpCarShareData)(t,e),t.loadingSbom=!1,t.setAttrTab(h),t.setSeriesTab(l),t.setPackTab(s),t.setTabIndex(n),-1!==n&&(v&&t.sbomCode===y?(t.skuPromoInfo&&(t.loadingPrice=!1),t.rightsActivityList&&(t.loadingRights=!1)):(t.skuPromoInfo=null,t.skuDisplayInfo=null,t.serverTime=0,t.rightsActivityList=null),!t.skuPromoInfo&&(e.isCarDetail||e.isCarSelect||e.isCarPreview)&&t.getPromotionInfo(),t.rightsActivityList||!e.isCarDetail&&!e.isCarPreview||t.getRightsInfo(!1).catch())
+}
+
+}
+
+}
+),J=(0,Z.default)(s.prototype,"onSelectRightsPackage",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e,o){
+if(o.checked&&e.optionPackageNum===e.rightsPackageList.length)return!1;
+if(o.checked)return o.checked=!1,o.carRightsList.forEach((function(t){
+return t.checked=!1
+}
+)),!0;
+if((0,ot.getCheckedNum)(e.rightsPackageList)>=e.optionPackageNum){
+var n=e.rightsPackageList.find((function(t){
+return t.checked&&t.carRightsList.every((function(t){
+return!t.checked
+}
+))
+}
+));
+if(!n)return(0,nt.showToast)(t.urlParams.uniqueId,(0,tt.t)('only_m_package').replace('%m',String(e.optionPackageNum))),!1;
+n.checked=!1
+}
+return o.checked=!0,o.carRightsList.length===o.optionRightsNum&&o.carRightsList.forEach((function(t){
+return t.checked=!0
+}
+)),!0
+}
+
+}
+
+}
+),M=(0,Z.default)(s.prototype,"onSelectRightsDetail",[rt.action],{
+configurable:!0,enumerable:!0,writable:!0,initializer:function(){
+// 变量
+var t: any = this;
+return function(e,o,n,l){
+if(n.checked===l)return!1;
+if(n.checked&&o.carRightsList.length===o.optionRightsNum)return t.onSelectRightsPackage(e,o);
+if(n.checked)return n.checked=!1,!0;
+// 变量
+var s: Function = (0,ot.getCheckedNum)(o.carRightsList);
+if(1===s&&1===o.optionRightsNum)o.carRightsList.find((function(t){
+return t.checked
+}
+)).checked=!1;
+else if(s>=o.optionRightsNum)return(0,nt.showToast)(t.urlParams.uniqueId,(0,tt.t)('only_m_detail').replace('%m',String(o.optionRightsNum))),!1;
+return n.checked=!0,!0
+}
+
+}
+
+}
+),s);
+_e.default=dt,_e.useCarStore=function(){
+return(0,$.useContext)(it.MobXProviderContext).carStore
+}
+,_e.CarStoreComponent=(function(t){
+// 函数
+function e(t: any): any {
+var o,n,l,s;
+return(0,G.default)(this,e),n=this,l=e,s=[t],l=(0,U.default)(l),(o=(0,Y.default)(n,ut()?Reflect.construct(l,s||[],(0,U.default)(n).constructor):l.apply(n,s))).carStore=t.carStore,o
+}
+return(0,H.default)(e,t),(0,Q.default)(e)
+}
+)($.Component)
+}
+),"cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","0513c9aec1df8b193fb6e7118d38330920d6f86b6f168b15f210858e15b09551","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","238db300b8230394a7d5170f0b40f8df9292454df0796f0bcc766fd45e231b9f","e8b933b691eb434ae798f2ebfc685acb60972917ddcf03d73f892839d981c1a5","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","b361810eb51d228d6e3cbc921297b28385e5d8fcaf90a28810689d6835bc9de0","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.switchToNewCarSelect=_e.shouldSwitchTab=_e.setTitle=_e.setStorageCodeList=_e.setMpCarShareData=_e.setCarSelectStorage=_e.setCacheRightsList=_e.setCacheCarSubmitFlag=_e.onPrdIdChange=_e.onAttrValueChange=_e.judgeTitleBtn=_e.initSelectedAttr=_e.gotoService=_e.gotoRightsTab=_e.getUncheckActivityIndex=_e.getTabBarWidth=_e.getStorageCodeList=_e.getPurchaseAgreement=_e.getOptionalReqParams=_e.getDisplayContentConfig=_e.getDisPrdData=_e.getCorrectCodes=_e.getCarSelectStorage=_e.getCarRelation=_e.getCacheRightsList=_e.getCacheCarSubmitFlag=_e.StoreSingle=void 0;
+var t=e(r(d[1])),o=e(r(d[2])),n=e(r(d[3])),s=e(r(d[4])),l=e(r(d[5])),u=r(d[6]),c=r(d[7]),f=r(d[8]),C=r(d[9]),p=r(d[10]),v=r(d[11]),h=r(d[12]),b=r(d[13]),S=r(d[14]),I=r(d[15]),P=_e.getDisPrdData=function(e){
+return(function(){
+var t=(0,l.default)((function*(t){
+// 变量
+var o: any = t||e.urlParams.prdId||'',n=t?'':e.urlParams.sbomCode;
+t&&String(t)===e.urlParams.prdId&&(n=e.urlParams.sbomCode);
+// 变量
+var s: Function = yield(0,f.getDisplayProductInfo)(o?Number(o):void 0,n||void 0);
+if('late'!==s.e){
+if(t)return e.tempDisplayPrdInfo=s,void e.setStore({
+prdId:t,sbomCode:n
+}
+);
+if(Object.keys(s).length<=1)e.setStore({
+displayPrdInfo:s
+}
+);
+else{
+// 变量
+var l: any = s.disPrdId||o;
+!o&&l&&(e.urlParams=Object.freeze(Object.assign({
+
+}
+,e.urlParams,{
+prdId:String(l)
+}
+))),e.setStore({
+prdId:Number(l),displayPrdInfo:s
+}
+)
+}
+
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)()
+}
+,y=(_e.setTitle=function(e){
+// 变量
+var t: any = e.displayPrdInfo,o=t.name,n=t.briefName;
+u.PlatformUtils.isWeb()&&o?u.DataHandleUtils.updateSEOContent([{
+seoTitle:o,seoKeyword:(0,u.t)('seo_keyword').replaceAll('%1$d',o),seoDescription:(0,u.t)('seo_description').replaceAll('%1$d',o)
+}
+]):u.PlatformUtils.isMp()&&'carselect'===e.urlParams.targetPage&&n&&C.uni.setNavigationBarTitle({
+title:n
+}
+)
+}
+,_e.onPrdIdChange=function(e){
+return(function(){
+var t=(0,l.default)((function*(t){
+e.setSeriesValue(t),yield P(e)(t)
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)()
+}
+,_e.getOptionalReqParams=function(e,t){
+// 变量
+var o: any = e.prdId,n=e.sbomCode,s=e.selectedAttrList,l=e.isModifyOrder,u=e.urlParams,c=0;
+return t.isCarPreview&&(c=2),l&&(c=3,t.isCarPreview&&(c=1)),{
+prdId:o,sbomCode:n,attrList:s.map((function(e){
+return{
+attrCode:e.attrCode,attrValueList:[{
+attrValueCode:e.attrValueList[0].attrValueCode
+}
+]
+}
+
+}
+)),optionalType:c,checkCarSbomListReq:l?{
+disPrdId:Number(u.prdId),sbomCode:u.relationSbomCode||u.sbomCode,activityCode:u.activityCode
+}
+:void 0
+}
+
+}
+),w=(_e.onAttrValueChange=function(e,t){
+return(function(){
+var o=(0,l.default)((function*(o,n,s){
+// 变量
+var l: any = e.urlParams;
+if(o&&!s&&e.setFakeAttrValue(t,o),e.setSelectedAttr(t,o,n))try{
+// 变量
+var c: any = yield(0,f.queryCarOptionalLate)(y(e,t));
+if((null==c?void 0:c.code)!==p.CODE.BFF_SUCCESS)throw c;
+if(!c.sbomInfo)throw(0,u.t)('no_sbom');
+t.isCarPreview?e.setPreviewData(c):e.setViewData(t,c)
+}
+catch(o){
+if('late'===o)return;
+t.isCarPreview?e.setPreviewData():e.setViewData(t),e.resetSelectedAttr(),(0,v.showErrorToast)(l.uniqueId,o,(0,u.t)('common_load_error'))
+}
+
+}
+));
+return function(e,t,n){
+return o.apply(this,arguments)
+}
+
+}
+)()
+}
+,_e.getCorrectCodes=function(e,t){
+return(function(){
+var o=(0,l.default)((function*(o,n){
+var l,c=e.urlParams,f=e.isModifyOrder,C=e.isAddRights,p=e.displayPrdInfo,h=e.prdId,b=e.sbomCode,S=e.packTab,I=e.lastOptionalRes,y={
+prdId:h,sbomCode:b,packCodes:(null==S||null==(l=S.value)?void 0:l.map((function(e){
+return e.sbomCode
+}
+)))||[]
+}
+;
+if(C)return y;
+if(c.isOldCarDetail){
+var w=c.relationSbomCode||c.sbomCode||p.defaultSbomCode,_=yield Promise.all([(0,v.getStorage)("sbom_"+c.prdId+"_"+w),(0,v.getStorage)("chosePackageCode_"+c.prdId+"_"+w)]),T=(0,s.default)(_,2),O=T[0],R=T[1];
+y.sbomCode=O||b,y.packCodes=R?R.split(',').filter(Boolean):[]
+}
+else if(t.isCarSelect){
+if(n&&!u.PlatformUtils.isWeb())return A(e)(),y;
+var k=L(e);
+if(!k)return y;
+A(e)(),y.prdId=k.sbomInfo.disPrdId,y.sbomCode=k.sbomInfo.sbomCode,y.packCodes=k.packCodes,e.setSelectedAttr(t,k.sbomInfo.sbomAttrList)
+}
+else if(t.isCarDetail||(null==I||!I.attrViewList)&&!f){
+var U=yield D(e);
+if(0===U.length)return y;
+if(U[0]!==String(p.disPrdId)){
+if(o)return y;
+t.isCarDetail||(yield P(e)(y.prdId))
+}
+y.prdId=Number(U[0]),y.sbomCode=U[1],y.packCodes=U.slice(2)
+}
+return e.setStore({
+prdId:y.prdId,sbomCode:y.sbomCode
+}
+),y
+}
+));
+return function(e,t){
+return o.apply(this,arguments)
+}
+
+}
+)()
+}
+),_=(_e.initSelectedAttr=function(e,t){
+return(function(){
+var o=(0,l.default)((function*(o){
+// 变量
+var n: any = !(arguments.length>1&&void 0!==arguments[1])||arguments[1];
+n&&e.setSelectedAttr();
+var l,u=yield w(e,t)(o,n),c=u.sbomCode,C=u.packCodes,v=e.isModifyOrder,h=e.seriesTab,b=e.displayWhiteList,P=e.lastOptionalRes,D=0!==e.selectedAttrList.length;
+!D&&P&&P.attrViewList&&c===P.sbomInfo.sbomCode&&(l=P);
+var T=!o&&(t.isCarDetail||t.isCarSelect)&&!v&&!h,L=!b,O=t.isCarDetail?S.queryCarOptionalProductInfo:f.queryCarOptionalLate,R=yield Promise.all([l||O(y(e,t)),T&&(0,f.getSeriesCombDisPrd)(e.prdId),L&&_(e)]),k=(0,s.default)(R,2),U=k[0],N=k[1];
+if((null==U?void 0:U.code)===p.CODE.NO_PRODUCT)throw'NO_PRODUCT_DATA';
+if((null==U?void 0:U.code)!==p.CODE.BFF_SUCCESS)throw U;
+// 变量
+var E: any = U.sbomInfo;
+if(!E)throw'NO_PRODUCT_DATA';
+e.setViewData(t,U,void 0,N,C);
+var M=!1;
+if(t.isCarSelect&&n&&!D){
+var V=e.tabs[e.tabIndex],B=o?E.sbomAttrList[0]:V&&V.type===I.TAB_TYPE.ATTR&&V.value;
+B&&(M=e.setSelectedAttr(t,B,o))
+}
+t.isCarPreview&&n&&(A(e)(E,C),M=!1),M&&O(y(e,t)).then((function(o){
+e.setViewData(t,o,-1)
+}
+))
+}
+));
+return function(e){
+return o.apply(this,arguments)
+}
+
+}
+)()
+}
+,_e.getDisplayContentConfig=(function(){
+var e=(0,l.default)((function*(e){
+e.displayWhiteList=yield(0,f.getCarProductDisplayContentConfig)()
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)()),D=_e.getStorageCodeList=(function(){
+var e=(0,l.default)((function*(e){
+return((yield(0,v.getStorage)("car_sbomList_"+e.urlParams.prdId+"_"+e.urlParams.sbomCode))||'').split(',').filter(Boolean)
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),T=(_e.setStorageCodeList=function(e){
+return function(){
+var t,o,s=arguments.length>0&&void 0!==arguments[0]&&arguments[0];
+(0,v.setStorage)("car_sbomList_"+e.urlParams.prdId+"_"+e.urlParams.sbomCode,s?'':[e.prdId,e.sbomCode].concat((0,n.default)(null!=(t=null==(o=e.packTab)?void 0:o.value.map((function(e){
+return e.sbomCode
+}
+)))?t:[])).join(','))
+}
+
+}
+,_e.setMpCarShareData=function(e,t){
+var o,n=e.urlParams,l=e.shareSbomInfo;
+if(u.PlatformUtils.isMp()&&l){
+var f=Object.entries(t).find((function(e){
+// 变量
+var t: any = (0,s.default)(e,2);
+t[0];
+return t[1]
+}
+))[0].replace('is','');
+c.DeviceEventEmitter.emit("setShareData-"+n.uniqueId,{
+title:l.name,path:"/packageRnCarDetail/index?targetPage="+(0,h.getTargetPage)(f)+"&prdId="+l.disPrdId+"&sbomCode="+l.sbomCode,imageUrl:null==(o=(0,h.getSbomImageList)(l,'428_428_')[0])?void 0:o.uri
+}
+)
+}
+
+}
+,_e.gotoService=function(e){
+var t=e.prdId,o=e.shareSbomInfo,n=e.displayPrdInfo,s=n.shopInfo,l=n.brandCode,c={
+prdId:t,currentSbomCode:null==o?void 0:o.sbomCode,brandCode:l,brandName:null==o?void 0:o.brandName,currentSbomId:null==o?void 0:o.sbomCode,wapHost:u.Service.wapDomain,webHost:u.Service.webDomain,shopType:null==s?void 0:s.shopType,shopCode:null==s?void 0:s.shopCode,shopName:null==s?void 0:s.shopName
+}
+;
+u.CommonUtils.goServiceRobot(u.AppStore.isLogin,s.serviceProvider,u.PlatformUtils.isMp()?s.serviceUrl+"&fromClient=wechatMp":s.serviceUrl,c)
+}
+,_e.judgeTitleBtn=function(e,t){
+var o;
+return b.previewScene.isPreview||e.isAddRights?{
+hasServiceIcon:!1,hasShareIcon:!1
+}
+:{
+hasServiceIcon:Boolean(null==(o=e.displayPrdInfo.shopInfo)?void 0:o.serviceUrl),hasShareIcon:u.PlatformUtils.isApp()&&!t.isCarRelation
+}
+
+}
+),L=(_e.getTabBarWidth=function(e,t,o){
+if(!o.isMp)return o.width;
+// 变量
+var n: any = T(e,t).hasServiceIcon;
+return o.width-(n?48+o.pageMargin:0)
+}
+,_e.shouldSwitchTab=function(e){
+// 变量
+var t: any = e.seriesTab,o=e.sbomInfo,n=e.urlParams;
+return null==t||!t.value||null==o||!o.disPrdId||t.value===o.disPrdId||((0,v.showToast)(n.uniqueId,(0,u.t)('is_switching_prd')),!1)
+}
+,_e.getCarSelectStorage=function(e){
+// 变量
+var t: any = e.urlParams;
+return(0,h.getSelectStorage)(t.prdId,t.sbomCode,t.orderCode)
+}
+),A=_e.setCarSelectStorage=function(e){
+return function(t,o){
+// 变量
+var n: any = e.urlParams;
+return(0,h.setSelectStorage)(n.prdId,n.sbomCode,n.orderCode,t,o)
+}
+
+}
+;
+_e.getUncheckActivityIndex=function(e){
+return function(t){
+// 变量
+var o: any = e.rightsTabIndex,n=e.rightsActivityList;
+if(!n)return-1;
+var s=(void 0===t?n:n.slice(o,t)).findIndex((function(e){
+return 1!==e.selectedFlag&&e.rightsPackageList.reduce((function(e,t){
+return t.checked&&t.optionRightsNum===(0,h.getCheckedNum)(t.carRightsList)&&++e,e
+}
+),0)!==e.optionPackageNum
+}
+));
+return void 0===t?s:-1===s?-1:s+o
+}
+
+}
+,_e.setCacheRightsList=function(e){
+// 变量
+var t: any = e.prdId,o=e.sbomCode,n=e.carRightsInfoList;
+return(0,v.setCacheStorage)("carRightsInfoList_"+t+"_"+o,n,!1)
+}
+,_e.getCacheRightsList=function(e){
+// 变量
+var t: any = "carRightsInfoList_"+e.prdId+"_"+e.sbomCode,o=(0,v.getCacheStorage)(t,!1)||[];
+return(0,v.setCacheStorage)(t),o
+}
+,_e.setCacheCarSubmitFlag=function(e){
+// 变量
+var t: any = e.prdId,o=e.sbomCode;
+return(0,v.setCacheStorage)("carSubmit_"+t+"_"+o,!0,!1)
+}
+,_e.getCacheCarSubmitFlag=function(e){
+// 变量
+var t: any = "carSubmit_"+e.prdId+"_"+e.sbomCode,o=(0,v.getCacheStorage)(t,!1);
+return(0,v.setCacheStorage)(t),o
+}
+,_e.getPurchaseAgreement=(function(){
+var e=(0,l.default)((function*(e){
+var t,o,n=e.displayPrdInfo,s=e.prdId,l=n.agreementList;
+if(null==(t=l)||!t.length)return'';
+null!=(o=l[l.length-1])&&o.version||(l=yield(0,f.getOldAgreementList)(s));
+var u=l.map((function(e){
+return{
+protocol:e.placeholder,version:e.version
+}
+
+}
+));
+return u.length?JSON.stringify(u):''
+}
+));
+return function(t){
+return e.apply(this,arguments)
+}
+
+}
+)(),_e.switchToNewCarSelect=function(e){
+return function(t){
+// 变量
+var o: any = (0,h.createNewPrdUrlParams)(e.urlParams,t,!1),n=e.navigation;
+u.PlatformUtils.isMp()?n.goBackTo('CarSelect',(function(){
+return n.replace('CarSelect',o)
+}
+)):n.navigate('CarSelect',o)
+}
+
+}
+,_e.getCarRelation=function(e){
+return(function(){
+var t=(0,l.default)((function*(t){
+if(e.isModifyOrder){
+// 变量
+var o: any = e.urlParams,n=yield(0,f.queryRelationWithTargetPage)(o,t,!1);
+e.urlParams=Object.freeze(n.newProps),e.productRelationRes=n.relationRes,n.newProps.prdId!==o.prdId&&(yield P(e)())
+}
+
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)()
+}
+,_e.gotoRightsTab=function(e){
+return function(t,o){
+// 变量
+var n: any = e.urlParams.uniqueId;
+o?c.DeviceEventEmitter.emit("pcGoToActivity-"+n,t):c.DeviceEventEmitter.emit("onTabChange-"+n,t)
+}
+
+}
+,_e.StoreSingle=(function(){
+// 函数
+function e(): any {
+(0,t.default)(this,e),this.list=[]
+}
+return(0,o.default)(e,[{
+key:"getList",value:function(){
+return this.list
+}
+
+}
+,{
+key:"setList",value:function(e){
+Array.isArray(e)&&(this.list=[].concat((0,n.default)(this.list),(0,n.default)(e))),(null==e?void 0:e.constructor)===Object&&this.list.push(e)
+}
+
+}
+,{
+key:"clearList",value:function(){
+this.list=[]
+}
+
+}
+],[{
+key:"getInstance",value:function(){
+return void 0===this._instance&&(this._instance=new e),this._instance
+}
+
+}
+])
+}
+)()
+}
+),"b361810eb51d228d6e3cbc921297b28385e5d8fcaf90a28810689d6835bc9de0",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e","0ea8031004a7001e8b293f69ced6ccd729ba63db477638949eb2145c200d1114","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","4d5c25d100750b2796817febeb2b3a5bcac48590c98814a15296066221f852c0","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=_e.CarRightsPage=void 0;
+var e,r=t(_r(d[1])),i=t(_r(d[2])),a=t(_r(d[3])),n=t(_r(d[4])),o=t(_r(d[5])),s=t(_r(d[6])),c=t(_r(d[7])),u=(t(_r(d[8])),_r(d[9])),l=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var r: any = x(e);
+if(r&&r.has(t))return r.get(t);
+var i={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in t)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(t,n)){
+// 变量
+var o: any = a?Object.getOwnPropertyDescriptor(t,n):null;
+o&&(o.get||o.set)?Object.defineProperty(i,n,o):i[n]=t[n]
+}
+return i.default=t,r&&r.set(t,i),i
+}
+)(_r(d[10])),f=_r(d[11]),h=_r(d[12]),v=t(_r(d[13])),p=t(_r(d[14])),y=_r(d[15]),S=_r(d[16]),P=t(_r(d[17])),b=t(_r(d[18])),C=t(_r(d[19])),R=_r(d[20]),A=_r(d[21]),L=t(_r(d[22])),w=_r(d[23]),T=t(_r(d[24])),j=_r(d[25]);
+// 函数
+function x(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,r=new WeakMap;
+return(x=function(t){
+return t?r:e
+}
+)(t)
+}
+// 函数
+function I(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(I=function(){
+return!!t
+}
+)()
+}
+var B=_e.CarRightsPage=(0,f.observer)(e=(function(t){
+// 函数
+function e(): any {
+var t,n,c,l;
+(0,a.default)(this,e);
+for(var f=arguments.length,x=new Array(f),B=0;
+B<f;
+B++)x[B]=arguments[B];
+return n=this,c=e,l=[].concat(x),c=(0,s.default)(c),(t=(0,o.default)(n,I()?Reflect.construct(c,l||[],(0,s.default)(n).constructor):c.apply(n,l))).isPageHide=!1,t.showListener=u.DeviceEventEmitter.addListener("onShow-"+t.carStore.urlParams.uniqueId,(function(){
+t.isPageHide&&(t.isPageHide=!1,t.refreshRights())
+}
+)),t.hideListener=u.DeviceEventEmitter.addListener("onHide-"+t.carStore.urlParams.uniqueId,(function(){
+return t.isPageHide=!0
+}
+)),t.initData=(0,i.default)((function*(){
+// 变量
+var e: any = t.props.platform,i=Boolean(t.carStore.sbomInfo),a=Boolean(t.carStore.rightsActivityList);
+try{
+var n=yield(0,h.getCorrectCodes)(t.carStore,{
+isCarRights:!0
+}
+)(e.isPc),o=n.sbomCode,s=n.packCodes,c=t.carStore,u=c.urlParams,l=c.isModifyOrder,f=c.isAddRights,v=c.displayPrdInfo;
+o=o||v.defaultSbomCode;
+// 变量
+var p: any = yield Promise.all([!i&&(0,S.getCarSbomInfoByCode)(o),!a&&(0,S.getRightsActivityLate)(o,u.orderCode,f)]),y=(0,r.default)(p,2),P=y[0],b=y[1];
+if(!i&&!P)throw'NO_PRODUCT_DATA';
+if(!(a||b&&0!==b.length))throw'NO_DATA';
+var C=i?t.carStore.lastOptionalRes:{
+sbomInfo:P
+}
+,A=b||(0,R.toJS)(t.carStore.rightsActivityList),L=l||f?[]:(0,h.getCacheRightsList)(t.carStore);
+t.carStore.setViewData({
+isCarRights:!0
+}
+,C,void 0,void 0,s);
+var T=t.setRightsActivityList(A,L);
+t.setState({
+showContent:!0
+}
+,(function(){
+e.setPageState('SUCCESS'),t.gotoRightsTab(T)
+}
+))
+}
+catch(t){
+'late'!==t&&(0,w.setPageError)(e,t)
+}
+
+}
+)),t.refreshRights=(0,i.default)((function*(){
+// 变量
+var e: any = t.props.platform,r=t.carStore,i=r.sbomCode,a=r.urlParams,n=r.carRightsInfoList,o=r.isModifyOrder,s=r.isAddRights,c=r.navigation;
+try{
+var u,l=yield(0,S.getRightsActivityLate)(i,a.orderCode,s);
+if(!l||0===l.length)return void(null!=(u=c.origin)&&null!=u.canGoBack&&u.canGoBack()?c.origin.goBack():c.goBack());
+// 变量
+var f: any = n;
+0===f.length&&(f=o||s?[]:(0,h.getCacheRightsList)(t.carStore));
+var v=t.setRightsActivityList(l,f);
+t.gotoRightsTab(v)
+}
+catch(t){
+'late'!==t&&(0,w.setPageError)(e,t)
+}
+
+}
+)),t.gotoRightsTab=function(e){
+-1!==e&&e!==t.carStore.rightsTabIndex&&setTimeout((function(){
+return(0,h.gotoRightsTab)(t.carStore)(e,t.props.platform.isPc)
+}
+),100)
+}
+,t.setRightsActivityList=function(e,r){
+(0,w.handleRightsActivityList)(e,r);
+var i=(0,h.getUncheckActivityIndex)({
+rightsActivityList:e,rightsTabIndex:0
+}
+)();
+return-1===i?t.carStore.setStore({
+rightsActivityList:e,rightsTabIndex:e.length-1
+}
+):t.carStore.setStore({
+rightsActivityList:e
+}
+),i
+}
+,t.onTabChange=function(e){
+// 变量
+var r: any = -1;
+return t.carStore.rightsTabIndex<e&&-1!==(r=(0,h.getUncheckActivityIndex)(t.carStore)(e))&&(e=r,(0,y.showToast)(t.carStore.urlParams.uniqueId,(0,A.t)('rights_not_enough'))),u.DeviceEventEmitter.emit("onTabChange-"+t.carStore.urlParams.uniqueId,e),-1===r
+}
+,t.renderContentPc=function(){
+return(0,j.jsxs)(j.Fragment,{
+children:[(0,j.jsx)(C.default,{
+
+}
+),(0,j.jsx)(p.default,{
+
+}
+)]
+}
+)
+}
+,t.renderContentNotPc=function(){
+// 变量
+var e: any = t.props,r=e.platform,i=e.themeStyles,a=t.carStore,n=a.isShowHeader,o=a.rightsTabIndex,s=a.rightsActivityList,c=a.isAddRights,l=n&&!r.isMp&&!(c&&r.isH5);
+return(0,j.jsxs)(j.Fragment,{
+children:[l&&(0,j.jsx)(L.default,{
+
+}
+),(0,j.jsxs)(u.View,{
+style:i.tabBarContainer,children:[(0,j.jsx)(b.default,{
+index:o,width:(0,h.getTabBarWidth)(t.carStore,{
+isCarRights:!0
+}
+,r),tabs:s.map((function(t){
+return t.activityName
+}
+)),tabGap:r.pageMargin,onPressTab:t.onTabChange,tabBarStyle:r.isMp?i.tabBarMp:i.tabBar
+}
+),r.isMp&&(0,j.jsx)(v.default,{
+
+}
+)]
+}
+),(0,j.jsx)(P.default,{
+
+}
+),(0,j.jsx)(T.default,{
+
+}
+)]
+}
+)
+}
+,t.renderContent=function(){
+return t.props.platform.isPc?t.renderContentPc():t.renderContentNotPc()
+}
+,t
+}
+return(0,c.default)(e,t),(0,n.default)(e,[{
+key:"componentDidMount",value:function(){
+this.initData()
+}
+
+}
+,{
+key:"componentWillUnmount",value:function(){
+this.showListener.remove(),this.hideListener.remove()
+}
+
+}
+],[{
+key:"getDerivedStateFromProps",value:function(t,e){
+return e.showContent?{
+
+}
+:{
+showContent:Boolean(t.carStore.rightsActivityList)
+}
+
+}
+
+}
+])
+}
+)(l.default))||e;
+_e.default=(0,f.inject)('carStore')((0,l.injectPageStyle)(B))
+}
+),"75ccffbabd9340a413b78bf13512a08db1589dffa7d7bf9502f0baf95eb78def",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","7ed68249b578546eed33a6d4f66c49e4f699f895c0a9ed76edad901f5b6ef729","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","b361810eb51d228d6e3cbc921297b28385e5d8fcaf90a28810689d6835bc9de0","8c5c40fe0fde499cdd48aa370f095df0e04521784793d548d5cbef4c81a2470a","2e8e98f3cbf3e7ac10c9157e3a259b091f4282e01e42d35bab1ce245ca476135","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","11338a4a5cebaaf5fa068d299dd4ad22f6efa8006cc6c6dcbabc176e8d9f079e","4f3a4ae35392e5d1f14a0a989527316c0c33ed90354c819c8074e4368b187c9d","de8b80f5bc62a7720afeb530b7fe263ecd37213d85f89e8dec0c4e7ab522204d","56656c8a523e50610961f02a45ffa03a95588739a482570cc7de3eecf5de4932","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","10f6d9d5313f9b74def537bd93367b425e791aab6aa8295b718cde0d40d474f8","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","d0a1df5293bb08f341b00bccd2a2173a578244f76286d7dac4e7bc1b8ab07fd1","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.injectPageStyle=_e.default=_e.carPageStyles=void 0;
+// 变量
+var e: any = t(r(d[1])),n=t(r(d[2])),o=t(r(d[3])),l=t(r(d[4])),c=t(r(d[5])),u=(t(r(d[6])),r(d[7])),s=r(d[8]),f=r(d[9]),h=r(d[10]),p=r(d[11]),v=r(d[12]);
+// 函数
+function y(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(y=function(){
+return!!t
+}
+)()
+}
+var w=_e.carPageStyles=function(){
+for(var t=arguments.length,e=new Array(t),n=0;
+n<t;
+n++)e[n]=arguments[n];
+// 变量
+var o: any = e[0],l=e[1];
+return u.StyleSheet.create({
+container:{
+backgroundColor:o.C32.color,flex:1,overflow:'hidden'
+}
+,whiteBg:{
+backgroundColor:o.fillBase
+}
+,relative:{
+position:'relative'
+}
+,floatTitle:{
+zIndex:1,position:'absolute',top:0,left:0,width:'100%'
+}
+,floatTitleBack:{
+position:'absolute',top:-1,left:0,width:'100%',height:h.TITLE_HEIGHT+l.statusBarHeight+1,backgroundColor:o.C32.color,opacity:1
+}
+,tabBarContainer:{
+flexDirection:'row',alignItems:'center',zIndex:1
+}
+,tabBar:{
+paddingHorizontal:l.pageMargin
+}
+,tabBarMp:{
+paddingLeft:l.pageMargin
+}
+
+}
+)
+}
+;
+_e.injectPageStyle=(0,s.injectLayout)(w),_e.default=(function(t){
+// 函数
+function s(t: any, n: any): any {
+var c,u,f,h;
+return(0,e.default)(this,s),u=this,f=s,h=[t],f=(0,l.default)(f),(c=(0,o.default)(u,y()?Reflect.construct(f,h||[],(0,l.default)(u).constructor):f.apply(u,h))).useWhiteBack=!1,c.renderContent=function(){
+return null
+}
+,c.state=Object.assign({
+showContent:!1
+}
+,(0,p.cloneDeep)(n)),c.props.platform.isPc&&window.scrollTo({
+top:0
+}
+),c
+}
+return(0,c.default)(s,t),(0,n.default)(s,[{
+key:"render",value:function(){
+// 变量
+var t: any = this.props,e=t.themeStyles,n=t.platform,o=this.carStore.topHeight;
+return this.state.showContent?(0,v.jsx)(u.View,{
+style:[n.isPc?{
+minHeight:n.height-o
+}
+:e.container,(n.isPc||this.useWhiteBack)&&e.whiteBg],children:this.renderContent()
+}
+):null
+}
+
+}
+])
+}
+)(f.CarStoreComponent)
+}
+),"7ed68249b578546eed33a6d4f66c49e4f699f895c0a9ed76edad901f5b6ef729",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","0bf98d056bbfde9201817585e2f4b2fee9f6a53ead1b7fd3e87b950a92594a91","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.styles=_e.gotoServiceClick=_e.default=void 0;
+var r=(function(e,r){
+if(!r&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var t: any = p(r);
+if(t&&t.has(e))return t.get(e);
+var n={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in e)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(e,i)){
+// 变量
+var a: any = o?Object.getOwnPropertyDescriptor(e,i):null;
+a&&(a.get||a.set)?Object.defineProperty(n,i,a):n[i]=e[i]
+}
+return n.default=e,t&&t.set(e,n),n
+}
+)(_r(d[1])),t=_r(d[2]),n=_r(d[3]),o=_r(d[4]),i=_r(d[5]),a=_r(d[6]),c=_r(d[7]),u=_r(d[8]),s=e(_r(d[9])),l=_r(d[10]),f=_r(d[11]);
+// 函数
+function p(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var r: any = new WeakMap,t=new WeakMap;
+return(p=function(e){
+return e?t:r
+}
+)(e)
+}
+_e.default=function(e){
+// 变量
+var i: any = e.serviceReport,u=e.shareReport,p=(0,o.useCarStore)(),b=(0,c.usePageJudge)(),y=(0,l.useLayout)(h).themeStyles;
+(0,r.useEffect)((function(){
+var e=t.DeviceEventEmitter.addListener("onShare-"+p.urlParams.uniqueId,(function(){
+return null==u?void 0:u()
+}
+));
+return function(){
+e.remove()
+}
+
+}
+),[p,u]);
+// 变量
+var S: Function = (0,a.judgeTitleBtn)(p,b),_=S.hasServiceIcon,j=S.hasShareIcon;
+return(0,f.jsxs)(t.View,{
+style:y.container,children:[_&&(0,f.jsx)(s.default,{
+style:y.iconWrap,activeOpacity:1,onPress:function(){
+return v(p,i)
+}
+,name:n.DarkStore.darkBool?'dark_service':'online_service'
+}
+),j&&(0,f.jsx)(s.default,{
+type:"svg",style:y.iconWrap,activeOpacity:1,onPress:function(){
+return P(p,b,u)
+}
+,name:"share"
+}
+)]
+}
+)
+}
+;
+var v=_e.gotoServiceClick=(0,i.clickDebunce)((function(e,r){
+null==r||r(),(0,a.gotoService)(e)
+}
+)),P=(0,i.clickDebunce)((function(e,r,t){
+var o=null==t?void 0:t(),i=e.prdId,a=e.shareSbomInfo,s=e.packTab,l=e.estTotalPrice,f=null==s?void 0:s.value.reduce((function(e,r){
+return e+r.originalPrice
+}
+),0),p=Object.assign({
+
+}
+,o,{
+prdId:i,sbomCode:a.sbomCode,buttonId:a.buttonMode,shareProfitDesc:(0,n.t)('vehicle_purchase_business'),mainPicture:(0,c.getSbomImageList)(a)[0].uri,prdName:a.name,microPromWord:a.microPromWord,sbomPromWord:a.sbomPromWord,chosePackageCode:r.isCarPreview?(null==s?void 0:s.value.map((function(e){
+return e.sbomCode
+}
+)).join(','))||'':void 0
+}
+,b(l,f,a));
+(0,u.openShareModal)(p)
+}
+)),b=function(e,r,t){
+var n,o={
+price:'',promoPrice:''
+}
+;
+return 0===(null==t?void 0:t.priceConsistent)?o:e?Object.assign({
+
+}
+,o,{
+price:(0,i.plus)(null!=(n=t.price)?n:0,null!=r?r:0),promoPrice:e
+}
+):o
+}
+,h=_e.styles=function(e,r){
+return t.StyleSheet.create({
+container:{
+flexDirection:'row',alignItems:'center',paddingRight:r.pageMargin
+}
+,iconWrap:{
+marginLeft:8
+}
+,icon:{
+width:24,height:24
+}
+
+}
+)
+}
+
+}
+),"8c5c40fe0fde499cdd48aa370f095df0e04521784793d548d5cbef4c81a2470a",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","b361810eb51d228d6e3cbc921297b28385e5d8fcaf90a28810689d6835bc9de0","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","7fc7adf5e1b1fe9a0c3f9e425ebf692cd4d4eb5caee3826de926fd23819a80c6","0f8424981ed4e12a14d1f019f5a468b4982f371aa1f59051ae9b866225e0b6be","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+e.default=function(u){
+return null
+}
+
+}
+),"2e8e98f3cbf3e7ac10c9157e3a259b091f4282e01e42d35bab1ce245ca476135",[]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.styles=_e.default=_e.CarRights=void 0;
+var t,n=e(r(d[1])),o=e(r(d[2])),s=e(r(d[3])),l=e(r(d[4])),c=e(r(d[5])),u=e(r(d[6])),f=(e(r(d[7])),r(d[8])),h=r(d[9]),v=e(r(d[10])),p=e(r(d[11])),y=r(d[12]),x=r(d[13]),w=r(d[14]),A=r(d[15]),S=r(d[16]),b=r(d[17]),T=r(d[18]);
+// 函数
+function j(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(j=function(){
+return!!e
+}
+)()
+}
+var I=_e.CarRights=(0,b.observer)(t=(function(e){
+// 函数
+function t(): any {
+var e,s,u,f;
+(0,o.default)(this,t);
+for(var h=arguments.length,v=new Array(h),p=0;
+p<h;
+p++)v[p]=arguments[p];
+return s=this,u=t,f=[].concat(v),u=(0,c.default)(u),(e=(0,l.default)(s,j()?Reflect.construct(u,f||[],(0,c.default)(s).constructor):u.apply(s,f))).swipeAnim=new y.Animated.Value(0),e.swipeStyle={
+transform:[{
+translateX:e.swipeAnim
+}
+]
+}
+,e.onNextListener=y.DeviceEventEmitter.addListener("onTabChange-"+e.carStore.urlParams.uniqueId,(function(t){
+t!==e.carStore.rightsTabIndex&&e.onTabChange(t)
+}
+)),e.onTabChange=(function(){
+var t=(0,n.default)((function*(t){
+// 变量
+var n: any = e.carStore.rightsTabIndex,o=Math.sign(t-n);
+e.swipeAnim.setValue(o*e.props.platform.width),e.laybackWatcher=(0,w.layback)().after((function(){
+e.carStore.setStore({
+rightsTabIndex:t
+}
+)
+}
+)).after((function(){
+y.Animated.timing(e.swipeAnim,{
+toValue:0,duration:A.SLIDE_DURATION,easing:S.ANIM_EASING.EXP_OUT,useNativeDriver:!0
+}
+).start()
+}
+))
+}
+));
+return function(e){
+return t.apply(this,arguments)
+}
+
+}
+)(),e
+}
+return(0,u.default)(t,e),(0,s.default)(t,[{
+key:"componentWillUnmount",value:function(){
+var e;
+this.onNextListener.remove(),null==(e=this.laybackWatcher)||e.destroy()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var e: any = this.carStore,t=e.rightsTabIndex,n=e.rightsActivityList,o=e.isAddRights,s=this.props.themeStyles;
+return(0,T.jsxs)(T.Fragment,{
+children:[(0,T.jsx)(y.View,{
+style:s.container,children:(0,T.jsx)(y.Animated.View,{
+style:[s.animView,this.swipeStyle],children:(0,T.jsx)(p.default,{
+rightsActivity:null==n?void 0:n[t]
+}
+)
+}
+)
+}
+),o&&(0,T.jsx)(y.Text,{
+style:s.extraRightsTip,children:(0,x.t)('extra_rights_tip')
+}
+),(0,T.jsx)(v.default,{
+
+}
+)]
+}
+)
+}
+
+}
+])
+}
+)(f.CarStoreComponent))||t,_=_e.styles=function(){
+for(var e=arguments.length,t=new Array(e),n=0;
+n<e;
+n++)t[n]=arguments[n];
+// 变量
+var o: any = t[0],s=t[1];
+return y.StyleSheet.create({
+extraRightsTip:Object.assign({
+paddingVertical:8,paddingHorizontal:s.pageMargin
+}
+,o.C13,o.T3,{
+lineHeight:18
+}
+),container:{
+flex:1,overflow:'hidden'
+}
+,animView:{
+flex:1,flexDirection:'row'
+}
+
+}
+)
+}
+;
+_e.default=(0,b.inject)('carStore')((0,h.injectLayout)(_)(I))
+}
+),"4f3a4ae35392e5d1f14a0a989527316c0c33ed90354c819c8074e4368b187c9d",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","86b6c4215b87f57989e7a238ad6b3f7b2c87116e07baf5f465f587f651ed47e1","e76d591453b942a554012bfb0a3373b96e7a91957420bddd04e7600902c3ba1a","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","d63d6f49d192d4d685804967b6d1a53e3fc049c3ca120fc482e42266d0545140","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e,o,n=t(r(d[1])),s=t(r(d[2])),c=t(r(d[3])),l=t(r(d[4])),h=t(r(d[5])),u=t(r(d[6])),p=(t(r(d[7])),r(d[8])),f=r(d[9]),v=r(d[10]),b=r(d[11]),C=r(d[12]),S=r(d[13]),y=r(d[14]),I=r(d[15]),x=r(d[16]),T=r(d[17]),R=r(d[18]),P=r(d[19]),k=t(r(d[20])),_=r(d[21]),B=r(d[22]),w=t(r(d[23])),A=t(r(d[24])),D=t(r(d[25])),L=t(r(d[26])),O=t(r(d[27])),M=r(d[28]),E=r(d[29]),j=r(d[30]),q=r(d[31]);
+// 函数
+function N(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(N=function(){
+return!!t
+}
+)()
+}
+var W=(0,I.inject)('carStore')(e=(0,I.observer)((o=(function(t){
+// 函数
+function e(): any {
+var t,o,n,c;
+(0,s.default)(this,e);
+for(var u=arguments.length,f=new Array(u),v=0;
+v<u;
+v++)f[v]=arguments[v];
+return o=this,n=e,c=[].concat(f),n=(0,h.default)(n),(t=(0,l.default)(o,N()?Reflect.construct(n,c||[],(0,h.default)(o).constructor):n.apply(o,c))).state={
+isBtnLock:!1
+}
+,t.btnText='',t.btnDisabled=!1,t.btnAction=null,t.btnActionDebounce=(0,C.clickDebunce)((function(){
+return t.btnAction()
+}
+),1e3),t.btnActionThrottle=(0,C.clickThrottle)((function(){
+return t.btnAction()
+}
+),R.SLIDE_DURATION),t.onBtnClick=function(){
+t.context.isCarRights?x.Modal.hide('SelectedRightsModal'):(t.togglePriceDetailModalReport(!1),x.Modal.hide('PriceDetailModal')),t.state.isBtnLock?(0,C.showToast)(t.carStore.urlParams.uniqueId,(0,S.t)('is_requesting')):t.btnAction===t.gotoNext?t.props.platform.isMp?t.btnActionThrottle():t.btnAction():t.btnActionDebounce()
+}
+,t.getOrderReqList=function(){
+// 变量
+var e: any = t.carStore,o=e.sbomCode,n=e.packTab,s=[];
+return(null==n?void 0:n.value.length)>0?s.push({
+itemId:o,itemProp:{
+dp_package_code:n.data.packageCode
+}
+,itemType:'DP',qty:1,subOrderItemReqArgs:n.value.map((function(t){
+var e;
+return{
+itemId:t.sbomCode,itemProp:{
+dp_group:null==(e=t.groupId)?void 0:e.toString()
+}
+,itemType:'DP',qty:1
+}
+
+}
+))
+}
+):s.push({
+itemId:o,itemType:'S0',qty:1
+}
+),s
+}
+,t.checkRightsError=function(e){
+if(!t.context.isCarRights||e!==_.CODE.RIGHTS_ERROR)return!1;
+var o=t.carStore.urlParams,n=t.props.platform.setPageState,s=function(){
+p.DeviceEventEmitter.emit("onHide-"+o.uniqueId),p.DeviceEventEmitter.emit("onShow-"+o.uniqueId),n('SUCCESS')
+}
+;
+return n({
+tips:(0,S.t)('carErr_rightsChangedErr'),btnText:(0,S.t)('toBackPage'),onBtnPress:s,onBackPress:s
+}
+),!0
+}
+,t.togglePriceDetailModal=function(){
+t.togglePriceDetailModalReport(!t.props.isModalBottom),x.Modal[t.props.isModalBottom?'hide':'show']('PriceDetailModal')
+}
+,t.toggleSelectedRightsModal=function(){
+x.Modal[t.props.isModalBottom?'hide':'show']('SelectedRightsModal')
+}
+,t.noSeletedRightsTip=function(){
+(0,C.showToast)(t.carStore.urlParams.uniqueId,(0,S.t)('plz_select_rights'))
+}
+,t.renderRights=function(){
+// 变量
+var e: any = t.props.themeStyles,o=t.carStore.carRightsInfoList.length;
+return(0,q.jsx)(p.TouchableOpacity,{
+activeOpacity:1,style:e.priceWrap,onPress:o>0?t.toggleSelectedRightsModal:t.noSeletedRightsTip,children:(0,q.jsxs)(p.View,{
+style:e.priceIconWrap,children:[(0,q.jsx)(p.Text,{
+style:e.rightText,children:(0,S.t)('rights_selected').replace('%m',String(o))
+}
+),t.renderIcon()]
+}
+)
+}
+)
+}
+,t.renderPrice=function(){
+// 变量
+var e: any = t.props,o=e.themeStyles,n=e.platform,s=t.carStore,c=s.loadingSbom,l=s.loadingPrice,h=s.estTotalPrice,u=s.sbomInfo,f=s.tabs,v=s.tabIndex;
+return!t.context.isCarSelect||n.isPc||f[v].type!==R.TAB_TYPE.SERIES&&f[v].displayType!==R.DISPLAY_TYPE.VERSION?c||l?(0,q.jsx)(p.Text,{
+style:[o.priceLabel,o.loadingLabel],children:(0,S.t)('is_calculating')
+}
+):(0,q.jsxs)(p.TouchableOpacity,{
+activeOpacity:1,style:o.priceWrap,onPress:t.togglePriceDetailModal,children:[!n.isPc&&Boolean(h)&&(0,q.jsxs)(p.Text,{
+style:o.priceLabel,children:[(0,S.t)('estTotalPrice'),":"]
+}
+),(0,q.jsxs)(O.default,{
+judge:!n.isPc,wrapper:p.View,style:o.priceIconWrap,children:[(0,q.jsx)(p.Text,{
+style:o.priceText,children:(0,P.formatPrice)(h,u)
+}
+),t.renderIcon()]
+}
+)]
+}
+):null
+}
+,t
+}
+return(0,u.default)(e,t),(0,c.default)(e,[{
+key:"componentDidMount",value:function(){
+// 变量
+var t: any = this.props,e=t.platform,o=t.isModalBottom,n=this.carStore.isModifyOrder;
+e.isWeb&&(this.context.isCarRights||this.context.isCarPreview)&&!n&&!o&&(0,T.getCacheCarSubmitFlag)(this.carStore)&&S.AppStore.isLogin&&-1===(0,T.getUncheckActivityIndex)(this.carStore)()&&this.gotoBuy()
+}
+
+}
+,{
+key:"lockBtn",value:function(){
+this.setState({
+isBtnLock:!0
+}
+)
+}
+
+}
+,{
+key:"unLockBtn",value:function(){
+// 变量
+var t: any = this;
+setTimeout((function(){
+t.setState({
+isBtnLock:!1
+}
+)
+}
+),arguments.length>0&&void 0!==arguments[0]?arguments[0]:1e3)
+}
+
+}
+,{
+key:"getCarSelectBtnInfo",value:function(){
+// 变量
+var t: any = this.props.platform,e=this.carStore,o=e.tabs,n=e.tabIndex,s=e.urlParams,c=e.loadingSbom;
+t.isPc||o.length-1===n?(this.btnText=(0,S.t)('preview_config'),this.btnAction=this.gotoPreview,c&&(this.btnAction=function(){
+return(0,C.showToast)(s.uniqueId,(0,S.t)('is_switching_sbom'))
+}
+)):(this.btnText=(0,S.t)('common_next_step'),this.btnAction=this.gotoNext)
+}
+
+}
+,{
+key:"getCarPreviewBtnInfo",value:function(){
+// 变量
+var t: any = this.props,e=t.agreementChecked,o=t.platform,n=this.carStore,s=n.urlParams,c=n.rightsActivityList,l=n.loadingRights,h=n.isModifyOrder;
+if(b.previewScene.isPreview)return this.btnText=(0,S.t)('onlyPreview'),void(this.btnDisabled=!0);
+if('1'===s.channelId||'3'===s.channelId)return this.btnText=(0,S.t)('send_config'),void(this.btnAction=this.gotoSend);
+if(this.btnDisabled=!0,this.btnAction=this.onPreviewClick,l||(c&&c.length>0?this.btnText=(0,S.t)('select_rights'):this.btnText=h?(0,S.t)('confirm_to_modify'):(0,S.t)('buy_now_button')),h){
+if(!e)return void(this.btnAction=function(){
+return o.isPc?(0,C.showToast)(s.uniqueId,(0,S.t)('plz_read_and_select')):p.DeviceEventEmitter.emit('AgreementValidate')
+}
+);
+if((s.relationSbomCode||s.sbomCode)===this.carStore.sbomCode)return void(this.btnAction=function(){
+return(0,C.showToast)(s.uniqueId,(0,S.t)('plz_modify_sbom'))
+}
+)
+}
+this.btnDisabled=!1,l&&(this.btnAction=function(){
+return(0,C.showToast)(s.uniqueId,(0,S.t)('system_loading'))
+}
+)
+}
+
+}
+,{
+key:"getCarRightsBtnInfo",value:function(){
+// 变量
+var t: any = this,e=this.props.platform,o=this.carStore,n=o.urlParams,s=o.isModifyOrder,c=o.isAddRights,l=o.rightsTabIndex,h=o.rightsActivityList,u=0;
+h&&(e.isPc||h.length-1===l?(e.isStoreApp?this.btnAction=function(){
+x.Modal.show('BoxTip',{
+boxTipText:(0,S.t)('storeAppNotSupportOrder')
+}
+),t.gotoIsrp()
+}
+:this.btnAction=c?this.gotoPay:s?this.gotoModify:this.gotoBuy,this.btnText=(0,S.t)('confirm_rights'),u=(0,T.getUncheckActivityIndex)(this.carStore)()):(this.btnText=(0,S.t)('common_next_step'),this.btnAction=this.gotoNext,u=(0,T.getUncheckActivityIndex)(this.carStore)(l+1)),this.btnDisabled=-1!==u,this.btnDisabled&&(this.btnAction=function(){
+(0,T.gotoRightsTab)(t.carStore)(u,e.isPc),(0,C.showToast)(n.uniqueId,(0,S.t)('rights_not_enough'))
+}
+))
+}
+
+}
+,{
+key:"getBtnInfo",value:function(){
+this.btnDisabled=!1,this.btnAction=null,this.context.isCarSelect?this.getCarSelectBtnInfo():this.context.isCarPreview?this.getCarPreviewBtnInfo():this.context.isCarRights&&this.getCarRightsBtnInfo()
+}
+
+}
+,{
+key:"gotoSend",value:function(){
+// 变量
+var t: any = this.carStore,e=t.urlParams,o=t.prdId,n=t.sbomCode,s=t.packTab,c=t.estTotalPrice;
+this.carStore.report({
+actionCode:'900027210',actionName:(0,S.t)('bottom_send_btn'),resSiteCode:'r_carPreview_bottom',resSiteName:(0,S.t)('bottom_nav'),content:{
+comId:'carPreview_bottom',name:(0,S.t)('send_config'),URL:'',price:c
+}
+
+}
+),'1'===e.channelId?S.RnBridge.invokeVmallNative('onlinecar','sendconfig',{
+prdId:o.toString(),sbomCode:n,choiceSbomCode:null==s?void 0:s.value.map((function(t){
+return t.sbomCode
+}
+)).join(','),targetPage:'carpreview',channelId:'2'
+}
+):'3'===e.channelId&&x.Modal.show('QRCodeModal')
+}
+
+}
+,{
+key:"gotoCarOrderDetail",value:function(){
+var t,e=this.props.platform,o=this.carStore,n=o.urlParams,s=n.orderCode,c=n.isHisData,l=o.navigation;
+t=e.isMp?"/packageRnCarOrderDetail/index?orderCode="+s+"&isLive="+c:(e.isPc?S.Service.webDomain:S.Service.wapDomain)+"car/orderdetail/index.html?&orderCode="+s+"&isLive="+c,e.isApp&&(t="vmall://com.vmall.client/commonh5/singlepage?url="+encodeURIComponent(t)),e.isIOS&&this.context.isCarRights||e.isAndroid?l.navigate(t,!1):l.replace(t,!1),this.unLockBtn()
+}
+
+}
+,{
+key:"afterModified",value:function(){
+// 变量
+var t: any = this,e=this.carStore,o=e.navigation,n=e.urlParams,s=e.displayPrdInfo;
+if(n.isOldCarDetail){
+// 变量
+var c: any = this.props.platform;
+c.isIOS&&S.RnBridge.invokeVmallNative('page','finished',{
+isBackAnimated:0
+}
+),c.isApp&&(c.isHarmony||S.RnBridge.invokeVmallNative('page','finished',{
+isBackAnimated:0
+}
+),c.isIOS||S.RnBridge.invokeVmallNative('page','finishedRnCarDetailActivity',{
+isBackAnimated:0
+}
+));
+// 变量
+var l: any = n.prdId+"_"+(n.relationSbomCode||n.sbomCode||s.defaultSbomCode);
+(0,C.setStorage)("chosePackageCode_"+l,'',7),(0,C.setStorage)("sbom_"+l,'',7),(0,C.setStorage)("carDetailPkg_"+l,'',7),(0,C.setStorage)("package_"+l,[],7),D.default.setIndex(0),D.default.setRoute([]),D.default.setInItSbomCode(),D.default.clearAttr(),D.default.clearPackageMap(),this.gotoCarOrderDetail()
+}
+else o.goBackTo('all',(function(){
+return t.gotoCarOrderDetail()
+}
+))
+}
+
+}
+,{
+key:"gotoModify",value:(I=(0,n.default)((function*(){
+// 变量
+var t: any = this;
+this.lockBtn();
+// 变量
+var e: any = this.carStore,o=e.urlParams,n=e.carRightsInfoList,s=yield(0,T.getPurchaseAgreement)(this.carStore),c=this.getOrderReqList();
+try{
+var l=yield(0,C.checkLoginWrap)((function(){
+return(0,M.replaceCarProduct)({
+refOrderCode:o.orderCode,purchaseAgreement:s,orderReqList:c,carRightsInfoList:n
+}
+)
+}
+),(function(){
+return t.unLockBtn()
+}
+));
+if('0'!==l.code)throw l;
+this.afterModified()
+}
+catch(t){
+this.unLockBtn(0);
+var h=(0,C.getResCode)(t);
+h===B.CAR_ERR.UPDATE_DEPOSIT&&(0,_.updateDepositBalance)(o.orderCode).catch((function(){
+return null
+}
+)),this.checkRightsError(h)||(0,C.showErrorToast)(o.uniqueId,(0,B.getCarErrTip)(h))
+}
+
+}
+)),function(){
+return I.apply(this,arguments)
+}
+)
+}
+,{
+key:"gotoBuyReport",value:function(t){
+this.carStore.report({
+actionCode:'900027210',actionName:(0,S.t)('bottom_buy_now'),resSiteCode:'r_carPreview_bottom',resSiteName:(0,S.t)('bottom_nav'),content:{
+comId:'carPreview_bottom',name:(0,S.t)('buy_now_button'),URL:t,price:this.carStore.estTotalPrice
+}
+
+}
+)
+}
+
+}
+,{
+key:"gotoBuy",value:(v=(0,n.default)((function*(){
+// 变量
+var t: any = this;
+this.lockBtn();
+// 变量
+var e: any = this.props.platform,o=this.carStore,n=o.urlParams,s=o.carRightsInfoList;
+e.isWeb&&this.context.isCarRights&&(0,T.setCacheRightsList)(this.carStore);
+try{
+var c=yield(0,C.checkLoginWrap)((function(){
+return(0,M.saveCart)({
+orderItemReqArgs:t.getOrderReqList(),carRightsInfoList:s
+}
+)
+}
+),(function(){
+return t.unLockBtn()
+}
+),S.AppStore.isLogin);
+if(null==c||!c.cartId)throw c;
+// 变量
+var l: any = S.Service.wapDomain;
+e.isPc?l=S.Service.webDomain:e.isMp&&(l='/');
+var h=l+(e.isMp?'packageRnCarOrderConfirm/index':'car/orderconfirm/index.html')+"?cartId="+c.cartId;
+e.isApp&&(h="vmall://com.vmall.client/commonh5/singlepage?url="+encodeURIComponent(h)),p.DeviceEventEmitter.emit("onHide-"+n.uniqueId),this.gotoBuyReport(h),S.RouterUtils.gotoPage(h),this.unLockBtn()
+}
+catch(t){
+if(e.isWeb&&(0,C.checkResCode)(t,_.CODE.NO_LOGIN))return void(0,T.setCacheCarSubmitFlag)(this.carStore);
+this.unLockBtn(0);
+// 变量
+var u: any = (0,B.getCarErrTip)((0,C.getResCode)(t),'');
+(0,C.showErrorToast)(n.uniqueId,u||t)
+}
+
+}
+)),function(){
+return v.apply(this,arguments)
+}
+)
+}
+,{
+key:"gotoIsrp",value:(f=(0,n.default)((function*(){
+this.lockBtn();
+// 变量
+var t: any = this.carStore,e=t.sbomInfo,o=t.carRightsInfoList,n=t.urlParams;
+try{
+var s=yield(0,M.saveIsrpQuotation)({
+prdId:e.disPrdId,sbomCode:e.sbomCode,sbomAttrList:e.sbomAttrList,carRightsInfoList:o
+}
+);
+if(null==s||!s.isrpQuotationQueryKey)throw s;
+this.unLockBtn()
+}
+catch(t){
+this.unLockBtn(0),(0,C.showErrorToast)(n.uniqueId,t)
+}
+
+}
+)),function(){
+return f.apply(this,arguments)
+}
+)
+}
+,{
+key:"gotoPay",value:(o=(0,n.default)((function*(){
+var t;
+this.lockBtn();
+// 变量
+var e: any = this.carStore,o=e.carRightsInfoList,n=e.urlParams;
+E.globalData.carOrderDetailCache.carRightsInfoList=o.filter((function(t){
+return!t.selected
+}
+));
+// 变量
+var s: Function = yield null==(t=E.globalData.carOrderDetailCache)?void 0:t.orderPay();
+if(this.unLockBtn(null!=s&&s.success?1e3:0),null==s||!s.success){
+// 变量
+var c: any = (0,C.getResCode)(s);
+this.checkRightsError(c)?E.globalData.carOrderDetailCache.carRightsInfoList=[]:[B.CAR_ERR.NOT_LOGIN,B.CAR_ERR.NOT_LOGIN_ADDBOOK].includes(c)||null!=s&&s.info&&(0,C.showErrorToast)(n.uniqueId,s.info)
+}
+
+}
+)),function(){
+return o.apply(this,arguments)
+}
+)
+}
+,{
+key:"gotoNext",value:function(){
+// 变量
+var t: any = "onTabChange-"+this.carStore.urlParams.uniqueId;
+if(this.context.isCarSelect)return this.carStore.report({
+actionCode:'900027107',actionName:(0,S.t)('bottom_click_btn'),resSiteCode:'r_carDetail_bottom',resSiteName:(0,S.t)('bottom_nav'),content:{
+comId:'carDetail_bottom'
+}
+
+}
+),void p.DeviceEventEmitter.emit(t,this.carStore.tabIndex+1);
+this.context.isCarRights&&p.DeviceEventEmitter.emit(t,this.carStore.rightsTabIndex+1)
+}
+
+}
+,{
+key:"gotoPreview",value:function(){
+// 变量
+var t: any = this.carStore,e=t.isModifyOrder,o=t.navigation,n=t.urlParams;
+p.DeviceEventEmitter.emit("onHide-"+n.uniqueId),this.carStore.setRelayStore(),e||(0,T.setStorageCodeList)(this.carStore)(),o.navigate('CarPreview')
+}
+
+}
+,{
+key:"onPreviewClick",value:function(){
+// 变量
+var t: any = this;
+this.checkRights((function(){
+// 变量
+var e: any = t.carStore,o=e.rightsActivityList,n=e.isModifyOrder;
+if(!(o.length>0))return t.props.platform.isStoreApp?(x.Modal.show('BoxTip',{
+boxTipText:(0,S.t)('storeAppNotSupportOrder')
+}
+),void t.gotoIsrp()):void(n?t.gotoModify():t.gotoBuy());
+t.gotoRights()
+}
+))
+}
+
+}
+,{
+key:"checkRights",value:function(t){
+// 变量
+var e: any = this.carStore,o=e.getRightsInfo,n=e.urlParams;
+o(!0).then(t).catch((function(t){
+'late'!==t&&(0,C.showErrorToast)(n.uniqueId,t)
+}
+))
+}
+
+}
+,{
+key:"gotoRights",value:function(){
+this.lockBtn();
+// 变量
+var t: any = this.props.platform,e=this.carStore,o=e.navigation,n=e.isModifyOrder;
+if(this.carStore.rightsTabIndex=0,t.isWeb&&(0,T.getCacheRightsList)(this.carStore),t.isApp&&o.origin)o.origin.navigate('CarRights');
+else if(t.isWeb&&n){
+var s,c=this.carStore,l=c.sbomCode,h=c.packTab;
+o.navigate('CarRights',{
+sbomCode:l,choiceSbomCode:((null==h||null==(s=h.value)?void 0:s.map((function(t){
+return t.sbomCode
+}
+)))||[]).join(',')
+}
+)
+}
+else this.carStore.setRelayStore(),o.navigate('CarRights');
+this.unLockBtn()
+}
+
+}
+,{
+key:"togglePriceDetailModalReport",value:function(t){
+// 变量
+var e: any = this.context.isCarSelect;
+this.carStore.report({
+actionCode:e?'900027211':'900027108',actionName:""+(t?(0,S.t)('common_expand'):(0,S.t)('pack_up'))+(0,S.t)('price_detail_modal'),resSiteCode:e?'r_carDetail_bottom':'r_carPreview_bottom',resSiteName:(0,S.t)('bottom_nav'),content:{
+comId:e?'car_price_window':'carPreview_bottom',type:t?'1':'2'
+}
+
+}
+)
+}
+
+}
+,{
+key:"renderIcon",value:function(){
+// 变量
+var t: any = this.props,e=t.platform,o=t.themeStyles,n=t.theme;
+return e.isPc&&!this.context.isCarRights?(0,q.jsx)(p.Text,{
+style:o.priceIconText,children:(0,S.t)('priceDetail')
+}
+):(0,q.jsx)(p.View,{
+style:o.priceIconBox,children:e.isMp?(0,q.jsx)(p.Image,{
+style:o.priceIconImg,mode:"aspectFit",resizeMode:"contain",source:{
+uri:this.props.isModalBottom?y.ImageArray.arrowDown:y.ImageArray.arrowUp
+}
+
+}
+):(0,q.jsx)(y.SvgIcon,{
+iconName:this.props.isModalBottom?'ic_public_arrow_down_0':'ic_public_arrow_up_0',viewBox:'300 -200 1340 1340',width:"16",height:"16",normalCol:n.C24.color,opacity:.4
+}
+)
+}
+)
+}
+
+}
+,{
+key:"renderBtnText",value:function(t){
+// 变量
+var e: any = this.props.themeStyles;
+return(0,q.jsx)(p.View,{
+style:t?[e.btnBox,e.visibleTextBox]:[e.btnBox,e.btnBack,this.carStore.isAddRights&&e.orderBack,(this.btnDisabled||this.state.isBtnLock)&&e.disabled],children:(0,q.jsx)(p.Text,{
+style:[e.btnText,this.context.isCarPreview&&b.previewScene.isPreview&&e.previewBtnText,!t&&e.hideText],children:this.btnText
+}
+)
+}
+)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this.props,e=t.theme,o=t.themeStyles,n=t.platform,s=t.agreementChecked,c=t.isModalBottom,l=t.backgroundColor,h=this.carStore,u=h.urlParams,f=h.isAddRights;
+return this.getBtnInfo(),(0,q.jsxs)(p.View,{
+style:[o.container,l&&{
+backgroundColor:l
+}
+],children:[this.context.isCarRights?this.renderRights():this.renderPrice(),(0,q.jsxs)(p.TouchableOpacity,{
+onPress:this.onBtnClick,activeOpacity:n.isPc?1:.2,children:[this.renderBtnText(!1),this.renderBtnText(!0)]
+}
+),!c&&(0,q.jsxs)(q.Fragment,{
+children:['3'===u.channelId&&(0,q.jsx)(w.default,{
+
+}
+),this.context.isCarRights?(0,q.jsxs)(q.Fragment,{
+children:[(0,q.jsx)(A.default,{
+
+}
+),(0,q.jsx)(L.default,{
+pageConfig:n,btnColor:C.ThemeInfo.resColor||(f?e.primaryColor:R.CAR_THEME_COLOR)
+}
+)]
+}
+):(0,q.jsx)(k.default,{
+agreementChecked:s
+}
+),(0,q.jsx)(j.BoxTip,{
+
+}
+)]
+}
+)]
+}
+)
+}
+
+}
+]);
+var o,f,v,I
+}
+)(v.CarStoreComponent),o.contextType=P.PageJudgeContext,o.defaultProps={
+agreementChecked:!0
+}
+,e=o))||e)||e;
+_e.default=(0,f.injectLayout)((function(){
+for(var t=arguments.length,e=new Array(t),o=0;
+o<t;
+o++)e[o]=arguments[o];
+// 变量
+var n: any = e[0],s=e[1],c=120;
+return s.isPc?c=128:s.isPadH?c=s.getGridsWidth(3):s.isPhone||(c=s.getGridsWidth(2)),p.StyleSheet.create({
+container:Object.assign({
+
+}
+,n.S2,{
+borderTopWidth:.5,borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,height:s.isPc?80:R.BOTTOM_HEIGHT+s.safeAreaBottomHeight,paddingBottom:s.safeAreaBottomHeight,flexDirection:'row',alignItems:'center',justifyContent:'flex-end',paddingHorizontal:s.isPc?24:s.pageMargin,backgroundColor:'transparent'
+}
+),loadingLabel:{
+flex:1
+}
+,priceWrap:{
+flex:1,flexDirection:'row',alignItems:'center',flexWrap:'wrap'
+}
+,priceIconWrap:{
+flexDirection:'row',alignItems:'center'
+}
+,priceLabel:Object.assign({
+
+}
+,n.T3,n.C13,{
+marginRight:8
+}
+),priceText:Object.assign({
+
+}
+,n.T11,n.C11,{
+marginRight:6
+}
+),priceIconText:Object.assign({
+
+}
+,n.T3,n.C18,{
+marginRight:6
+}
+),priceIconBox:{
+width:16,height:16,marginRight:6
+}
+,priceIconImg:{
+width:16,height:16
+}
+,btnBox:{
+alignItems:'center',justifyContent:'center',paddingHorizontal:12
+}
+,btnBack:{
+backgroundColor:C.ThemeInfo.themeColor,borderRadius:20,height:40,minWidth:c
+}
+,orderBack:{
+backgroundColor:C.ThemeInfo.resColor||n.primaryColor
+}
+,disabled:{
+opacity:.4
+}
+,visibleTextBox:{
+position:'absolute',top:0,left:0,width:'100%',height:40
+}
+,hideText:{
+opacity:0
+}
+,btnText:Object.assign({
+
+}
+,s.isPc?n.T9:n.T10,n.C17),previewBtnText:Object.assign({
+
+}
+,n.T4),rightText:Object.assign({
+
+}
+,n.C12,s.isPc?n.T10:n.T11,{
+marginRight:6
+}
+)
+}
+)
+}
+))(W)
+}
+),"86b6c4215b87f57989e7a238ad6b3f7b2c87116e07baf5f465f587f651ed47e1",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","c895ba994259e792b73a497855d6ccf89bfa5e4282b1a89381209382059ee75e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","a49b533e258ebfe763b1325ab0e515b2120812b1ac61867898a9ca8e1a96feb8","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","b361810eb51d228d6e3cbc921297b28385e5d8fcaf90a28810689d6835bc9de0","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","fee923ced0492f4c37c34089b3b37690ab388d818c61158fcf835cd64d8c9ad9","1b63c30f41ba3628de922e5ed56d10c17765289d027f0ece921ce81e31be37f5","9500b24c16bfc1f7487a92364c936822f13e89774fe7c30dcb1642f52c515069","3be494e89747ab841ffed5ce990f244e8a85551155f9f0f217ea3228c3d20f3a","312861f0fc3a341af7527c23e49135ae7aa003154070ba958bef23d4253ea685","29f7a18c5b0c8dab6b924172b58df2b058b34220c7aa7ced643ad18736060c31","4cd4bc2fffc7b6661206747a1559dad181678f10a430369281be185c37592576","e1e2841e4a5ac9f8afcbcf5d5405be2429497c86f1b6eee4c70aa258071c5ff0","4d5c25d100750b2796817febeb2b3a5bcac48590c98814a15296066221f852c0","0ea8031004a7001e8b293f69ced6ccd729ba63db477638949eb2145c200d1114","d8cc0ad120d6721e27499f006a886f75435f78b9380e24198288d380e1f27388","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var i: any = h(t);
+if(i&&i.has(e))return i.get(e);
+var r={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var l in e)if("default"!==l&&{
+
+}
+.hasOwnProperty.call(e,l)){
+// 变量
+var n: any = o?Object.getOwnPropertyDescriptor(e,l):null;
+n&&(n.get||n.set)?Object.defineProperty(r,l,n):r[l]=e[l]
+}
+return r.default=e,i&&i.set(e,r),r
+}
+)(_r(d[1])),i=_r(d[2]),r=e(_r(d[3])),o=_r(d[4]),l=e(_r(d[5])),n=_r(d[6]),a=_r(d[7]),s=e(_r(d[8])),c=_r(d[9]),p=_r(d[10]),u=e(_r(d[11])),f=_r(d[12]);
+// 函数
+function h(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,i=new WeakMap;
+return(h=function(e){
+return e?i:t
+}
+)(e)
+}
+_e.default=function(){
+var e,h,y,b=(arguments.length>0&&void 0!==arguments[0]?arguments[0]:{
+
+}
+).agreementChecked,x=void 0!==b&&b,j=(0,o.useModal)('PriceDetailModal').visible,D=(0,a.useCarStore)(),T=D.estTotalPrice,v=D.sbomInfo,C=D.packTab,w=D.skuPromoInfo,S=(0,n.useLayout)(P),L=S.themeStyles,B=S.theme,O=S.platform,W=function(){
+o.Modal.hide('PriceDetailModal')
+}
+,k=function(e,t){
+return(0,f.jsxs)(i.View,{
+style:L.detailItem,children:[(0,f.jsx)(i.Text,{
+style:L.detailLabel,numberOfLines:1,ellipsizeMode:"tail",children:e
+}
+),(0,f.jsx)(i.Text,{
+style:L.detailPrice,children:'string'==typeof t?t:(0,p.formatPrice)(t||0)
+}
+)]
+}
+)
+}
+,I=[null==(e=v.sbomAttrList)?void 0:e.map((function(e){
+var t,i=null==(t=e.attrValueList[0])?void 0:t.attrPriceDesc;
+return Boolean(i)&&k(e.attrName+" | "+e.attrValueList[0].attrValue,i)
+}
+)),null==C?void 0:C.value.map((function(e){
+return k(e.sbomName,e.unitPrice)
+}
+)),null==w||null==(h=w.carEnjoyedPromotionDetailList)?void 0:h.map((function(e){
+return k((0,c.t)('bookingPromotion'),-e.promotionDiscount||(0,c.t)('without_price'))
+}
+)),null==w||null==(y=w.carPrePromotionDetailList)?void 0:y.slice(0,10).map((function(e){
+return(0,f.jsxs)(f.Fragment,{
+children:[k((0,c.t)('prePromotion'),-e.promotionDiscount||(0,c.t)('without_price')),Boolean(e.promotionInfoDesc)&&(0,f.jsxs)(i.View,{
+style:L.subDetailItem,children:[(0,f.jsx)(i.Text,{
+style:L.subDetailDesc,children:(0,c.t)('preCondition')
+}
+),(0,f.jsx)(i.Text,{
+style:[L.subDetailDesc,L.promoDetailDesc],children:e.promotionInfoDesc
+}
+)]
+}
+)]
+}
+)
+}
+))].flat(1).filter(Boolean).map((function(e,i){
+return(0,f.jsx)(t.Fragment,{
+children:e
+}
+,i)
+}
+)),V=O.isPc?r.default:u.default;
+return(0,f.jsx)(V,{
+showDragBar:!1,pageConfig:O,maskClosable:!0,cardStyle:O.isPc?L.pcCardStyle:L.wapCardStyle,visible:j,title:(0,c.t)('priceDetail'),contentStyle:O.isPc?L.pcContentStyle:L.wapContentStyle,content:(0,f.jsxs)(f.Fragment,{
+children:[I.length>0&&(0,f.jsx)(i.View,{
+style:L.scrollWrap,children:(0,f.jsxs)(i.ScrollView,{
+style:L.scroll,children:[I,(0,f.jsx)(i.View,{
+style:L.scrollBottomGap
+}
+)]
+}
+)
+}
+),(0,f.jsxs)(i.View,{
+style:L.totalPriceWrap,children:[(0,f.jsxs)(i.View,{
+style:L.detailItem,children:[(0,f.jsx)(i.Text,{
+style:L.detailLabel,numberOfLines:1,children:(0,c.t)('estTotalPrice')+" *"
+}
+),(0,f.jsx)(i.Text,{
+style:[L.detailLabel,L.totalPrice],children:(0,p.formatPrice)(T,v)
+}
+)]
+}
+),(0,f.jsx)(i.View,{
+style:O.isPc?L.subDetailItem:L.totalPriceTipWrap,children:(0,f.jsx)(i.Text,{
+style:[L.subDetailDesc,!O.isPc&&L.totalPriceTip],children:"* "+(0,c.t)('finalPriceTip')
+}
+)
+}
+)]
+}
+),Boolean(v.sbomPromWord)&&(0,f.jsx)(i.View,{
+style:L.collapseWrap,children:(0,f.jsx)(s.default,{
+startByUp:!0,useLinearIcon:!0,linearColor:O.isPc?void 0:B.fillGray,textLayout:Object.assign({
+
+}
+,O.isPc?B.T7:B.T3,B.C13,{
+lineHeight:16
+}
+),children:v.sbomPromWord
+}
+)
+}
+)]
+}
+),footerStyle:(O.isPc||O.isPhone)&&L.footerStyle,footer:!O.isPc&&(O.isPhone?(0,f.jsx)(l.default,{
+isModalBottom:!0,agreementChecked:x
+}
+):[!1,{
+onPress:W
+}
+]),onRequestClose:W
+}
+)
+}
+;
+var P=function(){
+for(var e=arguments.length,t=new Array(e),r=0;
+r<e;
+r++)t[r]=arguments[r];
+// 变量
+var o: any = t[0],l=t[1];
+return i.StyleSheet.create({
+pcCardStyle:{
+width:594,maxHeight:642
+}
+,wapCardStyle:{
+minHeight:0
+}
+,pcContentStyle:{
+paddingHorizontal:48
+}
+,wapContentStyle:{
+paddingTop:0,paddingRight:0
+}
+,scrollWrap:{
+flexShrink:1
+}
+,scroll:l.isPc?{
+overscrollBehavior:'contain',marginRight:-20,paddingRight:20
+}
+:{
+paddingRight:16
+}
+,scrollBottomGap:{
+height:8
+}
+,detailItem:{
+flexDirection:'row',alignItems:'center',height:l.isPc?40:36
+}
+,subDetailItem:{
+marginTop:-4,marginBottom:4
+}
+,subDetailDesc:Object.assign({
+
+}
+,o.C13,o.T3,{
+marginTop:1,paddingLeft:l.isPc?20:10
+}
+),promoDetailDesc:{
+marginTop:4
+}
+,detailLabel:Object.assign({
+
+}
+,o.C11,o.T10,{
+flex:1
+}
+),detailPrice:Object.assign({
+
+}
+,o.C13,o.T9,{
+marginLeft:12
+}
+),totalPriceWrap:{
+flexShrink:0,paddingTop:6,paddingBottom:10,marginRight:l.isPc?0:16,borderColor:o.S2.borderColor,borderTopWidth:.5
+}
+,totalPrice:{
+textAlign:'right'
+}
+,totalPriceTipWrap:{
+borderRadius:8,backgroundColor:c.CommonUtils.colorRgba(o.C39.color,o.C39.opacity),paddingHorizontal:8,paddingTop:5,paddingBottom:7,marginTop:4
+}
+,totalPriceTip:{
+marginTop:0,paddingLeft:0
+}
+,collapseWrap:{
+flexShrink:0,flexDirection:'row',paddingVertical:12.5,marginRight:l.isPc?0:16
+}
+,footerStyle:{
+paddingHorizontal:0,paddingTop:0,paddingBottom:0,flexDirection:'column',alignItems:'stretch'
+}
+
+}
+)
+}
+
+}
+),"fee923ced0492f4c37c34089b3b37690ab388d818c61158fcf835cd64d8c9ad9",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","01b215bea1ae0b01ea5e971aa8cc93ecd902939f35968b2f737c9eb756f3cdd0","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","86b6c4215b87f57989e7a238ad6b3f7b2c87116e07baf5f465f587f651ed47e1","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","153894306258a1dc23a1a72316620d8662835b1478fa0d491daee326120f6189","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]).Fragment;
+e.default=t
+}
+),"3be494e89747ab841ffed5ce990f244e8a85551155f9f0f217ea3228c3d20f3a",["6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var i: any = u(e);
+if(i&&i.has(t))return i.get(t);
+var o={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in t)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(t,n)){
+// 变量
+var l: any = r?Object.getOwnPropertyDescriptor(t,n):null;
+l&&(l.get||l.set)?Object.defineProperty(o,n,l):o[n]=t[n]
+}
+return o.default=t,i&&i.set(t,o),o
+}
+)(_r(d[1])),i=_r(d[2]),o=_r(d[3]),r=t(_r(d[4])),n=_r(d[5]),l=_r(d[6]),a=_r(d[7]),c=t(_r(d[8])),s=t(_r(d[9])),p=_r(d[10]);
+// 函数
+function u(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,i=new WeakMap;
+return(u=function(t){
+return t?i:e
+}
+)(t)
+}
+_e.default=function(){
+// 变量
+var t: any = (0,o.useModal)('SelectedRightsModal').visible,u=(0,l.useCarStore)().rightsActivityList,h=(0,n.useLayout)(f),y=h.themeStyles,v=h.platform;
+if(null==u||!u.length)return null;
+// 变量
+var S: Function = !1;
+return(0,p.jsx)(s.default,{
+pageConfig:v,maskClosable:!0,visible:t,showDragBar:!1,cardStyle:v.isPc&&y.pcCardStyle,titleStyle:v.isPc&&y.pcTitleStyle,title:v.isPc?(0,p.jsx)(i.Text,{
+style:y.pcTitle,children:(0,a.t)('selected_rights')
+}
+):(0,a.t)('selected_rights'),closeIconProps:v.isPc?{
+width:14,height:14,style:y.pcCloseIcon
+}
+:void 0,contentStyle:v.isPc?y.pcContentStyle:y.wapContentStyle,content:(0,p.jsx)(i.ScrollView,{
+style:y.scroll,children:u.map((function(t,o){
+return t.rightsPackageList.map((function(r,n){
+if(!r.checked)return null;
+// 变量
+var l: any = S;
+return S=!0,(0,p.jsxs)(e.Fragment,{
+children:[l&&(0,p.jsx)(i.View,{
+style:y.cardLine
+}
+),(0,p.jsx)(c.default,{
+rightsActivity:t,rightsPackage:r,editable:!1
+}
+,r.rightsPackageCode)]
+}
+,o+"-"+n)
+}
+))
+}
+))
+}
+),footerStyle:y.footerStyle,footer:v.isPhone&&(0,p.jsx)(r.default,{
+isModalBottom:!0
+}
+),onRequestClose:function(){
+o.Modal.hide('SelectedRightsModal')
+}
+
+}
+)
+}
+;
+var f=function(){
+for(var t=arguments.length,e=new Array(t),o=0;
+o<t;
+o++)e[o]=arguments[o];
+// 变量
+var r: any = e[0],n=e[1];
+return i.StyleSheet.create({
+pcCardStyle:{
+maxWidth:690,maxHeight:560,paddingTop:0
+}
+,pcTitleStyle:{
+paddingLeft:40,paddingVertical:24,paddingRight:24,alignItems:'flex-start'
+}
+,pcTitle:Object.assign({
+paddingTop:16
+}
+,r.C11,r.T11),pcCloseIcon:{
+width:24,height:24,borderRadius:12
+}
+,pcContentStyle:{
+paddingHorizontal:40,paddingTop:8,paddingBottom:40
+}
+,wapContentStyle:{
+paddingBottom:n.isPhone?8:16,paddingRight:0
+}
+,scroll:n.isPc?{
+overscrollBehavior:'contain',marginRight:-12,paddingRight:12
+}
+:{
+overscrollBehavior:'contain',paddingRight:16
+}
+,footerStyle:{
+paddingHorizontal:0,paddingTop:0,paddingBottom:0,flexDirection:'column',alignItems:'stretch'
+}
+,cardLine:{
+marginTop:12,marginBottom:18,height:.5,backgroundColor:a.CommonUtils.colorRgba(r.C39.color,r.C39.opacity)
+}
+
+}
+)
+}
+
+}
+),"312861f0fc3a341af7527c23e49135ae7aa003154070ba958bef23d4253ea685",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","86b6c4215b87f57989e7a238ad6b3f7b2c87116e07baf5f465f587f651ed47e1","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","edfd4195a56898052a3244870118bb70d49b21e4ec3771e609b60b2323424ed9","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,_e,d){
+// 变量
+var e: any = r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.styles=_e.default=_e.CarRightsPackage=void 0;
+var t,c,o=e(r(d[1])),n=e(r(d[2])),s=e(r(d[3])),l=e(r(d[4])),h=e(r(d[5])),u=(e(r(d[6])),r(d[7])),f=r(d[8]),p=r(d[9]),y=r(d[10]),k=e(r(d[11])),x=r(d[12]),v=r(d[13]),b=r(d[14]),T=r(d[15]);
+// 函数
+function D(): any {
+try{
+var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(e){
+
+}
+return(D=function(){
+return!!e
+}
+)()
+}
+var j=_e.CarRightsPackage=(0,b.observer)((c=(function(e){
+// 函数
+function t(): any {
+var e,c,n,h;
+(0,o.default)(this,t);
+for(var u=arguments.length,f=new Array(u),p=0;
+p<u;
+p++)f[p]=arguments[p];
+return c=this,n=t,h=[].concat(f),n=(0,l.default)(n),(e=(0,s.default)(c,D()?Reflect.construct(n,h||[],(0,l.default)(c).constructor):n.apply(c,h))).onSelectPackage=function(){
+e.carStore.onSelectRightsPackage(e.props.rightsActivity,e.props.rightsPackage)
+}
+,e.onSelectDetail=function(t){
+return function(c){
+e.carStore.onSelectRightsDetail(e.props.rightsActivity,e.props.rightsPackage,t,c)
+}
+
+}
+,e.onViewDetail=function(t){
+return function(){
+// 变量
+var c: any = 1===e.props.rightsActivity.selectedFlag;
+v.Modal.show('RightsDetailModal',{
+disabled:c,rightsDetail:t,onSelectDetail:c?void 0:e.onSelectDetail(t)
+}
+)
+}
+
+}
+,e
+}
+return(0,h.default)(t,e),(0,n.default)(t,[{
+key:"render",value:function(){
+// 变量
+var e: any = this,t=this.props,c=t.themeStyles,o=t.theme,n=t.platform,s=t.rightsPackage,l=t.editable,h=1===t.rightsActivity.selectedFlag,f=!h&&s.carRightsList.length*s.optionRightsNum!=1,x=f&&(0,p.getMFromNText)(s.carRightsList.length,s.optionRightsNum),v=(n.isPc?296:n.width-2*n.pageMargin-24)-(f?4*o.T10.fontSize+4:0)-72;
+return(0,T.jsxs)(T.Fragment,{
+children:[(0,T.jsxs)(u.View,{
+style:c.packageTitleBar,children:[(0,T.jsxs)(u.View,{
+style:c.packageTitleWrap,children:[(0,T.jsxs)(u.Text,{
+style:[c.packageTitle,l&&{
+maxWidth:v
+}
+],numberOfLines:l?1:void 0,children:[s.rightsPackageName,!l&&x]
+}
+),l&&x&&(0,T.jsx)(u.Text,{
+style:c.packageTitle,children:x
+}
+)]
+}
+),l&&(0,T.jsx)(u.TouchableOpacity,{
+style:[c.packageChooseBtn,h&&c.disabled],onPress:h?void 0:this.onSelectPackage,children:(0,T.jsx)(u.Text,{
+style:c.packageChooseBtnText,children:(0,y.t)(s.checked?'common_unchoose':'common_choose')
+}
+)
+}
+)]
+}
+),s.carRightsList.map((function(t){
+// 变量
+var n: any = l&&s.checked;
+return(l||t.checked)&&(0,T.jsxs)(u.View,{
+style:c.rightsDetailBar,children:[(0,T.jsxs)(u.TouchableOpacity,{
+style:c.rightsDetailLeft,activeOpacity:n?void 0:1,onPress:n?e.onViewDetail(t):void 0,children:[(0,T.jsx)(u.Text,{
+style:c.rightsDetailName,numberOfLines:l?2:void 0,children:t.rightsName
+}
+),n&&(0,T.jsx)(u.Text,{
+style:c.rightsDetailView,children:(0,y.t)('viewDetail')
+}
+)]
+}
+),l&&s.checked&&(0,T.jsx)(k.default,{
+width:20,checked:t.checked,color:o.primaryColor,hotStyle:c.rightsDetailRight,boxStyle:[c.checkbox,h&&c.disabled],onChange:h?void 0:e.onSelectDetail(t)
+}
+)]
+}
+,t.rightsCode)
+}
+))]
+}
+)
+}
+
+}
+])
+}
+)(x.CarStoreComponent),c.defaultProps={
+editable:!0
+}
+,t=c))||t,C=_e.styles=function(){
+for(var e=arguments.length,t=new Array(e),c=0;
+c<e;
+c++)t[c]=arguments[c];
+// 变量
+var o: any = t[0],n=t[1];
+return u.StyleSheet.create({
+disabled:{
+opacity:.4
+}
+,packageTitleBar:{
+flexDirection:'row',alignItems:'center',paddingBottom:6
+}
+,packageTitleWrap:{
+flex:1,flexDirection:'row'
+}
+,packageTitle:Object.assign({
+
+}
+,n.isPc?o.T10:o.T20,o.C11,{
+lineHeight:28,fontSize:o.T10.fontSize
+}
+),packageChooseBtn:{
+width:72,height:28,alignItems:'center',justifyContent:'center',paddingHorizontal:8,borderRadius:14,backgroundColor:y.CommonUtils.colorRgba(o.C39.color,o.C39.opacity)
+}
+,packageChooseBtnText:Object.assign({
+
+}
+,o.T4,o.C11),rightsDetailBar:{
+paddingVertical:7,flexDirection:'row'
+}
+,rightsDetailLeft:{
+flex:1,alignSelf:'stretch',justifyContent:'space-between'
+}
+,rightsDetailName:Object.assign({
+
+}
+,o.T9,o.C11),rightsDetailView:Object.assign({
+
+}
+,o.T7,o.C13),rightsDetailRight:{
+width:64,height:42,alignItems:'flex-end',justifyContent:'center'
+}
+,checkbox:{
+borderRadius:10
+}
+
+}
+)
+}
+;
+_e.default=(0,b.inject)('carStore')((0,f.injectLayout)(C)(j))
+}
+),"edfd4195a56898052a3244870118bb70d49b21e4ec3771e609b60b2323424ed9",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","97aa79f35275d3132850e21928b492b139a23fef889e14da4d104e0adf71b543","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","934c53a1261cd9f9ac8cc36aa4b62a6bba52c89b5b6d24805fc042cc09254bec","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=e(_r(d[1])),i=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var i: any = p(t);
+if(i&&i.has(e))return i.get(e);
+var r={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var l in e)if("default"!==l&&{
+
+}
+.hasOwnProperty.call(e,l)){
+// 变量
+var n: any = o?Object.getOwnPropertyDescriptor(e,l):null;
+n&&(n.get||n.set)?Object.defineProperty(r,l,n):r[l]=e[l]
+}
+return r.default=e,i&&i.set(e,r),r
+}
+)(_r(d[2])),r=_r(d[3]),o=_r(d[4]),l=_r(d[5]),n=_r(d[6]),a=_r(d[7]),c=_r(d[8]),s=e(_r(d[9])),h=_r(d[10]);
+// 函数
+function p(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,i=new WeakMap;
+return(p=function(e){
+return e?i:t
+}
+)(e)
+}
+var f='RightsDetailModal',u=(_e.default=function(e){
+var p=e.pageConfig,y=e.btnColor,S=void 0===y?a.ThemeInfo.themeColor:y,x=e.btnText,b=void 0===x?(0,n.t)('common_choose'):x,C=(0,o.useModal)(f),T=C.visible,j=C.disabled,v=C.rightsDetail,I=C.onSelectDetail,w=(0,l.useTheme)(),W=(0,i.useMemo)((function(){
+// 变量
+var e: any = n.ScreenUtils.isSmall(p.width),t=n.ScreenUtils.isLarge(p.width);
+return[u(w,p.width,e,t),e,t]
+}
+),[w,p.width]),B=(0,t.default)(W,3),P=B[0],O=B[1],M=B[2];
+if(!v)return null;
+var _=function(){
+null==I||I(!0),o.Modal.hide(f)
+}
+,D='';
+D=M?v.pcImageFileCdnPath:O?v.mobileImageFileCdnPath:v.foldAndPadImageFileCdnPath;
+var F=Boolean(D),k=p.height<480,H=F&&(0,h.jsx)(r.View,{
+style:P.rightsImageBox,children:(0,h.jsx)(r.View,{
+style:P.rightsImage,children:(0,h.jsx)(c.FastImageView,{
+mode:"aspectFill",resizeMode:"cover",imgUri:D,imgStyle:P.rightsImage,useImageStyle:!0
+}
+)
+}
+)
+}
+);
+return(0,h.jsx)(s.default,{
+pageConfig:p,maskClosable:!0,visible:T,onRequestClose:function(){
+o.Modal.hide(f)
+}
+,showDragBar:!1,cardStyle:M&&[P.pcCardStyle,F&&P.pcImageCardStyle],titleStyle:M&&[P.pcTitleStyle,F&&P.pcImageTitleStyle],title:M?(0,h.jsx)(r.Text,{
+style:P.pcTitle,children:v.rightsName
+}
+):v.rightsName,closeIconProps:M?{
+width:14,height:14,style:P.pcCloseIcon
+}
+:void 0,contentStyle:[P.contentStyle,M&&F&&P.pcImageContentStyle],content:(0,h.jsxs)(h.Fragment,{
+children:[!k&&H,(0,h.jsxs)(r.View,{
+style:M?[P.pcScrollWrapper,F&&P.pcFooterStyle]:P.wapScrollWrapper,children:[(0,h.jsxs)(r.ScrollView,{
+style:P.scroll,children:[k&&H,(0,h.jsx)(r.Text,{
+style:P.rightsDescText,children:v.consumerPagDesc
+}
+)]
+}
+),M&&F&&(0,h.jsx)(r.TouchableOpacity,{
+style:[P.pcBtn,j&&P.disabled,S&&{
+backgroundColor:S
+}
+],onPress:_,children:(0,h.jsx)(r.Text,{
+style:P.pcBtnText,children:b
+}
+)
+}
+)]
+}
+)]
+}
+),footerStyle:M&&!F&&P.pcFooterStyle,footer:(!M||!F)&&[!1,{
+btnColor:S,btnStyle:[M&&P.pcBtn,j&&P.disabled],onPress:_,text:b
+}
+]
+}
+)
+}
+,function(e,t,i,o){
+// 变量
+var l: any = 560;
+return r.StyleSheet.create({
+disabled:{
+opacity:.4
+}
+,pcCardStyle:{
+maxWidth:690,maxHeight:560,paddingTop:0
+}
+,pcImageCardStyle:{
+maxWidth:1e3,height:560
+}
+,pcTitleStyle:{
+paddingLeft:40,paddingVertical:24,paddingRight:24,alignItems:'flex-start'
+}
+,pcImageTitleStyle:{
+paddingLeft:l+40
+}
+,pcTitle:Object.assign({
+paddingTop:16
+}
+,e.C11,e.T11,{
+fontWeight:'700'
+}
+),pcCloseIcon:{
+width:24,height:24,borderRadius:12
+}
+,contentStyle:{
+paddingHorizontal:0
+}
+,pcImageContentStyle:{
+flex:1,flexDirection:'row',paddingHorizontal:0
+}
+,footerStyle:Object.assign({
+
+}
+,e.S2,{
+borderBottomWidth:0,borderLeftWidth:0,borderRightWidth:0,borderTopWidth:.5
+}
+),pcFooterStyle:{
+paddingTop:0,paddingBottom:40
+}
+,pcBtn:{
+backgroundColor:a.ThemeInfo.themeColor,maxWidth:138,minWidth:138,maxHeight:52,minHeight:52,borderRadius:26,alignItems:'center',justifyContent:'center',alignSelf:'center'
+}
+,pcBtnText:Object.assign({
+
+}
+,e.T10,e.C42),rightsImageBox:{
+justifyContent:'flex-end',paddingBottom:o?0:8
+}
+,rightsImage:o?{
+width:l,height:l
+}
+:{
+width:i?t:480,height:9*(i?t:480)/16
+}
+,rightsDescText:Object.assign({
+paddingHorizontal:16
+}
+,e.C11,e.T9),pcScrollWrapper:{
+flex:1,marginHorizontal:24
+}
+,wapScrollWrapper:{
+flexShrink:1
+}
+,scroll:{
+overscrollBehavior:'contain',marginBottom:o?24:20
+}
+
+}
+)
+}
+)
+}
+),"4cd4bc2fffc7b6661206747a1559dad181678f10a430369281be185c37592576",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","c1980dddeb8bb7ad5b9572e31352611c18718a920515c6e0b99167dde6b19954","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","d75280efc4721d5c26687ddd2071adbb1b91628f6bd23888bdf406381b8398bf","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var e=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var i: any = s(e);
+if(i&&i.has(t))return i.get(t);
+var r={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var n in t)if("default"!==n&&{
+
+}
+.hasOwnProperty.call(t,n)){
+// 变量
+var o: any = a?Object.getOwnPropertyDescriptor(t,n):null;
+o&&(o.get||o.set)?Object.defineProperty(r,n,o):r[n]=t[n]
+}
+return r.default=t,i&&i.set(t,r),r
+}
+)(_r(d[1])),i=_r(d[2]),r=_r(d[3]),a=t(_r(d[4])),n=_r(d[5]),o=_r(d[6]),c=_r(d[7]),l=_r(d[8]);
+// 函数
+function s(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,i=new WeakMap;
+return(s=function(t){
+return t?i:e
+}
+)(t)
+}
+_e.default=(0,e.memo)((function(t){
+// 变量
+var s: Function = t.rightsActivity,f=(0,r.useLayout)(u),h=f.themeStyles,y=f.platform;
+if((0,e.useEffect)((function(){
+var t;
+!s||1===s.selectedFlag||s.optionPackageNum!==s.rightsPackageList.length||null!=(t=s.rightsPackageList[0])&&t.checked||(0,c.runInAction)((function(){
+s.rightsPackageList.forEach((function(t){
+t.checked||(t.checked=!0,t.carRightsList.length===t.optionRightsNum&&t.carRightsList.forEach((function(t){
+return t.checked=!0
+}
+)))
+}
+))
+}
+))
+}
+),[s]),!s)return null;
+// 变量
+var p: any = s.rightsPackageList,v=s.optionPackageNum,k=1!==s.selectedFlag&&(0,o.getMFromNText)(p.length,v);
+return(0,l.jsxs)(i.ScrollView,{
+showsVerticalScrollIndicator:!1,children:[(0,l.jsxs)(i.View,{
+style:h.activityNameBar,children:[(0,l.jsx)(i.Text,{
+style:h.activityName,numberOfLines:1,children:y.isPc?s.activityName:(0,n.t)('rights_package')
+}
+),k&&(0,l.jsx)(i.Text,{
+style:[h.activityName,h.activityChoose],children:k
+}
+)]
+}
+),(0,l.jsx)(i.View,{
+style:h.activityCard,children:p.map((function(t,r){
+return(0,l.jsxs)(e.Fragment,{
+children:[0!==r&&(0,l.jsx)(i.View,{
+style:h.cardLine
+}
+),(0,l.jsx)(a.default,{
+rightsActivity:s,rightsPackage:t
+}
+,t.rightsPackageCode)]
+}
+,r)
+}
+))
+}
+),(0,l.jsx)(i.View,{
+style:h.bottomGap
+}
+)]
+}
+,s.activityCode)
+}
+));
+var u=function(){
+for(var t=arguments.length,e=new Array(t),r=0;
+r<t;
+r++)e[r]=arguments[r];
+// 变量
+var a: any = e[0],o=e[1],c=o.isPc?24:o.pageMargin;
+return i.StyleSheet.create({
+activityNameBar:{
+flexDirection:'row',marginTop:24,marginBottom:8,marginHorizontal:c
+}
+,activityName:Object.assign({
+
+}
+,o.isPc?a.T12:a.T20,a.C11),activityChoose:{
+flexShrink:0
+}
+,activityCard:{
+paddingHorizontal:12,paddingVertical:18,borderRadius:o.isPc?8:16,marginHorizontal:c,backgroundColor:o.isPc?n.CommonUtils.colorRgba(a.C32.color,.6):a.fillBase
+}
+,cardLine:{
+marginTop:12,marginBottom:18,height:.5,backgroundColor:n.CommonUtils.colorRgba(a.C39.color,a.C39.opacity)
+}
+,bottomGap:{
+height:12
+}
+
+}
+)
+}
+
+}
+),"e76d591453b942a554012bfb0a3373b96e7a91957420bddd04e7600902c3ba1a",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","edfd4195a56898052a3244870118bb70d49b21e4ec3771e609b60b2323424ed9","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","51fb24881167a96e71a9ac10e672d1c34da243ff1643ebc0346379844aa0dc14","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+// 变量
+var e: any = t(_r(d[1])),n=t(_r(d[2])),r=t(_r(d[3])),a=t(_r(d[4])),i=t(_r(d[5])),o=t(_r(d[6])),s=b(_r(d[7])),l=_r(d[8]),c=b(_r(d[9])),u=_r(d[10]),f=_r(d[11]),p=_r(d[12]);
+// 函数
+function h(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,n=new WeakMap;
+return(h=function(t){
+return t?n:e
+}
+)(t)
+}
+// 函数
+function b(t: any, e: any): any {
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var n: any = h(e);
+if(n&&n.has(t))return n.get(t);
+var r={
+__proto__:null
+}
+,a=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var i in t)if("default"!==i&&{
+
+}
+.hasOwnProperty.call(t,i)){
+// 变量
+var o: any = a?Object.getOwnPropertyDescriptor(t,i):null;
+o&&(o.get||o.set)?Object.defineProperty(r,i,o):r[i]=t[i]
+}
+return r.default=t,n&&n.set(t,r),r
+}
+// 函数
+function v(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(v=function(){
+return!!t
+}
+)()
+}
+var y=(function(t){
+// 函数
+function h(t: any): any {
+var e,r,o,l;
+return(0,n.default)(this,h),r=this,o=h,l=[t],o=(0,i.default)(o),(e=(0,a.default)(r,v()?Reflect.construct(o,l||[],(0,i.default)(r).constructor):o.apply(r,l))).isInit=!0,e.scrollRef=s.default.createRef(),e.tabRefList=[],e.state={
+activeIndex:0,tabWidthList:[]
+}
+,e.scrollTo=function(t){
+for(var n=e.props,r=n.tabGap,a=n.width,i=n.tabs,o=e.state.tabWidthList,s=o[t]*c.SCALE_RATIO,l=t,u=t;
+l<i.length-1&&u>0;
+){
+if((s+=o[++l]+r)>a){
+--l;
+break
+}
+if((s+=o[--u]+r)>a){
+++u;
+break
+}
+
+}
+for(var f=0,p=u-1;
+p>=0;
+--p)f+=o[p]+r;
+e.setState({
+activeIndex:t
+}
+,(function(){
+var t;
+null==(t=e.scrollRef.current)||t.scrollTo({
+x:f,animated:!e.isInit
+}
+),e.isInit=!1
+}
+))
+}
+,e.onPressTab=function(t){
+!1!==(null==e.props.onPressTab?void 0:e.props.onPressTab(t))&&e.setState({
+activeIndex:t
+}
+)
+}
+,e.setTabWidthList=function(){
+var t=setInterval((function(){
+// 变量
+var n: any = e.tabRefList.filter(Boolean);
+n.length>=e.props.tabs.length&&(clearInterval(t),Promise.all(n.map((function(t){
+return t.getTabWidth()
+}
+))).then((function(t){
+e.setState({
+tabWidthList:t
+}
+)
+}
+)))
+}
+),u.ANIM_FRAME)
+}
+,e.state.activeIndex=e.props.index,e
+}
+return(0,o.default)(h,t),(0,r.default)(h,[{
+key:"componentDidMount",value:function(){
+this.setTabWidthList()
+}
+
+}
+,{
+key:"componentDidUpdate",value:function(t,e){
+// 变量
+var n: any = t.tabs.join(','),r=this.props.tabs.join(','),a=t.index,i=this.props.index,o=t.width;
+this.props.width!==o||r!==n?this.setTabWidthList():i===a&&this.state.tabWidthList===e.tabWidthList||this.scrollTo(i)
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this,n=this.props,r=n.width,a=n.tabs,i=n.tabGap,o=n.tabBarStyle,u=this.state.activeIndex;
+return(0,p.jsx)(l.View,{
+style:[x.container,{
+width:r
+}
+],children:(0,p.jsx)(l.ScrollView,{
+ref:this.scrollRef,horizontal:!0,showsHorizontalScrollIndicator:!1,children:(0,p.jsx)(l.View,{
+style:[x.tabBar].concat((0,e.default)((0,f.arrayStyle)(o))),children:a.map((function(e,n){
+return(0,p.jsxs)(s.Fragment,{
+children:[0!==n&&(0,p.jsx)(l.View,{
+style:{
+width:i
+}
+
+}
+),(0,p.jsx)(c.default,{
+ref:function(e){
+return t.tabRefList[n]=e
+}
+,index:n,title:e,isActive:u===n,onPressTab:t.onPressTab
+}
+,e+"-"+n)]
+}
+,n)
+}
+))
+}
+)
+}
+)
+}
+)
+}
+
+}
+])
+}
+)(s.PureComponent);
+y.defaultProps={
+index:0,tabGap:16
+}
+;
+var x=l.StyleSheet.create({
+container:{
+height:u.TAB_HEIGHT
+}
+,tabBar:{
+height:u.TAB_HEIGHT,paddingTop:8,flexDirection:'row',alignItems:'center'
+}
+
+}
+);
+_e.default=y
+}
+),"de8b80f5bc62a7720afeb530b7fe263ecd37213d85f89e8dec0c4e7ab522204d",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","cc5f2b4289ed1f6f448a954d4a0509baa530c4619abf8715f5f45da12e35da83","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","1b2a91ddd738b09a902b5bc7ea707643b4ea42e019406fd52f774fe3e9a714b4","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var t: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=_e.SCALE_RATIO=void 0;
+var e=t(_r(d[1])),i=t(_r(d[2])),n=t(_r(d[3])),o=t(_r(d[4])),r=t(_r(d[5])),a=t(_r(d[6])),s=(function(t,e){
+if(!e&&t&&t.__esModule)return t;
+if(null===t||"object"!=typeof t&&"function"!=typeof t)return{
+default:t
+}
+;
+// 变量
+var i: any = v(e);
+if(i&&i.has(t))return i.get(t);
+var n={
+__proto__:null
+}
+,o=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var r in t)if("default"!==r&&{
+
+}
+.hasOwnProperty.call(t,r)){
+// 变量
+var a: any = o?Object.getOwnPropertyDescriptor(t,r):null;
+a&&(a.get||a.set)?Object.defineProperty(n,r,a):n[r]=t[r]
+}
+return n.default=t,i&&i.set(t,n),n
+}
+)(_r(d[7])),l=_r(d[8]),c=_r(d[9]),u=_r(d[10]),f=_r(d[11]),h=_r(d[12]),p=_r(d[13]),y=_r(d[14]);
+// 函数
+function v(t: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var e: any = new WeakMap,i=new WeakMap;
+return(v=function(t){
+return t?i:e
+}
+)(t)
+}
+// 函数
+function S(): any {
+try{
+var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){
+
+}
+)))
+}
+catch(t){
+
+}
+return(S=function(){
+return!!t
+}
+)()
+}
+var T,A=_e.SCALE_RATIO=c.DarkStore.theme.T18.fontSize/c.DarkStore.theme.T11.fontSize,O=c.PlatformUtils.isMp(),P=(function(t){
+// 函数
+function s(t: any): any {
+var n,a,f,y;
+(0,i.default)(this,s),a=this,f=s,y=[t],f=(0,r.default)(f),(n=(0,o.default)(a,S()?Reflect.construct(f,y||[],(0,r.default)(a).constructor):f.apply(a,y))).id="tab-"+c.CommonUtils.randomString(),n.selfWidth=0,n.getWidthPromise=new Promise((function(t){
+n.onLayoutResolve=function(e){
+var i,o,r;
+!n.selfWidth&&n.props.isActive&&n.forceUpdate(),n.selfWidth=Math.ceil(null!=(i=null==e||null==(o=e.nativeEvent)||null==(r=o.layout)?void 0:r.width)?i:0),t(n.selfWidth)
+}
+
+}
+)),n.getMpAnimStyle=function(){
+// 变量
+var t: any = c.DarkStore.theme,e=(0,p.createTransition)(h.SLIDE_DURATION,'EXP_OUT')(['opacity','transform']);
+return n.props.isActive?{
+transform:[{
+scale:t.T18.fontSize/t.T11.fontSize
+}
+],opacity:t.C12.opacity,transition:e
+}
+:{
+transform:[{
+scale:1
+}
+],opacity:t.C13.opacity,transition:e
+}
+
+}
+,n.getTabWidth=function(){
+return n.selfWidth?n.selfWidth:(O&&u.uni.createSelectorQuery().select("#"+n.id).boundingClientRect().exec((function(t){
+// 变量
+var i: any = (0,e.default)(t,1)[0];
+n.onLayoutResolve({
+nativeEvent:{
+layout:i
+}
+
+}
+)
+}
+)),n.getWidthPromise)
+}
+,n.onPressTab=function(){
+n.props.isActive||n.props.onPressTab(n.props.index)
+}
+;
+var v=c.DarkStore.theme;
+return n.activeAnim=new l.Animated.Value(n.props.isActive?1:0),n.animStyles={
+transform:[{
+scale:n.activeAnim.interpolate({
+inputRange:[0,1],outputRange:[1,A]
+}
+)
+}
+,{
+translateY:n.activeAnim.interpolate({
+inputRange:[0,1],outputRange:[0,(v.T11.fontSize-v.T18.fontSize)/2]
+}
+)
+}
+],opacity:n.activeAnim.interpolate({
+inputRange:[0,1],outputRange:[v.C13.opacity,v.C12.opacity]
+}
+)
+}
+,n
+}
+return(0,a.default)(s,t),(0,n.default)(s,[{
+key:"componentDidUpdate",value:function(){
+O||l.Animated.timing(this.activeAnim,{
+useNativeDriver:!0,duration:h.SLIDE_DURATION,toValue:this.props.isActive?1:0,easing:f.ANIM_EASING.EXP_OUT
+}
+).start()
+}
+
+}
+,{
+key:"render",value:function(){
+// 变量
+var t: any = this.props,e=t.title,i=t.isActive;
+this.tempTheme!==c.DarkStore.theme&&(this.tempTheme=c.DarkStore.theme,this.styles=b(c.DarkStore.theme));
+// 变量
+var n: any = Boolean(this.selfWidth);
+return(0,y.jsxs)(l.TouchableOpacity,{
+activeOpacity:i?1:.2,onPress:this.onPressTab,style:[this.styles.itemBox,n&&{
+minWidth:i?this.selfWidth*A:this.selfWidth
+}
+],children:[(0,y.jsx)(l.Animated.Text,{
+style:[this.styles.title,O?this.getMpAnimStyle():this.animStyles,i&&this.styles.titleActive],children:e
+}
+),(0,y.jsx)(l.Text,{
+id:this.id,onLayout:this.onLayoutResolve,style:[this.styles.title,this.styles.titleActive,this.styles.titleShadow],children:e
+}
+),i&&!n&&(0,y.jsx)(l.Text,{
+style:[this.styles.title,this.styles.titleBold,this.styles.titleShadow],children:e
+}
+)]
+}
+)
+}
+
+}
+])
+}
+)(s.PureComponent);
+c.PlatformUtils.isMp()?T='center bottom':c.PlatformUtils.isWeb()&&(T='center center');
+var b=function(t){
+return l.StyleSheet.create({
+hideTitle:{
+opacity:0
+}
+,titleShadow:{
+height:0,overflow:'hidden'
+}
+,title:Object.assign({
+
+}
+,t.T11,{
+color:t.C13.color
+}
+,T&&{
+transformOrigin:T
+}
+),titleBold:Object.assign({
+
+}
+,t.T18),titleActive:Object.assign({
+
+}
+,t.T18,{
+fontSize:t.T11.fontSize,lineHeight:t.T11.lineHeight
+}
+),itemBox:{
+lineHeight:t.T11.lineHeight,alignItems:'center'
+}
+
+}
+)
+}
+;
+_e.default=P
+}
+),"1b2a91ddd738b09a902b5bc7ea707643b4ea42e019406fd52f774fe3e9a714b4",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6d439569148855cb1c68c19c5c27c335efdc5ce4e28e0c3f8d566c16670b152e","121b4308bd31a7fe6c653c75d387cbbfd58dacbdad3a1e1e01a602c507b81def","7b6acba68ea81fb612adb5c14ef8c139cadcdfc8839b5d475c75ee01d41a71eb","8307bd420c739e387aa0043aaea348bbf013c78c6f87cc8dab5920b349e60ca8","a280d238a7e6ea87cccebe1908e91f2dcc7b0eba610818eea9a0afd1e003b999","95a5857a9d1471573d067e5fa5bc0b106c1d69ff444d8172cb41cf23969570d2","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","0ea8031004a7001e8b293f69ced6ccd729ba63db477638949eb2145c200d1114","d63d6f49d192d4d685804967b6d1a53e3fc049c3ca120fc482e42266d0545140","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","382c0dcf798ba2c032da39911aa92bd32a3e0b8aa37684341ff8484d6ae42ca6","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]).Fragment;
+e.default=t
+}
+),"56656c8a523e50610961f02a45ffa03a95588739a482570cc7de3eecf5de4932",["6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d"]);
+
+__d((function(g,r,i,a,m,e,d){
+// 变量
+var t: any = r(d[0]);
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+var n=t(r(d[1])),l=r(d[2]),o=(t(r(d[3])),r(d[4])),s=r(d[5]),c=t(r(d[6])),u=r(d[7]),f=r(d[8]),p=r(d[9]),T=r(d[10]),h=r(d[11]),x=["titleName","backReport"],b=(e.default=function(t){
+var T=t.titleName,v=void 0===T?'':T,y=t.backReport,B=(0,n.default)(t,x),j=(0,u.useLayout)(b),k=j.platform,R=j.themeStyles,M=(0,s.useCarStore)().navigation,S=(0,p.usePageJudge)(),_=(0,f.clickDebunce)((function(){
+null==y||y(),S.isCarRights&&M.origin&&M.origin.canGoBack()?M.origin.goBack():M.goBack()
+}
+));
+return(0,h.jsxs)(o.View,{
+style:R.container,children:[k.isMp?(0,h.jsx)(o.Text,{
+numberOfLines:1,style:R.mpTitleText,children:v
+}
+):(0,h.jsx)(l.TitleBar,{
+disabledMarginTop:!0,onPress:_,titleName:v,titleBarStyle:R.titleBar,customMarginRight:0
+}
+),(0,h.jsx)(c.default,Object.assign({
+
+}
+,B))]
+}
+)
+}
+,function(){
+for(var t=arguments.length,n=new Array(t),l=0;
+l<t;
+l++)n[l]=arguments[l];
+// 变量
+var s: Function = n[0],c=n[1];
+return o.StyleSheet.create({
+container:{
+flexDirection:'row',alignItems:'center',zIndex:2,paddingTop:c.statusBarHeight
+}
+,titleBar:{
+backgroundColor:'transparent',flex:1,paddingRight:0
+}
+,mpTitleText:Object.assign({
+flex:1
+}
+,s.T19,s.C12,{
+lineHeight:T.TITLE_HEIGHT,marginRight:8,paddingLeft:c.pageMargin
+}
+)
+}
+)
+}
+)
+}
+),"10f6d9d5313f9b74def537bd93367b425e791aab6aa8295b718cde0d40d474f8",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","9a46dd7eba1ef94d625ba748404e4e5a055539131c11189441e75277cd25a48a","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","cbd4a6c18d83cbf3f9fb2f8acc14731bbbdc54b7e789783073b04780d939c88d","8c5c40fe0fde499cdd48aa370f095df0e04521784793d548d5cbef4c81a2470a","05c6bb1f52a500537ae240e84896db54faaa8fcca60dd11e572708cf893ac833","28da3930bd0cd346d0b0dd104d6a8a5822b31c33cec4eaffbc2226bccd3b111e","4681f899edff06ae8527f6044e61bf017352d5deb87a2ffd59c44765ac61d077","63fccbfba234c6691d007228db8e54df1f678d420e91ce508963ad879c189c8b","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+// 变量
+var t: any = r(d[0]).Fragment;
+e.default=t
+}
+),"d0a1df5293bb08f341b00bccd2a2173a578244f76286d7dac4e7bc1b8ab07fd1",["6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d"]);
+
+__d((function(g,_r,_i,_a,m,_e,d){
+// 变量
+var e: any = _r(d[0]);
+Object.defineProperty(_e,"__esModule",{
+value:!0
+}
+),_e.default=void 0;
+var t=(function(e,t){
+if(!t&&e&&e.__esModule)return e;
+if(null===e||"object"!=typeof e&&"function"!=typeof e)return{
+default:e
+}
+;
+// 变量
+var i: any = s(t);
+if(i&&i.has(e))return i.get(e);
+var n={
+__proto__:null
+}
+,r=Object.defineProperty&&Object.getOwnPropertyDescriptor;
+for(var l in e)if("default"!==l&&{
+
+}
+.hasOwnProperty.call(e,l)){
+// 变量
+var o: any = r?Object.getOwnPropertyDescriptor(e,l):null;
+o&&(o.get||o.set)?Object.defineProperty(n,l,o):n[l]=e[l]
+}
+return n.default=e,i&&i.set(e,n),n
+}
+)(_r(d[1])),i=_r(d[2]),n=_r(d[3]),r=_r(d[4]),l=e(_r(d[5])),o=e(_r(d[6])),a=_r(d[7]);
+// 函数
+function s(e: any): any {
+if("function"!=typeof WeakMap)return null;
+// 变量
+var t: any = new WeakMap,i=new WeakMap;
+return(s=function(e){
+return e?i:t
+}
+)(e)
+}
+_e.default=function(e){
+var s=e.errText,u=void 0===s?(0,n.t)('previewPermissionErrTip'):s,f=e.width,c=e.height,p=e.isShowHead,h=void 0===p||p,y=e.goBackFn,v=e.refreshFn,w=i.Dimensions.get('window'),x=w.width,P=w.height,j=n.PlatformUtils.isPc(f||x),b=(0,l.default)(f||x,c||P,j,h),k=(0,t.useCallback)((function(){
+if(n.PlatformUtils.isWeb())return window.history.go(-1);
+if(n.PlatformUtils.isAndroid()&&'undefined'!=typeof vmallAndroid&&'function'==typeof vmallAndroid.onReturn)return vmallAndroid.onReturn();
+var e,t,i,r,l;
+if(n.PlatformUtils.isIOS()&&(null==(e=window)||null==(t=e.webkit)||null==(i=t.messageHandlers)||null==(r=i.vmalliOS)?void 0:r.postMessage))return window.webkit.messageHandlers.vmalliOS.postMessage({
+method:'onReturn'
+}
+);
+return n.PlatformUtils.isMp()?null==(l=n.MpUtils.mp)||null==l.navigateBack?void 0:l.navigateBack():n.PlatformUtils.isApp()?n.DeviceUtils.goBack():void 0
+}
+),[]),O=(0,t.useCallback)((function(){
+var e;
+n.PlatformUtils.isMp()?null==(e=n.MpUtils.mp)||e.reLaunch({
+url:'/pages/index/index'
+}
+):n.RouterUtils.gotoPage('vmall://com.vmall.client/home/main?tabIndex=0&from=rn')
+}
+),[]),U=function(){
+var e;
+'function'!=typeof v?n.PlatformUtils.isWeb()?'undefined'!=typeof window&&(null==(e=window.location)||e.reload()):O():v()
+}
+,M=function(){
+return(0,a.jsx)(i.TouchableOpacity,{
+style:b.refreshBtn,onPress:U,children:(0,a.jsx)(i.Text,{
+style:b.refreshText,children:n.PlatformUtils.isWeb()||'function'==typeof v?(0,n.t)('tryRefreshing'):(0,n.t)('goToIndex')
+}
+)
+}
+)
+}
+;
+return(0,a.jsx)(a.Fragment,{
+children:(0,a.jsxs)(i.View,{
+style:b.pageWrap,children:[h&&(0,a.jsx)(i.View,{
+style:b.headBar,children:(0,a.jsx)(i.TouchableOpacity,{
+style:b.goBackWrap,onPress:function(){
+'function'==typeof y?y():k()
+}
+,children:(0,a.jsx)(r.SvgIcon,{
+iconName:'ic24-back',width:24,height:24
+}
+)
+}
+)
+}
+),(0,a.jsxs)(i.View,{
+style:b.mainTipWrap,children:[(0,a.jsx)(i.View,{
+style:b.layoutOffset
+}
+),(0,a.jsx)(i.View,{
+style:b.lockWrap,children:(0,a.jsx)(i.Image,{
+source:o.default.permissionLock,style:b.lock
+}
+)
+}
+),(0,a.jsx)(i.View,{
+style:b.textTipWrap,children:(0,a.jsx)(i.Text,{
+style:b.textTip,children:u
+}
+)
+}
+),j&&M()]
+}
+),!j&&M()]
+}
+)
+}
+)
+}
+
+}
+),"08ba8bce87d68d136fe21930902b1a87b751c794150ac56fc79c9100c33566dd",["d4431c841577fba508d7189ce2a6fc0e702b989b9c6f67ffcf40a9563d66f4aa","6ed0e34da2b23bd3554fa421f70f61c43745b8dd45c3506df768307c911a529d","ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3","1efb186a7a2d3fed1d2a150ffdebb74e209f0fa2cfeaed6e591fe0dd1f9ed75a","1e31d957c7c2855f70fa4100a149792f896f08cde5b63c893be929068d5d987c","6a54b4907ac2cac215d302d70b8589d0dd5c475791477ee52d7a45f2da6ca77b","048fed5a64a04bdb7fed24b0d6ab1d2d8294f08888fbbe2288244e34e3dde0f3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=function(l,c,f){
+// 变量
+var s: Function = !(arguments.length>3&&void 0!==arguments[3])||arguments[3],u=o(l,f,s),p=h(l,c,u),S=n.PlatformUtils.isApp(),y=S&&t.StatusBar.currentHeight||0;
+return t.StyleSheet.create({
+pageWrap:{
+width:S?'100%':l,height:S?'100%':c,flexDirection:'column',backgroundColor:'rgb(241, 243, 245)',paddingTop:y
+}
+,headBar:{
+display:f?'none':'flex',width:'100%',height:u.headBarHeight,flexDirection:'row',alignItems:'center'
+}
+,goBackWrap:{
+paddingLeft:26,height:u.headBarHeight,justifyContent:'center',alignItems:'center'
+}
+,goBackIcon:{
+width:24,height:24
+}
+,mainTipWrap:{
+width:'100%',flex:1,paddingHorizontal:24,justifyContent:'center',alignItems:'center'
+}
+,layoutOffset:{
+marginTop:-p
+}
+,lockWrap:{
+width:u.lockSize,height:u.lockSize,justifyContent:'center',alignItems:'center'
+}
+,lock:{
+width:u.lockSize,height:u.lockSize
+}
+,textTipWrap:{
+marginTop:8
+}
+,textTip:{
+fontSize:14,color:'rgba(0,0,0,0.4)',fontWeight:'400',fontFamily:'HarmonyHeiTi'
+}
+,refreshBtn:{
+width:u.refreshBtnWidth,height:40,borderRadius:20,backgroundColor:'rgba(0,0,0,0.05)',marginTop:f?16:0,marginBottom:24,alignSelf:'center',alignItems:'center',justifyContent:'center'
+}
+,refreshText:{
+fontSize:16,color:'rgba(0,0,0,0.6)',fontWeight:'500',fontFamily:'HarmonyHeiTi'
+}
+
+}
+)
+}
+;
+var t=r(d[0]),n=r(d[1]),o=function(t,o){
+var h=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];
+return{
+lockSize:n.ScreenUtils.isSmall(t)?120:160,refreshBtnWidth:n.ScreenUtils.isSmall(t)?176:318,headBarHeight:h&&!o?56:0,refreshHeight:o?0:40
+}
+
+}
+,h=function(t,n,o){
+var h=o.headBarHeight,l=o.refreshHeight;
+return n>t?(n-h)/10-l/2:0
+}
+
+}
+),"1e31d957c7c2855f70fa4100a149792f896f08cde5b63c893be929068d5d987c",["ff64fa2ac78b8a43ea6243e79ea9d49a3553343773ae450356109d67572f6b7d","11c0bbc27675efba39c1306b6d6bc3120f365ffa3c8afa9395599e9a1b0f17b3"]);
+
+__d((function(g,r,i,a,m,e,d){
+Object.defineProperty(e,"__esModule",{
+value:!0
+}
+),e.default=void 0;
+e.default={
+dependencies:{
+'linear-gradient':r(d[0]).default
+}
+
+}
+
+}
+),"3d6acded4ce4c05d90fed8072f5684726c8f870f7afe8de0cc53249006bdac2d",["308db9fda5947677caf7385dee19fd8b9a6ddca11aa9991a5a7e49e1c9081028"]);
+
+__d((function(a,e,r,m,n,d,s){
+n.exports={
+CAR_DETAIL:{
+name:"CarDetail",displayName:"CarDetail"
+}
+,CAR_ORDER_CONFIRM:{
+name:"CarOrderConfirm",displayName:"CarOrderConfirm"
+}
+,CAR_BOOK:{
+name:"CarBook",displayName:"CarBook"
+}
+,CAR_ORDER_DETAIL:{
+name:"CarOrderDetail",displayName:"CarOrderDeatil"
+}
+,SHOP:{
+name:"Shop",displayName:"vrn-Shop"
+}
+,MEMBER:{
+name:"Member",displayName:"vrn-Member"
+}
+,MESSAGE:{
+name:"Message",displayName:"vrn-Message"
+}
+,O2OGUIDE:{
+name:"O2oGuide",displayName:"vrn-o2oguide"
+}
+,ADDRESS:{
+name:"Address",displayName:"vrn-Address"
+}
+,DISPUTE:{
+name:"Dispute",displayName:"vrn-Dispute"
+}
+,FEEDBACK:{
+name:"Feedback",displayName:"vrn-Feedback"
+}
+,COMPANY:{
+name:"Company",displayName:"vrn-Company"
+}
+,EXCHANGE:{
+name:"Exchange",displayName:"vrn-Exchange"
+}
+,USER:{
+name:"User",displayName:"vrn-User"
+}
+
+}
+
+}
+),"96677aa35debfefd031d9d34d9c70369754ee3acb2d9a9d4090e98612efee6f5",[]);
+
+__r("a3388b1ba7925abc3ce147ef1044d0a78de8ff49daf295e7ea99ff28af791e3a");
+
+__r("b455485425228b09c1a4d0d2f41ef27c005c9cbd3377af2717325ded81d0c9ba");
+
+//# sourceMappingURL=cardetail.android.bundle.map

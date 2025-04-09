@@ -1,0 +1,127 @@
+[
+    {
+        "query": "What is the function that performs the file opening operation?",
+        "results": [
+            {
+                "similarity": 0.5857901573181152,
+                "meta_info": {
+                    "category": "Function",
+                    "startLine": 555,
+                    "endLine": 568,
+                    "code": "FILE* uv__open_file(const char* path) {\n  int fd;\n  FILE* fp;\n\n  fd = uv__open_cloexec(path, O_RDONLY);\n  if (fd < 0)\n    return NULL;\n\n   fp = fdopen(fd, \"r\");\n   if (fp == NULL)\n     uv__close(fd);\n\n   return fp;\n}\n",
+                    "fileName": "../openSourceCode/libuv_src\\unix\\core.c",
+                    "id": 276,
+                    "summary": "这个C++代码段实现了一个文件打开函数，使用指定路径和读取权限打开文件，并处理可能的错误情况。",
+                    "relations": [
+                        {
+                            "category": "Call",
+                            "from": 276,
+                            "to": 302,
+                            "summary_to": "这个函数是一个Cloexec事件处理的文件打开函数，适用于不同配置。",
+                            "loc": {
+                                "fileName": "../openSourceCode/libuv_src\\unix\\core.c",
+                                "startLine": 5,
+                                "endLine": 5,
+                                "offset": 7
+                            }
+                        },
+                        {
+                            "category": "Call",
+                            "from": 276,
+                            "to": 280,
+                            "summary_to": "这段C++代码定义一个函数`uv__close`，在多用户系统中确保文件描述符的正确关闭，并处理可能的错误。",
+                            "loc": {
+                                "fileName": "../openSourceCode/libuv_src\\unix\\core.c",
+                                "startLine": 11,
+                                "endLine": 11,
+                                "offset": 5
+                            }
+                        }
+                    ],
+                    "callChains": []
+                }
+            },
+            {
+                "similarity": 0.57609623670578,
+                "meta_info": {
+                    "category": "Function",
+                    "startLine": 378,
+                    "endLine": 631,
+                    "code": "void fs__open(uv_fs_t* req) {\n  DWORD access;\n  DWORD share;\n  DWORD disposition;\n  DWORD attributes = 0;\n  HANDLE file;\n  int fd, current_umask;\n  int flags = req->fs.info.file_flags;\n  struct uv__fd_info_s fd_info;\n\n  /* Adjust flags to be compatible with the memory file mapping. Save the\n   * original flags to emulate the correct behavior. */\n  if (flags & UV_FS_O_FILEMAP) {\n    fd_info.flags = flags;\n    fd_info.current_pos.QuadPart = 0;\n\n    if ((flags & (UV_FS_O_RDONLY | UV_FS_O_WRONLY | UV_FS_O_RDWR)) ==\n        UV_FS_O_WRONLY) {\n      /* CreateFileMapping always needs read access */\n      flags = (flags & ~UV_FS_O_WRONLY) | UV_FS_O_RDWR;\n    }\n\n    if (flags & UV_FS_O_APPEND) {\n      /* Clear the append flag and ensure RDRW mode */\n      flags &= ~UV_FS_O_APPEND;\n      flags &= ~(UV_FS_O_RDONLY | UV_FS_O_WRONLY | UV_FS_O_RDWR);\n      flags |= UV_FS_O_RDWR;\n    }\n  }\n\n  /* Obtain the active umask. umask() never fails and returns the previous\n   * umask. */\n  current_umask = _umask(0);\n  _umask(current_umask);\n\n  /* convert flags and mode to CreateFile parameters */\n  switch (flags & (UV_FS_O_RDONLY | UV_FS_O_WRONLY | UV_FS_O_RDWR)) {\n  case UV_FS_O_RDONLY:\n    access = FILE_GENERIC_READ;\n    break;\n  case UV_FS_O_WRONLY:\n    access = FILE_GENERIC_WRITE;\n    break;\n  case UV_FS_O_RDWR:\n    access = FILE_GENERIC_READ | FILE_GENERIC_WRITE;\n    break;\n  default:\n    goto einval;\n  }\n\n  if (flags & UV_FS_O_APPEND) {\n    access &= ~FILE_WRITE_DATA;\n    access |= FILE_APPEND_DATA;\n  }\n\n  /*\n   * Here is where we deviate significantly from what CRT's _open()\n   * does. We indiscriminately use all the sharing modes, to match\n   * UNIX semantics. In particular, this ensures that the file can\n   * be deleted even whilst it's open, fixing issue\n   * https://github.com/nodejs/node-v0.x-archive/issues/1449.\n   * We still support exclusive sharing mode, since it is necessary\n   * for opening raw block devices, otherwise Windows will prevent\n   * any attempt to write past the master boot record.\n   */\n  if (flags & UV_FS_O_EXLOCK) {\n    share = 0;\n  } else {\n    share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;\n  }\n\n  switch (flags & (UV_FS_O_CREAT | UV_FS_O_EXCL | UV_FS_O_TRUNC)) {\n  case 0:\n  case UV_FS_O_EXCL:\n    disposition = OPEN_EXISTING;\n    break;\n  case UV_FS_O_CREAT:\n    disposition = OPEN_ALWAYS;\n    break;\n  case UV_FS_O_CREAT | UV_FS_O_EXCL:\n  case UV_FS_O_CREAT | UV_FS_O_TRUNC | UV_FS_O_EXCL:\n    disposition = CREATE_NEW;\n    break;\n  case UV_FS_O_TRUNC:\n  case UV_FS_O_TRUNC | UV_FS_O_EXCL:\n    disposition = TRUNCATE_EXISTING;\n    break;\n  case UV_FS_O_CREAT | UV_FS_O_TRUNC:\n    disposition = CREATE_ALWAYS;\n    break;\n  default:\n    goto einval;\n  }\n\n  attributes |= FILE_ATTRIBUTE_NORMAL;\n  if (flags & UV_FS_O_CREAT) {\n    if (!((req->fs.info.mode & ~current_umask) & _S_IWRITE)) {\n      attributes |= FILE_ATTRIBUTE_READONLY;\n    }\n  }\n\n  if (flags & UV_FS_O_TEMPORARY ) {\n    attributes |= FILE_FLAG_DELETE_ON_CLOSE | FILE_ATTRIBUTE_TEMPORARY;\n    access |= DELETE;\n  }\n\n  if (flags & UV_FS_O_SHORT_LIVED) {\n    attributes |= FILE_ATTRIBUTE_TEMPORARY;\n  }\n\n  switch (flags & (UV_FS_O_SEQUENTIAL | UV_FS_O_RANDOM)) {\n  case 0:\n    break;\n  case UV_FS_O_SEQUENTIAL:\n    attributes |= FILE_FLAG_SEQUENTIAL_SCAN;\n    break;\n  case UV_FS_O_RANDOM:\n    attributes |= FILE_FLAG_RANDOM_ACCESS;\n    break;\n  default:\n    goto einval;\n  }\n\n  if (flags & UV_FS_O_DIRECT) {\n    /*\n     * FILE_APPEND_DATA and FILE_FLAG_NO_BUFFERING are mutually exclusive.\n     * Windows returns 87, ERROR_INVALID_PARAMETER if these are combined.\n     *\n     * FILE_APPEND_DATA is included in FILE_GENERIC_WRITE:\n     *\n     * FILE_GENERIC_WRITE = STANDARD_RIGHTS_WRITE |\n     *                      FILE_WRITE_DATA |\n     *                      FILE_WRITE_ATTRIBUTES |\n     *                      FILE_WRITE_EA |\n     *                      FILE_APPEND_DATA |\n     *                      SYNCHRONIZE\n     *\n     * Note: Appends are also permitted by FILE_WRITE_DATA.\n     *\n     * In order for direct writes and direct appends to succeed, we therefore\n     * exclude FILE_APPEND_DATA if FILE_WRITE_DATA is specified, and otherwise\n     * fail if the user's sole permission is a direct append, since this\n     * particular combination is invalid.\n     */\n    if (access & FILE_APPEND_DATA) {\n      if (access & FILE_WRITE_DATA) {\n        access &= ~FILE_APPEND_DATA;\n      } else {\n        goto einval;\n      }\n    }\n    attributes |= FILE_FLAG_NO_BUFFERING;\n  }\n\n  switch (flags & (UV_FS_O_DSYNC | UV_FS_O_SYNC)) {\n  case 0:\n    break;\n  case UV_FS_O_DSYNC:\n  case UV_FS_O_SYNC:\n    attributes |= FILE_FLAG_WRITE_THROUGH;\n    break;\n  default:\n    goto einval;\n  }\n\n  /* Setting this flag makes it possible to open a directory. */\n  attributes |= FILE_FLAG_BACKUP_SEMANTICS;\n\n  file = CreateFileW(req->file.pathw,\n                     access,\n                     share,\n                     NULL,\n                     disposition,\n                     attributes,\n                     NULL);\n  if (file == INVALID_HANDLE_VALUE) {\n    DWORD error = GetLastError();\n    if (error == ERROR_FILE_EXISTS && (flags & UV_FS_O_CREAT) &&\n        !(flags & UV_FS_O_EXCL)) {\n      /* Special case: when ERROR_FILE_EXISTS happens and UV_FS_O_CREAT was\n       * specified, it means the path referred to a directory. */\n      SET_REQ_UV_ERROR(req, UV_EISDIR, error);\n    } else {\n      SET_REQ_WIN32_ERROR(req, GetLastError());\n    }\n    return;\n  }\n\n  fd = _open_osfhandle((intptr_t) file, flags);\n  if (fd < 0) {\n    /* The only known failure mode for _open_osfhandle() is EMFILE, in which\n     * case GetLastError() will return zero. However we'll try to handle other\n     * errors as well, should they ever occur.\n     */\n    if (errno == EMFILE)\n      SET_REQ_UV_ERROR(req, UV_EMFILE, ERROR_TOO_MANY_OPEN_FILES);\n    else if (GetLastError() != ERROR_SUCCESS)\n      SET_REQ_WIN32_ERROR(req, GetLastError());\n    else\n      SET_REQ_WIN32_ERROR(req, (DWORD) UV_UNKNOWN);\n    CloseHandle(file);\n    return;\n  }\n\n  if (flags & UV_FS_O_FILEMAP) {\n    FILE_STANDARD_INFO file_info;\n    if (!GetFileInformationByHandleEx(file,\n                                      FileStandardInfo,\n                                      &file_info,\n                                      sizeof file_info)) {\n      SET_REQ_WIN32_ERROR(req, GetLastError());\n      CloseHandle(file);\n      return;\n    }\n    fd_info.is_directory = file_info.Directory;\n\n    if (fd_info.is_directory) {\n      fd_info.size.QuadPart = 0;\n      fd_info.mapping = INVALID_HANDLE_VALUE;\n    } else {\n      if (!GetFileSizeEx(file, &fd_info.size)) {\n        SET_REQ_WIN32_ERROR(req, GetLastError());\n        CloseHandle(file);\n        return;\n      }\n\n      if (fd_info.size.QuadPart == 0) {\n        fd_info.mapping = INVALID_HANDLE_VALUE;\n      } else {\n        DWORD flProtect = (fd_info.flags & (UV_FS_O_RDONLY | UV_FS_O_WRONLY |\n          UV_FS_O_RDWR)) == UV_FS_O_RDONLY ? PAGE_READONLY : PAGE_READWRITE;\n        fd_info.mapping = CreateFileMapping(file,\n                                            NULL,\n                                            flProtect,\n                                            fd_info.size.HighPart,\n                                            fd_info.size.LowPart,\n                                            NULL);\n        if (fd_info.mapping == NULL) {\n          SET_REQ_WIN32_ERROR(req, GetLastError());\n          CloseHandle(file);\n          return;\n        }\n      }\n    }\n\n    uv__fd_hash_add(fd, &fd_info);\n  }\n\n  SET_REQ_RESULT(req, fd);\n  return;\n\n einval:\n  SET_REQ_UV_ERROR(req, UV_EINVAL, ERROR_INVALID_PARAMETER);\n}\n",
+                    "fileName": "../openSourceCode/libuv_src\\win\\fs.c",
+                    "id": 1173,
+                    "summary": "这段代码是Node.js的UVFS文件系统实现，负责打开或创建文件并处理复杂的文件开断操作。它支持高级权限、共享模式、文件属性及 openness参数，并通过CreateFileW创建文件句柄。",
+                    "relations": [
+                        {
+                            "category": "Call",
+                            "from": 1173,
+                            "to": 1166,
+                            "summary_to": "这个函数是一个静态内部函数，用于在一个基于哈希的哈希表中添加条目。通过在内部使用互斥锁来确保 thread-safe 加密，该函数接收一个文件描述符和一结构体添加各自的指针。它还会动态地管理哈希表的内存分配，并在需要时创建新组，以保持哈希表的高效性。整体而言，该函数可能是用于缓存机制或快速文件描述符到信息的映射，常见的用途可能包括缓存命中检测或快速文件操作中所需的信息存储。",
+                            "loc": {
+                                "fileName": "../openSourceCode/libuv_src\\win\\fs.c",
+                                "startLine": 246,
+                                "endLine": 246,
+                                "offset": 4
+                            }
+                        }
+                    ],
+                    "callChains": [
+                        [
+                            1173,
+                            1166,
+                            1501
+                        ],
+                        [
+                            1173,
+                            1166,
+                            97
+                        ],
+                        [
+                            1173,
+                            1166,
+                            1148
+                        ],
+                        [
+                            1173,
+                            1166,
+                            1503
+                        ]
+                    ]
+                }
+            },
+            {
+                "similarity": 0.5709509509235063,
+                "meta_info": {
+                    "category": "Function",
+                    "startLine": 1244,
+                    "endLine": 1289,
+                    "code": "static int fs__mkstemp_func(uv_fs_t* req) {\n  HANDLE file;\n  int fd;\n\n  file = CreateFileW(req->file.pathw,\n                     GENERIC_READ | GENERIC_WRITE,\n                     FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,\n                     NULL,\n                     CREATE_NEW,\n                     FILE_ATTRIBUTE_NORMAL,\n                     NULL);\n\n  if (file == INVALID_HANDLE_VALUE) {\n    DWORD error;\n    error = GetLastError();\n\n    /* If the file exists, the main fs__mktemp() function\n       will retry. If it's another error, we want to stop. */\n    if (error != ERROR_FILE_EXISTS) {\n      SET_REQ_WIN32_ERROR(req, error);\n      return 1;\n    }\n\n    return 0;\n  }\n\n  fd = _open_osfhandle((intptr_t) file, 0);\n  if (fd < 0) {\n    /* The only known failure mode for _open_osfhandle() is EMFILE, in which\n     * case GetLastError() will return zero. However we'll try to handle other\n     * errors as well, should they ever occur.\n     */\n    if (errno == EMFILE)\n      SET_REQ_UV_ERROR(req, UV_EMFILE, ERROR_TOO_MANY_OPEN_FILES);\n    else if (GetLastError() != ERROR_SUCCESS)\n      SET_REQ_WIN32_ERROR(req, GetLastError());\n    else\n      SET_REQ_WIN32_ERROR(req, UV_UNKNOWN);\n    CloseHandle(file);\n    return 1;\n  }\n\n  SET_REQ_RESULT(req, fd);\n\n  return 1;\n}\n",
+                    "fileName": "../openSourceCode/libuv_src\\win\\fs.c",
+                    "id": 1186,
+                    "summary": "This function creates a file handle for a readable and writable file, handling errors from `CreateFileW`.",
+                    "relations": [
+                        {
+                            "category": "Call",
+                            "from": 1186,
+                            "to": 1183,
+                            "summary_to": "这段代码生成一个临时文件路径，通过随机字符生成和路径重写来避免与真实路径冲突。主要用到了字符集合和随机数生成来构建路径部分。",
+                            "loc": {
+                                "fileName": "../openSourceCode/libuv_src\\win\\fs.c",
+                                "startLine": 17,
+                                "endLine": 17,
+                                "offset": 36
+                            }
+                        }
+                    ],
+                    "callChains": [
+                        [
+                            1186,
+                            1183,
+                            1650
+                        ]
+                    ]
+                }
+            }
+        ]
+    }
+]
