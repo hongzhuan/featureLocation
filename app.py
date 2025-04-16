@@ -1,5 +1,5 @@
 import json
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, stream_with_context, Response
 from flask import render_template
 import os
 from sourceCodeInput.Controller import Controller
@@ -178,7 +178,7 @@ def locate_subtasks():
 @app.route("/analyze_collaboration", methods=["POST"])
 def analyze_collaboration_route():
     """
-    进行大模型分析并返回结果
+    进行大模型分析并返回流式输出
     """
     result_file = os.path.join(OUTPUT_DIR, "subTasksLocationResult.json")
     analysis_result_file = os.path.join(OUTPUT_DIR, "llmAnalysisResult.json")
@@ -192,15 +192,17 @@ def analyze_collaboration_route():
     # 从前端获取查询信息
     query = request.json.get("query", "")
 
-    # 调用大模型分析
-    analysis_result = analyze_collaboration(query, result_data)
+    # 使用流式输出的方式进行分析
+    def stream_analysis():
+        try:
+            # 逐步返回分析的结果
+            analysis_result = analyze_collaboration(query, result_data)
+            for line in analysis_result.splitlines():
+                yield f"data: {line}\n\n"
+        except Exception as e:
+            yield f"data: Error: {str(e)}\n\n"
 
-    # 保存分析结果
-    try:
-        save_analysis_result(analysis_result, analysis_result_file)
-        return jsonify({"message": "分析完成", "analysis_result": analysis_result})
-    except Exception as e:
-        return jsonify({"error": f"保存分析结果失败: {e}"}), 500
+    return Response(stream_with_context(stream_analysis()), content_type='text/event-stream')
 
 
 if __name__ == "__main__":
