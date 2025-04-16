@@ -5,22 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>知识图谱分析</title>
     <style>
-        /* 样式：可复制且具有滚动条的输出框 */
-        #resultBox {
-            width: 100%;
-            height: 200px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            overflow-y: auto;
-            white-space: pre-wrap; /* 保持格式 */
-            background-color: #f9f9f9;
-            font-family: monospace;
-            border-radius: 5px;
-            margin-top: 10px;
+        body {
+        text-align: center;  /* 全局文字居中 */
         }
 
-        /* 子任务定位输出框样式 */
-        #resultBox2 {
+        /* 样式：可复制且具有滚动条的输出框 */
+        #resultBox, #resultBox2, #analysisResultBox {
             width: 60%;  /* 宽度设置为60% */
             max-width: 800px;  /* 最大宽度为800px */
             height: 200px;
@@ -31,25 +21,9 @@
             background-color: #f9f9f9;
             font-family: monospace;
             border-radius: 5px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* 大模型分析结果输出框样式 */
-        #analysisResultBox {
-            width: 60%;
-            max-width: 800px;
-            height: 200px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            background-color: #f9f9f9;
-            font-family: monospace;
-            border-radius: 5px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: left;
+            /* 居中显示 */
+            /* 居中显示 */
+            margin: 20px auto;
         }
     </style>
 </head>
@@ -82,8 +56,8 @@
     <h2>大模型分析结果</h2>
     <button onclick="analyzeCollaboration()">进行大模型分析</button>
 
-    <!-- 大模型分析结果输出框，流式显示 -->
-    <div id="analysisResultBox"></div>
+    <!-- 大模型分析结果输出框 -->
+    <div id="analysisResultBox" contenteditable="true"></div>
 
     <script>
     function startAnalysis() {
@@ -150,16 +124,14 @@
 
     function analyzeCollaboration() {
         const query = document.getElementById("queryInput").value;
-        const eventSource = new EventSource(`/analyze_collaboration`, {
-            method: 'POST',
-            body: JSON.stringify({ query: query }),
-            headers: { 'Content-Type': 'application/json' }
-        });
-
-        eventSource.onmessage = function (event) {
-            const analysisResultBox = document.getElementById("analysisResultBox");
-            analysisResultBox.textContent += event.data + '\n'; // 将流式数据逐步添加到输出框
-        };
+        fetch("/analyze_collaboration", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ query: query })
+        }).then(res => res.json())
+            .then(data => {
+                document.getElementById("analysisResultBox").innerText = JSON.stringify(data.analysis_result, null, 2);
+            });
     }
     </script>
 </body>
