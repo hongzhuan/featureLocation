@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识图谱分析</title>
+    <style>
+        /* 样式：可复制且具有滚动条的输出框 */
+        #resultBox {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap; /* 保持格式 */
+            background-color: #f9f9f9;
+            font-family: monospace;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* 子任务定位输出框样式 */
+        #resultBox2 {
+            width: 60%;  /* 宽度设置为60% */
+            max-width: 800px;  /* 最大宽度为800px */
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap; /* 保持格式 */
+            background-color: #f9f9f9;
+            font-family: monospace;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>上传源代码</h2>
+    <label for="sourceDir">选择文件夹：</label>
+    <input type="file" id="sourceDir" webkitdirectory mozdirectory>
+    <button onclick="startAnalysis()">开始分析</button>
+    <div id="progress">状态：未开始</div>
+
+    <hr>
+
+    <h2>查询分解为子任务</h2>
+    <input type="text" id="queryInput" placeholder="例如：文件打开操作函数">
+    <button onclick="submitQuery()">发送查询</button>
+
+    <!-- 可复制输出框 -->
+    <div id="resultBox" contenteditable="true"></div>
+
+    <hr>
+
+    <h2>子任务定位</h2>
+    <button onclick="locateSubtasks()">定位子任务</button>
+
+    <!-- 子任务定位的输出框，宽度不占满屏幕 -->
+    <div id="resultBox2" contenteditable="true"></div>
+
+    <hr>
+
+    <h2>大模型分析结果</h2>
+    <button onclick="analyzeCollaboration()">进行大模型分析</button>
+    <pre id="analysisResultBox"></pre>
+
+    <script>
+    function startAnalysis() {
+        const sourceDir = document.getElementById("sourceDir").files[0];  // 获取用户选择的文件夹路径
+        if (!sourceDir) {
+            alert("请先选择文件夹！");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("sourceDir", sourceDir.webkitRelativePath); // 获取文件夹路径
+
+        fetch("/analyze", {
+            method: "POST",
+            body: JSON.stringify({
+                sourceDir: sourceDir.webkitRelativePath
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            document.getElementById("progress").innerText = "状态：运行中";
+            checkProgress();
+        }).catch(error => {
+            alert("上传失败！", error);
+        });
+    }
+
+    function checkProgress() {
+        fetch("/progress")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("progress").innerText = "状态：" + data.status;
+                if (data.status === "running") {
+                    setTimeout(checkProgress, 1000);
+                }
+            });
+    }
+
+    function submitQuery() {
+        const query = document.getElementById("queryInput").value;
+        fetch("/query", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ query: query })
+        }).then(res => res.json())
+            .then(data => {
+                const resultBox = document.getElementById("resultBox");
+                resultBox.textContent = JSON.stringify(data.subtasks, null, 2);  // 设置输出内容为可复制的格式
+            });
+    }
+
+    function locateSubtasks() {
+        const query = document.getElementById("queryInput").value;
+        fetch("/locate_subtasks", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ query: query })
+        }).then(res => res.json())
+            .then(data => {
+                document.getElementById("resultBox2").innerText = JSON.stringify(data.results, null, 2); // 另一个输出框
+            });
+    }
+
+    function analyzeCollaboration() {
+        const query = document.getElementById("queryInput").value;
+        fetch("/analyze_collaboration", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ query: query })
+        }).then(res => res.json())
+            .then(data => {
+                document.getElementById("analysisResultBox").innerText = JSON.stringify(data.analysis_result, null, 2);
+            });
+    }
+    </script>
+</body>
+</html>

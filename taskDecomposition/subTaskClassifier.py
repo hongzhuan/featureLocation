@@ -1,3 +1,5 @@
+import sys
+
 from sklearn.cluster import DBSCAN
 import json
 from typing import List, Dict, Any
@@ -28,7 +30,7 @@ class SubTaskClassifier:
         self.num_clusters = num_clusters
         self.deepseek_api_key = deepseek_api_key
         # 加载本地 bge-m3 模型用于文本嵌入
-        self.embed_model = SentenceTransformer("../model/bge-m3")
+        self.embed_model = SentenceTransformer(r"D:\featureLocation\model\bge-m3")
         # 初始化 DeepSeek 客户端
         self.deepseek_client = OpenAI(api_key=deepseek_api_key, base_url="https://api.deepseek.com")
 
@@ -131,6 +133,22 @@ class SubTaskClassifier:
             return "子任务描述生成失败。"
 
 
+def save_output(result: Dict[str, Any], output_file: str):
+    """
+    将结果保存为 JSON 文件。
+
+    参数：
+      result (Dict): 要保存的结果数据。
+      output_file (str): 输出文件路径。
+    """
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(result, f, indent=4, ensure_ascii=False)
+        print(f"结果已保存到 {output_file}")
+    except Exception as e:
+        print(f"保存结果到 {output_file} 时出错：", e)
+
+
 def load_input_data(file_path: str) -> List[Dict[str, Any]]:
     """
     从指定文件加载 input_data。
@@ -152,6 +170,7 @@ def load_input_data(file_path: str) -> List[Dict[str, Any]]:
 # 测试用例
 if __name__ == "__main__":
     input_dir = "../output/similarityResult/libuv_src.json"
+    output_file = "../output/subtask/libuv_src.json"
     input_data = load_input_data(input_dir)
 
     # 请替换为实际的 DeepSeek API Key
@@ -159,6 +178,21 @@ if __name__ == "__main__":
     classifier = SubTaskClassifier(deepseek_api_key=deepseek_api_key, num_clusters=2)
     subtasks = classifier.classify(input_data)
 
-    print("子任务划分结果：")
+    if not input_data:
+        print("输入数据为空，程序退出。")
+        sys.exit(1)
+
+    # 取第一个查询的 query 作为输出结果中的 query（假设只有一个查询）
+    query = input_data[0].get("query", "")
+
+    # 构造输出结果字典，键为 "subTasks1", "subTasks2", "subTasks3"
+    output_result = {"query": query}
     for idx, task_desc in enumerate(subtasks, start=1):
-        print(f"子任务 {idx}: {task_desc}")
+        output_result[f"subTasks{idx}"] = task_desc
+
+    # 保存输出结果到 JSON 文件
+    save_output(output_result, output_file)
+
+    # 同时打印输出结果
+    print("子任务划分结果：")
+    print(json.dumps(output_result, indent=4, ensure_ascii=False))

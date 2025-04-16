@@ -1,8 +1,8 @@
-from InputManager import InputManager
-from ParserManager import ParserManager
-from StorageManager import StorageManager
-from summary_generator import SummaryGenerator
-from relation_analyzer import FunctionCallAnalyzer
+from .InputManager import InputManager
+from .ParserManager import ParserManager
+from .StorageManager import StorageManager
+from .summary_generator import SummaryGenerator
+from .relation_analyzer import FunctionCallAnalyzer
 from tqdm import tqdm
 
 

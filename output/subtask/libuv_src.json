@@ -1,0 +1,6 @@
+{
+    "query": "What is the function that performs the file opening operation?",
+    "subTasks1": "实现一个在多用户系统中处理文件打开、关闭及错误情况的C++函数是什么？",
+    "subTasks2": "\"实现一个在Node.js中处理UVFS文件系统操作，包括打开或创建文件、处理高级权限、共享模式、文件属性及openness参数，并通过CreateFileW创建文件句柄的函数是什么？\"",
+    "subTasks3": "生成一个可读写文件句柄并处理`CreateFileW`错误，同时通过随机字符生成临时文件路径以避免冲突的函数是什么？"
+}

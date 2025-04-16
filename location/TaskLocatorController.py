@@ -3,9 +3,9 @@ import os
 
 import torch
 
-from EmbeddingEncoder import EmbeddingEncoder
-from SimilarityCalculator import SimilarityCalculator
-from ResultFilter import ResultFilter
+from .EmbeddingEncoder import EmbeddingEncoder
+from .SimilarityCalculator import SimilarityCalculator
+from .ResultFilter import ResultFilter
 
 
 class TaskLocatorController:
