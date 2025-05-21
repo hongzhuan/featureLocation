@@ -1,8 +1,8 @@
-from .InputManager import InputManager
-from .ParserManager import ParserManager
-from .StorageManager import StorageManager
-from .summary_generator import SummaryGenerator
-from .relation_analyzer import FunctionCallAnalyzer
+from InputManager import InputManager
+from ParserManager import ParserManager
+from StorageManager import StorageManager
+from summary_generator import SummaryGenerator
+from relation_analyzer import FunctionCallAnalyzer
 from tqdm import tqdm
 
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     test_root_directory = "../openSourceCode/libuv_src"
 
     # 输出文件路径
-    test_output_file = "../output/sourceCodeResult/libuv_src.json"
+    test_output_file = "../output/sourceCodeResult/libuv_src1.json"
 
     # 初始化Controller
     controller = Controller(test_root_directory, test_output_file)
