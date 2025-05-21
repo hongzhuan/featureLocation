@@ -7,7 +7,6 @@
 该部分的实现代码主要集中在sourceCodeInput文件夹中，sourceCodeInput/Controller.py是整个知识图谱构建的总控制程序，它调用sourceCodeInput中的其他文件完成这个功能。
 
 - sourceCodeInput/Controller.py: 输入是源代码文件夹的路径，例如openSourceCode/libuv_src；输出是存有节点、边、节点摘要的json文件，例如output/sourceCodeResult/libuv_src.json；
-- 
 
 ### Module 2 : 子任务分解
 
