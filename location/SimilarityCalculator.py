@@ -1,7 +1,7 @@
 import torch
 from typing import List, Dict
 from scipy.spatial.distance import cosine
-from .EmbeddingEncoder import EmbeddingEncoder
+from EmbeddingEncoder import EmbeddingEncoder
 
 
 class SimilarityCalculator:

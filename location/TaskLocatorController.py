@@ -3,9 +3,9 @@ import os
 
 import torch
 
-from .EmbeddingEncoder import EmbeddingEncoder
-from .SimilarityCalculator import SimilarityCalculator
-from .ResultFilter import ResultFilter
+from EmbeddingEncoder import EmbeddingEncoder
+from SimilarityCalculator import SimilarityCalculator
+from ResultFilter import ResultFilter
 
 
 class TaskLocatorController:
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     # 参数配置
     model_path = "../model/bge-m3"
     input_file = "../output/sourceCodeResult/libuv_src.json"
-    output_file = "../output/similarityResult/libuv_src.json"
+    output_file = "../output/result/libuv_src.json"
 
     # 初始化控制模块
     controller = TaskLocatorController(model_path, input_file, output_file, threshold=0.5, top_k=5)

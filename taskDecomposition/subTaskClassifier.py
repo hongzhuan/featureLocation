@@ -169,8 +169,8 @@ def load_input_data(file_path: str) -> List[Dict[str, Any]]:
 
 # 测试用例
 if __name__ == "__main__":
-    input_dir = "../output/similarityResult/libuv_src.json"
-    output_file = "../output/subtask/libuv_src.json"
+    input_dir = "../output/subtask/subtasks_input/second.json"
+    output_file = "../output/subtask/second.json"
     input_data = load_input_data(input_dir)
 
     # 请替换为实际的 DeepSeek API Key
